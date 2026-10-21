@@ -1,0 +1,31 @@
+Creative Commons Attribution 4.0 International (CC BY 4.0)
+
+Copyright (c) 2026 Dawid
+
+The case-study text and diagrams under `case-study/` and the structured
+dataset `data/facts.json` are licensed under the Creative Commons
+Attribution 4.0 International License.
+
+You are free to share and adapt this material for any purpose, including
+commercially, provided that you give appropriate credit, provide a link to
+the license, and indicate if changes were made. You may do so in any
+reasonable manner, but not in any way that suggests the licensor endorses
+you or your use.
+
+No additional restrictions — you may not apply legal terms or technological
+measures that legally restrict others from doing anything the license permits.
+
+The licensor offers the material as-is and makes no warranties. The full
+legal text of the license is at:
+
+https://creativecommons.org/licenses/by/4.0/legalcode
+
+A human-readable summary is at:
+
+https://creativecommons.org/licenses/by/4.0/
+
+Suggested attribution: “PHP2Shell case study and facts dataset by Dawid,
+https://github.com/Akirapl/php2shell, licensed under CC BY 4.0.”
+
+Any code in this repository is covered separately by the MIT License in
+the file `LICENSE`.
