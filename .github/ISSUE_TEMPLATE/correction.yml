@@ -1,0 +1,53 @@
+name: Correction / Korekta / Korrektur
+description: "Quote a wrong statement and give a source link. / Zacytuj błędne zdanie i podaj źródło. / Falsche Aussage zitieren und Quelle angeben."
+title: "[Correction] "
+labels:
+  - correction
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Quote the wrong statement and link a source that supports the correction.
+        Do not include exploit code or attack instructions.
+
+        Zacytuj błędne zdanie i podaj źródło korekty.
+        Bez kodu exploita i bez instrukcji ataku.
+
+        Zitiere die falsche Aussage und verlinke eine Quelle für die Korrektur.
+        Kein Exploit-Code und keine Angriffsanleitung.
+  - type: textarea
+    id: what
+    attributes:
+      label: What is wrong / Co jest błędne / Was ist falsch
+      description: "Quote the wrong statement. / Cytat błędnego zdania. / Zitat der falschen Aussage."
+      placeholder: "\"...\""
+    validations:
+      required: true
+  - type: input
+    id: where
+    attributes:
+      label: Where / Gdzie / Wo
+      description: "File and section, or the live-center item id. / Plik i sekcja albo identyfikator pozycji. / Datei und Abschnitt oder Kennung der Position."
+      placeholder: "case-study/en.md — section 6.2, or facts.json id"
+    validations:
+      required: true
+  - type: input
+    id: source
+    attributes:
+      label: Source URL / Adres źródła / Quellen-URL
+      description: "Link to the source that supports the correction. Required. / Link do źródła korekty. Wymagane. / Link zur Quelle der Korrektur. Pflicht."
+      placeholder: https://
+    validations:
+      required: true
+  - type: dropdown
+    id: language
+    attributes:
+      label: Language / Język / Sprache
+      description: "Which text the correction concerns. / Którego tekstu dotyczy korekta. / Welchen Text die Korrektur betrifft."
+      options:
+        - pl
+        - en
+        - de
+        - multiple or data item
+    validations:
+      required: true

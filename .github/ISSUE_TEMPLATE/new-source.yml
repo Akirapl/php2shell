@@ -1,0 +1,37 @@
+name: New source / Nowe źródło / Neue Quelle
+description: "Suggest a source to add. / Zaproponuj źródło. / Quelle vorschlagen."
+title: "[Source] "
+labels:
+  - source
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Suggest a source. Say what fact it supports. Do not include exploit code or attack instructions.
+
+        Zaproponuj źródło i napisz, jaki fakt potwierdza. Bez kodu exploita i bez instrukcji ataku.
+
+        Schlage eine Quelle vor und schreibe, welchen Fakt sie stützt. Kein Exploit-Code und keine Angriffsanleitung.
+  - type: input
+    id: url
+    attributes:
+      label: URL
+      description: "Address of the source. / Adres źródła. / Adresse der Quelle."
+      placeholder: https://
+    validations:
+      required: true
+  - type: textarea
+    id: adds
+    attributes:
+      label: What it adds / Co wnosi / Was sie ergänzt
+      description: "The fact, date, or quote this source supports. / Fakt, data albo cytat, który źródło potwierdza. / Fakt, Datum oder Zitat, den die Quelle stützt."
+    validations:
+      required: true
+  - type: input
+    id: published
+    attributes:
+      label: Publication date / Data publikacji / Veröffentlichungsdatum
+      description: "Date on the source. Write unknown if the page has none. / Data na źródle. Wpisz unknown, gdy jej brak. / Datum auf der Quelle. unknown, wenn keins dasteht."
+      placeholder: YYYY-MM-DD
+    validations:
+      required: true

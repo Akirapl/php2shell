@@ -1,0 +1,5 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Live center / Centrum na żywo / Live-Center
+    url: https://php2shell-live.surge.sh
+    about: Public PHP2Shell live center. Corrections still use GitHub Issues. / Centrum na żywo. Korekty i tak przez Issues. / Live-Center. Korrekturen weiter über Issues.

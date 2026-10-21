@@ -1,0 +1,50 @@
+name: Translation / Tłumaczenie / Übersetzung
+description: "Report a translation fix. / Zgłoś poprawkę tłumaczenia. / Übersetzungsfehler melden."
+title: "[Translation] "
+labels:
+  - translation
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Point at the wording that should change and give the suggested text.
+        Do not include exploit code or attack instructions.
+
+        Wskaż brzmienie do zmiany i podaj propozycję.
+        Bez kodu exploita i bez instrukcji ataku.
+
+        Nenne die Formulierung, die sich ändern soll, und den Vorschlag.
+        Kein Exploit-Code und keine Angriffsanleitung.
+  - type: dropdown
+    id: language
+    attributes:
+      label: Language / Język / Sprache
+      description: "Language of the text to fix. / Język poprawianego tekstu. / Sprache des zu korrigierenden Textes."
+      options:
+        - pl
+        - en
+        - de
+    validations:
+      required: true
+  - type: input
+    id: where
+    attributes:
+      label: Where / Gdzie / Wo
+      description: "File and section. / Plik i sekcja. / Datei und Abschnitt."
+      placeholder: case-study/de.md — section 2.3
+    validations:
+      required: true
+  - type: textarea
+    id: current
+    attributes:
+      label: Current wording / Obecne brzmienie / Bisherige Formulierung
+      description: "Quote the text to change. / Cytat tekstu do zmiany. / Zitat des zu ändernden Textes."
+    validations:
+      required: true
+  - type: textarea
+    id: suggested
+    attributes:
+      label: Suggested wording / Propozycja / Vorschlag
+      description: "The replacement text. / Tekst zastępczy. / Der Ersatztext."
+    validations:
+      required: true
