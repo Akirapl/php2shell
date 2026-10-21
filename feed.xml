@@ -3,12 +3,23 @@
 <title>PHP2Shell — timeline (EN)</title>
 <subtitle>Live timeline of PHP2Shell (CVE-2026-109618/109619), a critical PHP core RCE (CVSS 9.2). Fixed in 8.5.12, 8.4.27, 8.3.36, 8.2.35. Every fact sourced.</subtitle>
 <id>https://akirapl.github.io/php2shell/feed.xml</id>
-<updated>2026-10-21T18:42:00Z</updated>
+<updated>2026-10-21T19:12:00Z</updated>
 <link rel="self" type="application/atom+xml" href="https://akirapl.github.io/php2shell/feed.xml"/>
 <link rel="alternate" type="text/html" hreflang="en" href="https://akirapl.github.io/php2shell/?lang=en"/>
 <author><name>Dawid Kulik (@Akirapl)</name><uri>https://github.com/Akirapl</uri></author>
 <icon>https://akirapl.github.io/php2shell/assets/og-image.png</icon>
 <rights>CC BY 4.0</rights>
+<entry>
+<title>Defused (honeypots): no major exploit activity, attempts mostly from non-working public PoCs</title>
+<id>tag:php2shell-live.surge.sh,2026:defused-poc-inoperative</id>
+<link rel="alternate" type="text/html" href="https://akirapl.github.io/php2shell/?lang=en#ev-defused-poc-inoperative"/>
+<link rel="related" href="https://x.com/DefusedCyber/status/2112969691668869611"/>
+<published>2026-10-21T18:10:06Z</published>
+<updated>2026-10-21T18:10:06Z</updated>
+<category term="major"/>
+<summary type="text">Defused, which runs a honeypot network, says it has so far seen no major exploit activity for either flaw. Attempts are limited to public PoCs from the past 24 hours, which in its testing were predominantly inoperative. One company's observation, no figures published.</summary>
+<content type="html">&lt;p&gt;Defused, which runs a honeypot network, says it has so far seen no major exploit activity for either flaw. Attempts are limited to public PoCs from the past 24 hours, which in its testing were predominantly inoperative. One company&amp;#x27;s observation, no figures published.&lt;/p&gt;&lt;p&gt;Source: &lt;a href="https://x.com/DefusedCyber/status/2112969691668869611"&gt;Defused (X)&lt;/a&gt; · reported · major&lt;/p&gt;</content>
+</entry>
 <entry>
 <title>SecurityWeek: Vega sees attempts using a public PoC; Wiz points to untracked variants</title>
 <id>tag:php2shell-live.surge.sh,2026:securityweek-vega-variants</id>
@@ -657,6 +668,28 @@
 <category term="major"/>
 <summary type="text">VirusTotal fingerprints about 5.1M IPs running PHP (about 3.8M with an open port), but only about 1.1M disclose a version – roughly four in five servers hide it. Among those that do: about 272K on supported branches (8.2–8.5), about 758K on end-of-life 5.4–8.1 (7.4 alone about 187K, 5.4 about 119K), about 88K on 5.2/5.3. About 85K IPs ran exactly the latest pre-fix releases (8.5.11, 8.4.26, 8.3.35, 8.2.34). These are PHP's internet footprint, not confirmed vulnerable systems; median of seven queries on 21 Oct.</summary>
 <content type="html">&lt;p&gt;VirusTotal fingerprints about 5.1M IPs running PHP (about 3.8M with an open port), but only about 1.1M disclose a version – roughly four in five servers hide it. Among those that do: about 272K on supported branches (8.2–8.5), about 758K on end-of-life 5.4–8.1 (7.4 alone about 187K, 5.4 about 119K), about 88K on 5.2/5.3. About 85K IPs ran exactly the latest pre-fix releases (8.5.11, 8.4.26, 8.3.35, 8.2.34). These are PHP&amp;#x27;s internet footprint, not confirmed vulnerable systems; median of seven queries on 21 Oct.&lt;/p&gt;&lt;p&gt;Source: &lt;a href="https://blog.virustotal.com/2026/"&gt;VirusTotal Blog&lt;/a&gt; · estimate · major&lt;/p&gt;</content>
+</entry>
+<entry>
+<title>Datadog: the popular config workaround does not protect; they reproduced the bug before disclosure</title>
+<id>tag:php2shell-live.surge.sh,2026:datadog-mitigation-not-enough</id>
+<link rel="alternate" type="text/html" href="https://akirapl.github.io/php2shell/?lang=en#ev-datadog-mitigation-not-enough"/>
+<link rel="related" href="https://securitylabs.datadoghq.com/articles/php2shell-critical-vulnerabilities-in-php/"/>
+<published>2026-10-21T00:00:00Z</published>
+<updated>2026-10-21T00:00:00Z</updated>
+<category term="major"/>
+<summary type="text">Datadog Security Labs says it built its own exploits before public disclosure to develop detections, and reproduced CVE-2026-109618 on PHP 8.5.11 with one unauthenticated POST request. Per Datadog, the workaround circulating in the community (disabling session.upload_progress in PHP's configuration) does not protect; only patching fixes it. Successful exploitation need not crash the worker. We do not reproduce technical details.</summary>
+<content type="html">&lt;p&gt;Datadog Security Labs says it built its own exploits before public disclosure to develop detections, and reproduced CVE-2026-109618 on PHP 8.5.11 with one unauthenticated POST request. Per Datadog, the workaround circulating in the community (disabling session.upload_progress in PHP&amp;#x27;s configuration) does not protect; only patching fixes it. Successful exploitation need not crash the worker. We do not reproduce technical details.&lt;/p&gt;&lt;p&gt;Source: &lt;a href="https://securitylabs.datadoghq.com/articles/php2shell-critical-vulnerabilities-in-php/"&gt;Datadog Security Labs&lt;/a&gt; · confirmed · major&lt;/p&gt;</content>
+</entry>
+<entry>
+<title>Corelight releases open Zeek and Suricata detections built before disclosure</title>
+<id>tag:php2shell-live.surge.sh,2026:corelight-open-detections</id>
+<link rel="alternate" type="text/html" href="https://akirapl.github.io/php2shell/?lang=en#ev-corelight-open-detections"/>
+<link rel="related" href="https://corelight.com/blog/php2shell-detection-before-disclosure"/>
+<published>2026-10-21T00:00:00Z</published>
+<updated>2026-10-21T00:00:00Z</updated>
+<category term="minor"/>
+<summary type="text">Corelight Labs says it worked with OpenAI, PHP and other organisations ahead of coordinated disclosure and published open network detections alongside it (nine Zeek notice types and Suricata rules, including PHP version inventory from HTTP headers). Its credits table lists Calif, Wiz, OpenAI and Quarkslab for CVE-2026-109618, and Wiz, Calif and OpenAI for CVE-2026-109619.</summary>
+<content type="html">&lt;p&gt;Corelight Labs says it worked with OpenAI, PHP and other organisations ahead of coordinated disclosure and published open network detections alongside it (nine Zeek notice types and Suricata rules, including PHP version inventory from HTTP headers). Its credits table lists Calif, Wiz, OpenAI and Quarkslab for CVE-2026-109618, and Wiz, Calif and OpenAI for CVE-2026-109619.&lt;/p&gt;&lt;p&gt;Source: &lt;a href="https://corelight.com/blog/php2shell-detection-before-disclosure"&gt;Corelight Labs&lt;/a&gt; · confirmed · minor&lt;/p&gt;</content>
 </entry>
 <entry>
 <title>Fedora: PHP2Shell proposed as a Fedora 45 release blocker</title>

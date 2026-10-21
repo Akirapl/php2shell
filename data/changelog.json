@@ -1,5 +1,11 @@
 [
  {
+  "time_utc": "2026-10-21T19:08:48Z",
+  "message": "Defused, Datadog, Corelight, NHS England CC-4875; KEV re-check 19:08",
+  "events": 81,
+  "facts_last_updated": "2026-10-21T19:12:00Z"
+ },
+ {
   "time_utc": "2026-10-21T18:37:28Z",
   "message": "KISA advisory; KEV re-check 18:40 UTC",
   "events": 78,
