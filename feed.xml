@@ -3,7 +3,7 @@
 <title>PHP2Shell — timeline (EN)</title>
 <subtitle>Live timeline of PHP2Shell (CVE-2026-109618/109619), a critical PHP core RCE (CVSS 9.2). Fixed in 8.5.12, 8.4.27, 8.3.36, 8.2.35. Every fact sourced.</subtitle>
 <id>https://akirapl.github.io/php2shell/feed.xml</id>
-<updated>2026-10-21T17:15:00Z</updated>
+<updated>2026-10-21T17:45:00Z</updated>
 <link rel="self" type="application/atom+xml" href="https://akirapl.github.io/php2shell/feed.xml"/>
 <link rel="alternate" type="text/html" hreflang="en" href="https://akirapl.github.io/php2shell/?lang=en"/>
 <author><name>Dawid Kulik (@Akirapl)</name><uri>https://github.com/Akirapl</uri></author>
@@ -19,6 +19,17 @@
 <category term="minor"/>
 <summary type="text">Round-up article: Vega observed exploitation attempts built on a public PoC; according to Wiz the two CVEs group four memory-safety issues but do not cover all variants (untracked ones exist too). No numbers on successful attacks.</summary>
 <content type="html">&lt;p&gt;Round-up article: Vega observed exploitation attempts built on a public PoC; according to Wiz the two CVEs group four memory-safety issues but do not cover all variants (untracked ones exist too). No numbers on successful attacks.&lt;/p&gt;&lt;p&gt;Source: &lt;a href="https://www.securityweek.com/php2shell-patches-land-as-first-exploitation-attempts-hit-sensors/"&gt;SecurityWeek&lt;/a&gt; · reported · minor&lt;/p&gt;</content>
+</entry>
+<entry>
+<title>CISA: patch immediately, take PHP 8.1 and older offline</title>
+<id>tag:php2shell-live.surge.sh,2026:cisa-alert-immediate-patching</id>
+<link rel="alternate" type="text/html" href="https://akirapl.github.io/php2shell/?lang=en#ev-cisa-alert-immediate-patching"/>
+<link rel="related" href="https://www.cisa.gov/news-events/alerts/2026/10/21/critical-vulnerabilities-php-require-immediate-patching"/>
+<published>2026-10-21T16:40:15Z</published>
+<updated>2026-10-21T16:40:15Z</updated>
+<category term="major"/>
+<summary type="text">CISA alert “Critical Vulnerabilities in PHP Require Immediate Patching”: update to 8.5.12/8.4.27/8.3.36/8.2.35, inventory PHP including as a component of other products, and take systems offline that cannot be updated or still run PHP 8.1 or earlier until they are patched. CISA says it had not observed exploitation at the time of publication; neither CVE is in the KEV catalog yet. The time is that of the @CISACyber post linking the alert (the page only gives a date).</summary>
+<content type="html">&lt;p&gt;CISA alert “Critical Vulnerabilities in PHP Require Immediate Patching”: update to 8.5.12/8.4.27/8.3.36/8.2.35, inventory PHP including as a component of other products, and take systems offline that cannot be updated or still run PHP 8.1 or earlier until they are patched. CISA says it had not observed exploitation at the time of publication; neither CVE is in the KEV catalog yet. The time is that of the @CISACyber post linking the alert (the page only gives a date).&lt;/p&gt;&lt;p&gt;Source: &lt;a href="https://www.cisa.gov/news-events/alerts/2026/10/21/critical-vulnerabilities-php-require-immediate-patching"&gt;CISA&lt;/a&gt; · confirmed · major&lt;/p&gt;</content>
 </entry>
 <entry>
 <title>Fastly: “evidence of attacks before disclosure” and a warning that the problem sits in the engine's design</title>
