@@ -1,5 +1,11 @@
 [
  {
+  "time_utc": "2026-10-21T15:10:06Z",
+  "message": "Hosting: GitHub Pages primary, Surge serves redirects",
+  "events": 61,
+  "facts_last_updated": "2026-10-21T15:15:00Z"
+ },
+ {
   "time_utc": "2026-10-21T15:04:24Z",
   "message": "15:15 UTC: PHP Foundation backstory (2024 audit, Chainguard embargo break), Debian/Ubuntu, Japan, watchTowr, Brockman",
   "events": 61,
