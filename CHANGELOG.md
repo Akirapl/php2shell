@@ -1,5 +1,13 @@
 # Changelog
 
+## v1.3 (21.10.2026)
+
+Case study formatting for mobile: 10 wide tables per language turned into lists; content unchanged.
+
+Formatowanie studium pod telefony: 10 szerokich tabel w każdym języku zamieniono na listy; treść bez zmian.
+
+Formatierung der Fallstudie für Mobilgeräte: 10 breite Tabellen je Sprache in Listen umgewandelt; Inhalt unverändert.
+
 ## v1.2 (21.10.2026)
 
 Passive PHP banner checker API in `checker-api/`. The root Render Blueprint `render.yaml` deploys the free Docker web service `php2shell-checker`.
