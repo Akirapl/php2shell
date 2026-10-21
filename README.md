@@ -2,6 +2,14 @@
 
 Sourced public record of CVE-2026-109618 and CVE-2026-109619, patched in PHP 8.5.12 / 8.4.27 / 8.3.36 / 8.2.35 on 21.10.2026. The live center built on this data is at <https://php2shell-live.surge.sh>.
 
+## About / O projekcie / Über
+
+Niezależny, niekomercyjny projekt użytkownika [@Akirapl](https://github.com/Akirapl). [ABOUT.md](ABOUT.md).
+
+Independent, non-commercial project by [@Akirapl](https://github.com/Akirapl). [ABOUT.md](ABOUT.md).
+
+Unabhängiges, nicht-kommerzielles Projekt von [@Akirapl](https://github.com/Akirapl). [ABOUT.md](ABOUT.md).
+
 ## Polski
 
 To repozytorium trzyma obronne studium przypadku PHP2Shell oraz dane, na których działa centrum na żywo. Tekst jest źródłowy: każde twierdzenie w studium ma przypis, a każdy fakt w zbiorze danych ma adres źródła i poziom pewności.
