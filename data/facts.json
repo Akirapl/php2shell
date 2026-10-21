@@ -10,7 +10,7 @@
    "en": "CVE-2026-109618 and CVE-2026-109619: critical RCE flaws in the PHP core",
    "de": "CVE-2026-109618 und CVE-2026-109619: kritische RCE-Lücken im PHP-Kern"
   },
-  "last_updated": "2026-10-21T15:41:59Z",
+  "last_updated": "2026-10-21T16:15:00Z",
   "maintainer_note": "Single source of truth. Every fact needs source_url, source_name, confidence; texts as {pl,en,de}. Run ./update_and_build.sh \"message\".",
   "timezone_note": {
    "pl": "Wszystkie czasy w UTC. Czasy z NOS (CEST) przeliczone na UTC (−2 h).",
@@ -76,7 +76,7 @@
   "exploitation_threshold": {
    "rule": "confirmed only if CISA KEV lists a CVE or a national CERT publishes credible in-the-wild evidence",
    "kev_listed": false,
-   "kev_checked_utc": "2026-10-21T15:41:28Z",
+   "kev_checked_utc": "2026-10-21T16:10:00Z",
    "kev_catalog_version": "2026.10.21",
    "kev_url": "https://www.cisa.gov/known-exploited-vulnerabilities-catalog",
    "national_cert_itw": []
@@ -2153,6 +2153,108 @@
    "source_reliability": "A",
    "info_credibility": 1,
    "time_precision": "second"
+  },
+  {
+   "id": "rapid7-etr",
+   "time_utc": "2026-10-21T15:22:00Z",
+   "importance": "minor",
+   "title": {
+    "pl": "Rapid7: badania są niezależnie odtwarzane, publiczny exploit „wkrótce”",
+    "en": "Rapid7: the research is being independently reproduced, a public exploit is expected “soon”",
+    "de": "Rapid7: Die Forschung wird unabhängig nachvollzogen, ein öffentlicher Exploit wird „bald“ erwartet"
+   },
+   "description": {
+    "pl": "Emergent Threat Response Rapid7: „wiele oznak”, że badania są niezależnie odtwarzane, a działający exploit ma się wkrótce pojawić publicznie; wykorzystanie in-the-wild „oczekiwane”, ale nie zgłoszone jako stwierdzone. Rapid7 przypomina też, że rpms.remirepo.net nie ma aktualizacji 21.10.",
+    "en": "Rapid7 Emergent Threat Response: “multiple indications” that the research is being independently reproduced and a viable exploit is expected to become public soon; in-the-wild exploitation is “expected” but not reported as observed. Rapid7 also notes that rpms.remirepo.net has no updates on 21 Oct.",
+    "de": "Rapid7 Emergent Threat Response: „mehrere Hinweise“, dass die Forschung unabhängig nachvollzogen wird und ein funktionsfähiger Exploit bald öffentlich werden dürfte; Ausnutzung in freier Wildbahn wird „erwartet“, aber nicht als beobachtet gemeldet. Rapid7 weist zudem darauf hin, dass rpms.remirepo.net am 21.10. keine Updates hat."
+   },
+   "actors": [
+    "Rapid7"
+   ],
+   "source_url": "https://www.rapid7.com/blog/post/etr-cve-2026-109618-and-cve-2026-109619-critical-unauthenticated-remote-code-execution-in-php",
+   "source_name": "Rapid7 ETR blog",
+   "confidence": "reported",
+   "source_reliability": "B",
+   "info_credibility": 3,
+   "time_kind": "published",
+   "time_precision": "minute"
+  },
+  {
+   "id": "fastly-blog",
+   "time_utc": "2026-10-21T15:54:30Z",
+   "importance": "major",
+   "title": {
+    "pl": "Fastly: „dowody ataków przed ujawnieniem” i ostrzeżenie, że problem siedzi w konstrukcji silnika",
+    "en": "Fastly: “evidence of attacks before disclosure” and a warning that the problem sits in the engine's design",
+    "de": "Fastly: „Belege für Angriffe vor der Veröffentlichung“ und die Warnung, dass das Problem im Design der Engine steckt"
+   },
+   "description": {
+    "pl": "Kelly Shortridge (CPO Fastly) pisze o „evidence of active attacks in-the-wild pre-disclosure”, bez publikacji danych. Mechanizm awaryjnego przerwania żądania (zend_bailout/longjmp) występuje w wielu miejscach kodu, więc łatki zamykają tylko znalezione ścieżki; Fastly spodziewa się nowych wariantów „w tym i przyszłym tygodniu”. Łagodzący szczegół: znane PoC na x86_64 wymagają wiedzy o konkretnej binarce i układzie pamięci serwera. Fastly zapowiada publikację własnej telemetrii.",
+    "en": "Kelly Shortridge (Fastly CPO) writes of “evidence of active attacks in-the-wild pre-disclosure”, without publishing data. The emergency request-abort mechanism (zend_bailout/longjmp) appears in many places in the code, so the patches close only the paths found; Fastly expects new variants “this week and next”. Mitigating detail: known PoCs on x86_64 need knowledge of the specific binary and memory layout of the server. Fastly says it will publish its own telemetry.",
+    "de": "Kelly Shortridge (CPO von Fastly) schreibt von „evidence of active attacks in-the-wild pre-disclosure“, ohne Daten zu veröffentlichen. Der Notabbruch-Mechanismus für Requests (zend_bailout/longjmp) kommt an vielen Stellen im Code vor, die Patches schließen also nur die gefundenen Pfade; Fastly erwartet neue Varianten „diese und nächste Woche“. Entlastend: Bekannte PoCs auf x86_64 brauchen Wissen über die konkrete Binärdatei und das Speicherlayout des Servers. Fastly kündigt eigene Telemetrie an."
+   },
+   "actors": [
+    "Fastly"
+   ],
+   "source_url": "https://www.fastly.com/blog/fastlys-proactive-protection-critical-php-rce-cve-2026-109618",
+   "source_name": "Fastly blog (Kelly Shortridge)",
+   "confidence": "reported",
+   "flags": [
+    "needs_second_source"
+   ],
+   "flag_note": {
+    "pl": "Twierdzenie o atakach przed ujawnieniem bez opublikowanych danych; brak potwierdzenia przez krajowy CERT ani CISA KEV.",
+    "en": "Claim of attacks before disclosure without published data; not confirmed by a national CERT or CISA KEV.",
+    "de": "Behauptung von Angriffen vor der Veröffentlichung ohne veröffentlichte Daten; keine Bestätigung durch ein nationales CERT oder CISA KEV."
+   },
+   "source_reliability": "B",
+   "info_credibility": 3,
+   "time_kind": "published",
+   "time_precision": "second",
+   "time_note": {
+    "pl": "czas wpisu Fastly na X z linkiem do bloga; blog ma tylko datę",
+    "en": "time of Fastly's X post linking the blog; the blog shows only the date",
+    "de": "Zeitpunkt des X-Posts von Fastly mit Link zum Blog; der Blog nennt nur das Datum"
+   }
+  },
+  {
+   "id": "possible-new-bug-8512",
+   "time_utc": "2026-10-21T14:32:15Z",
+   "importance": "major",
+   "title": {
+    "pl": "Niepotwierdzone: badaczka twierdzi, że jej błąd działa też na 8.5.12",
+    "en": "Unconfirmed: a researcher says her bug still works on 8.5.12",
+    "de": "Unbestätigt: Eine Forscherin sagt, ihr Fehler funktioniere auch unter 8.5.12"
+   },
+   "description": {
+    "pl": "Konto @elise (fedi.katze.sh) pisze rano o awarii pamięci wykrytej na PHP 8.4.25, uznaje ją za „inną podatność” niż PHP2Shell, o 14:32 UTC: „still works on 8.5.12”, o 14:51 UTC: zgłoszona do PHP. Wątek trafił na oss-security (15:24 UTC) z zastrzeżeniem „not yet fully confirmed”. PHP nie skomentowało; nie wiadomo, czy to RCE, czy tylko awaria.",
+    "en": "The account @elise (fedi.katze.sh) posted in the morning about a memory error found on PHP 8.4.25, judged it “another” vulnerability than PHP2Shell, at 14:32 UTC: “still works on 8.5.12”, at 14:51 UTC: reported to PHP. The thread reached oss-security (15:24 UTC) with the caveat “not yet fully confirmed”. PHP has not commented; it is unknown whether this is RCE or only a crash.",
+    "de": "Das Konto @elise (fedi.katze.sh) meldete morgens einen Speicherfehler unter PHP 8.4.25, hielt ihn für eine „andere“ Lücke als PHP2Shell, um 14:32 UTC: „still works on 8.5.12“, um 14:51 UTC: an PHP gemeldet. Der Thread erreichte oss-security (15:24 UTC) mit dem Hinweis „not yet fully confirmed“. PHP hat sich nicht geäußert; unklar ist, ob es RCE oder nur ein Absturz ist."
+   },
+   "actors": [
+    "@elise (Fediverse)",
+    "oss-security"
+   ],
+   "source_url": "https://seclists.org/oss-sec/2026/q4/287",
+   "source_name": "oss-security (Aaron Rainbolt), Re: CVE-2026-109619",
+   "confidence": "reported",
+   "flags": [
+    "needs_second_source"
+   ],
+   "flag_note": {
+    "pl": "Jedno, niezweryfikowane źródło; brak potwierdzenia PHP.",
+    "en": "Single unverified source; no confirmation from PHP.",
+    "de": "Einzige, unbestätigte Quelle; keine Bestätigung durch PHP."
+   },
+   "source_reliability": "F",
+   "info_credibility": 6,
+   "time_kind": "published",
+   "time_precision": "second",
+   "time_note": {
+    "pl": "czas wpisu na Fediverse (API Mastodona)",
+    "en": "time of the Fediverse post (Mastodon API)",
+    "de": "Zeitpunkt des Fediverse-Posts (Mastodon-API)"
+   }
   }
  ],
  "actors": [
@@ -2748,6 +2850,40 @@
    "info_credibility": 1,
    "time_kind": "published",
    "time_precision": "day"
+  },
+  {
+   "agency": "NSA Cybersecurity",
+   "country": "US",
+   "time_utc": "2026-10-21T13:45:58Z",
+   "action": {
+    "pl": "Wpis na X: wszystkie organizacje używające PHP mają być przygotowane na aktualizację.",
+    "en": "X post: all organisations using PHP should be prepared for an update.",
+    "de": "X-Post: Alle Organisationen, die PHP nutzen, sollen sich auf ein Update vorbereiten."
+   },
+   "source_url": "https://x.com/NSACyber/status/2112903220209098897",
+   "source_name": "NSA Cyber (X)",
+   "confidence": "confirmed",
+   "source_reliability": "A",
+   "info_credibility": 1,
+   "time_kind": "published",
+   "time_precision": "second"
+  },
+  {
+   "agency": "FBI Cyber Division",
+   "country": "US",
+   "time_utc": "2026-10-21T14:59:11Z",
+   "action": {
+    "pl": "Ostrzeżenie na X o dwóch krytycznych lukach w rdzeniu PHP (zdalne wykonanie kodu).",
+    "en": "Warning on X about two critical flaws in the PHP core (remote code execution).",
+    "de": "Warnung auf X vor zwei kritischen Lücken im PHP-Kern (Remote Code Execution)."
+   },
+   "source_url": "https://x.com/FBICyberDiv/status/2112921648252719420",
+   "source_name": "FBI Cyber Division (X)",
+   "confidence": "confirmed",
+   "source_reliability": "A",
+   "info_credibility": 1,
+   "time_kind": "published",
+   "time_precision": "second"
   }
  ],
  "sites_offline": [
@@ -3795,6 +3931,18 @@
    },
    "source_reliability": "B",
    "info_credibility": 3
+  },
+  {
+   "text": {
+    "pl": "Czy po 8.5.12 jest kolejny błąd przed uwierzytelnieniem (zgłoszenie z Fediverse) i czy PHP będzie potrzebować drugiego awaryjnego wydania?",
+    "en": "Is there another pre-auth bug after 8.5.12 (Fediverse report), and will PHP need a second emergency release?",
+    "de": "Gibt es nach 8.5.12 einen weiteren Fehler vor der Authentifizierung (Meldung aus dem Fediverse), und braucht PHP ein zweites Notfall-Release?"
+   },
+   "source_url": "https://seclists.org/oss-sec/2026/q4/287",
+   "source_name": "oss-security (Aaron Rainbolt), Re: CVE-2026-109619",
+   "confidence": "reported",
+   "source_reliability": "F",
+   "info_credibility": 6
   }
  ],
  "diagrams": {
@@ -4236,6 +4384,31 @@
    "name": "php-src compare b9ea38e…9705fda (GitHub)",
    "url": "https://github.com/php/php-src/compare/b9ea38ef63...9705fda1bb",
    "type": "primary"
+  },
+  {
+   "name": "Rapid7 ETR blog",
+   "url": "https://www.rapid7.com/blog/post/etr-cve-2026-109618-and-cve-2026-109619-critical-unauthenticated-remote-code-execution-in-php",
+   "type": "vendor"
+  },
+  {
+   "name": "Fastly blog (Kelly Shortridge)",
+   "url": "https://www.fastly.com/blog/fastlys-proactive-protection-critical-php-rce-cve-2026-109618",
+   "type": "vendor"
+  },
+  {
+   "name": "oss-security (Aaron Rainbolt), Re: CVE-2026-109619",
+   "url": "https://seclists.org/oss-sec/2026/q4/287",
+   "type": "social"
+  },
+  {
+   "name": "NSA Cyber (X)",
+   "url": "https://x.com/NSACyber/status/2112903220209098897",
+   "type": "agency"
+  },
+  {
+   "name": "FBI Cyber Division (X)",
+   "url": "https://x.com/FBICyberDiv/status/2112921648252719420",
+   "type": "agency"
   }
  ]
 }

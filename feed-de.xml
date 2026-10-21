@@ -3,12 +3,34 @@
 <title>PHP2Shell — Chronik (DE)</title>
 <subtitle>Live-Chronik zu PHP2Shell (CVE-2026-109618/109619), kritische RCE im PHP-Kern (CVSS 9.2). Behoben in 8.5.12, 8.4.27, 8.3.36, 8.2.35. Jede Angabe mit Quelle.</subtitle>
 <id>https://akirapl.github.io/php2shell/feed-de.xml</id>
-<updated>2026-10-21T15:41:59Z</updated>
+<updated>2026-10-21T16:15:00Z</updated>
 <link rel="self" type="application/atom+xml" href="https://akirapl.github.io/php2shell/feed-de.xml"/>
 <link rel="alternate" type="text/html" hreflang="de" href="https://akirapl.github.io/php2shell/?lang=de"/>
 <author><name>Dawid Kulik (@Akirapl)</name><uri>https://github.com/Akirapl</uri></author>
 <icon>https://akirapl.github.io/php2shell/assets/og-image.png</icon>
 <rights>CC BY 4.0</rights>
+<entry>
+<title>Fastly: „Belege für Angriffe vor der Veröffentlichung“ und die Warnung, dass das Problem im Design der Engine steckt</title>
+<id>tag:php2shell-live.surge.sh,2026:fastly-blog</id>
+<link rel="alternate" type="text/html" href="https://akirapl.github.io/php2shell/?lang=de#ev-fastly-blog"/>
+<link rel="related" href="https://www.fastly.com/blog/fastlys-proactive-protection-critical-php-rce-cve-2026-109618"/>
+<published>2026-10-21T15:54:30Z</published>
+<updated>2026-10-21T15:54:30Z</updated>
+<category term="major"/>
+<summary type="text">Kelly Shortridge (CPO von Fastly) schreibt von „evidence of active attacks in-the-wild pre-disclosure“, ohne Daten zu veröffentlichen. Der Notabbruch-Mechanismus für Requests (zend_bailout/longjmp) kommt an vielen Stellen im Code vor, die Patches schließen also nur die gefundenen Pfade; Fastly erwartet neue Varianten „diese und nächste Woche“. Entlastend: Bekannte PoCs auf x86_64 brauchen Wissen über die konkrete Binärdatei und das Speicherlayout des Servers. Fastly kündigt eigene Telemetrie an.</summary>
+<content type="html">&lt;p&gt;Kelly Shortridge (CPO von Fastly) schreibt von „evidence of active attacks in-the-wild pre-disclosure“, ohne Daten zu veröffentlichen. Der Notabbruch-Mechanismus für Requests (zend_bailout/longjmp) kommt an vielen Stellen im Code vor, die Patches schließen also nur die gefundenen Pfade; Fastly erwartet neue Varianten „diese und nächste Woche“. Entlastend: Bekannte PoCs auf x86_64 brauchen Wissen über die konkrete Binärdatei und das Speicherlayout des Servers. Fastly kündigt eigene Telemetrie an.&lt;/p&gt;&lt;p&gt;Quelle: &lt;a href="https://www.fastly.com/blog/fastlys-proactive-protection-critical-php-rce-cve-2026-109618"&gt;Fastly blog (Kelly Shortridge)&lt;/a&gt; · gemeldet · major&lt;/p&gt;</content>
+</entry>
+<entry>
+<title>Rapid7: Die Forschung wird unabhängig nachvollzogen, ein öffentlicher Exploit wird „bald“ erwartet</title>
+<id>tag:php2shell-live.surge.sh,2026:rapid7-etr</id>
+<link rel="alternate" type="text/html" href="https://akirapl.github.io/php2shell/?lang=de#ev-rapid7-etr"/>
+<link rel="related" href="https://www.rapid7.com/blog/post/etr-cve-2026-109618-and-cve-2026-109619-critical-unauthenticated-remote-code-execution-in-php"/>
+<published>2026-10-21T15:22:00Z</published>
+<updated>2026-10-21T15:22:00Z</updated>
+<category term="minor"/>
+<summary type="text">Rapid7 Emergent Threat Response: „mehrere Hinweise“, dass die Forschung unabhängig nachvollzogen wird und ein funktionsfähiger Exploit bald öffentlich werden dürfte; Ausnutzung in freier Wildbahn wird „erwartet“, aber nicht als beobachtet gemeldet. Rapid7 weist zudem darauf hin, dass rpms.remirepo.net am 21.10. keine Updates hat.</summary>
+<content type="html">&lt;p&gt;Rapid7 Emergent Threat Response: „mehrere Hinweise“, dass die Forschung unabhängig nachvollzogen wird und ein funktionsfähiger Exploit bald öffentlich werden dürfte; Ausnutzung in freier Wildbahn wird „erwartet“, aber nicht als beobachtet gemeldet. Rapid7 weist zudem darauf hin, dass rpms.remirepo.net am 21.10. keine Updates hat.&lt;/p&gt;&lt;p&gt;Quelle: &lt;a href="https://www.rapid7.com/blog/post/etr-cve-2026-109618-and-cve-2026-109619-critical-unauthenticated-remote-code-execution-in-php"&gt;Rapid7 ETR blog&lt;/a&gt; · gemeldet · minor&lt;/p&gt;</content>
+</entry>
 <entry>
 <title>Greg Brockman (OpenAI): Essay „Towards securing the internet“</title>
 <id>tag:php2shell-live.surge.sh,2026:brockman-essay</id>
@@ -74,6 +96,17 @@
 <category term="minor"/>
 <summary type="text">Commit 3584a98 (verfasst 18.10. 15:26:39 UTC, committet 21.10. 14:06:22 UTC) und die Merges 8.2→master um 14:36:09 UTC nach master gepusht — etwa eine Stunde nach den Advisories. Davor gab es den Fix nur in den Release-Tags.</summary>
 <content type="html">&lt;p&gt;Commit 3584a98 (verfasst 18.10. 15:26:39 UTC, committet 21.10. 14:06:22 UTC) und die Merges 8.2→master um 14:36:09 UTC nach master gepusht — etwa eine Stunde nach den Advisories. Davor gab es den Fix nur in den Release-Tags.&lt;/p&gt;&lt;p&gt;Quelle: &lt;a href="https://github.com/php/php-src/compare/b9ea38ef63...9705fda1bb"&gt;php-src compare b9ea38e…9705fda (GitHub)&lt;/a&gt; · bestätigt · minor&lt;/p&gt;</content>
+</entry>
+<entry>
+<title>Unbestätigt: Eine Forscherin sagt, ihr Fehler funktioniere auch unter 8.5.12</title>
+<id>tag:php2shell-live.surge.sh,2026:possible-new-bug-8512</id>
+<link rel="alternate" type="text/html" href="https://akirapl.github.io/php2shell/?lang=de#ev-possible-new-bug-8512"/>
+<link rel="related" href="https://seclists.org/oss-sec/2026/q4/287"/>
+<published>2026-10-21T14:32:15Z</published>
+<updated>2026-10-21T14:32:15Z</updated>
+<category term="major"/>
+<summary type="text">Das Konto @elise (fedi.katze.sh) meldete morgens einen Speicherfehler unter PHP 8.4.25, hielt ihn für eine „andere“ Lücke als PHP2Shell, um 14:32 UTC: „still works on 8.5.12“, um 14:51 UTC: an PHP gemeldet. Der Thread erreichte oss-security (15:24 UTC) mit dem Hinweis „not yet fully confirmed“. PHP hat sich nicht geäußert; unklar ist, ob es RCE oder nur ein Absturz ist.</summary>
+<content type="html">&lt;p&gt;Das Konto @elise (fedi.katze.sh) meldete morgens einen Speicherfehler unter PHP 8.4.25, hielt ihn für eine „andere“ Lücke als PHP2Shell, um 14:32 UTC: „still works on 8.5.12“, um 14:51 UTC: an PHP gemeldet. Der Thread erreichte oss-security (15:24 UTC) mit dem Hinweis „not yet fully confirmed“. PHP hat sich nicht geäußert; unklar ist, ob es RCE oder nur ein Absturz ist.&lt;/p&gt;&lt;p&gt;Quelle: &lt;a href="https://seclists.org/oss-sec/2026/q4/287"&gt;oss-security (Aaron Rainbolt), Re: CVE-2026-109619&lt;/a&gt; · gemeldet · major&lt;/p&gt;</content>
 </entry>
 <entry>
 <title>Calif: „Stellen wir das klar“ — Streit um die Erstentdeckung</title>
