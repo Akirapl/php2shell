@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>PHP2Shell – passive banner check</title>
+<meta name="description" content="Passive, defensive check of the PHP version a website publicly discloses (PHP2Shell).">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%2307090f'/%3E%3Ccircle cx='16' cy='16' r='8' fill='%23ff4d5e'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="checker.css">
+<style>
+:root{--bg:#07090f;--bg2:#0d1220;--card:#111829;--line:#1f2a44;--txt:#e7ecf5;--mut:#93a0b8;--red:#ff4d5e;--amber:#ffb547;--green:#3ddc97;--blue:#6ea8ff;--vio:#a78bfa}
+body{margin:0;background:radial-gradient(1200px 600px at 80% -10%,rgba(110,168,255,.10),transparent 60%),radial-gradient(900px 500px at -10% 10%,rgba(255,77,94,.10),transparent 60%),var(--bg);color:var(--txt);font:15px/1.55 system-ui,-apple-system,"Segoe UI",Roboto,Inter,sans-serif}
+.wrap{max-width:860px;margin:0 auto;padding:18px}
+header{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:18px}
+header a{color:var(--txt);text-decoration:none;font-weight:800}
+.langs{display:flex;background:var(--card);border:1px solid var(--line);border-radius:999px;padding:3px}
+.langs button{all:unset;cursor:pointer;font-size:12px;font-weight:700;padding:5px 10px;border-radius:999px;color:var(--mut)}
+.langs button[aria-pressed=true]{background:linear-gradient(135deg,#ff4d5e,#a78bfa);color:#fff}
+h2{font-size:22px;margin:0 0 12px}
+</style>
+</head>
+<body><div class="wrap">
+<header><a href="../" id="home">← PHP2Shell live</a><nav class="langs" aria-label="Language"><button data-l="pl">PL</button><button data-l="en">EN</button><button data-l="de">DE</button></nav></header>
+<main>
+<section id="sec-checker"><h2 data-p2c="heading">Am I affected? Passive PHP banner check</h2><div id="p2s-checker"></div></section>
+</main>
+</div>
+<script>
+(function(){var L=['pl','en','de'];function pick(){var q=new URLSearchParams(location.search).get('lang');if(L.indexOf(q)>=0)return q;try{var s=localStorage.getItem('lang');if(L.indexOf(s)>=0)return s}catch(e){}var n=(navigator.language||'en').toLowerCase();return n.indexOf('pl')===0?'pl':n.indexOf('de')===0?'de':'en'}
+function set(l){document.documentElement.lang=l;try{localStorage.setItem('lang',l)}catch(e){}document.querySelectorAll('.langs button').forEach(function(b){b.setAttribute('aria-pressed',b.dataset.l===l)});document.getElementById('home').href='../?lang='+l;var u=new URL(location);u.searchParams.set('lang',l);history.replaceState(null,'',u)}
+document.querySelectorAll('.langs button').forEach(function(b){b.addEventListener('click',function(){set(b.dataset.l)})});set(pick())})();
+</script>
+<script src="checker.js"></script>
+</body></html>

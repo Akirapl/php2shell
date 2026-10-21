@@ -1,0 +1,86 @@
+[
+ {
+  "time_utc": "2026-10-21T15:03:28Z",
+  "message": "Move to GitHub Pages: base URL akirapl.github.io/php2shell, gh-pages publish",
+  "events": 53,
+  "facts_last_updated": "2026-10-21T14:45:00Z"
+ },
+ {
+  "time_utc": "2026-10-21T14:48:24Z",
+  "message": "bible: mobile-friendly tables (md tables→lists, stacked cards ≤640px, TOC/footnote JS fix)",
+  "events": 53,
+  "facts_last_updated": "2026-10-21T14:45:00Z"
+ },
+ {
+  "time_utc": "2026-10-21T14:44:24Z",
+  "message": "SEO: meta/OG/Twitter/JSON-LD, sitemap, robots, Atom feeds, share buttons, IndexNow key",
+  "events": 53,
+  "facts_last_updated": "2026-10-21T14:45:00Z"
+ },
+ {
+  "time_utc": "2026-10-21T14:39:08Z",
+  "message": "14:45 UTC: OpenAI Patch the Planet, The Record/watchTowr ITW attempts, Calif priority claim",
+  "events": 53,
+  "facts_last_updated": "2026-10-21T14:45:00Z"
+ },
+ {
+  "time_utc": "2026-10-21T14:37:40Z",
+  "message": "update",
+  "events": 50,
+  "facts_last_updated": "2026-10-21T14:20:00Z"
+ },
+ {
+  "time_utc": "2026-10-21T14:36:53Z",
+  "message": "update",
+  "events": 50,
+  "facts_last_updated": "2026-10-21T14:20:00Z"
+ },
+ {
+  "time_utc": "2026-10-21T14:34:46Z",
+  "message": "Info page (PL/EN/DE), GitHub case-study links instead of PDFs, checker widget wired in",
+  "events": 50,
+  "facts_last_updated": "2026-10-21T14:20:00Z"
+ },
+ {
+  "time_utc": "2026-10-21T14:17:26Z",
+  "message": "Status bar: shorter labels",
+  "events": 50,
+  "facts_last_updated": "2026-10-21T14:20:00Z"
+ },
+ {
+  "time_utc": "2026-10-21T14:16:38Z",
+  "message": "Timeline: date pill fix, local time label",
+  "events": 50,
+  "facts_last_updated": "2026-10-21T14:20:00Z"
+ },
+ {
+  "time_utc": "2026-10-21T14:15:46Z",
+  "message": "Bible: sticky back bar at top on mobile",
+  "events": 50,
+  "facts_last_updated": "2026-10-21T14:20:00Z"
+ },
+ {
+  "time_utc": "2026-10-21T14:14:42Z",
+  "message": "PDF links hidden: Surge free plan returns 402 for .pdf",
+  "events": 50,
+  "facts_last_updated": "2026-10-21T14:20:00Z"
+ },
+ {
+  "time_utc": "2026-10-21T14:13:27Z",
+  "message": "Full PL/EN/DE facts (45 events + monitoring batch 14:15), charts, Mermaid diagrams, case study section, lock",
+  "events": 50,
+  "facts_last_updated": "2026-10-21T14:20:00Z"
+ },
+ {
+  "time_utc": "2026-10-21T14:11:27Z",
+  "message": "Calif write-up + video confirmation, Cloudflare blog, Wiz AI models, CERT.at update",
+  "events": 50,
+  "facts_last_updated": "2026-10-21T14:11:26Z"
+ },
+ {
+  "time_utc": "2026-10-21T14:06:12Z",
+  "message": "First live version (PL texts, EN/DE UI; i18n of facts in progress)",
+  "events": 25,
+  "facts_last_updated": "2026-10-21T14:02:00Z"
+ }
+]

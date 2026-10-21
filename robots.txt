@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://akirapl.github.io/php2shell/sitemap.xml

@@ -1,0 +1,893 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>PHP2Shell — the attack bible</title>
+<meta name="description" content="Defensive historical case study of PHP2Shell CVE-2026-109618 CVE-2026-109619">
+<style>
+:root {
+  --bg: #0b0f17; --bg2: #12161e; --bg3: #161b22; --text: #e6edf3; --muted: #8b949e;
+  --link: #58a6ff; --accent: #f85149; --border: #30363d; --maxw: 760px; --tocw: 280px;
+}
+* { box-sizing: border-box; } html { scroll-behavior: smooth; }
+body { margin: 0; background: var(--bg); color: var(--text);
+  font: 17px/1.65 system-ui, -apple-system, "Segoe UI", Roboto, "Noto Sans", sans-serif; }
+a { color: var(--link); text-decoration: none; } a:hover { text-decoration: underline; }
+.progress { position: fixed; top: 0; left: 0; height: 3px; width: 0;
+  background: linear-gradient(90deg, #f85149, #58a6ff); z-index: 100; }
+.layout { display: grid; grid-template-columns: var(--tocw) 1fr; min-height: 100vh; }
+.toc { position: sticky; top: 0; height: 100vh; overflow: auto; padding: 24px 16px;
+  background: var(--bg2); border-right: 1px solid var(--border); font-size: 13px; }
+.toc h2 { font-size: 12px; text-transform: uppercase; letter-spacing: .08em; color: var(--muted); margin: 0 0 12px; }
+.toc a { display: block; padding: 4px 8px; border-radius: 6px; color: var(--muted); }
+.toc a:hover, .toc a.active { background: var(--bg3); color: var(--text); text-decoration: none; }
+.toc .l2 { padding-left: 16px; font-size: 12px; }
+main { padding: 32px 40px 80px; max-width: calc(var(--maxw) + 80px); }
+article { max-width: var(--maxw); }
+h1 { font-size: 2rem; line-height: 1.2; margin: 0 0 8px; }
+h2 { margin-top: 2.2em; padding-top: .6em; border-top: 1px solid var(--border); font-size: 1.45rem; }
+h3 { margin-top: 1.6em; font-size: 1.15rem; color: #c9d1d9; }
+blockquote { margin: 1em 0; padding: 12px 16px; border-left: 3px solid var(--accent);
+  background: var(--bg2); border-radius: 0 8px 8px 0; color: #c9d1d9; }
+table { width: 100%; border-collapse: collapse; font-size: 14px; margin: 1em 0; display: block; overflow-x: auto; }
+th, td { border: 1px solid var(--border); padding: 8px 10px; text-align: left; vertical-align: top; }
+th { background: var(--bg3); }
+code, pre { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: .9em; }
+code { background: var(--bg3); padding: 1px 5px; border-radius: 4px; }
+pre { background: var(--bg3); padding: 14px; border-radius: 8px; overflow-x: auto; }
+img { max-width: 100%; height: auto; border-radius: 8px; border: 1px solid var(--border); margin: 1em 0; background: #0b0f17; }
+.footnotes { margin-top: 3em; padding-top: 1em; border-top: 1px solid var(--border); font-size: 13px; color: var(--muted); }
+.fn-pop { position: absolute; z-index: 50; max-width: 340px; padding: 10px 12px;
+  background: #1c2128; border: 1px solid var(--border); border-radius: 8px;
+  box-shadow: 0 8px 24px rgba(0,0,0,.45); font-size: 13px; line-height: 1.45; color: var(--text); pointer-events: none; }
+.badge { display: inline-block; font-size: 11px; padding: 1px 6px; border-radius: 999px; background: #21262d; color: var(--muted); }
+.langbar { display: flex; gap: 8px; margin-bottom: 16px; font-size: 13px; }
+.langbar a { padding: 4px 10px; border: 1px solid var(--border); border-radius: 999px; color: var(--muted); }
+.langbar a.cur { border-color: var(--link); color: var(--text); }
+@media (max-width: 900px) {
+  .layout { grid-template-columns: 1fr; }
+  .toc { position: relative; height: auto; max-height: 40vh; }
+  main { padding: 20px 16px 64px; }
+}
+@media print {
+  .progress, .toc, .langbar { display: none !important; }
+  .layout { display: block; }
+  body { background: #fff; color: #111; font-size: 11pt; }
+  a { color: #111; }
+  h2 { border-color: #ccc; }
+  blockquote { background: #f5f5f5; }
+}
+/* tables: normal grid on desktop, stacked cards on phones (labels from data-label, added by md2html.mjs) */
+article th, article td { overflow-wrap: break-word; word-break: normal; hyphens: auto; }
+@media (max-width: 640px) {
+  article table { display: block; border: 0; font-size: 15px; line-height: 1.5; overflow: visible; margin: 1em 0 1.4em; }
+  article table thead { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+  article table tbody, article table tr { display: block; }
+  article table tr { margin: 0 0 10px; padding: 10px 14px; border: 1px solid var(--border); border-radius: 10px; background: var(--bg2); }
+  article table td { display: block; border: 0; padding: 4px 0; }
+  article table td + td { border-top: 1px solid rgba(255,255,255,.06); }
+  article table td:first-child { font-weight: 700; font-size: 16px; color: var(--text); padding-bottom: 6px; }
+  article table td[data-label]:not(:first-child) { position: relative; padding-left: calc(38% + 12px); min-height: 1.5em; }
+  article table td[data-label]:not(:first-child)::before { content: attr(data-label); position: absolute; left: 0; top: 7px; width: 38%; font-size: 11px; font-weight: 600; letter-spacing: .04em; text-transform: uppercase; color: var(--muted); line-height: 1.35; }
+  article table.kv td:first-child { font-size: 15px; }
+  article ul, article ol { padding-left: 1.25em; }
+  article li { margin: .3em 0; }
+  article li > ul { margin: .2em 0 .4em; }
+}
+</style>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%2307090f'/%3E%3Ccircle cx='16' cy='16' r='8' fill='%23ff4d5e'/%3E%3C/svg%3E">
+<style id="live-theme">
+:root{--bg:#07090f;--bg2:#0d1220;--bg3:#151e33;--text:#e7ecf5;--muted:#93a0b8;--link:#6ea8ff;--accent:#ff4d5e;--border:#1f2a44}
+body{background:radial-gradient(900px 500px at -10% 0%,rgba(255,77,94,.10),transparent 60%),var(--bg);overflow-x:hidden}
+.progress{background:linear-gradient(90deg,#ff4d5e,#a78bfa)}
+h1{background:linear-gradient(90deg,#fff,#ffb3bb 60%,#c9b8ff);-webkit-background-clip:text;background-clip:text;color:transparent}
+.livebar{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 14px;font-size:13px}
+.livebar a{padding:5px 12px;border-radius:999px;border:1px solid var(--border);background:var(--bg2);color:var(--text);font-weight:600}
+.livebar.top{position:sticky;top:0;z-index:50;margin:0;padding:10px 14px;background:rgba(10,12,20,.92);backdrop-filter:blur(10px);border-bottom:1px solid rgba(255,255,255,.08)}
+@media(max-width:900px){.toc{max-height:32vh;overflow:auto}}
+.livebar a.pdf{border-color:rgba(255,77,94,.5);box-shadow:0 0 18px rgba(255,77,94,.2)}
+main,article{min-width:0;overflow-wrap:anywhere}
+@media print{.livebar{display:none!important}}
+</style>
+<!-- seo:live-center -->
+<link rel="canonical" href="https://akirapl.github.io/php2shell/bible/en.html">
+<link rel="alternate" hreflang="pl" href="https://akirapl.github.io/php2shell/bible/pl.html">
+<link rel="alternate" hreflang="en" href="https://akirapl.github.io/php2shell/bible/en.html">
+<link rel="alternate" hreflang="de" href="https://akirapl.github.io/php2shell/bible/de.html">
+<link rel="alternate" hreflang="x-default" href="https://akirapl.github.io/php2shell/bible/en.html">
+<link rel="alternate" type="application/atom+xml" hreflang="en" title="PHP2Shell — timeline (EN)" href="https://akirapl.github.io/php2shell/feed.xml">
+<link rel="alternate" type="application/atom+xml" hreflang="pl" title="PHP2Shell — oś czasu (PL)" href="https://akirapl.github.io/php2shell/feed-pl.xml">
+<link rel="alternate" type="application/atom+xml" hreflang="de" title="PHP2Shell — Chronik (DE)" href="https://akirapl.github.io/php2shell/feed-de.xml">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="PHP2Shell live center">
+<meta property="og:title" content="The PHP2Shell case study — full write-up">
+<meta property="og:description" content="Long-form analysis of PHP2Shell (CVE-2026-109618/109619): background, root causes at advisory level, disclosure and leak, patch day, responses, lessons.">
+<meta property="og:url" content="https://akirapl.github.io/php2shell/bible/en.html">
+<meta property="og:image" content="https://akirapl.github.io/php2shell/assets/og-image.png">
+<meta property="og:image:secure_url" content="https://akirapl.github.io/php2shell/assets/og-image.png">
+<meta property="og:image:type" content="image/png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="PHP2Shell — live center. CVE-2026-109618, CVE-2026-109619. Patched: 8.5.12 / 8.4.27 / 8.3.36 / 8.2.35. PL · EN · DE">
+<meta property="og:locale" content="en_GB">
+<meta property="og:locale:alternate" content="pl_PL">
+<meta property="og:locale:alternate" content="de_DE">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="The PHP2Shell case study — full write-up">
+<meta name="twitter:description" content="Long-form analysis of PHP2Shell (CVE-2026-109618/109619): background, root causes at advisory level, disclosure and leak, patch day, responses, lessons.">
+<meta name="twitter:image" content="https://akirapl.github.io/php2shell/assets/og-image.png">
+<meta name="twitter:image:alt" content="PHP2Shell — live center: CVE-2026-109618 / CVE-2026-109619, patched versions, PL · EN · DE">
+</head>
+<body><div class="livebar top"><a href="../?lang=en">← Live center</a><a class="pdf" href="https://github.com/Akirapl/php2shell/blob/main/case-study/en.md" target="_blank" rel="noopener">Case study on GitHub (with edit history)</a><a href="../info.html?lang=en">ℹ️ Info</a></div>
+<div class="progress" aria-hidden="true"></div>
+<div class="layout">
+<nav class="toc"><h2>Contents</h2>
+<a class="l1" href="#changelog">Changelog</a>
+<a class="l1" href="#contents">Contents</a>
+<a class="l1" href="#0-tldr-and-one-page-overview">0. TL;DR and one-page overview</a>
+<a class="l2" href="#key-facts">Key facts</a>
+<a class="l1" href="#1-background-php-on-the-web-and-the-request-lifecycle">1. Background: PHP on the web and the request lifecycle</a>
+<a class="l2" href="#11-how-large-php-is">1.1 How large PHP is</a>
+<a class="l2" href="#12-what-happens-when-a-browser-asks-for-a-page">1.2 What happens when a browser asks for a page</a>
+<a class="l2" href="#13-why-this-matters">1.3 Why this matters</a>
+<a class="l1" href="#2-the-vulnerabilities-in-depth">2. The vulnerabilities, in depth</a>
+<a class="l2" href="#21-shared-pattern">2.1 Shared pattern</a>
+<a class="l2" href="#22-cve-2026-109618-rce-via-oom-corruption">2.2 CVE-2026-109618 — RCE via OOM corruption</a>
+<a class="l2" href="#23-cve-2026-109619-rce-via-stale-global-state">2.3 CVE-2026-109619 — RCE via stale global state</a>
+<a class="l2" href="#24-cvss-v40-decoded">2.4 CVSS v4.0 decoded</a>
+<a class="l2" href="#25-versions-fixed-eol-backports">2.5 Versions: fixed, EOL, backports</a>
+<a class="l2" href="#26-incomplete-mitigations">2.6 Incomplete mitigations</a>
+<a class="l1" href="#3-discovery-wiz-calif-openai-and-ai-assisted-research">3. Discovery: Wiz, Calif, OpenAI and AI-assisted research</a>
+<a class="l2" href="#31-timeline-per-wiz-third-party">3.1 Timeline per Wiz (third-party)</a>
+<a class="l2" href="#32-what-ai-changes-in-bug-hunting">3.2 What AI changes in bug hunting</a>
+<a class="l2" href="#33-the-2024-audit-and-the-ecosystem-security-team">3.3 The 2024 audit and the Ecosystem Security Team</a>
+<a class="l1" href="#4-coordinated-disclosure-101-and-how-it-went-here">4. Coordinated disclosure 101 and how it went here</a>
+<a class="l2" href="#41-coordinated-disclosure-101">4.1 Coordinated disclosure 101</a>
+<a class="l2" href="#42-how-it-went-here">4.2 How it went here</a>
+<a class="l1" href="#5-the-leak-and-the-name-php2shell">5. The leak and the name “PHP2Shell”</a>
+<a class="l2" href="#51-what-leaked-when-and-where">5.1 What leaked, when and where</a>
+<a class="l2" href="#52-the-name">5.2 The name</a>
+<a class="l2" href="#53-effect-of-the-leak">5.3 Effect of the leak</a>
+<a class="l1" href="#6-patch-day">6. Patch day</a>
+<a class="l2" href="#61-release-mechanics">6.1 Release mechanics</a>
+<a class="l2" href="#62-size-of-the-fix">6.2 Size of the fix</a>
+<a class="l2" href="#63-patch-released-patched">6.3 “Patch released” ≠ “patched”</a>
+<a class="l1" href="#7-the-exploit-race">7. The exploit race</a>
+<a class="l2" href="#71-how-attackers-reverse-engineer-patches-conceptually">7.1 How attackers reverse-engineer patches (conceptually)</a>
+<a class="l2" href="#72-fake-and-retracted-pocs-signal-versus-noise">7.2 Fake and retracted PoCs — signal versus noise</a>
+<a class="l2" href="#73-exploitation-telemetry-conflicting">7.3 Exploitation telemetry (conflicting)</a>
+<a class="l1" href="#8-defenders-response">8. Defenders’ response</a>
+<a class="l2" href="#81-agencies">8.1 Agencies</a>
+<a class="l2" href="#82-wafs-hosts-cmses">8.2 WAFs, hosts, CMSes</a>
+<a class="l2" href="#83-the-dutch-and-neighbouring-shutdown-wave">8.3 The Dutch (and neighbouring) shutdown wave</a>
+<a class="l1" href="#9-exposure-and-impact">9. Exposure and impact</a>
+<a class="l2" href="#91-what-we-know">9.1 What we know</a>
+<a class="l2" href="#92-what-we-do-not-know">9.2 What we do not know</a>
+<a class="l1" href="#10-historical-comparison">10. Historical comparison</a>
+<a class="l1" href="#11-lessons-learned">11. Lessons learned</a>
+<a class="l2" href="#for-application-developers">For application developers</a>
+<a class="l2" href="#for-ops-sre">For ops / SRE</a>
+<a class="l2" href="#for-open-source-maintainers">For open-source maintainers</a>
+<a class="l2" href="#for-governments-certs">For governments / CERTs</a>
+<a class="l2" href="#for-the-media">For the media</a>
+<a class="l1" href="#12-open-questions">12. Open questions</a>
+<a class="l1" href="#appendix-a-full-timeline">Appendix A: Full timeline</a>
+<a class="l1" href="#appendix-b-glossary">Appendix B: Glossary</a>
+<a class="l1" href="#appendix-c-defensive-checklist">Appendix C: Defensive checklist</a>
+<a class="l1" href="#appendix-d-sources">Appendix D: Sources</a>
+<a class="l2" href="#primary">Primary</a>
+<a class="l2" href="#discovery-research">Discovery / research</a>
+<a class="l2" href="#agencies-and-media">Agencies and media</a>
+<a class="l2" href="#historical">Historical</a>
+</nav>
+<main>
+<div class="langbar"><a href="pl.html" class="">PL</a><a href="en.html" class="cur">EN</a><a href="de.html" class="">DE</a></div>
+<article>
+<p class="badge">v1.0 · as of 2026-10-21 14:05 UTC · defensive analysis</p>
+<h1>PHP2Shell — the attack bible</h1>
+<p><strong>A deep case study of the critical core-PHP vulnerabilities CVE-2026-109618 and CVE-2026-109619</strong></p>
+<ul>
+<li><strong>Document version:</strong> 1.0 (English adaptation of the Polish master)</li>
+<li><strong>As of:</strong> 21 Oct 2026, 14:05 UTC (16:05 CEST) — about 30 minutes after the patches went public</li>
+<li><strong>Nature:</strong> Defensive, historical analysis — <strong>no</strong> exploit code, payloads, PoCs, or attack instructions</li>
+<li><strong>Labels:</strong> <strong>[P]</strong> primary source · <strong>[D]</strong> third-party report · <strong>[?]</strong> open / conflicting · <strong>[A]</strong> this document’s analysis</li>
+<li><strong>Time zones:</strong> UTC; Warsaw time in parentheses. 20–21 Oct 2026: <strong>CEST = UTC+2</strong></li>
+</ul>
+<blockquote>
+<p><strong>Editorial note.</strong> Written on patch day. Distro packages, confirmed exploitation, and full discoverer write-ups are still settling. Every claim is footnoted; section 12 and the changelog say what would revise this picture.</p>
+</blockquote>
+<h2 id="changelog">Changelog</h2>
+<ul>
+<li><strong>1.0</strong> (2026-10-21 14:05 UTC) — First release. Sources: php.net, GHSA, the fix commit, Wiz, watchTowr, BSI, NCSC UK, NCSC-NL, CERT-EU, CERT.at, CERT Polska, CERT-FR, NOS, W3Techs, Modat, heise, SecurityWeek, Huntress, Tenable, Cloudflare, Docker PR, Ubuntu tracker, HN, Mastodon; historical comparisons (Log4Shell, Heartbleed, CVE-2024-4577, OpenSSL 3.0.7).</li>
+</ul>
+<h2 id="contents">Contents</h2>
+<ol start="0">
+<li><a href="#0-tldr-and-one-page-overview">TL;DR and one-page overview</a></li>
+<li><a href="#1-background-php-on-the-web-and-the-request-lifecycle">Background: PHP and the request lifecycle</a></li>
+<li><a href="#2-the-vulnerabilities-in-depth">The vulnerabilities, in depth</a></li>
+<li><a href="#3-discovery-wiz-calif-openai-and-ai-assisted-research">Discovery and AI-assisted research</a></li>
+<li><a href="#4-coordinated-disclosure-101-and-how-it-went-here">Coordinated disclosure</a></li>
+<li><a href="#5-the-leak-and-the-name-php2shell">The leak and the name PHP2Shell</a></li>
+<li><a href="#6-patch-day">Patch day</a></li>
+<li><a href="#7-the-exploit-race">The exploit race</a></li>
+<li><a href="#8-defenders-response">Defenders’ response</a></li>
+<li><a href="#9-exposure-and-impact">Exposure and impact</a></li>
+<li><a href="#10-historical-comparison">Historical comparison</a></li>
+<li><a href="#11-lessons-learned">Lessons learned</a></li>
+<li><a href="#12-open-questions">Open questions</a></li>
+</ol>
+<ul>
+<li><a href="#appendix-a-full-timeline">Appendix A: Full timeline</a></li>
+<li><a href="#appendix-b-glossary">Appendix B: Glossary</a></li>
+<li><a href="#appendix-c-defensive-checklist">Appendix C: Defensive checklist</a></li>
+<li><a href="#appendix-d-sources">Appendix D: Sources</a></li>
+</ul>
+<hr />
+<h2 id="0-tldr-and-one-page-overview">0. TL;DR and one-page overview</h2>
+<p><strong>In one paragraph.</strong> Around <strong>13:34 UTC</strong> on 21 October 2026, the PHP security team published <strong>8.5.12, 8.4.27, 8.3.36 and 8.2.35</strong> and two GitHub advisories for critical engine bugs: <strong>CVE-2026-109618</strong> (“RCE via OOM corruption”) and <strong>CVE-2026-109619</strong> (“RCE via stale global state”), both <strong>CVSS v4.0 9.2</strong> [P]<sup class="footnote-ref"><a href="#fn1" id="fnref1">[1]</a></sup><sup class="footnote-ref"><a href="#fn2" id="fnref2">[2]</a></sup><sup class="footnote-ref"><a href="#fn3" id="fnref3">[3]</a></sup>. Both stem from the same pattern: when PHP aborts a request under emergency conditions (especially out-of-memory), it can leave internal state pointing at memory that no longer exists — and a later step or a later request on the same worker can use that “ghost”. On <strong>Apache + mod_php</strong>, unauthenticated remote code execution was demonstrated <strong>before any application code runs</strong> [P]<sup class="footnote-ref"><a href="#fn3" id="fnref3:1">[3:1]</a></sup>. Wiz Research claims discovery with Calif and OpenAI, using frontier AI models heavily [D]<sup class="footnote-ref"><a href="#fn4" id="fnref4">[4]</a></sup>. A Thursday 22 Oct embargo broke with a 20 Oct leak, forcing PHP to pre-announce and pull the release forward by a day [P]<sup class="footnote-ref"><a href="#fn5" id="fnref5">[5]</a></sup><sup class="footnote-ref"><a href="#fn6" id="fnref6">[6]</a></sup>. In the Netherlands, Belgium, France and Finland, some sites went offline as a precaution [P]<sup class="footnote-ref"><a href="#fn7" id="fnref7">[7]</a></sup>. As of this version’s cutoff there is no independently confirmed in-the-wild exploitation; reports conflict [?].</p>
+<blockquote>
+<h3 id="key-facts">Key facts</h3>
+<ul>
+<li><strong>IDs:</strong> CVE-2026-109618 (GHSA-w8hw-w9fx-j79w), CVE-2026-109619 (GHSA-6wmf-4rv5-p3rp) [P]</li>
+<li><strong>CVSS v4.0:</strong> 9.2 · <code>AV:N/AC:H/AT:P/PR:N/UI:N/VC:H/VI:H/VA:H/SC:N/SI:N/SA:N</code> (both) [P]</li>
+<li><strong>CWE:</strong> 416, 755, 824, 1325, 1419 [P]</li>
+<li><strong>Impact:</strong> unauth RCE as the web worker; 619 also memory disclosure [P]</li>
+<li><strong>Worst SAPI:</strong> Apache mod_php (before application code) [P]</li>
+<li><strong>Fixed:</strong> 8.5.12, 8.4.27, 8.3.36, 8.2.35; minimal source backports for 7.4/8.0/8.1 [P]</li>
+<li><strong>Publication:</strong> GHSA 13:34 UTC; 8.5.12 tarball <code>Last-Modified</code> 13:33:59 GMT [P]</li>
+<li><strong>Original embargo:</strong> 22 Oct 2026 11:00 ET (15:00 UTC) [P]</li>
+<li><strong>GHSA credits:</strong> sagitzadik-wiz, tomash-areion, lcfr-hax, amyb-oai [P]</li>
+<li><strong>Fix:</strong> Arnaud Le Blanc (+ Tovilo, Zelenka, Dossche, Grekas); +11,556/−1,017 across 300 files [P]</li>
+<li><strong>PHP share:</strong> 69.3% of sites with a known server-side language (W3Techs 21 Oct) [P]</li>
+<li><strong>Exposure:</strong> 4.38M PHP services / 1.89M hosts; ~79% EOL (Modat 20 Oct) [D]</li>
+<li><strong>Complete fix:</strong> update only [P]</li>
+</ul>
+</blockquote>
+<p><strong>What is new here</strong> [A]: (1) a bug in the <em>runtime</em>, not the app; (2) AI in discovery and — researchers say — in making exploitation practical; (3) an embargo leak that became a ~22-hour race; (4) precautionary public-site takedowns in several EU countries before a patch existed.</p>
+<p><img src="diagrams/timeline.png" alt="Timeline" /></p>
+<hr />
+<h2 id="1-background-php-on-the-web-and-the-request-lifecycle">1. Background: PHP on the web and the request lifecycle</h2>
+<h3 id="11-how-large-php-is">1.1 How large PHP is</h3>
+<p>Rasmus Lerdorf created PHP; the first version shipped in 1995 [D]<sup class="footnote-ref"><a href="#fn7" id="fnref7:1">[7:1]</a></sup>. Per W3Techs (21 Oct 2026), PHP is used by <strong>69.3%</strong> of websites whose server-side language is known; among PHP sites, <strong>65.2%</strong> run version 8, <strong>27.0%</strong> version 7, <strong>7.7%</strong> version 5, <strong>0.1%</strong> version 4 [P]<sup class="footnote-ref"><a href="#fn8" id="fnref8">[8]</a></sup>. WordPress, Drupal, Joomla, Magento and MediaWiki all run on PHP [D]<sup class="footnote-ref"><a href="#fn4" id="fnref4:1">[4:1]</a></sup>.</p>
+<p><strong>Method note</strong> [A]: “69.3%” is of sites <em>with a recognized</em> server-side language, not “the whole Internet”. Headlines like “70% of the Internet” (Wiz) are simplifications [D]<sup class="footnote-ref"><a href="#fn4" id="fnref4:2">[4:2]</a></sup>.</p>
+<h3 id="12-what-happens-when-a-browser-asks-for-a-page">1.2 What happens when a browser asks for a page</h3>
+<p>PHP is usually embedded in a web server or run as a pool of workers. The glue is called a <strong>SAPI</strong> (Server API).</p>
+<ul>
+<li><strong>Apache mod_php</strong>
+<ul>
+<li><em>How it works:</em> PHP inside Apache processes (typically prefork: many processes, each handling requests in sequence).</li>
+<li><em>Why it matters for PHP2Shell:</em> Worst case: request shutdown always runs, even when startup failed [P]<sup class="footnote-ref"><a href="#fn1" id="fnref1:1">[1:1]</a></sup>.</li>
+</ul>
+</li>
+<li><strong>PHP-FPM</strong>
+<ul>
+<li><em>How it works:</em> Separate PHP pool; nginx/Apache via FastCGI.</li>
+<li><em>Why it matters for PHP2Shell:</em> On failed startup FPM kills the child — breaks the simplest path; others remain [P]<sup class="footnote-ref"><a href="#fn1" id="fnref1:2">[1:2]</a></sup><sup class="footnote-ref"><a href="#fn2" id="fnref2:1">[2:1]</a></sup>.</li>
+</ul>
+</li>
+<li><strong>CGI / php-cgi</strong>
+<ul>
+<li><em>How it works:</em> Classically one process per request (or FastCGI).</li>
+<li><em>Why it matters for PHP2Shell:</em> Listed as affected [P]<sup class="footnote-ref"><a href="#fn3" id="fnref3:2">[3:2]</a></sup>.</li>
+</ul>
+</li>
+<li><strong>FrankenPHP</strong>
+<ul>
+<li><em>How it works:</em> Modern PHP application server.</li>
+<li><em>Why it matters for PHP2Shell:</em> Source analysis: likely mod_php-like on shutdown [P]<sup class="footnote-ref"><a href="#fn1" id="fnref1:3">[1:3]</a></sup>.</li>
+</ul>
+</li>
+<li><strong>LiteSpeed LSAPI</strong>
+<ul>
+<li><em>How it works:</em> FPM-like model.</li>
+<li><em>Why it matters for PHP2Shell:</em> App-specific paths “likely, unvalidated” [P]<sup class="footnote-ref"><a href="#fn1" id="fnref1:4">[1:4]</a></sup>.</li>
+</ul>
+</li>
+</ul>
+<p><strong>Analogy</strong> [A]: a PHP worker is a clerk’s desk. Each request is a case file. After the case, every folder must be put away. If the lights go out in a panic (OOM / fatal), a sticky note with a folder address may remain for a folder that was already shredded. The next visitor — same desk — treats that address as live. That is “stale global state” and “OOM corruption”.</p>
+<p><img src="diagrams/lifecycle.png" alt="Request lifecycle" /></p>
+<h3 id="13-why-this-matters">1.3 Why this matters</h3>
+<p>Most critical PHP-ecosystem bugs live in <em>applications</em>. Here the bug is in the <strong>engine</strong> [P]<sup class="footnote-ref"><a href="#fn3" id="fnref3:3">[3:3]</a></sup>. A “Hello World” app on an affected version is still exposed [D]<sup class="footnote-ref"><a href="#fn4" id="fnref4:3">[4:3]</a></sup>. Inventory must cover CMSes, control panels, appliances with PHP in firmware, and hidden <code>php.exe</code> binaries [D]<sup class="footnote-ref"><a href="#fn9" id="fnref9">[9]</a></sup><sup class="footnote-ref"><a href="#fn10" id="fnref10">[10]</a></sup>.</p>
+<hr />
+<h2 id="2-the-vulnerabilities-in-depth">2. The vulnerabilities, in depth</h2>
+<h3 id="21-shared-pattern">2.1 Shared pattern</h3>
+<p>Official advisories and the Wiz blog describe variants of the same cross-request memory-safety failure [P]<sup class="footnote-ref"><a href="#fn1" id="fnref1:5">[1:5]</a></sup><sup class="footnote-ref"><a href="#fn2" id="fnref2:2">[2:2]</a></sup><sup class="footnote-ref"><a href="#fn4" id="fnref4:4">[4:4]</a></sup>:</p>
+<ol>
+<li>An operation stores request-owned state in a worker-global location (<strong>producer</strong>).</li>
+<li>A fatal / OOM / diagnostic aborts before the matching reset.</li>
+<li>Request memory is freed; the global still points at it.</li>
+<li>The same worker handles another request.</li>
+<li>An operation before normal initialization reads that pointer (<strong>consumer</strong>) → use-after-free → with a suitable heap layout: RCE.</li>
+</ol>
+<p><strong>Why memory-safety bugs in a runtime are hard</strong> [A]: they are not “one hole in function X” but an interaction of allocator, error handling (<code>longjmp</code> / bailout), many extensions and many SAPIs. The fix had to change OOM strategy and reset a wide set of globals (~300 files) [P]<sup class="footnote-ref"><a href="#fn11" id="fnref11">[11]</a></sup>.</p>
+<h3 id="22-cve-2026-109618-rce-via-oom-corruption">2.2 CVE-2026-109618 — RCE via OOM corruption</h3>
+<p><strong>What was wrong.</strong> PHP used <code>longjmp()</code> on OOM to leave the current context and abort the request. When request memory was only partly initialized, that early exit left invalid state; shutdown could treat it as valid [P]<sup class="footnote-ref"><a href="#fn1" id="fnref1:6">[1:6]</a></sup>.</p>
+<p><strong>OOM strategies</strong> (concepts only) [P]<sup class="footnote-ref"><a href="#fn1" id="fnref1:7">[1:7]</a></sup>: multipart without a usable Content-Length; unbounded part headers (more memory than on the wire); empty file controls not counting toward <code>max_file_uploads</code> but still creating metadata. Application behavior can also reach OOM.</p>
+<p><strong>Why mod_php is worst.</strong> Apache mod_php <strong>unconditionally</strong> runs request shutdown even when startup failed. Body parsing during startup can exhaust <code>memory_limit</code> in the invalid-state window — <strong>before the application runs</strong> [P]<sup class="footnote-ref"><a href="#fn1" id="fnref1:8">[1:8]</a></sup><sup class="footnote-ref"><a href="#fn3" id="fnref3:4">[3:4]</a></sup>. FPM exits the child on failed startup; source analysis still treats FPM as susceptible, but no complete FPM exploit for 618 was demonstrated [P]<sup class="footnote-ref"><a href="#fn1" id="fnref1:9">[1:9]</a></sup>.</p>
+<p><strong>The fix.</strong> Remove <code>longjmp()</code> for OOM → soft OOM at a VM safe point + hard OOM via <code>_exit()</code> at a second threshold [P]<sup class="footnote-ref"><a href="#fn1" id="fnref1:10">[1:10]</a></sup><sup class="footnote-ref"><a href="#fn11" id="fnref11:1">[11:1]</a></sup>.</p>
+<h3 id="23-cve-2026-109619-rce-via-stale-global-state">2.3 CVE-2026-109619 — RCE via stale global state</h3>
+<p><strong>What was wrong.</strong> Worker-global state (error / session / object / extension) can point at request memory. A fatal, OOM or diagnostic leaves a stale pointer; a later request consumes it <strong>before</strong> normal initialization [P]<sup class="footnote-ref"><a href="#fn2" id="fnref2:3">[2:3]</a></sup>.</p>
+<p><strong>Confirmed consumers</strong> [P]<sup class="footnote-ref"><a href="#fn2" id="fnref2:4">[2:4]</a></sup>:</p>
+<ul>
+<li><strong>INI diagnostics before init</strong> — warnings/deprecations while applying settings (<code>.htaccess</code> / <code>php_value</code> on mod_php; <code>PHP_VALUE</code> on FPM) before the executor initializes. Hiding diagnostics does <strong>not</strong> help.</li>
+<li><strong>Session upload progress</strong> — can reach session handling before ordinary initialization; independent of the INI path.</li>
+</ul>
+<p><strong>Strongest demonstrated case:</strong> <code>fatal_error_backtraces</code> (PHP 8.5) + a diagnostic → confirmed RCE on mod_php. Session upload-progress RCE: confirmed on mod_php <strong>and</strong> FPM [P]<sup class="footnote-ref"><a href="#fn2" id="fnref2:5">[2:5]</a></sup>.</p>
+<p><strong>Wiz’s four classes</strong> (grouped under two CVEs) [D]<sup class="footnote-ref"><a href="#fn4" id="fnref4:5">[4:5]</a></sup>: upload-progress unserializer UAF; PHPSESSID memory disclosure; fatal-backtrace UAF; OPcache type confusion. Directionally aligned with the GHSA; chain detail is from Wiz.</p>
+<h3 id="24-cvss-v40-decoded">2.4 CVSS v4.0 decoded</h3>
+<p>Both CVEs: <code>CVSS:4.0/AV:N/AC:H/AT:P/PR:N/UI:N/VC:H/VI:H/VA:H/SC:N/SI:N/SA:N</code> → <strong>9.2</strong> [P]<sup class="footnote-ref"><a href="#fn1" id="fnref1:11">[1:11]</a></sup><sup class="footnote-ref"><a href="#fn2" id="fnref2:6">[2:6]</a></sup>.</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Value</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td data-label="Field">AV:N</td>
+<td data-label="Value">Network</td>
+<td data-label="Meaning">Remotely reachable</td>
+</tr>
+<tr>
+<td data-label="Field">AC:H</td>
+<td data-label="Value">High</td>
+<td data-label="Meaning">High attack complexity (heap layout, conditions)</td>
+</tr>
+<tr>
+<td data-label="Field">AT:P</td>
+<td data-label="Value">Present</td>
+<td data-label="Meaning">Preconditions in the system</td>
+</tr>
+<tr>
+<td data-label="Field">PR:N</td>
+<td data-label="Value">None</td>
+<td data-label="Meaning">No authentication</td>
+</tr>
+<tr>
+<td data-label="Field">UI:N</td>
+<td data-label="Value">None</td>
+<td data-label="Meaning">No user interaction</td>
+</tr>
+<tr>
+<td data-label="Field">VC/VI/VA:H</td>
+<td data-label="Value">High</td>
+<td data-label="Meaning">Full impact on confidentiality, integrity, availability of the <strong>vulnerable</strong> system</td>
+</tr>
+<tr>
+<td data-label="Field">SC/SI/SA:N</td>
+<td data-label="Value">None</td>
+<td data-label="Meaning">No scored impact on <strong>subsequent</strong> systems</td>
+</tr>
+</tbody>
+</table>
+<p>Early chatter said “CVSS 10.0” [D]<sup class="footnote-ref"><a href="#fn12" id="fnref12">[12]</a></sup><sup class="footnote-ref"><a href="#fn5" id="fnref5:1">[5:1]</a></sup> — PHP’s official score is 9.2 with AC:H and AT:P.</p>
+<h3 id="25-versions-fixed-eol-backports">2.5 Versions: fixed, EOL, backports</h3>
+<table>
+<thead>
+<tr>
+<th>Branch</th>
+<th>PHP support</th>
+<th>Fix</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td data-label="Branch">8.5</td>
+<td data-label="PHP support">supported</td>
+<td data-label="Fix"><strong>8.5.12</strong></td>
+</tr>
+<tr>
+<td data-label="Branch">8.4</td>
+<td data-label="PHP support">supported</td>
+<td data-label="Fix"><strong>8.4.27</strong></td>
+</tr>
+<tr>
+<td data-label="Branch">8.3</td>
+<td data-label="PHP support">supported</td>
+<td data-label="Fix"><strong>8.3.36</strong></td>
+</tr>
+<tr>
+<td data-label="Branch">8.2</td>
+<td data-label="PHP support">security until 31 Dec 2026</td>
+<td data-label="Fix"><strong>8.2.35</strong></td>
+</tr>
+<tr>
+<td data-label="Branch">8.1 / 8.0 / 7.4</td>
+<td data-label="PHP support">EOL</td>
+<td data-label="Fix">minimal <strong>source backports</strong>; no official releases</td>
+</tr>
+<tr>
+<td data-label="Branch">≤ 7.3 / 5.x</td>
+<td data-label="PHP support">EOL</td>
+<td data-label="Fix">no official fix; LTS vendors may backport</td>
+</tr>
+</tbody>
+</table>
+<p>[P]<sup class="footnote-ref"><a href="#fn3" id="fnref3:5">[3:5]</a></sup>. “Since 5.4” / “from PHP 5” comes from Wiz, CERT-EU, NCSC-NL and peers — not from the GHSA <code>vulnerable_version_range</code> tables (which list only fixed branches) [P/D]<sup class="footnote-ref"><a href="#fn1" id="fnref1:12">[1:12]</a></sup><sup class="footnote-ref"><a href="#fn4" id="fnref4:6">[4:6]</a></sup><sup class="footnote-ref"><a href="#fn13" id="fnref13">[13]</a></sup><sup class="footnote-ref"><a href="#fn14" id="fnref14">[14]</a></sup>.</p>
+<h3 id="26-incomplete-mitigations">2.6 Incomplete mitigations</h3>
+<p>PHP and core developers stress: <strong>the only complete mitigation is updating</strong> [P]<sup class="footnote-ref"><a href="#fn3" id="fnref3:6">[3:6]</a></sup><sup class="footnote-ref"><a href="#fn15" id="fnref15">[15]</a></sup>. Temporary measures (e.g. <code>memory_limit=-1</code>, <code>session.upload_progress.enabled=0</code>, on 8.5 <code>fatal_error_backtraces=0</code>) shrink specific paths; they do not make an install safe [P]<sup class="footnote-ref"><a href="#fn3" id="fnref3:7">[3:7]</a></sup>. Do not use <code>RLIMIT_AS</code>/<code>RLIMIT_DATA</code> as substitutes — they can force the vulnerable <code>mmap</code>→<code>longjmp</code> path [P]<sup class="footnote-ref"><a href="#fn1" id="fnref1:13">[1:13]</a></sup>.</p>
+<hr />
+<h2 id="3-discovery-wiz-calif-openai-and-ai-assisted-research">3. Discovery: Wiz, Calif, OpenAI and AI-assisted research</h2>
+<h3 id="31-timeline-per-wiz-third-party">3.1 Timeline per Wiz (third-party)</h3>
+<table>
+<thead>
+<tr>
+<th>Date</th>
+<th>Event</th>
+<th>Status</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td data-label="Date">19 Aug 2026</td>
+<td data-label="Event">First bug with Wiz Atlas, “Gemini 4 Argon”, “GPT-5.6 Sol”</td>
+<td data-label="Status">[D]<sup class="footnote-ref"><a href="#fn4" id="fnref4:7">[4:7]</a></sup></td>
+</tr>
+<tr>
+<td data-label="Date">20 Aug 2026</td>
+<td data-label="Event">Unauth RCE on Drupal</td>
+<td data-label="Status">[D]<sup class="footnote-ref"><a href="#fn4" id="fnref4:8">[4:8]</a></sup></td>
+</tr>
+<tr>
+<td data-label="Date">21 Aug 2026</td>
+<td data-label="Event">Unauth RCE on WordPress</td>
+<td data-label="Status">[D]<sup class="footnote-ref"><a href="#fn4" id="fnref4:9">[4:9]</a></sup></td>
+</tr>
+<tr>
+<td data-label="Date">24 Aug 2026</td>
+<td data-label="Event">Report to PHP</td>
+<td data-label="Status">[D]<sup class="footnote-ref"><a href="#fn4" id="fnref4:10">[4:10]</a></sup></td>
+</tr>
+<tr>
+<td data-label="Date">21 Sep 2026</td>
+<td data-label="Event">PHP acknowledges and starts a coordinated fix</td>
+<td data-label="Status">[D]<sup class="footnote-ref"><a href="#fn4" id="fnref4:11">[4:11]</a></sup></td>
+</tr>
+<tr>
+<td data-label="Date">21 Oct 2026</td>
+<td data-label="Event">Public patches + Wiz blog</td>
+<td data-label="Status">[P]<sup class="footnote-ref"><a href="#fn4" id="fnref4:12">[4:12]</a></sup><sup class="footnote-ref"><a href="#fn3" id="fnref3:8">[3:8]</a></sup></td>
+</tr>
+</tbody>
+</table>
+<p>GHSA credits: <code>sagitzadik-wiz</code>, <code>tomash-areion</code>, <code>lcfr-hax</code>, <code>amyb-oai</code> [P]<sup class="footnote-ref"><a href="#fn1" id="fnref1:14">[1:14]</a></sup>. Wiz thanks Calif and OpenAI; heise describes a Calif audit with the PHP Ecosystem Security Team under OpenAI’s “Patch the Planet” [D]<sup class="footnote-ref"><a href="#fn4" id="fnref4:13">[4:13]</a></sup><sup class="footnote-ref"><a href="#fn10" id="fnref10:1">[10:1]</a></sup>. Calif had earlier (1 May 2026) published separate research on a 21-year-old PHP UAF [P]<sup class="footnote-ref"><a href="#fn16" id="fnref16">[16]</a></sup>.</p>
+<h3 id="32-what-ai-changes-in-bug-hunting">3.2 What AI changes in bug hunting</h3>
+<p>Wiz: the vulnerable code had been present for more than a decade; building a working chain meant combining multiple bugs and adapting to memory layouts — frontier models “substantially reduced that barrier” [D]<sup class="footnote-ref"><a href="#fn4" id="fnref4:14">[4:14]</a></sup>. BSI warned attackers may reverse patches with AI tools “within a few hours” [P]<sup class="footnote-ref"><a href="#fn17" id="fnref17">[17]</a></sup>.</p>
+<p><strong>[A]</strong> That does not mean “AI found the CVE alone”. It means the cost of going from a hard memory-safety bug to credible RCE across many targets fell. The same economics apply to attackers (patch reverse-engineering) and defenders (triage).</p>
+<p>The PHP Foundation (14 Oct 2026) described using <strong>Daybreak Red</strong> (OpenAI) to validate reports and sort the queue — context for a surge of AI-assisted submissions [P]<sup class="footnote-ref"><a href="#fn18" id="fnref18">[18]</a></sup>.</p>
+<h3 id="33-the-2024-audit-and-the-ecosystem-security-team">3.3 The 2024 audit and the Ecosystem Security Team</h3>
+<p>In 2024 Quarkslab (Sovereign Tech Agency / OSTIF) found 17 security-relevant findings; heise notes a similar class of issue had already sparked remediation debate [P/D]<sup class="footnote-ref"><a href="#fn19" id="fnref19">[19]</a></sup><sup class="footnote-ref"><a href="#fn10" id="fnref10:2">[10:2]</a></sup>. In May 2026 the PHP Foundation announced an Ecosystem Security Team [D]<sup class="footnote-ref"><a href="#fn10" id="fnref10:3">[10:3]</a></sup>. PHP2Shell shows both investment in security and a long architectural tail around bailout/OOM [A].</p>
+<hr />
+<h2 id="4-coordinated-disclosure-101-and-how-it-went-here">4. Coordinated disclosure 101 and how it went here</h2>
+<h3 id="41-coordinated-disclosure-101">4.1 Coordinated disclosure 101</h3>
+<p>Typical flow [A]: (1) private report; (2) confirm and fix; (3) embargoed notice to distros/LTS and selected partners; (4) simultaneous advisories + releases; (5) ecosystem messaging. Goal: shrink the window between attacker knowledge and patch availability.</p>
+<h3 id="42-how-it-went-here">4.2 How it went here</h3>
+<p><img src="diagrams/disclosure.png" alt="Disclosure flow" /></p>
+<ol>
+<li><strong>Report and remediation</strong> (Aug–Oct 2026) — per Wiz [D]<sup class="footnote-ref"><a href="#fn4" id="fnref4:15">[4:15]</a></sup>. Commit “Avoid state corruption via bailout” on 18 Oct 2026; annotated tags on 19 Oct [P]<sup class="footnote-ref"><a href="#fn11" id="fnref11:2">[11:2]</a></sup><sup class="footnote-ref"><a href="#fn20" id="fnref20">[20]</a></sup>.</li>
+<li><strong>Early access.</strong> php.net: “Linux distributions and LTS vendors received the patches in advance” [P]<sup class="footnote-ref"><a href="#fn3" id="fnref3:9">[3:9]</a></sup>. Wiz lists Automattic, Akamai, AWS, Cloudflare, Fastly, Google, Imperva, Microsoft, Vercel and others for pre-day-zero mitigations [D]<sup class="footnote-ref"><a href="#fn4" id="fnref4:16">[4:16]</a></sup>. watchTowr pushed Active Defense for paying clients before the patch [P]<sup class="footnote-ref"><a href="#fn5" id="fnref5:2">[5:2]</a></sup>.</li>
+<li><strong>Embargo.</strong> watchTowr: originally <strong>Thursday 22 Oct, 11:00 ET</strong> (= 15:00 UTC) [P]<sup class="footnote-ref"><a href="#fn5" id="fnref5:3">[5:3]</a></sup>.</li>
+<li><strong>Pre-announcement after the leak.</strong> At 19:33 UTC on 20 Oct, Jakub Zelenka (<code>bukka</code>) announced <strong>Wednesday 21 Oct 14:00 UTC</strong>, reserving the right to ship earlier if details leaked or exploitation appeared [P]<sup class="footnote-ref"><a href="#fn21" id="fnref21">[21]</a></sup>.</li>
+<li><strong>Trade-off</strong> [A]: the notice gave ~18 h for inventory and patch windows, but also confirmed the CVEs were real and drew attacker attention. OpenSSL 3.0.7 (2022) showed another variant: a CRITICAL pre-announce later downgraded to HIGH after prenotification feedback [P]<sup class="footnote-ref"><a href="#fn22" id="fnref22">[22]</a></sup>. Here the 9.2 score held.</li>
+</ol>
+<p>Process criticism (Beaumont and others): early access “sold” as intel by cyber vendors versus small orgs without contracts [D]<sup class="footnote-ref"><a href="#fn23" id="fnref23">[23]</a></sup>. That tension returns with every infrastructure embargo [A].</p>
+<hr />
+<h2 id="5-the-leak-and-the-name-php2shell">5. The leak and the name “PHP2Shell”</h2>
+<h3 id="51-what-leaked-when-and-where">5.1 What leaked, when and where</h3>
+<p><em>Times in UTC.</em></p>
+<ul>
+<li><strong>20 Oct 15:20</strong> — “Tell HN: 2x PHP RCE CVEs with CVSS 10.0 Incoming” (petecooper) — CVE numbers, “22 October 2026 at 18:00 CEST”; later deleted [P]<sup class="footnote-ref"><a href="#fn12" id="fnref12:1">[12:1]</a></sup></li>
+<li><strong>20 Oct 16:39</strong> — Kevin Beaumont (Mastodon): leak of the CVE numbers [P]<sup class="footnote-ref"><a href="#fn24" id="fnref24">[24]</a></sup></li>
+<li><strong>20 Oct 18:26</strong> — watchTowr: “supposed to wait until Thursday 11am ET… We can confirm that they're real.” [P]<sup class="footnote-ref"><a href="#fn5" id="fnref5:4">[5:4]</a></sup></li>
+<li><strong>20 Oct 19:33</strong> — Official PHP announcement [P]<sup class="footnote-ref"><a href="#fn21" id="fnref21:1">[21:1]</a></sup></li>
+<li><strong>20 Oct 20:27</strong> — Kirill Firsov: “php2shell” video (~1.7M views); tool banner “PHP2SHELL — PHP &gt;= 5.4.0 RCE by Calif.IO” (Dormann screenshots) [P]<sup class="footnote-ref"><a href="#fn25" id="fnref25">[25]</a></sup><sup class="footnote-ref"><a href="#fn26" id="fnref26">[26]</a></sup></li>
+<li><strong>21 Oct 00:30</strong> — J4ck3LSyN claims a “reproduction”; later retracts the main RCE path [P/D]<sup class="footnote-ref"><a href="#fn27" id="fnref27">[27]</a></sup></li>
+</ul>
+<p>HN commenter “bwoebi” (identity unverified): the video was why the announcement happened “at that moment” [D]<sup class="footnote-ref"><a href="#fn28" id="fnref28">[28]</a></sup>.</p>
+<h3 id="52-the-name">5.2 The name</h3>
+<p>“PHP2Shell” does <strong>not</strong> come from PHP’s official notice. It came from the tool banner in the leaked demo (Calif.IO) and spread through media; BSI notes the marketing comparison to Log4Shell [P/D]<sup class="footnote-ref"><a href="#fn29" id="fnref29">[29]</a></sup><sup class="footnote-ref"><a href="#fn30" id="fnref30">[30]</a></sup>. PHP uses descriptive CVE/GHSA titles [P]<sup class="footnote-ref"><a href="#fn3" id="fnref3:10">[3:10]</a></sup>.</p>
+<h3 id="53-effect-of-the-leak">5.3 Effect of the leak</h3>
+<p>PHP moved the day from Thursday to Wednesday and reserved an earlier release [P]<sup class="footnote-ref"><a href="#fn21" id="fnref21:2">[21:2]</a></sup><sup class="footnote-ref"><a href="#fn6" id="fnref6:1">[6:1]</a></sup>. Tarballs and GHSA ultimately shipped ~25 minutes before the announced 14:00 UTC [P]<sup class="footnote-ref"><a href="#fn31" id="fnref31">[31]</a></sup>. The embargo bought distros time but did not prevent a public “zero-day feeling” for ~22 hours [A].</p>
+<hr />
+<h2 id="6-patch-day">6. Patch day</h2>
+<h3 id="61-release-mechanics">6.1 Release mechanics</h3>
+<ul>
+<li>Annotated tags <code>php-8.2.35</code>…<code>php-8.5.12</code> created on <strong>19 Oct</strong> (Panteleev, Mann, Buckley, Scherzer) — preparation before day zero [P]<sup class="footnote-ref"><a href="#fn20" id="fnref20:1">[20:1]</a></sup>.</li>
+<li>Tarball <code>php-8.5.12.tar.xz</code>: <code>Last-Modified: Wed, 21 Oct 2026 13:33:59 GMT</code> [P]<sup class="footnote-ref"><a href="#fn31" id="fnref31:1">[31:1]</a></sup>.</li>
+<li>GHSA-6wmf-4rv5-p3rp: <strong>13:34:13Z</strong>; GHSA-w8hw-w9fx-j79w: <strong>13:34:25Z</strong>; publisher: <code>bukka</code> [P]<sup class="footnote-ref"><a href="#fn1" id="fnref1:15">[1:15]</a></sup><sup class="footnote-ref"><a href="#fn2" id="fnref2:7">[2:7]</a></sup>.</li>
+<li>The php.net Atom feed stamps <code>T00:00:00Z</code> on release day — a <strong>date convention</strong>, not the publication hour [P]<sup class="footnote-ref"><a href="#fn32" id="fnref32">[32]</a></sup>.</li>
+</ul>
+<h3 id="62-size-of-the-fix">6.2 Size of the fix</h3>
+<p>Commit <code>31c0ea7</code> “Avoid state corruption via bailout”: <strong>+11,556 / −1,017</strong> in <strong>300</strong> files; UnwindExit instead of OOM bailout + global resets [P]<sup class="footnote-ref"><a href="#fn11" id="fnref11:3">[11:3]</a></sup>. Not “a few lines” — hence distro lag and regression risk in rushed backports [A].</p>
+<h3 id="63-patch-released-patched">6.3 “Patch released” ≠ “patched”</h3>
+<p><em>State ~14:00 UTC 21 Oct:</em></p>
+<ul>
+<li><strong>php.net source / Windows binaries</strong> — available [P]<sup class="footnote-ref"><a href="#fn3" id="fnref3:11">[3:11]</a></sup></li>
+<li><strong>Docker official <code>library/php</code></strong> — PR #1694 opened 13:44; after merge still official-images + builds [P]<sup class="footnote-ref"><a href="#fn33" id="fnref33">[33]</a></sup></li>
+<li><strong>Remi (<code>rpms.remirepo.net</code>)</strong> — <strong>no update “today”</strong> — PHP Foundation warning [P]<sup class="footnote-ref"><a href="#fn3" id="fnref3:12">[3:12]</a></sup></li>
+<li><strong>Ubuntu tracker</strong> — CVE entries, “Needs evaluation” on many releases [P]<sup class="footnote-ref"><a href="#fn34" id="fnref34">[34]</a></sup></li>
+<li><strong>Debian/RHEL packages</strong> — in progress / not verified in this research [?]</li>
+<li><strong>Shared hosting</strong> — depends on the host (heise: Uberspace planned a temporary PHP shutdown) [D]<sup class="footnote-ref"><a href="#fn10" id="fnref10:4">[10:4]</a></sup></li>
+</ul>
+<p>Until workers run binaries that include the fix, the system is vulnerable — press release notwithstanding [A].</p>
+<hr />
+<h2 id="7-the-exploit-race">7. The exploit race</h2>
+<h3 id="71-how-attackers-reverse-engineer-patches-conceptually">7.1 How attackers reverse-engineer patches (conceptually)</h3>
+<p>Without recipes [A]: given a large public diff (here: hundreds of files around OOM and global resets), analysts diff before/after, locate changed error paths, and reconstruct entry conditions. BSI explicitly ties pace to AI tooling [P]<sup class="footnote-ref"><a href="#fn17" id="fnref17:1">[17:1]</a></sup>. CERT.at: exploit code online + easier patch reversing → exploitation “soon” after publication [P]<sup class="footnote-ref"><a href="#fn35" id="fnref35">[35]</a></sup>. Sansec expected mass attacks within 15 minutes of release [D]<sup class="footnote-ref"><a href="#fn30" id="fnref30:1">[30:1]</a></sup>.</p>
+<h3 id="72-fake-and-retracted-pocs-signal-versus-noise">7.2 Fake and retracted PoCs — signal versus noise</h3>
+<ul>
+<li>Firsov video / Dormann screenshots (Calif.IO / <code>lcfr</code>) — <strong>not independently verified in this research</strong> [P/D].</li>
+<li>jackalsyn.com: the author <strong>retracted</strong> the “cached-pointer” path as DEAD; rated the real bug CVSS 5.3 / “NOT RCE” — <strong>does not match</strong> the official 9.2 [D]<sup class="footnote-ref"><a href="#fn27" id="fnref27:1">[27:1]</a></sup>. Treat as noise / partial LLM reconstruction.</li>
+<li>GitHub: many “php2shell”/CVE repos (e.g. ikow/php2shell-poc) — Tenable warns unverified exploit code may be malware-laced [D]<sup class="footnote-ref"><a href="#fn36" id="fnref36">[36]</a></sup>.</li>
+</ul>
+<h3 id="73-exploitation-telemetry-conflicting">7.3 Exploitation telemetry (conflicting)</h3>
+<ul>
+<li><strong>Cloudflare Knecht 07:43 UTC</strong> — “early attacks emerging”; WAF stopgap [P]<sup class="footnote-ref"><a href="#fn37" id="fnref37">[37]</a></sup></li>
+<li><strong>Huntress (20 Oct)</strong> — none in partner environments [P]<sup class="footnote-ref"><a href="#fn9" id="fnref9:1">[9:1]</a></sup></li>
+<li><strong>watchTowr FAQ</strong> — no ITW (as of their FAQ) [P]<sup class="footnote-ref"><a href="#fn38" id="fnref38">[38]</a></sup></li>
+<li><strong>NCSC-NL / BSI v1.0</strong> — no confirmed abuse / keine bestätigten Ausnutzungen [P]<sup class="footnote-ref"><a href="#fn14" id="fnref14:1">[14:1]</a></sup><sup class="footnote-ref"><a href="#fn29" id="fnref29:1">[29:1]</a></sup></li>
+<li><strong>PHP Foundation → ANP</strong> — no indication of active abuse [D]<sup class="footnote-ref"><a href="#fn7" id="fnref7:2">[7:2]</a></sup></li>
+<li><strong>Patchstack (NBC), Hadrian, Firsov</strong> — “active” / “at scale” / “in the wild” [D] without IoCs</li>
+<li><strong>CISA KEV</strong> — no entry (research ~13:46 UTC) [P]<sup class="footnote-ref"><a href="#fn39" id="fnref39">[39]</a></sup></li>
+</ul>
+<p><strong>Takeaway [A]:</strong> settling “is it ITW?” needs IoCs from large sensors or a KEV listing — messaging still conflicts.</p>
+<hr />
+<h2 id="8-defenders-response">8. Defenders’ response</h2>
+<p><img src="diagrams/actors.png" alt="Actors map" /></p>
+<h3 id="81-agencies">8.1 Agencies</h3>
+<ul>
+<li><strong>CERT-EU 2026-018</strong> — Patch ASAP or isolate; “all from PHP 5”; CVSS → unauth RCE [P]<sup class="footnote-ref"><a href="#fn13" id="fnref13:1">[13:1]</a></sup></li>
+<li><strong>BSI</strong> — BITS-H Orange/3 + Caspers press: “großflächige Ausnutzung innerhalb weniger Stunden”; AI speeds reversing [P]<sup class="footnote-ref"><a href="#fn29" id="fnref29:2">[29:2]</a></sup><sup class="footnote-ref"><a href="#fn17" id="fnref17:2">[17:2]</a></sup></li>
+<li><strong>CERT-Bund</strong> — WID-SEC-2026-4055 (content behind login — unread here) [P/?]</li>
+<li><strong>NCSC UK</strong> — Identify PHP; patch; harden; consider offline; inventory bundled PHP [P]<sup class="footnote-ref"><a href="#fn40" id="fnref40">[40]</a></sup></li>
+<li><strong>NCSC-NL</strong> — Advisory; ncsc.nl offline; NCSC-NL/php2shell product list; no active abuse seen [P]<sup class="footnote-ref"><a href="#fn14" id="fnref14:2">[14:2]</a></sup></li>
+<li><strong>CERT.at</strong> — Update #1: exploit code online, functionality unconfirmed [P]<sup class="footnote-ref"><a href="#fn35" id="fnref35:1">[35:1]</a></sup></li>
+<li><strong>CERT Polska 195/2026</strong> — Inventory; consider taking internet-facing PHP offline [P]<sup class="footnote-ref"><a href="#fn41" id="fnref41">[41]</a></sup></li>
+<li><strong>CERT-FR ALE-014</strong> — upload_progress/multipart workarounds <strong>not qualified</strong> [P]<sup class="footnote-ref"><a href="#fn42" id="fnref42">[42]</a></sup></li>
+<li><strong>ACSC / IPA</strong> — Alerts (ACSC fetch 500 from this environment) [D]</li>
+<li><strong>CISA</strong> — No KEV for PHP2Shell at research time [P]<sup class="footnote-ref"><a href="#fn39" id="fnref39:1">[39:1]</a></sup></li>
+</ul>
+<h3 id="82-wafs-hosts-cmses">8.2 WAFs, hosts, CMSes</h3>
+<ul>
+<li><strong>Cloudflare:</strong> Emergency Managed Ruleset — seven “Anomalous Execution” rules; Free plans included; Knecht: stopgap only [P]<sup class="footnote-ref"><a href="#fn43" id="fnref43">[43]</a></sup><sup class="footnote-ref"><a href="#fn37" id="fnref37:1">[37:1]</a></sup>.</li>
+<li><strong>CloudLinux Imunify360 / bunny.net:</strong> reported rulesets [D]<sup class="footnote-ref"><a href="#fn23" id="fnref23:1">[23:1]</a></sup>.</li>
+<li><strong>Sansec (Magento):</strong> mass attacks in 15 minutes; fix at infrastructure level, not in the store [D]<sup class="footnote-ref"><a href="#fn30" id="fnref30:2">[30:2]</a></sup>.</li>
+<li><strong>Wordfence / shared WP:</strong> the fix is not a WordPress auto-update — it depends on the host [D]<sup class="footnote-ref"><a href="#fn44" id="fnref44">[44]</a></sup>.</li>
+</ul>
+<h3 id="83-the-dutch-and-neighbouring-shutdown-wave">8.3 The Dutch (and neighbouring) shutdown wave</h3>
+<p>NOS/NU and the NCSC-NL notice document precautionary offline for DigiD.nl (site; DigiD login elsewhere partly still worked), MijnOverheid, Tweede Kamer, RIVM, ANWB, RTL, hospitals, SURF, parties, UWV (selected apps), NCSC.nl, NotuBiz, KNVB, charities, and more [P]<sup class="footnote-ref"><a href="#fn7" id="fnref7:3">[7:3]</a></sup><sup class="footnote-ref"><a href="#fn14" id="fnref14:3">[14:3]</a></sup>. Belgium: Flemish government sites (Diependaele); France: prefectures; Finland: government sites [P]<sup class="footnote-ref"><a href="#fn7" id="fnref7:4">[7:4]</a></sup>.</p>
+<p><strong>Communications analysis [A]:</strong> a classic availability-versus-confidentiality/integrity trade-off. With CVSS 9.2, no reliable workaround, and a public PoC narrative, agencies chose “better a dark site than a owned server”. Cost: lost public services on a weekday. Log4Shell also saw radical isolation, but rarely such coordinated national IDP/portal takedowns in the hours before a patch.</p>
+<hr />
+<h2 id="9-exposure-and-impact">9. Exposure and impact</h2>
+<h3 id="91-what-we-know">9.1 What we know</h3>
+<ul>
+<li><strong>W3Techs 21 Oct 2026:</strong> 69.3% / version split as above [P]<sup class="footnote-ref"><a href="#fn8" id="fnref8:1">[8:1]</a></sup>.</li>
+<li><strong>Modat 20 Oct:</strong> 4,384,302 services / 1,886,612 hosts; <strong>79%</strong> of versioned services on EOL (4/5/7/8.0/8.1); largest group <strong>7.4</strong> (878,761); US/China/Japan/Germany lead hosts [D]<sup class="footnote-ref"><a href="#fn45" id="fnref45">[45]</a></sup>.</li>
+<li><strong>Mallory/THN:</strong> ~884k hosts with PHP ≤8.1 banners — banners, not confirmed vulnerability [D]<sup class="footnote-ref"><a href="#fn46" id="fnref46">[46]</a></sup>.</li>
+<li><strong>Tenable/Cutler/Poley:</strong> 1.3–1.9M host estimates [D]<sup class="footnote-ref"><a href="#fn36" id="fnref36:1">[36:1]</a></sup>.</li>
+</ul>
+<h3 id="92-what-we-do-not-know">9.2 What we do not know</h3>
+<ul>
+<li>How many hosts are both vulnerable <em>and</em> reachable via a working RCE path (SAPI, config, WAF).</li>
+<li>How many were compromised before or just after the patch.</li>
+<li>When LTS packages reach Remi / Docker Hub / shared hosting.</li>
+<li>Whether CISA will add KEV and which IoCs vendors will publish.</li>
+</ul>
+<hr />
+<h2 id="10-historical-comparison">10. Historical comparison</h2>
+<ul>
+<li><strong>Log4Shell</strong> (CVE-2021-44228), Dec 2021 [P]<sup class="footnote-ref"><a href="#fn47" id="fnref47">[47]</a></sup><sup class="footnote-ref"><a href="#fn48" id="fnref48">[48]</a></sup>
+<ul>
+<li><em>Similarities:</em> Mass exposure of an “invisible” dependency; WAF stopgap; meme name</li>
+<li><em>Pace / differences:</em> Cloudflare: probes 9 days before disclosure; exploits <strong>9 minutes</strong> after; Check Point: <strong>&gt;800k</strong> attacks / 72 h</li>
+</ul>
+</li>
+<li><strong>Heartbleed</strong>, Apr 2014 [P]<sup class="footnote-ref"><a href="#fn49" id="fnref49">[49]</a></sup>
+<ul>
+<li><em>Similarities:</em> Critical bug in Internet foundations; early notify of selected parties</li>
+<li><em>Pace / differences:</em> Google/Cloudflare knew before public; CRA Canada: ~900 SINs</li>
+</ul>
+</li>
+<li><strong>PHP-CGI CVE-2024-4577</strong>, Jun 2024 [P]<sup class="footnote-ref"><a href="#fn50" id="fnref50">[50]</a></sup><sup class="footnote-ref"><a href="#fn51" id="fnref51">[51]</a></sup>
+<ul>
+<li><em>Similarities:</em> RCE in PHP; rapid weaponization</li>
+<li><em>Pace / differences:</em> Akamai: exploitation <strong>within 24 h</strong>; Imperva: TellYouThePass <strong>&lt;48 h</strong></li>
+</ul>
+</li>
+<li><strong>OpenSSL 3.0.7 pre-announce</strong>, Oct–Nov 2022 [P]<sup class="footnote-ref"><a href="#fn22" id="fnref22:1">[22:1]</a></sup>
+<ul>
+<li><em>Similarities:</em> Public CRITICAL notice before details</li>
+<li><em>Pace / differences:</em> After prenotification <strong>downgraded</strong> to HIGH</li>
+</ul>
+</li>
+</ul>
+<p><strong>24–72 h pattern [A]:</strong> after a public patch expect (1) mass scanning, (2) PoCs within hours, (3) ransomware/bots within 1–2 days if RCE is credible. With AI, BSI and Sansec assume <strong>hours</strong>, not days [P/D]<sup class="footnote-ref"><a href="#fn17" id="fnref17:3">[17:3]</a></sup><sup class="footnote-ref"><a href="#fn30" id="fnref30:3">[30:3]</a></sup>.</p>
+<hr />
+<h2 id="11-lessons-learned">11. Lessons learned</h2>
+<h3 id="for-application-developers">For application developers</h3>
+<p>Do not assume “safe application code” protects against a runtime bug. Stay on supported PHP; avoid depending on rarely used pre-init features (upload progress) without need [A]<sup class="footnote-ref"><a href="#fn3" id="fnref3:13">[3:13]</a></sup>.</p>
+<h3 id="for-ops-sre">For ops / SRE</h3>
+<p>Inventory PHP <strong>including bundled</strong> copies (appliances, panels, containers). A patch window is not a press release — verify <code>php -v</code> / the package on every host. Plan B: isolate internet-facing systems when a patch is unavailable [P]<sup class="footnote-ref"><a href="#fn40" id="fnref40:1">[40:1]</a></sup><sup class="footnote-ref"><a href="#fn13" id="fnref13:2">[13:2]</a></sup>.</p>
+<h3 id="for-open-source-maintainers">For open-source maintainers</h3>
+<p>Large memory-safety fixes need time and distro prenotification; embargo leaks are a real scenario — keep an “release earlier” plan (PHP had one and used it) [P]<sup class="footnote-ref"><a href="#fn21" id="fnref21:3">[21:3]</a></sup>.</p>
+<h3 id="for-governments-certs">For governments / CERTs</h3>
+<p>Precautionary shutdowns brake risk but cost trust in public services. Dependency inventories (NCSC-NL/php2shell) in the Log4Shell style are valuable [P]<sup class="footnote-ref"><a href="#fn14" id="fnref14:4">[14:4]</a></sup>.</p>
+<h3 id="for-the-media">For the media</h3>
+<p>Separate official CVSS 9.2 from “CVSS 10” rumors; CDN “early attacks” from CERT “no abuse”; community names from vendor notices. Do not treat unverified PoCs as “the exploit” [A].</p>
+<hr />
+<h2 id="12-open-questions">12. Open questions</h2>
+<ol>
+<li>Ubuntu/Debian/RHEL/Remi/Docker Hub packages — when “Needs evaluation” becomes fixed.</li>
+<li>CISA KEV / EPSS / independent IoCs.</li>
+<li>Settling Knecht versus NCSC-NL/BSI on ITW.</li>
+<li>Official Calif / OpenAI write-ups (Wiz foreshadowed their blogs) [D]<sup class="footnote-ref"><a href="#fn4" id="fnref4:17">[4:17]</a></sup>.</li>
+<li>Fate of EOL hosts (5.x–8.1) without a backport.</li>
+<li>Variants — Wiz: “other tracked and likely untracked variants” [D]<sup class="footnote-ref"><a href="#fn4" id="fnref4:18">[4:18]</a></sup>.</li>
+<li>Return of NL/BE/FR/FI sites.</li>
+<li>CMS/appliance firmware (Nextcloud, pfSense, cPanel…) [D]<sup class="footnote-ref"><a href="#fn10" id="fnref10:5">[10:5]</a></sup>.</li>
+<li>Evolution of WAF bypasses.</li>
+<li>Compromise hunting backwards (Aikido suggests since June 2026 — <strong>[D]</strong>).</li>
+</ol>
+<hr />
+<h2 id="appendix-a-full-timeline">Appendix A: Full timeline</h2>
+<p><em>Times in UTC; Warsaw time (CEST) in brackets.</em></p>
+<ul>
+<li><strong>2026-05-01</strong> — Calif: “MAD Bugs” (separate UAF) [P]</li>
+<li><strong>2026-08-19…24</strong> — Wiz: discover → RCE Drupal/WP → report [D]</li>
+<li><strong>2026-09-21</strong> — PHP starts coordinated fix [D]</li>
+<li><strong>2026-10-14</strong> — PHP Foundation blog (Daybreak Red) [P]</li>
+<li><strong>2026-10-18 15:46</strong> (17:46) — Bailout-fix commit [P]</li>
+<li><strong>2026-10-19 07:30–17:04</strong> (09:30–19:04) — Annotated release tags [P]</li>
+<li><strong>2026-10-20 15:20</strong> (17:20) — Tell HN — CVE leak [P]</li>
+<li><strong>2026-10-20 16:39</strong> (18:39) — Beaumont [P]</li>
+<li><strong>2026-10-20 18:26</strong> (20:26) — watchTowr — embargo Thursday 11am ET [P]</li>
+<li><strong>2026-10-20 19:33</strong> (21:33) — PHP ANNOUNCE — Wed 14:00 UTC [P]</li>
+<li><strong>2026-10-20 19:35</strong> (21:35) — watchTowr FAQ [P]</li>
+<li><strong>2026-10-20 20:27</strong> (22:27) — php2shell video [P]</li>
+<li><strong>2026-10-20 20:33</strong> (page timezone ambiguous) — CERT-EU 2026-018 [P/?]</li>
+<li><strong>2026-10-20 21:20</strong> (23:20) — CERT.at warning [P]</li>
+<li><strong>2026-10-21 02:13</strong> (04:13) — Girgias: only mitigation is patching [P]</li>
+<li><strong>2026-10-21 07:43</strong> (09:43) — Knecht: early attacks + WAF [P]</li>
+<li><strong>2026-10-21 morning–noon</strong> — Mass offline NL/BE/FR/FI [P]</li>
+<li><strong>2026-10-21 11:59</strong> (13:59) — NCSC-NL notice [P]</li>
+<li><strong>2026-10-21 13:33:59</strong> (15:33:59) — 8.5.12 tarball Last-Modified [P]</li>
+<li><strong>2026-10-21 13:34</strong> (15:34) — Both GHSA published [P]</li>
+<li><strong>2026-10-21 ~13:35</strong> (~15:35) — php.net advisory [P]</li>
+<li><strong>2026-10-21 13:43</strong> (15:43) — Wiz blog [P]</li>
+<li><strong>2026-10-21 13:44</strong> (15:44) — Docker PR #1694 [P]</li>
+</ul>
+<hr />
+<h2 id="appendix-b-glossary">Appendix B: Glossary</h2>
+<table>
+<thead>
+<tr>
+<th>Term</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td data-label="Term"><strong>SAPI</strong></td>
+<td data-label="Meaning">Server API — glue between web server and PHP engine</td>
+</tr>
+<tr>
+<td data-label="Term"><strong>Worker</strong></td>
+<td data-label="Meaning">PHP process handling many requests in sequence</td>
+</tr>
+<tr>
+<td data-label="Term"><strong>OOM</strong></td>
+<td data-label="Meaning">Out of memory</td>
+</tr>
+<tr>
+<td data-label="Term"><strong>Bailout / longjmp</strong></td>
+<td data-label="Meaning">Emergency exit from C context without normal stack unwinding</td>
+</tr>
+<tr>
+<td data-label="Term"><strong>Use-after-free (UAF)</strong></td>
+<td data-label="Meaning">Using memory after it was freed</td>
+</tr>
+<tr>
+<td data-label="Term"><strong>Stale pointer / global</strong></td>
+<td data-label="Meaning">Pointer/global referring to obsolete request memory</td>
+</tr>
+<tr>
+<td data-label="Term"><strong>mod_php</strong></td>
+<td data-label="Meaning">PHP as an Apache module</td>
+</tr>
+<tr>
+<td data-label="Term"><strong>PHP-FPM</strong></td>
+<td data-label="Meaning">FastCGI Process Manager</td>
+</tr>
+<tr>
+<td data-label="Term"><strong>CVSS v4.0</strong></td>
+<td data-label="Meaning">Common Vulnerability Scoring System, version 4</td>
+</tr>
+<tr>
+<td data-label="Term"><strong>Embargo</strong></td>
+<td data-label="Meaning">Confidentiality period before public disclosure</td>
+</tr>
+<tr>
+<td data-label="Term"><strong>KEV</strong></td>
+<td data-label="Meaning">CISA Known Exploited Vulnerabilities catalog</td>
+</tr>
+<tr>
+<td data-label="Term"><strong>EOL</strong></td>
+<td data-label="Meaning">End of life — no official updates</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="appendix-c-defensive-checklist">Appendix C: Defensive checklist</h2>
+<p><em>How to verify you are patched — not how to attack.</em></p>
+<ol>
+<li><strong>Find PHP:</strong> <code>php -v</code> on hosts; Docker images; panels; appliances; Windows <code>php.exe</code> / <code>php-cgi.exe</code> [D]<sup class="footnote-ref"><a href="#fn9" id="fnref9:2">[9:2]</a></sup>.</li>
+<li><strong>Target versions:</strong> ≥ 8.5.12 / 8.4.27 / 8.3.36 / 8.2.35; for EOL — vendor LTS or upgrade [P]<sup class="footnote-ref"><a href="#fn3" id="fnref3:14">[3:14]</a></sup>.</li>
+<li><strong>After update:</strong> restart <strong>all</strong> workers (FPM reload/restart, Apache graceful/restart); check the version in the real SAPI, not only CLI.</li>
+<li><strong>Containers:</strong> once Hub tags exist — <code>pull</code> + redeploy; PR #1694 is only the start of the chain [P]<sup class="footnote-ref"><a href="#fn33" id="fnref33:1">[33:1]</a></sup>.</li>
+<li><strong>Remi:</strong> do not wait for Remi’s “today” update — distro packages or build from source [P]<sup class="footnote-ref"><a href="#fn3" id="fnref3:15">[3:15]</a></sup>.</li>
+<li><strong>Temporarily (not instead of patching):</strong> advisory measures; vendor WAFs as a stopgap [P]<sup class="footnote-ref"><a href="#fn3" id="fnref3:16">[3:16]</a></sup><sup class="footnote-ref"><a href="#fn43" id="fnref43:1">[43:1]</a></sup>.</li>
+<li><strong>Post-facto hunting:</strong> unusual PHP child processes (shell, curl, wget); webshells; new docroot files; worker churn; odd multipart + 500s [D]<sup class="footnote-ref"><a href="#fn9" id="fnref9:3">[9:3]</a></sup><sup class="footnote-ref"><a href="#fn4" id="fnref4:19">[4:19]</a></sup>.</li>
+<li><strong>Internet-facing EOL:</strong> upgrade, VPN, or offline [P]<sup class="footnote-ref"><a href="#fn40" id="fnref40:2">[40:2]</a></sup><sup class="footnote-ref"><a href="#fn13" id="fnref13:3">[13:3]</a></sup>.</li>
+</ol>
+<hr />
+<h2 id="appendix-d-sources">Appendix D: Sources</h2>
+<h3 id="primary">Primary</h3>
+<h3 id="discovery-research">Discovery / research</h3>
+<h3 id="agencies-and-media">Agencies and media</h3>
+<h3 id="historical">Historical</h3>
+<hr />
+<p><em>End of version 1.0 (EN). Update as distro packages, IoCs and Calif/OpenAI write-ups appear.</em></p>
+<hr class="footnotes-sep" />
+<section class="footnotes">
+<ol class="footnotes-list">
+<li id="fn1" class="footnote-item"><p>https://github.com/php/php-src/security/advisories/GHSA-w8hw-w9fx-j79w <a href="#fnref1" class="footnote-backref">↩︎</a> <a href="#fnref1:1" class="footnote-backref">↩︎</a> <a href="#fnref1:2" class="footnote-backref">↩︎</a> <a href="#fnref1:3" class="footnote-backref">↩︎</a> <a href="#fnref1:4" class="footnote-backref">↩︎</a> <a href="#fnref1:5" class="footnote-backref">↩︎</a> <a href="#fnref1:6" class="footnote-backref">↩︎</a> <a href="#fnref1:7" class="footnote-backref">↩︎</a> <a href="#fnref1:8" class="footnote-backref">↩︎</a> <a href="#fnref1:9" class="footnote-backref">↩︎</a> <a href="#fnref1:10" class="footnote-backref">↩︎</a> <a href="#fnref1:11" class="footnote-backref">↩︎</a> <a href="#fnref1:12" class="footnote-backref">↩︎</a> <a href="#fnref1:13" class="footnote-backref">↩︎</a> <a href="#fnref1:14" class="footnote-backref">↩︎</a> <a href="#fnref1:15" class="footnote-backref">↩︎</a></p>
+</li>
+<li id="fn2" class="footnote-item"><p>https://github.com/php/php-src/security/advisories/GHSA-6wmf-4rv5-p3rp <a href="#fnref2" class="footnote-backref">↩︎</a> <a href="#fnref2:1" class="footnote-backref">↩︎</a> <a href="#fnref2:2" class="footnote-backref">↩︎</a> <a href="#fnref2:3" class="footnote-backref">↩︎</a> <a href="#fnref2:4" class="footnote-backref">↩︎</a> <a href="#fnref2:5" class="footnote-backref">↩︎</a> <a href="#fnref2:6" class="footnote-backref">↩︎</a> <a href="#fnref2:7" class="footnote-backref">↩︎</a></p>
+</li>
+<li id="fn3" class="footnote-item"><p>https://www.php.net/index.php#2026-10-21-5 <a href="#fnref3" class="footnote-backref">↩︎</a> <a href="#fnref3:1" class="footnote-backref">↩︎</a> <a href="#fnref3:2" class="footnote-backref">↩︎</a> <a href="#fnref3:3" class="footnote-backref">↩︎</a> <a href="#fnref3:4" class="footnote-backref">↩︎</a> <a href="#fnref3:5" class="footnote-backref">↩︎</a> <a href="#fnref3:6" class="footnote-backref">↩︎</a> <a href="#fnref3:7" class="footnote-backref">↩︎</a> <a href="#fnref3:8" class="footnote-backref">↩︎</a> <a href="#fnref3:9" class="footnote-backref">↩︎</a> <a href="#fnref3:10" class="footnote-backref">↩︎</a> <a href="#fnref3:11" class="footnote-backref">↩︎</a> <a href="#fnref3:12" class="footnote-backref">↩︎</a> <a href="#fnref3:13" class="footnote-backref">↩︎</a> <a href="#fnref3:14" class="footnote-backref">↩︎</a> <a href="#fnref3:15" class="footnote-backref">↩︎</a> <a href="#fnref3:16" class="footnote-backref">↩︎</a></p>
+</li>
+<li id="fn4" class="footnote-item"><p>https://www.wiz.io/blog/php2shell-php-rce <a href="#fnref4" class="footnote-backref">↩︎</a> <a href="#fnref4:1" class="footnote-backref">↩︎</a> <a href="#fnref4:2" class="footnote-backref">↩︎</a> <a href="#fnref4:3" class="footnote-backref">↩︎</a> <a href="#fnref4:4" class="footnote-backref">↩︎</a> <a href="#fnref4:5" class="footnote-backref">↩︎</a> <a href="#fnref4:6" class="footnote-backref">↩︎</a> <a href="#fnref4:7" class="footnote-backref">↩︎</a> <a href="#fnref4:8" class="footnote-backref">↩︎</a> <a href="#fnref4:9" class="footnote-backref">↩︎</a> <a href="#fnref4:10" class="footnote-backref">↩︎</a> <a href="#fnref4:11" class="footnote-backref">↩︎</a> <a href="#fnref4:12" class="footnote-backref">↩︎</a> <a href="#fnref4:13" class="footnote-backref">↩︎</a> <a href="#fnref4:14" class="footnote-backref">↩︎</a> <a href="#fnref4:15" class="footnote-backref">↩︎</a> <a href="#fnref4:16" class="footnote-backref">↩︎</a> <a href="#fnref4:17" class="footnote-backref">↩︎</a> <a href="#fnref4:18" class="footnote-backref">↩︎</a> <a href="#fnref4:19" class="footnote-backref">↩︎</a></p>
+</li>
+<li id="fn5" class="footnote-item"><p>https://x.com/watchtowrcyber/status/2112611507749982605 <a href="#fnref5" class="footnote-backref">↩︎</a> <a href="#fnref5:1" class="footnote-backref">↩︎</a> <a href="#fnref5:2" class="footnote-backref">↩︎</a> <a href="#fnref5:3" class="footnote-backref">↩︎</a> <a href="#fnref5:4" class="footnote-backref">↩︎</a></p>
+</li>
+<li id="fn6" class="footnote-item"><p>https://www.php.net/archive/2026.php#2026-10-20-1 <a href="#fnref6" class="footnote-backref">↩︎</a> <a href="#fnref6:1" class="footnote-backref">↩︎</a></p>
+</li>
+<li id="fn7" class="footnote-item"><p>https://nos.nl/liveblog/2636066-websites-kwetsbaar-voor-softwarelek-digid-en-mijnoverheid-uit-de-lucht <a href="#fnref7" class="footnote-backref">↩︎</a> <a href="#fnref7:1" class="footnote-backref">↩︎</a> <a href="#fnref7:2" class="footnote-backref">↩︎</a> <a href="#fnref7:3" class="footnote-backref">↩︎</a> <a href="#fnref7:4" class="footnote-backref">↩︎</a></p>
+</li>
+<li id="fn8" class="footnote-item"><p>https://w3techs.com/technologies/details/pl-php <a href="#fnref8" class="footnote-backref">↩︎</a> <a href="#fnref8:1" class="footnote-backref">↩︎</a></p>
+</li>
+<li id="fn9" class="footnote-item"><p>https://www.huntress.com/blog/php2shell-leaked-critical-php-vulnerabilities <a href="#fnref9" class="footnote-backref">↩︎</a> <a href="#fnref9:1" class="footnote-backref">↩︎</a> <a href="#fnref9:2" class="footnote-backref">↩︎</a> <a href="#fnref9:3" class="footnote-backref">↩︎</a></p>
+</li>
+<li id="fn10" class="footnote-item"><p>https://www.heise.de/news/php2shell-Kritische-Sicherheitsluecken-erlauben-Codeeinschleusung-in-PHP-11492938.html <a href="#fnref10" class="footnote-backref">↩︎</a> <a href="#fnref10:1" class="footnote-backref">↩︎</a> <a href="#fnref10:2" class="footnote-backref">↩︎</a> <a href="#fnref10:3" class="footnote-backref">↩︎</a> <a href="#fnref10:4" class="footnote-backref">↩︎</a> <a href="#fnref10:5" class="footnote-backref">↩︎</a></p>
+</li>
+<li id="fn11" class="footnote-item"><p>https://github.com/php/php-src/commit/31c0ea7d7ff1d1fccb6492e52dab544011628065 <a href="#fnref11" class="footnote-backref">↩︎</a> <a href="#fnref11:1" class="footnote-backref">↩︎</a> <a href="#fnref11:2" class="footnote-backref">↩︎</a> <a href="#fnref11:3" class="footnote-backref">↩︎</a></p>
+</li>
+<li id="fn12" class="footnote-item"><p>https://news.ycombinator.com/item?id=50167754 <a href="#fnref12" class="footnote-backref">↩︎</a> <a href="#fnref12:1" class="footnote-backref">↩︎</a></p>
+</li>
+<li id="fn13" class="footnote-item"><p>https://cert.europa.eu/publications/security-advisories/2026-018/ <a href="#fnref13" class="footnote-backref">↩︎</a> <a href="#fnref13:1" class="footnote-backref">↩︎</a> <a href="#fnref13:2" class="footnote-backref">↩︎</a> <a href="#fnref13:3" class="footnote-backref">↩︎</a></p>
+</li>
+<li id="fn14" class="footnote-item"><p>https://www.rijksoverheid.nl/actueel/nieuws/2026/10/21/ncsc-ernstige-kwetsbaarheden-in-php <a href="#fnref14" class="footnote-backref">↩︎</a> <a href="#fnref14:1" class="footnote-backref">↩︎</a> <a href="#fnref14:2" class="footnote-backref">↩︎</a> <a href="#fnref14:3" class="footnote-backref">↩︎</a> <a href="#fnref14:4" class="footnote-backref">↩︎</a></p>
+</li>
+<li id="fn15" class="footnote-item"><p>https://phpc.social/@Girgias/117476477429221001 <a href="#fnref15" class="footnote-backref">↩︎</a></p>
+</li>
+<li id="fn16" class="footnote-item"><p>https://blog.calif.io/p/mad-bugs-finding-and-exploiting-a <a href="#fnref16" class="footnote-backref">↩︎</a></p>
+</li>
+<li id="fn17" class="footnote-item"><p>https://www.bsi.bund.de/DE/Service-Navi/Presse/Pressemitteilungen/Presse2026/261021_PHP-kritische-Schwachstelle.html <a href="#fnref17" class="footnote-backref">↩︎</a> <a href="#fnref17:1" class="footnote-backref">↩︎</a> <a href="#fnref17:2" class="footnote-backref">↩︎</a> <a href="#fnref17:3" class="footnote-backref">↩︎</a></p>
+</li>
+<li id="fn18" class="footnote-item"><p>https://thephp.foundation/blog/2026/10/14/how-the-php-security-team-handles-your-reports/ <a href="#fnref18" class="footnote-backref">↩︎</a></p>
+</li>
+<li id="fn19" class="footnote-item"><p>https://thephp.foundation/blog/2025/04/10/php-core-security-audit-results/ <a href="#fnref19" class="footnote-backref">↩︎</a></p>
+</li>
+<li id="fn20" class="footnote-item"><p>GitHub API git/tags for php-8.2.35…8.5.12 (created 19 Oct 2026) <a href="#fnref20" class="footnote-backref">↩︎</a> <a href="#fnref20:1" class="footnote-backref">↩︎</a></p>
+</li>
+<li id="fn21" class="footnote-item"><p>https://discourse.thephp.foundation/t/announce-upcoming-critical-php-security-release/6251 <a href="#fnref21" class="footnote-backref">↩︎</a> <a href="#fnref21:1" class="footnote-backref">↩︎</a> <a href="#fnref21:2" class="footnote-backref">↩︎</a> <a href="#fnref21:3" class="footnote-backref">↩︎</a></p>
+</li>
+<li id="fn22" class="footnote-item"><p>https://openssl-library.org/post/2022-11-01-email-address-overflows/ <a href="#fnref22" class="footnote-backref">↩︎</a> <a href="#fnref22:1" class="footnote-backref">↩︎</a></p>
+</li>
+<li id="fn23" class="footnote-item"><p>/workspace/php-incident/case-study.md (working draft) <a href="#fnref23" class="footnote-backref">↩︎</a> <a href="#fnref23:1" class="footnote-backref">↩︎</a></p>
+</li>
+<li id="fn24" class="footnote-item"><p>https://cyberplace.social/@GossiTheDog/117474220875882526 <a href="#fnref24" class="footnote-backref">↩︎</a></p>
+</li>
+<li id="fn25" class="footnote-item"><p>https://x.com/k_firsov/status/2112641845926989944 <a href="#fnref25" class="footnote-backref">↩︎</a></p>
+</li>
+<li id="fn26" class="footnote-item"><p>https://infosec.exchange/@wdormann/117475540081194496 <a href="#fnref26" class="footnote-backref">↩︎</a></p>
+</li>
+<li id="fn27" class="footnote-item"><p>https://jackalsyn.com/posts/php-up-2026.html <a href="#fnref27" class="footnote-backref">↩︎</a> <a href="#fnref27:1" class="footnote-backref">↩︎</a></p>
+</li>
+<li id="fn28" class="footnote-item"><p>https://news.ycombinator.com/item?id=50175654 <a href="#fnref28" class="footnote-backref">↩︎</a></p>
+</li>
+<li id="fn29" class="footnote-item"><p>https://www.bsi.bund.de/SharedDocs/Cybersicherheitswarnungen/DE/2026/2026-297981-1032.pdf?__blob=publicationFile&amp;v=3 <a href="#fnref29" class="footnote-backref">↩︎</a> <a href="#fnref29:1" class="footnote-backref">↩︎</a> <a href="#fnref29:2" class="footnote-backref">↩︎</a></p>
+</li>
+<li id="fn30" class="footnote-item"><p>https://sansec.io/research/php2shell <a href="#fnref30" class="footnote-backref">↩︎</a> <a href="#fnref30:1" class="footnote-backref">↩︎</a> <a href="#fnref30:2" class="footnote-backref">↩︎</a> <a href="#fnref30:3" class="footnote-backref">↩︎</a></p>
+</li>
+<li id="fn31" class="footnote-item"><p>https://www.php.net/distributions/php-8.5.12.tar.xz (Last-Modified header) <a href="#fnref31" class="footnote-backref">↩︎</a> <a href="#fnref31:1" class="footnote-backref">↩︎</a></p>
+</li>
+<li id="fn32" class="footnote-item"><p>https://www.php.net/releases/feed.php <a href="#fnref32" class="footnote-backref">↩︎</a></p>
+</li>
+<li id="fn33" class="footnote-item"><p>https://github.com/docker-library/php/pull/1694 <a href="#fnref33" class="footnote-backref">↩︎</a> <a href="#fnref33:1" class="footnote-backref">↩︎</a></p>
+</li>
+<li id="fn34" class="footnote-item"><p>https://ubuntu.com/security/CVE-2026-109618 <a href="#fnref34" class="footnote-backref">↩︎</a></p>
+</li>
+<li id="fn35" class="footnote-item"><p>https://www.cert.at/de/aktuelles/2026/10/bevorstehendes-kritisches-php-sicherheitsupdate <a href="#fnref35" class="footnote-backref">↩︎</a> <a href="#fnref35:1" class="footnote-backref">↩︎</a></p>
+</li>
+<li id="fn36" class="footnote-item"><p>https://www.tenable.com/blog/php2shell-cve-2026-109618-cve-2026-109619-frequently-asked-questions-about-critical-php-remote <a href="#fnref36" class="footnote-backref">↩︎</a> <a href="#fnref36:1" class="footnote-backref">↩︎</a></p>
+</li>
+<li id="fn37" class="footnote-item"><p>https://x.com/dok2001/status/2112811965735202970 <a href="#fnref37" class="footnote-backref">↩︎</a> <a href="#fnref37:1" class="footnote-backref">↩︎</a></p>
+</li>
+<li id="fn38" class="footnote-item"><p>https://watchtowr.com/intelligence/php-cve-2026-109618-faq/ <a href="#fnref38" class="footnote-backref">↩︎</a></p>
+</li>
+<li id="fn39" class="footnote-item"><p>https://www.cisa.gov/known-exploited-vulnerabilities-catalog <a href="#fnref39" class="footnote-backref">↩︎</a> <a href="#fnref39:1" class="footnote-backref">↩︎</a></p>
+</li>
+<li id="fn40" class="footnote-item"><p>https://www.ncsc.gov.uk/news/critical-security-issue-affecting-php <a href="#fnref40" class="footnote-backref">↩︎</a> <a href="#fnref40:1" class="footnote-backref">↩︎</a> <a href="#fnref40:2" class="footnote-backref">↩︎</a></p>
+</li>
+<li id="fn41" class="footnote-item"><p>https://moje.cert.pl/komunikaty/2026/195/krytyczne-podatnosci-w-php-umozliwiajace-zdalne-wykonanie-kodu/ <a href="#fnref41" class="footnote-backref">↩︎</a></p>
+</li>
+<li id="fn42" class="footnote-item"><p>https://cert.cyber.gouv.fr/alerte/CERTFR-2026-ALE-014/ <a href="#fnref42" class="footnote-backref">↩︎</a></p>
+</li>
+<li id="fn43" class="footnote-item"><p>https://developers.cloudflare.com/changelog/post/2026-10-21-emergency-waf-release-cfmr/ <a href="#fnref43" class="footnote-backref">↩︎</a> <a href="#fnref43:1" class="footnote-backref">↩︎</a></p>
+</li>
+<li id="fn44" class="footnote-item"><p>https://www.theverge.com/tech/1015257/php-vulnerability-patch-website-security-wordpress <a href="#fnref44" class="footnote-backref">↩︎</a></p>
+</li>
+<li id="fn45" class="footnote-item"><p>https://modat.io/blog/php-exposure-before-the-21-oct-2026-security-release/ <a href="#fnref45" class="footnote-backref">↩︎</a></p>
+</li>
+<li id="fn46" class="footnote-item"><p>https://thehackernews.com/2026/10/php2shell-two-unpatched-critical-php.html <a href="#fnref46" class="footnote-backref">↩︎</a></p>
+</li>
+<li id="fn47" class="footnote-item"><p>https://blog.cloudflare.com/exploitation-of-cve-2021-44228-before-public-disclosure-and-evolution-of-waf-evasion-patterns/ <a href="#fnref47" class="footnote-backref">↩︎</a></p>
+</li>
+<li id="fn48" class="footnote-item"><p>https://blog.checkpoint.com/security/the-numbers-behind-a-cyber-pandemic-detailed-dive/ <a href="#fnref48" class="footnote-backref">↩︎</a></p>
+</li>
+<li id="fn49" class="footnote-item"><p>https://www.smh.com.au/technology/heartbleed-disclosure-timeline-who-knew-what-and-when-20140414-zqurk.html <a href="#fnref49" class="footnote-backref">↩︎</a></p>
+</li>
+<li id="fn50" class="footnote-item"><p>https://www.akamai.com/blog/security-research/2024-php-exploit-cve-one-day-after-disclosure <a href="#fnref50" class="footnote-backref">↩︎</a></p>
+</li>
+<li id="fn51" class="footnote-item"><p>https://www.imperva.com/blog/update-cve-2024-4577-quickly-weaponized-to-distribute-tellyouthepass-ransomware/ <a href="#fnref51" class="footnote-backref">↩︎</a></p>
+</li>
+</ol>
+</section>
+
+</article>
+</main>
+</div>
+<script>
+(function(){
+  const bar = document.querySelector('.progress');
+  const tocLinks = [...document.querySelectorAll('.toc a')];
+  const heads = tocLinks.map(a => document.getElementById(decodeURIComponent(a.getAttribute('href').slice(1)))).filter(Boolean);
+  function onScroll(){
+    const h = document.documentElement;
+    const max = h.scrollHeight - h.clientHeight;
+    bar.style.width = (max > 0 ? (h.scrollTop / max * 100) : 0) + '%';
+    let cur = heads[0];
+    for (const el of heads) if (el.getBoundingClientRect().top <= 90) cur = el;
+    tocLinks.forEach(a => a.classList.toggle('active', a.getAttribute('href') === '#' + (cur && cur.id)));
+  }
+  document.addEventListener('scroll', onScroll, {passive:true});
+  onScroll();
+  const notes = {};
+  document.querySelectorAll('.footnotes li, section.footnotes li').forEach(li => {
+    if (li.id) notes[li.id] = li.innerHTML;
+  });
+  let pop;
+  document.querySelectorAll('a.footnote-ref, sup a, a[href^="#fn"]').forEach(a => {
+    const href = a.getAttribute('href') || '';
+    if (!href.startsWith('#fn') || href.includes('ref')) return;
+    const id = href.slice(1);
+    a.addEventListener('mouseenter', () => {
+      if (!notes[id]) return;
+      pop = document.createElement('div');
+      pop.className = 'fn-pop';
+      pop.innerHTML = notes[id];
+      document.body.appendChild(pop);
+      const r = a.getBoundingClientRect();
+      pop.style.left = Math.min(r.left, window.innerWidth - 360) + window.scrollX + 'px';
+      pop.style.top = (r.bottom + 8 + window.scrollY) + 'px';
+    });
+    a.addEventListener('mouseleave', () => { if (pop) { pop.remove(); pop = null; } });
+  });
+})();
+</script>
+</body>
+</html>

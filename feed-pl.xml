@@ -1,0 +1,595 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="pl">
+<title>PHP2Shell — oś czasu (PL)</title>
+<subtitle>Relacja na żywo: PHP2Shell (CVE-2026-109618/109619), krytyczne RCE w rdzeniu PHP (CVSS 9.2). Poprawki: 8.5.12, 8.4.27, 8.3.36, 8.2.35. Każdy fakt ze źródłem.</subtitle>
+<id>https://akirapl.github.io/php2shell/feed-pl.xml</id>
+<updated>2026-10-21T14:45:00Z</updated>
+<link rel="self" type="application/atom+xml" href="https://akirapl.github.io/php2shell/feed-pl.xml"/>
+<link rel="alternate" type="text/html" hreflang="pl" href="https://akirapl.github.io/php2shell/?lang=pl"/>
+<author><name>Dawid Kulik (@Akirapl)</name><uri>https://github.com/Akirapl</uri></author>
+<icon>https://akirapl.github.io/php2shell/assets/og-image.png</icon>
+<rights>CC BY 4.0</rights>
+<entry>
+<title>Calif: „Ustalmy fakty” — spór o pierwszeństwo odkrycia</title>
+<id>tag:php2shell-live.surge.sh,2026:calif-record-straight</id>
+<link rel="alternate" type="text/html" href="https://akirapl.github.io/php2shell/?lang=pl#ev-calif-record-straight"/>
+<link rel="related" href="https://x.com/calif_io/status/2112914613297668583"/>
+<published>2026-10-21T14:31:14Z</published>
+<updated>2026-10-21T14:31:14Z</updated>
+<category term="minor"/>
+<summary type="text">Calif podkreśla, że @lcfr_hax pierwszy odkrył php2shell i napisał działający exploit (hash z 05.08), i że to jego praca przekonała PHP Foundation do naprawy całej klasy błędów. Reakcja na narrację Wiz i OpenAI o niezależnych odkryciach.</summary>
+<content type="html">&lt;p&gt;Calif podkreśla, że @lcfr_hax pierwszy odkrył php2shell i napisał działający exploit (hash z 05.08), i że to jego praca przekonała PHP Foundation do naprawy całej klasy błędów. Reakcja na narrację Wiz i OpenAI o niezależnych odkryciach.&lt;/p&gt;&lt;p&gt;Źródło: &lt;a href="https://x.com/calif_io/status/2112914613297668583"&gt;@calif_io na X&lt;/a&gt; · potwierdzone · minor&lt;/p&gt;</content>
+</entry>
+<entry>
+<title>The Record: watchTowr widzi próby ataków, na razie nieudane</title>
+<id>tag:php2shell-live.surge.sh,2026:record-watchtowr-itw</id>
+<link rel="alternate" type="text/html" href="https://akirapl.github.io/php2shell/?lang=pl#ev-record-watchtowr-itw"/>
+<link rel="related" href="https://therecord.media/php-script-vulnerabilities-warnings"/>
+<published>2026-10-21T14:17:00Z</published>
+<updated>2026-10-21T14:17:00Z</updated>
+<category term="major"/>
+<summary type="text">Jake Knott (watchTowr) mówi The Record o próbach wykorzystania w sieci przy użyciu różnych PoC „vibecoded” z pomocą AI; dotąd nikomu się nie udało, ale to ma się szybko zmienić. Tekst wymienia ostrzeżenia UE, Niemiec, Japonii, Australii, Wielkiej Brytanii i Holandii oraz wyłączenia usług m.in. przez Nintendo. Detectify: ok. połowa stron PHP działa na wersjach bez łatek.</summary>
+<content type="html">&lt;p&gt;Jake Knott (watchTowr) mówi The Record o próbach wykorzystania w sieci przy użyciu różnych PoC „vibecoded” z pomocą AI; dotąd nikomu się nie udało, ale to ma się szybko zmienić. Tekst wymienia ostrzeżenia UE, Niemiec, Japonii, Australii, Wielkiej Brytanii i Holandii oraz wyłączenia usług m.in. przez Nintendo. Detectify: ok. połowa stron PHP działa na wersjach bez łatek.&lt;/p&gt;&lt;p&gt;Źródło: &lt;a href="https://therecord.media/php-script-vulnerabilities-warnings"&gt;The Record&lt;/a&gt; · doniesienie · major&lt;/p&gt;</content>
+</entry>
+<entry>
+<title>Calif: wczorajsze wideo exploita było nasze</title>
+<id>tag:php2shell-live.surge.sh,2026:calif-video</id>
+<link rel="alternate" type="text/html" href="https://akirapl.github.io/php2shell/?lang=pl#ev-calif-video"/>
+<link rel="related" href="https://x.com/calif_io/status/2112908874441441647"/>
+<published>2026-10-21T14:08:26Z</published>
+<updated>2026-10-21T14:08:26Z</updated>
+<category term="major"/>
+<summary type="text">Calif linkuje demo „php2shell vs all things PHP” z dopiskiem „the video you saw yesterday” – to potwierdza, że krążące od 20.10 wideo (podpis „by Calif.IO”, użytkownik „lcfr”) pochodziło od odkrywców. Jak trafiło do sieci przed patchem, Calif nie wyjaśnia.</summary>
+<content type="html">&lt;p&gt;Calif linkuje demo „php2shell vs all things PHP” z dopiskiem „the video you saw yesterday” – to potwierdza, że krążące od 20.10 wideo (podpis „by Calif.IO”, użytkownik „lcfr”) pochodziło od odkrywców. Jak trafiło do sieci przed patchem, Calif nie wyjaśnia.&lt;/p&gt;&lt;p&gt;Źródło: &lt;a href="https://x.com/calif_io/status/2112908874441441647"&gt;@calif_io na X&lt;/a&gt; · potwierdzone · major&lt;/p&gt;</content>
+</entry>
+<entry>
+<title>OpenAI: „Patch the Planet” — przez dwa miesiące koordynowaliśmy koalicję</title>
+<id>tag:php2shell-live.surge.sh,2026:openai-patch-the-planet</id>
+<link rel="alternate" type="text/html" href="https://akirapl.github.io/php2shell/?lang=pl#ev-openai-patch-the-planet"/>
+<link rel="related" href="https://openai.com/index/coordinated-disclosure-of-critical-vulnerabilities/"/>
+<published>2026-10-21T14:03:00Z</published>
+<updated>2026-10-21T14:03:00Z</updated>
+<category term="major"/>
+<summary type="text">OpenAI pisze, że od dwóch miesięcy prowadziło koalicję opiekunów, badaczy i dostawców bezpieczeństwa. Calif znalazł krytyczny błąd z GPT‑5.6 Sol w ramach programu Patch the Planet, Wiz niezależnie zgłosił oba błędy. OpenAI angażowało rząd USA (White House Super Intelligence Force, ONCD, CISA) i partnerów zagranicznych, zapowiada checker wersji PHP, skill do Codex i 1 mld USD dotowanego dostępu do Daybreak dla obrońców. Proponuje pięcioetapowy schemat koordynacji i pyta otwarcie m.in. o okna disclosure i o to, czy rządy powinny łatać cudze systemy przez lukę.</summary>
+<content type="html">&lt;p&gt;OpenAI pisze, że od dwóch miesięcy prowadziło koalicję opiekunów, badaczy i dostawców bezpieczeństwa. Calif znalazł krytyczny błąd z GPT‑5.6 Sol w ramach programu Patch the Planet, Wiz niezależnie zgłosił oba błędy. OpenAI angażowało rząd USA (White House Super Intelligence Force, ONCD, CISA) i partnerów zagranicznych, zapowiada checker wersji PHP, skill do Codex i 1 mld USD dotowanego dostępu do Daybreak dla obrońców. Proponuje pięcioetapowy schemat koordynacji i pyta otwarcie m.in. o okna disclosure i o to, czy rządy powinny łatać cudze systemy przez lukę.&lt;/p&gt;&lt;p&gt;Źródło: &lt;a href="https://openai.com/index/coordinated-disclosure-of-critical-vulnerabilities/"&gt;OpenAI&lt;/a&gt; · potwierdzone · major&lt;/p&gt;</content>
+</entry>
+<entry>
+<title>Cloudflare: reguły WAF od początku października, ataki i próby obejścia</title>
+<id>tag:php2shell-live.surge.sh,2026:cf-blog</id>
+<link rel="alternate" type="text/html" href="https://akirapl.github.io/php2shell/?lang=pl#ev-cf-blog"/>
+<link rel="related" href="https://blog.cloudflare.com/php-vulnerabilities-waf-protection/"/>
+<published>2026-10-21T13:56:00Z</published>
+<updated>2026-10-21T13:56:00Z</updated>
+<category term="major"/>
+<summary type="text">Wg bloga Cloudflare ochrona była rozwijana od początku października i domyślnie włączona dla wszystkich planów od 21.10 03:02 UTC. Cloudflare pisze, że po przecieku widział ruch atakujący klientów i mutowanie payloadów, by obejść reguły. Pierwsze użycie nowej funkcji „full transaction detection” (analiza żądania i odpowiedzi).</summary>
+<content type="html">&lt;p&gt;Wg bloga Cloudflare ochrona była rozwijana od początku października i domyślnie włączona dla wszystkich planów od 21.10 03:02 UTC. Cloudflare pisze, że po przecieku widział ruch atakujący klientów i mutowanie payloadów, by obejść reguły. Pierwsze użycie nowej funkcji „full transaction detection” (analiza żądania i odpowiedzi).&lt;/p&gt;&lt;p&gt;Źródło: &lt;a href="https://blog.cloudflare.com/php-vulnerabilities-waf-protection/"&gt;Cloudflare Blog&lt;/a&gt; · doniesienie · major&lt;/p&gt;</content>
+</entry>
+<entry>
+<title>Calif publikuje pełny opis techniczny i własną oś czasu</title>
+<id>tag:php2shell-live.surge.sh,2026:calif-writeup</id>
+<link rel="alternate" type="text/html" href="https://akirapl.github.io/php2shell/?lang=pl#ev-calif-writeup"/>
+<link rel="related" href="https://calif.io/php2shell"/>
+<published>2026-10-21T13:53:55Z</published>
+<updated>2026-10-21T13:53:55Z</updated>
+<category term="major"/>
+<summary type="text">Ryan Austin (Calif): pierwsze ścieżki RCE znalezione 1.08, hash znaleziska na X 5.08, zgłoszenie do PHP 11.08, PoC 14.08, potwierdzenie przez PHP 15.08, drugi błąd 21.08. Przyczyna (zgodnie z advisory): błąd braku pamięci przerywa przetwarzanie żądania w połowie, a stan wewnętrzny zostaje i wskazuje na zwolnioną pamięć. Calif wiąże historię z błędem Stefana Essera z 2004 r., zgłoszeniem #78876 z 2020 r. i audytem OSTIF/Quarkslab z 2024 r.</summary>
+<content type="html">&lt;p&gt;Ryan Austin (Calif): pierwsze ścieżki RCE znalezione 1.08, hash znaleziska na X 5.08, zgłoszenie do PHP 11.08, PoC 14.08, potwierdzenie przez PHP 15.08, drugi błąd 21.08. Przyczyna (zgodnie z advisory): błąd braku pamięci przerywa przetwarzanie żądania w połowie, a stan wewnętrzny zostaje i wskazuje na zwolnioną pamięć. Calif wiąże historię z błędem Stefana Essera z 2004 r., zgłoszeniem #78876 z 2020 r. i audytem OSTIF/Quarkslab z 2024 r.&lt;/p&gt;&lt;p&gt;Źródło: &lt;a href="https://calif.io/php2shell"&gt;Calif — php2shell: A tale of two PHP remote vulnerabilities&lt;/a&gt; · potwierdzone · major&lt;/p&gt;</content>
+</entry>
+<entry>
+<title>CERT.at: dystrybucje i dostawcy LTS dostali łatki wcześniej</title>
+<id>tag:php2shell-live.surge.sh,2026:certat-update</id>
+<link rel="alternate" type="text/html" href="https://akirapl.github.io/php2shell/?lang=pl#ev-certat-update"/>
+<link rel="related" href="https://www.cert.at/de/warnungen/2026/10/kritische-sicherheitslucken-in-php-updates-verfugbar"/>
+<published>2026-10-21T13:49:00Z</published>
+<updated>2026-10-21T13:49:00Z</updated>
+<category term="minor"/>
+<summary type="text">Nowe ostrzeżenie CERT.at: RCE dla CVE-2026-109619 potwierdzono także na PHP-FPM; projekt PHP nie podaje informacji o aktywnym wykorzystaniu.</summary>
+<content type="html">&lt;p&gt;Nowe ostrzeżenie CERT.at: RCE dla CVE-2026-109619 potwierdzono także na PHP-FPM; projekt PHP nie podaje informacji o aktywnym wykorzystaniu.&lt;/p&gt;&lt;p&gt;Źródło: &lt;a href="https://www.cert.at/de/warnungen/2026/10/kritische-sicherheitslucken-in-php-updates-verfugbar"&gt;CERT.at&lt;/a&gt; · potwierdzone · minor&lt;/p&gt;</content>
+</entry>
+<entry>
+<title>CISA KEV: brak wpisu</title>
+<id>tag:php2shell-live.surge.sh,2026:cisa</id>
+<link rel="alternate" type="text/html" href="https://akirapl.github.io/php2shell/?lang=pl#ev-cisa"/>
+<link rel="related" href="https://www.cisa.gov/known-exploited-vulnerabilities-catalog"/>
+<published>2026-10-21T13:46:00Z</published>
+<updated>2026-10-21T13:46:00Z</updated>
+<category term="minor"/>
+<summary type="text">Obie luki nie figurują w katalogu Known Exploited Vulnerabilities (stan 13:46 UTC).</summary>
+<content type="html">&lt;p&gt;Obie luki nie figurują w katalogu Known Exploited Vulnerabilities (stan 13:46 UTC).&lt;/p&gt;&lt;p&gt;Źródło: &lt;a href="https://www.cisa.gov/known-exploited-vulnerabilities-catalog"&gt;CISA KEV catalog&lt;/a&gt; · potwierdzone · minor&lt;/p&gt;</content>
+</entry>
+<entry>
+<title>Oficjalne obrazy Docker w drodze</title>
+<id>tag:php2shell-live.surge.sh,2026:docker</id>
+<link rel="alternate" type="text/html" href="https://akirapl.github.io/php2shell/?lang=pl#ev-docker"/>
+<link rel="related" href="https://github.com/docker-library/php/pull/1694"/>
+<published>2026-10-21T13:44:00Z</published>
+<updated>2026-10-21T13:44:00Z</updated>
+<category term="minor"/>
+<summary type="text">PR #1694 w docker-library/php aktualizuje obrazy do nowych wersji; o 13:46 UTC tagów 8.5.12 na Docker Hub jeszcze nie było.</summary>
+<content type="html">&lt;p&gt;PR #1694 w docker-library/php aktualizuje obrazy do nowych wersji; o 13:46 UTC tagów 8.5.12 na Docker Hub jeszcze nie było.&lt;/p&gt;&lt;p&gt;Źródło: &lt;a href="https://github.com/docker-library/php/pull/1694"&gt;docker-library/php PR #1694&lt;/a&gt; · potwierdzone · minor&lt;/p&gt;</content>
+</entry>
+<entry>
+<title>Wiz ujawnia kulisy: odkrycie z pomocą AI</title>
+<id>tag:php2shell-live.surge.sh,2026:wiz-blog</id>
+<link rel="alternate" type="text/html" href="https://akirapl.github.io/php2shell/?lang=pl#ev-wiz-blog"/>
+<link rel="related" href="https://www.wiz.io/blog/php2shell-php-rce"/>
+<published>2026-10-21T13:43:00Z</published>
+<updated>2026-10-21T13:43:00Z</updated>
+<category term="major"/>
+<summary type="text">Wiz opisuje współpracę z PHP, Calif i OpenAI oraz przygotowanie mitygacji z m.in. Cloudflare, AWS, Google i Microsoftem.</summary>
+<content type="html">&lt;p&gt;Wiz opisuje współpracę z PHP, Calif i OpenAI oraz przygotowanie mitygacji z m.in. Cloudflare, AWS, Google i Microsoftem.&lt;/p&gt;&lt;p&gt;Źródło: &lt;a href="https://www.wiz.io/blog/php2shell-php-rce"&gt;Wiz Research blog&lt;/a&gt; · potwierdzone · major&lt;/p&gt;</content>
+</entry>
+<entry>
+<title>Cloudflare: „PHP changes are live. Start patching.”</title>
+<id>tag:php2shell-live.surge.sh,2026:cf-live</id>
+<link rel="alternate" type="text/html" href="https://akirapl.github.io/php2shell/?lang=pl#ev-cf-live"/>
+<link rel="related" href="https://x.com/dok2001/status/2112902028192260559"/>
+<published>2026-10-21T13:41:13Z</published>
+<updated>2026-10-21T13:41:13Z</updated>
+<category term="minor"/>
+<summary type="text">Dane Knecht dziękuje PHP Foundation za koordynację.</summary>
+<content type="html">&lt;p&gt;Dane Knecht dziękuje PHP Foundation za koordynację.&lt;/p&gt;&lt;p&gt;Źródło: &lt;a href="https://x.com/dok2001/status/2112902028192260559"&gt;Dane Knecht (@dok2001) on X&lt;/a&gt; · potwierdzone · minor&lt;/p&gt;</content>
+</entry>
+<entry>
+<title>Wydano PHP 8.5.12, 8.4.27, 8.3.36, 8.2.35</title>
+<id>tag:php2shell-live.surge.sh,2026:release</id>
+<link rel="alternate" type="text/html" href="https://akirapl.github.io/php2shell/?lang=pl#ev-release"/>
+<link rel="related" href="https://x.com/php_net/status/2112901727028379908"/>
+<published>2026-10-21T13:40:02Z</published>
+<updated>2026-10-21T13:40:02Z</updated>
+<category term="critical"/>
+<summary type="text">Ok. 26 minut przed zapowiedzianą godziną. Dystrybucje i dostawcy LTS dostali łatki wcześniej; dla 7.4/8.0/8.1 — minimalne backporty źródłowe.</summary>
+<content type="html">&lt;p&gt;Ok. 26 minut przed zapowiedzianą godziną. Dystrybucje i dostawcy LTS dostali łatki wcześniej; dla 7.4/8.0/8.1 — minimalne backporty źródłowe.&lt;/p&gt;&lt;p&gt;Źródło: &lt;a href="https://x.com/php_net/status/2112901727028379908"&gt;@php_net on X&lt;/a&gt; · potwierdzone · critical&lt;/p&gt;</content>
+</entry>
+<entry>
+<title>Publikacja advisory: dwie luki RCE</title>
+<id>tag:php2shell-live.surge.sh,2026:ghsa</id>
+<link rel="alternate" type="text/html" href="https://akirapl.github.io/php2shell/?lang=pl#ev-ghsa"/>
+<link rel="related" href="https://github.com/php/php-src/security/advisories/GHSA-6wmf-4rv5-p3rp"/>
+<published>2026-10-21T13:34:13Z</published>
+<updated>2026-10-21T13:34:13Z</updated>
+<category term="critical"/>
+<summary type="text">CVE-2026-109618 „RCE via OOM corruption” i CVE-2026-109619 „RCE via stale global state”. Najwyższe ryzyko: Apache mod_php — atak przed uruchomieniem kodu aplikacji.</summary>
+<content type="html">&lt;p&gt;CVE-2026-109618 „RCE via OOM corruption” i CVE-2026-109619 „RCE via stale global state”. Najwyższe ryzyko: Apache mod_php — atak przed uruchomieniem kodu aplikacji.&lt;/p&gt;&lt;p&gt;Źródło: &lt;a href="https://github.com/php/php-src/security/advisories/GHSA-6wmf-4rv5-p3rp"&gt;GHSA-6wmf-4rv5-p3rp (CVE-2026-109619)&lt;/a&gt; · potwierdzone · critical&lt;/p&gt;</content>
+</entry>
+<entry>
+<title>Źródła PHP 8.5.12 na serwerze php.net</title>
+<id>tag:php2shell-live.surge.sh,2026:tarball</id>
+<link rel="alternate" type="text/html" href="https://akirapl.github.io/php2shell/?lang=pl#ev-tarball"/>
+<link rel="related" href="https://www.php.net/distributions/php-8.5.12.tar.xz"/>
+<published>2026-10-21T13:33:59Z</published>
+<updated>2026-10-21T13:33:59Z</updated>
+<category term="minor"/>
+<summary type="text">Nagłówek Last-Modified archiwum php-8.5.12.tar.xz: 13:33:59 UTC.</summary>
+<content type="html">&lt;p&gt;Nagłówek Last-Modified archiwum php-8.5.12.tar.xz: 13:33:59 UTC.&lt;/p&gt;&lt;p&gt;Źródło: &lt;a href="https://www.php.net/distributions/php-8.5.12.tar.xz"&gt;php.net — php-8.5.12.tar.xz (Last-Modified)&lt;/a&gt; · potwierdzone · minor&lt;/p&gt;</content>
+</entry>
+<entry>
+<title>Wiz: modele AI znalazły i połączyły błędy „w niecały tydzień”</title>
+<id>tag:php2shell-live.surge.sh,2026:wiz-ai-models</id>
+<link rel="alternate" type="text/html" href="https://akirapl.github.io/php2shell/?lang=pl#ev-wiz-ai-models"/>
+<link rel="related" href="https://x.com/wiz_io/status/2112899825305780607"/>
+<published>2026-10-21T13:32:28Z</published>
+<updated>2026-10-21T13:32:28Z</updated>
+<category term="major"/>
+<summary type="text">W wątku na X Wiz pisze, że do znalezienia i połączenia „10-letnich” błędów użyto modeli Wiz Atlas, GPT-5.6-Sol i Gemini 4 Argon. W tym samym wątku Wiz wciąż każe instalować „Oct 22 security release”, choć wydanie wyszło 21.10 (pierwotny termin embarga to czwartek 22.10).</summary>
+<content type="html">&lt;p&gt;W wątku na X Wiz pisze, że do znalezienia i połączenia „10-letnich” błędów użyto modeli Wiz Atlas, GPT-5.6-Sol i Gemini 4 Argon. W tym samym wątku Wiz wciąż każe instalować „Oct 22 security release”, choć wydanie wyszło 21.10 (pierwotny termin embarga to czwartek 22.10).&lt;/p&gt;&lt;p&gt;Źródło: &lt;a href="https://x.com/wiz_io/status/2112899825305780607"&gt;@wiz_io na X&lt;/a&gt; · potwierdzone · major&lt;/p&gt;</content>
+</entry>
+<entry>
+<title>NBC: offline także Pinboard i części Wikipedii</title>
+<id>tag:php2shell-live.surge.sh,2026:nbc</id>
+<link rel="alternate" type="text/html" href="https://akirapl.github.io/php2shell/?lang=pl#ev-nbc"/>
+<link rel="related" href="https://www.nbcnews.com/tech/security/critical-vulnerabilities-php-update-systems-rcna604751"/>
+<published>2026-10-21T13:06:00Z</published>
+<updated>2026-10-21T13:06:00Z</updated>
+<category term="minor"/>
+<summary type="text">Według NBC News dobrowolnie wyłączano też strony w Japonii.</summary>
+<content type="html">&lt;p&gt;Według NBC News dobrowolnie wyłączano też strony w Japonii.&lt;/p&gt;&lt;p&gt;Źródło: &lt;a href="https://www.nbcnews.com/tech/security/critical-vulnerabilities-php-update-systems-rcna604751"&gt;NBC News&lt;/a&gt; · doniesienie · minor&lt;/p&gt;</content>
+</entry>
+<entry>
+<title>Belgia: wszystkie strony rządu Flandrii offline</title>
+<id>tag:php2shell-live.surge.sh,2026:flanders</id>
+<link rel="alternate" type="text/html" href="https://akirapl.github.io/php2shell/?lang=pl#ev-flanders"/>
+<link rel="related" href="https://nos.nl/liveblog/2636066-websites-kwetsbaar-voor-softwarelek-digid-en-mijnoverheid-uit-de-lucht"/>
+<published>2026-10-21T12:46:00Z</published>
+<updated>2026-10-21T12:46:00Z</updated>
+<category term="critical"/>
+<summary type="text">Premier Flandrii Matthias Diependaele; offline także szpital AZ Monica, platforma Smartschool i serwisy Roularta (Knack.be, Libelle.be).</summary>
+<content type="html">&lt;p&gt;Premier Flandrii Matthias Diependaele; offline także szpital AZ Monica, platforma Smartschool i serwisy Roularta (Knack.be, Libelle.be).&lt;/p&gt;&lt;p&gt;Źródło: &lt;a href="https://nos.nl/liveblog/2636066-websites-kwetsbaar-voor-softwarelek-digid-en-mijnoverheid-uit-de-lucht"&gt;NOS liveblog&lt;/a&gt; · potwierdzone · critical&lt;/p&gt;</content>
+</entry>
+<entry>
+<title>Holenderskie szpitale zdejmują strony</title>
+<id>tag:php2shell-live.surge.sh,2026:hospitals</id>
+<link rel="alternate" type="text/html" href="https://akirapl.github.io/php2shell/?lang=pl#ev-hospitals"/>
+<link rel="related" href="https://nos.nl/liveblog/2636066-websites-kwetsbaar-voor-softwarelek-digid-en-mijnoverheid-uit-de-lucht"/>
+<published>2026-10-21T12:16:00Z</published>
+<updated>2026-10-21T12:16:00Z</updated>
+<category term="major"/>
+<summary type="text">M.in. Jeroen Bosch Ziekenhuis, Albert Schweitzer Ziekenhuis, Haaglanden MC, St. Antonius, Bravis i Elisabeth-TweeSteden.</summary>
+<content type="html">&lt;p&gt;M.in. Jeroen Bosch Ziekenhuis, Albert Schweitzer Ziekenhuis, Haaglanden MC, St. Antonius, Bravis i Elisabeth-TweeSteden.&lt;/p&gt;&lt;p&gt;Źródło: &lt;a href="https://nos.nl/liveblog/2636066-websites-kwetsbaar-voor-softwarelek-digid-en-mijnoverheid-uit-de-lucht"&gt;NOS liveblog&lt;/a&gt; · potwierdzone · major&lt;/p&gt;</content>
+</entry>
+<entry>
+<title>PHP Foundation: brak oznak nadużycia</title>
+<id>tag:php2shell-live.surge.sh,2026:phpf-anp</id>
+<link rel="alternate" type="text/html" href="https://akirapl.github.io/php2shell/?lang=pl#ev-phpf-anp"/>
+<link rel="related" href="https://nos.nl/liveblog/2636066-websites-kwetsbaar-voor-softwarelek-digid-en-mijnoverheid-uit-de-lucht"/>
+<published>2026-10-21T12:07:00Z</published>
+<updated>2026-10-21T12:07:00Z</updated>
+<category term="major"/>
+<summary type="text">Fundacja w odpowiedzi dla agencji ANP: brak wskazań aktywnego wykorzystania.</summary>
+<content type="html">&lt;p&gt;Fundacja w odpowiedzi dla agencji ANP: brak wskazań aktywnego wykorzystania.&lt;/p&gt;&lt;p&gt;Źródło: &lt;a href="https://nos.nl/liveblog/2636066-websites-kwetsbaar-voor-softwarelek-digid-en-mijnoverheid-uit-de-lucht"&gt;NOS liveblog&lt;/a&gt; · doniesienie · major&lt;/p&gt;</content>
+</entry>
+<entry>
+<title>Aplikacja Schiphol bez danych o lotach</title>
+<id>tag:php2shell-live.surge.sh,2026:schiphol</id>
+<link rel="alternate" type="text/html" href="https://akirapl.github.io/php2shell/?lang=pl#ev-schiphol"/>
+<link rel="related" href="https://nos.nl/liveblog/2636066-websites-kwetsbaar-voor-softwarelek-digid-en-mijnoverheid-uit-de-lucht"/>
+<published>2026-10-21T12:05:00Z</published>
+<updated>2026-10-21T12:05:00Z</updated>
+<category term="major"/>
+<summary type="text">Lotnisko odsyła podróżnych na swoją stronę internetową.</summary>
+<content type="html">&lt;p&gt;Lotnisko odsyła podróżnych na swoją stronę internetową.&lt;/p&gt;&lt;p&gt;Źródło: &lt;a href="https://nos.nl/liveblog/2636066-websites-kwetsbaar-voor-softwarelek-digid-en-mijnoverheid-uit-de-lucht"&gt;NOS liveblog&lt;/a&gt; · potwierdzone · major&lt;/p&gt;</content>
+</entry>
+<entry>
+<title>Komunikat NCSC-NL: przygotujcie się do łatania</title>
+<id>tag:php2shell-live.surge.sh,2026:ncsc-nl-statement</id>
+<link rel="alternate" type="text/html" href="https://akirapl.github.io/php2shell/?lang=pl#ev-ncsc-nl-statement"/>
+<link rel="related" href="https://www.rijksoverheid.nl/actueel/nieuws/2026/10/21/ncsc-ernstige-kwetsbaarheden-in-php"/>
+<published>2026-10-21T11:59:00Z</published>
+<updated>2026-10-21T11:59:00Z</updated>
+<category term="major"/>
+<summary type="text">Istnieje publiczny PoC, ale brak sygnałów aktywnego nadużycia; ncsc.nl tymczasowo offline. Zalecenie: ocena ryzyka dla każdego systemu, w razie potrzeby wyłączenie.</summary>
+<content type="html">&lt;p&gt;Istnieje publiczny PoC, ale brak sygnałów aktywnego nadużycia; ncsc.nl tymczasowo offline. Zalecenie: ocena ryzyka dla każdego systemu, w razie potrzeby wyłączenie.&lt;/p&gt;&lt;p&gt;Źródło: &lt;a href="https://www.rijksoverheid.nl/actueel/nieuws/2026/10/21/ncsc-ernstige-kwetsbaarheden-in-php"&gt;Rijksoverheid.nl / NCSC-NL&lt;/a&gt; · potwierdzone · major&lt;/p&gt;</content>
+</entry>
+<entry>
+<title>Hadrian: ataki „na dużą skalę”</title>
+<id>tag:php2shell-live.surge.sh,2026:hadrian</id>
+<link rel="alternate" type="text/html" href="https://akirapl.github.io/php2shell/?lang=pl#ev-hadrian"/>
+<link rel="related" href="https://ma.ttias.be/php-cve-2026-109618-early-mitigation/"/>
+<published>2026-10-21T11:35:00Z</published>
+<updated>2026-10-21T11:35:00Z</updated>
+<category term="minor"/>
+<summary type="text">Twierdzenie firmy Hadrian, przytoczone przez Mattiasa Geniara, bez opublikowanych dowodów.</summary>
+<content type="html">&lt;p&gt;Twierdzenie firmy Hadrian, przytoczone przez Mattiasa Geniara, bez opublikowanych dowodów.&lt;/p&gt;&lt;p&gt;Źródło: &lt;a href="https://ma.ttias.be/php-cve-2026-109618-early-mitigation/"&gt;Mattias Geniar (ma.ttias.be)&lt;/a&gt; · doniesienie · minor&lt;/p&gt;</content>
+</entry>
+<entry>
+<title>NCSC-NL: brak aktywnego nadużycia</title>
+<id>tag:php2shell-live.surge.sh,2026:ncsc-nl-nomisuse</id>
+<link rel="alternate" type="text/html" href="https://akirapl.github.io/php2shell/?lang=pl#ev-ncsc-nl-nomisuse"/>
+<link rel="related" href="https://nos.nl/liveblog/2636066-websites-kwetsbaar-voor-softwarelek-digid-en-mijnoverheid-uit-de-lucht"/>
+<published>2026-10-21T11:13:00Z</published>
+<updated>2026-10-21T11:13:00Z</updated>
+<category term="major"/>
+<summary type="text">Holenderskie NCSC nie widzi aktywnego wykorzystania — w przeciwieństwie do doniesień Cloudflare.</summary>
+<content type="html">&lt;p&gt;Holenderskie NCSC nie widzi aktywnego wykorzystania — w przeciwieństwie do doniesień Cloudflare.&lt;/p&gt;&lt;p&gt;Źródło: &lt;a href="https://nos.nl/liveblog/2636066-websites-kwetsbaar-voor-softwarelek-digid-en-mijnoverheid-uit-de-lucht"&gt;NOS liveblog&lt;/a&gt; · potwierdzone · major&lt;/p&gt;</content>
+</entry>
+<entry>
+<title>RTL.nl i aplikacja RTL offline</title>
+<id>tag:php2shell-live.surge.sh,2026:rtl</id>
+<link rel="alternate" type="text/html" href="https://akirapl.github.io/php2shell/?lang=pl#ev-rtl"/>
+<link rel="related" href="https://nos.nl/liveblog/2636066-websites-kwetsbaar-voor-softwarelek-digid-en-mijnoverheid-uit-de-lucht"/>
+<published>2026-10-21T11:01:00Z</published>
+<updated>2026-10-21T11:01:00Z</updated>
+<category term="minor"/>
+<summary type="text">„RTL.nl is tijdelijk niet bereikbaar, omdat we een dringende beveiligingsupdate uitvoeren.”</summary>
+<content type="html">&lt;p&gt;„RTL.nl is tijdelijk niet bereikbaar, omdat we een dringende beveiligingsupdate uitvoeren.”&lt;/p&gt;&lt;p&gt;Źródło: &lt;a href="https://nos.nl/liveblog/2636066-websites-kwetsbaar-voor-softwarelek-digid-en-mijnoverheid-uit-de-lucht"&gt;NOS liveblog&lt;/a&gt; · potwierdzone · minor&lt;/p&gt;</content>
+</entry>
+<entry>
+<title>Strona Tweede Kamer wyłączona</title>
+<id>tag:php2shell-live.surge.sh,2026:tk</id>
+<link rel="alternate" type="text/html" href="https://akirapl.github.io/php2shell/?lang=pl#ev-tk"/>
+<link rel="related" href="https://nos.nl/liveblog/2636066-websites-kwetsbaar-voor-softwarelek-digid-en-mijnoverheid-uit-de-lucht"/>
+<published>2026-10-21T10:52:00Z</published>
+<updated>2026-10-21T10:52:00Z</updated>
+<category term="major"/>
+<summary type="text">Izba niższa parlamentu zdejmuje stronę zapobiegawczo.</summary>
+<content type="html">&lt;p&gt;Izba niższa parlamentu zdejmuje stronę zapobiegawczo.&lt;/p&gt;&lt;p&gt;Źródło: &lt;a href="https://nos.nl/liveblog/2636066-websites-kwetsbaar-voor-softwarelek-digid-en-mijnoverheid-uit-de-lucht"&gt;NOS liveblog&lt;/a&gt; · potwierdzone · major&lt;/p&gt;</content>
+</entry>
+<entry>
+<title>Holandia: DigiD.nl i MijnOverheid.nl offline</title>
+<id>tag:php2shell-live.surge.sh,2026:digid</id>
+<link rel="alternate" type="text/html" href="https://akirapl.github.io/php2shell/?lang=pl#ev-digid"/>
+<link rel="related" href="https://nos.nl/liveblog/2636066-websites-kwetsbaar-voor-softwarelek-digid-en-mijnoverheid-uit-de-lucht"/>
+<published>2026-10-21T10:48:00Z</published>
+<updated>2026-10-21T10:48:00Z</updated>
+<category term="critical"/>
+<summary type="text">Początek fali zapobiegawczych wyłączeń stron w Holandii (NOS, 12:48 czasu lokalnego).</summary>
+<content type="html">&lt;p&gt;Początek fali zapobiegawczych wyłączeń stron w Holandii (NOS, 12:48 czasu lokalnego).&lt;/p&gt;&lt;p&gt;Źródło: &lt;a href="https://nos.nl/liveblog/2636066-websites-kwetsbaar-voor-softwarelek-digid-en-mijnoverheid-uit-de-lucht"&gt;NOS liveblog&lt;/a&gt; · potwierdzone · critical&lt;/p&gt;</content>
+</entry>
+<entry>
+<title>NCSC-NL publikuje listę oprogramowania zależnego od PHP</title>
+<id>tag:php2shell-live.surge.sh,2026:ncsc-nl-github</id>
+<link rel="alternate" type="text/html" href="https://akirapl.github.io/php2shell/?lang=pl#ev-ncsc-nl-github"/>
+<link rel="related" href="https://github.com/NCSC-NL/php2shell"/>
+<published>2026-10-21T10:21:00Z</published>
+<updated>2026-10-21T10:21:00Z</updated>
+<category term="major"/>
+<summary type="text">Repozytorium NCSC-NL/php2shell — wzorem listy z czasów Log4Shell.</summary>
+<content type="html">&lt;p&gt;Repozytorium NCSC-NL/php2shell — wzorem listy z czasów Log4Shell.&lt;/p&gt;&lt;p&gt;Źródło: &lt;a href="https://github.com/NCSC-NL/php2shell"&gt;NCSC-NL/php2shell (GitHub)&lt;/a&gt; · potwierdzone · major&lt;/p&gt;</content>
+</entry>
+<entry>
+<title>Aikido: zgłoszono wykorzystanie „in the wild”</title>
+<id>tag:php2shell-live.surge.sh,2026:aikido</id>
+<link rel="alternate" type="text/html" href="https://akirapl.github.io/php2shell/?lang=pl#ev-aikido"/>
+<link rel="related" href="https://www.aikido.dev/blog/critical-vulnerabilities-in-php-php2shell"/>
+<published>2026-10-21T09:18:00Z</published>
+<updated>2026-10-21T09:18:00Z</updated>
+<category term="major"/>
+<summary type="text">Aktualizacja 11:18 CEST: zgłoszono ataki, a sugerowane wcześniej zmiany konfiguracji nie chronią.</summary>
+<content type="html">&lt;p&gt;Aktualizacja 11:18 CEST: zgłoszono ataki, a sugerowane wcześniej zmiany konfiguracji nie chronią.&lt;/p&gt;&lt;p&gt;Źródło: &lt;a href="https://www.aikido.dev/blog/critical-vulnerabilities-in-php-php2shell"&gt;Aikido Security&lt;/a&gt; · doniesienie · major&lt;/p&gt;</content>
+</entry>
+<entry>
+<title>Repozytorium Remi bez aktualizacji tego dnia</title>
+<id>tag:php2shell-live.surge.sh,2026:remi</id>
+<link rel="alternate" type="text/html" href="https://akirapl.github.io/php2shell/?lang=pl#ev-remi"/>
+<link rel="related" href="https://x.com/ThePHPF/status/2112828424486056183"/>
+<published>2026-10-21T08:48:45Z</published>
+<updated>2026-10-21T08:48:45Z</updated>
+<category term="minor"/>
+<summary type="text">PHP Foundation radzi użytkownikom rpms.remirepo.net (utrzymywanego przez wolontariusza) przejść na pakiety dystrybucji lub kompilację ze źródeł.</summary>
+<content type="html">&lt;p&gt;PHP Foundation radzi użytkownikom rpms.remirepo.net (utrzymywanego przez wolontariusza) przejść na pakiety dystrybucji lub kompilację ze źródeł.&lt;/p&gt;&lt;p&gt;Źródło: &lt;a href="https://x.com/ThePHPF/status/2112828424486056183"&gt;@ThePHPF on X&lt;/a&gt; · potwierdzone · minor&lt;/p&gt;</content>
+</entry>
+<entry>
+<title>Cloudflare: „widzimy pierwsze ataki”</title>
+<id>tag:php2shell-live.surge.sh,2026:cloudflare-attacks</id>
+<link rel="alternate" type="text/html" href="https://akirapl.github.io/php2shell/?lang=pl#ev-cloudflare-attacks"/>
+<link rel="related" href="https://x.com/dok2001/status/2112811965735202970"/>
+<published>2026-10-21T07:43:21Z</published>
+<updated>2026-10-21T07:43:21Z</updated>
+<category term="critical"/>
+<summary type="text">CTO Dane Knecht: reguły WAF wdrożone dla wszystkich klientów, także darmowych; to tylko rozwiązanie doraźne. Brak opublikowanych szczegółów ataków.</summary>
+<content type="html">&lt;p&gt;CTO Dane Knecht: reguły WAF wdrożone dla wszystkich klientów, także darmowych; to tylko rozwiązanie doraźne. Brak opublikowanych szczegółów ataków.&lt;/p&gt;&lt;p&gt;Źródło: &lt;a href="https://x.com/dok2001/status/2112811965735202970"&gt;Dane Knecht (@dok2001) on X&lt;/a&gt; · doniesienie · critical&lt;/p&gt;</content>
+</entry>
+<entry>
+<title>SecurityWeek: „Mass Exploitation Looms”</title>
+<id>tag:php2shell-live.surge.sh,2026:securityweek</id>
+<link rel="alternate" type="text/html" href="https://akirapl.github.io/php2shell/?lang=pl#ev-securityweek"/>
+<link rel="related" href="https://www.securityweek.com/php2shell-mass-exploitation-looms-for-leaked-critical-php-flaws/"/>
+<published>2026-10-21T07:02:00Z</published>
+<updated>2026-10-21T07:02:00Z</updated>
+<category term="minor"/>
+<summary type="text">Sansec przewiduje masowe ataki w ciągu ok. 15 minut od wydania łatki.</summary>
+<content type="html">&lt;p&gt;Sansec przewiduje masowe ataki w ciągu ok. 15 minut od wydania łatki.&lt;/p&gt;&lt;p&gt;Źródło: &lt;a href="https://www.securityweek.com/php2shell-mass-exploitation-looms-for-leaked-critical-php-flaws/"&gt;SecurityWeek&lt;/a&gt; · doniesienie · minor&lt;/p&gt;</content>
+</entry>
+<entry>
+<title>The Hacker News: setki tysięcy hostów na starych wersjach</title>
+<id>tag:php2shell-live.surge.sh,2026:thn-mallory</id>
+<link rel="alternate" type="text/html" href="https://akirapl.github.io/php2shell/?lang=pl#ev-thn-mallory"/>
+<link rel="related" href="https://thehackernews.com/2026/10/php2shell-two-unpatched-critical-php.html"/>
+<published>2026-10-21T04:57:00Z</published>
+<updated>2026-10-21T04:57:00Z</updated>
+<category term="minor"/>
+<summary type="text">Według danych Mallory ok. 884 tys. hostów pokazuje baner PHP ≤ 8.1 (59% z ok. 1,5 mln z widoczną wersją). To banery, nie potwierdzona podatność.</summary>
+<content type="html">&lt;p&gt;Według danych Mallory ok. 884 tys. hostów pokazuje baner PHP ≤ 8.1 (59% z ok. 1,5 mln z widoczną wersją). To banery, nie potwierdzona podatność.&lt;/p&gt;&lt;p&gt;Źródło: &lt;a href="https://thehackernews.com/2026/10/php2shell-two-unpatched-critical-php.html"&gt;The Hacker News&lt;/a&gt; · doniesienie · minor&lt;/p&gt;</content>
+</entry>
+<entry>
+<title>Core developer PHP: jedyna ochrona to aktualizacja</title>
+<id>tag:php2shell-live.surge.sh,2026:girgias</id>
+<link rel="alternate" type="text/html" href="https://akirapl.github.io/php2shell/?lang=pl#ev-girgias"/>
+<link rel="related" href="https://phpc.social/@Girgias/117476477429221001"/>
+<published>2026-10-21T02:13:00Z</published>
+<updated>2026-10-21T02:13:00Z</updated>
+<category term="major"/>
+<summary type="text">Gina Peter Banyard studzi nadzieje na obejścia konfiguracyjne krążące w sieci.</summary>
+<content type="html">&lt;p&gt;Gina Peter Banyard studzi nadzieje na obejścia konfiguracyjne krążące w sieci.&lt;/p&gt;&lt;p&gt;Źródło: &lt;a href="https://phpc.social/@Girgias/117476477429221001"&gt;Gina Peter Banyard (Mastodon)&lt;/a&gt; · potwierdzone · major&lt;/p&gt;</content>
+</entry>
+<entry>
+<title>Firsov: „exploit jest już w sieci”</title>
+<id>tag:php2shell-live.surge.sh,2026:firsov-itw</id>
+<link rel="alternate" type="text/html" href="https://akirapl.github.io/php2shell/?lang=pl#ev-firsov-itw"/>
+<link rel="related" href="https://x.com/k_firsov/status/2112714573287698763"/>
+<published>2026-10-21T01:16:21Z</published>
+<updated>2026-10-21T01:16:21Z</updated>
+<category term="minor"/>
+<summary type="text">Twierdzenie bez przedstawionych dowodów.</summary>
+<content type="html">&lt;p&gt;Twierdzenie bez przedstawionych dowodów.&lt;/p&gt;&lt;p&gt;Źródło: &lt;a href="https://x.com/k_firsov/status/2112714573287698763"&gt;@k_firsov on X&lt;/a&gt; · doniesienie · minor&lt;/p&gt;</content>
+</entry>
+<entry>
+<title>Publiczna „rekonstrukcja” — później częściowo odwołana</title>
+<id>tag:php2shell-live.surge.sh,2026:jackalsyn</id>
+<link rel="alternate" type="text/html" href="https://akirapl.github.io/php2shell/?lang=pl#ev-jackalsyn"/>
+<link rel="related" href="https://jackalsyn.com/posts/php-up-2026.html"/>
+<published>2026-10-21T00:30:00Z</published>
+<updated>2026-10-21T00:30:00Z</updated>
+<category term="minor"/>
+<summary type="text">Badacz J4ck3LSyN ogłasza odtworzenie błędu; jego własny opis później uznaje główną ścieżkę za nieaktualną i ocenia błąd jako niebędący RCE.</summary>
+<content type="html">&lt;p&gt;Badacz J4ck3LSyN ogłasza odtworzenie błędu; jego własny opis później uznaje główną ścieżkę za nieaktualną i ocenia błąd jako niebędący RCE.&lt;/p&gt;&lt;p&gt;Źródło: &lt;a href="https://jackalsyn.com/posts/php-up-2026.html"&gt;jackalsyn.com write-up&lt;/a&gt; · doniesienie · minor&lt;/p&gt;</content>
+</entry>
+<entry>
+<title>CERT.at ostrzega; później: w sieci pojawił się kod exploita</title>
+<id>tag:php2shell-live.surge.sh,2026:cert-at</id>
+<link rel="alternate" type="text/html" href="https://akirapl.github.io/php2shell/?lang=pl#ev-cert-at"/>
+<link rel="related" href="https://www.cert.at/de/aktuelles/2026/10/bevorstehendes-kritisches-php-sicherheitsupdate"/>
+<published>2026-10-20T21:20:00Z</published>
+<updated>2026-10-20T21:20:00Z</updated>
+<category term="major"/>
+<summary type="text">Update #1 (21.10): kod exploita pojawił się w internecie, jego działanie niepotwierdzone. Zalecenie: zinwentaryzować systemy z PHP i zaplanować okno aktualizacji.</summary>
+<content type="html">&lt;p&gt;Update #1 (21.10): kod exploita pojawił się w internecie, jego działanie niepotwierdzone. Zalecenie: zinwentaryzować systemy z PHP i zaplanować okno aktualizacji.&lt;/p&gt;&lt;p&gt;Źródło: &lt;a href="https://www.cert.at/de/aktuelles/2026/10/bevorstehendes-kritisches-php-sicherheitsupdate"&gt;CERT.at&lt;/a&gt; · potwierdzone · major&lt;/p&gt;</content>
+</entry>
+<entry>
+<title>Florian Roth udostępnia narzędzie do detekcji</title>
+<id>tag:php2shell-live.surge.sh,2026:roth-tool</id>
+<link rel="alternate" type="text/html" href="https://akirapl.github.io/php2shell/?lang=pl#ev-roth-tool"/>
+<link rel="related" href="https://x.com/cyb3rops/status/2112654541699141879"/>
+<published>2026-10-20T21:17:48Z</published>
+<updated>2026-10-20T21:17:48Z</updated>
+<category term="minor"/>
+<summary type="text">Darmowe process-watcher monitoruje procesy uruchamiane przez PHP — sygnał możliwej eksploatacji.</summary>
+<content type="html">&lt;p&gt;Darmowe process-watcher monitoruje procesy uruchamiane przez PHP — sygnał możliwej eksploatacji.&lt;/p&gt;&lt;p&gt;Źródło: &lt;a href="https://x.com/cyb3rops/status/2112654541699141879"&gt;Florian Roth (@cyb3rops) on X&lt;/a&gt; · potwierdzone · minor&lt;/p&gt;</content>
+</entry>
+<entry>
+<title>BleepingComputer: watchTowr odtworzył jedną z luk</title>
+<id>tag:php2shell-live.surge.sh,2026:bleeping</id>
+<link rel="alternate" type="text/html" href="https://akirapl.github.io/php2shell/?lang=pl#ev-bleeping"/>
+<link rel="related" href="https://www.bleepingcomputer.com/news/security/php-warns-admins-of-two-critical-flaws-emergency-patches-coming-tomorrow/"/>
+<published>2026-10-20T20:56:00Z</published>
+<updated>2026-10-20T20:56:00Z</updated>
+<category term="minor"/>
+<summary type="text">CEO watchTowr Benjamin Harris potwierdza realność luk; firma twierdzi, że odtworzyła CVE-2026-109618, i nie widzi ataków w sieci.</summary>
+<content type="html">&lt;p&gt;CEO watchTowr Benjamin Harris potwierdza realność luk; firma twierdzi, że odtworzyła CVE-2026-109618, i nie widzi ataków w sieci.&lt;/p&gt;&lt;p&gt;Źródło: &lt;a href="https://www.bleepingcomputer.com/news/security/php-warns-admins-of-two-critical-flaws-emergency-patches-coming-tomorrow/"&gt;BleepingComputer&lt;/a&gt; · potwierdzone · minor&lt;/p&gt;</content>
+</entry>
+<entry>
+<title>CERT-EU: advisory 2026-018</title>
+<id>tag:php2shell-live.surge.sh,2026:cert-eu</id>
+<link rel="alternate" type="text/html" href="https://akirapl.github.io/php2shell/?lang=pl#ev-cert-eu"/>
+<link rel="related" href="https://cert.europa.eu/publications/security-advisories/2026-018/"/>
+<published>2026-10-20T20:33:27Z</published>
+<updated>2026-10-20T20:33:27Z</updated>
+<category term="major"/>
+<summary type="text">Przygotować natychmiastowe łatanie; gdy to niemożliwe — rozważyć odcięcie aplikacji od internetu. Strefa czasowa godziny publikacji nie jest podana.</summary>
+<content type="html">&lt;p&gt;Przygotować natychmiastowe łatanie; gdy to niemożliwe — rozważyć odcięcie aplikacji od internetu. Strefa czasowa godziny publikacji nie jest podana.&lt;/p&gt;&lt;p&gt;Źródło: &lt;a href="https://cert.europa.eu/publications/security-advisories/2026-018/"&gt;CERT-EU Security Advisory 2026-018&lt;/a&gt; · potwierdzone · major&lt;/p&gt;</content>
+</entry>
+<entry>
+<title>Krąży wideo „php2shell”</title>
+<id>tag:php2shell-live.surge.sh,2026:firsov-video</id>
+<link rel="alternate" type="text/html" href="https://akirapl.github.io/php2shell/?lang=pl#ev-firsov-video"/>
+<link rel="related" href="https://x.com/k_firsov/status/2112641845926989944"/>
+<published>2026-10-20T20:27:21Z</published>
+<updated>2026-10-20T20:27:21Z</updated>
+<category term="critical"/>
+<summary type="text">Kirill Firsov publikuje 3-minutowe nagranie (ok. 1,7 mln wyświetleń); wg Tenable przypisuje je badaczowi LCFR i Calif.io. Treść nie została niezależnie zweryfikowana.</summary>
+<content type="html">&lt;p&gt;Kirill Firsov publikuje 3-minutowe nagranie (ok. 1,7 mln wyświetleń); wg Tenable przypisuje je badaczowi LCFR i Calif.io. Treść nie została niezależnie zweryfikowana.&lt;/p&gt;&lt;p&gt;Źródło: &lt;a href="https://x.com/k_firsov/status/2112641845926989944"&gt;@k_firsov on X&lt;/a&gt; · doniesienie · critical&lt;/p&gt;</content>
+</entry>
+<entry>
+<title>Zapowiedź na liście oss-security</title>
+<id>tag:php2shell-live.surge.sh,2026:oss-security</id>
+<link rel="alternate" type="text/html" href="https://akirapl.github.io/php2shell/?lang=pl#ev-oss-security"/>
+<link rel="related" href="https://www.openwall.com/lists/oss-security/2026/10/20/34"/>
+<published>2026-10-20T20:22:00Z</published>
+<updated>2026-10-20T20:22:00Z</updated>
+<category term="minor"/>
+<summary type="text">Alan Coopersmith przekazuje zapowiedź PHP na listę oss-security.</summary>
+<content type="html">&lt;p&gt;Alan Coopersmith przekazuje zapowiedź PHP na listę oss-security.&lt;/p&gt;&lt;p&gt;Źródło: &lt;a href="https://www.openwall.com/lists/oss-security/2026/10/20/34"&gt;oss-security (Openwall)&lt;/a&gt; · potwierdzone · minor&lt;/p&gt;</content>
+</entry>
+<entry>
+<title>@ThePHPF ogłasza zapowiedź na X</title>
+<id>tag:php2shell-live.surge.sh,2026:phpf-x</id>
+<link rel="alternate" type="text/html" href="https://akirapl.github.io/php2shell/?lang=pl#ev-phpf-x"/>
+<link rel="related" href="https://x.com/ThePHPF/status/2112633155631108544"/>
+<published>2026-10-20T19:52:49Z</published>
+<updated>2026-10-20T19:52:49Z</updated>
+<category term="major"/>
+<summary type="text">Wpis fundacji osiąga ponad 4,1 mln wyświetleń (stan 21.10).</summary>
+<content type="html">&lt;p&gt;Wpis fundacji osiąga ponad 4,1 mln wyświetleń (stan 21.10).&lt;/p&gt;&lt;p&gt;Źródło: &lt;a href="https://x.com/ThePHPF/status/2112633155631108544"&gt;@ThePHPF on X&lt;/a&gt; · potwierdzone · major&lt;/p&gt;</content>
+</entry>
+<entry>
+<title>watchTowr: „to nie my odkryliśmy te luki”</title>
+<id>tag:php2shell-live.surge.sh,2026:wt-not-us</id>
+<link rel="alternate" type="text/html" href="https://akirapl.github.io/php2shell/?lang=pl#ev-wt-not-us"/>
+<link rel="related" href="https://x.com/watchtowrcyber/status/2112631926024704286"/>
+<published>2026-10-20T19:47:56Z</published>
+<updated>2026-10-20T19:47:56Z</updated>
+<category term="minor"/>
+<summary type="text">watchTowr zaznacza, że nie jest odkrywcą luk i zostawia ogłoszenie autorstwa zespołowi, który je znalazł.</summary>
+<content type="html">&lt;p&gt;watchTowr zaznacza, że nie jest odkrywcą luk i zostawia ogłoszenie autorstwa zespołowi, który je znalazł.&lt;/p&gt;&lt;p&gt;Źródło: &lt;a href="https://x.com/watchtowrcyber/status/2112631926024704286"&gt;@watchtowrcyber on X&lt;/a&gt; · potwierdzone · minor&lt;/p&gt;</content>
+</entry>
+<entry>
+<title>PHP zapowiada awaryjne wydanie na 21.10, 14:00 UTC</title>
+<id>tag:php2shell-live.surge.sh,2026:php-preannounce</id>
+<link rel="alternate" type="text/html" href="https://akirapl.github.io/php2shell/?lang=pl#ev-php-preannounce"/>
+<link rel="related" href="https://discourse.thephp.foundation/t/announce-upcoming-critical-php-security-release/6251"/>
+<published>2026-10-20T19:33:00Z</published>
+<updated>2026-10-20T19:33:00Z</updated>
+<category term="critical"/>
+<summary type="text">Jakub Zelenka: dwie krytyczne luki, obie CVSS v4.0 9.2; szczegóły i wersje razem z wydaniem; możliwe wcześniejsze wydanie, jeśli szczegóły wyciekną lub pojawią się ataki.</summary>
+<content type="html">&lt;p&gt;Jakub Zelenka: dwie krytyczne luki, obie CVSS v4.0 9.2; szczegóły i wersje razem z wydaniem; możliwe wcześniejsze wydanie, jeśli szczegóły wyciekną lub pojawią się ataki.&lt;/p&gt;&lt;p&gt;Źródło: &lt;a href="https://discourse.thephp.foundation/t/announce-upcoming-critical-php-security-release/6251"&gt;PHP Foundation Discourse — [ANNOUNCE]&lt;/a&gt; · potwierdzone · critical&lt;/p&gt;</content>
+</entry>
+<entry>
+<title>watchTowr: luki są prawdziwe, embargo złamane</title>
+<id>tag:php2shell-live.surge.sh,2026:watchtowr-confirm</id>
+<link rel="alternate" type="text/html" href="https://akirapl.github.io/php2shell/?lang=pl#ev-watchtowr-confirm"/>
+<link rel="related" href="https://x.com/watchtowrcyber/status/2112611507749982605"/>
+<published>2026-10-20T18:26:48Z</published>
+<updated>2026-10-20T18:26:48Z</updated>
+<category term="critical"/>
+<summary type="text">„We were all supposed to wait until Thursday at 11am ET” — pierwotne embargo kończyło się w czwartek 22.10 o 15:00 UTC.</summary>
+<content type="html">&lt;p&gt;„We were all supposed to wait until Thursday at 11am ET” — pierwotne embargo kończyło się w czwartek 22.10 o 15:00 UTC.&lt;/p&gt;&lt;p&gt;Źródło: &lt;a href="https://x.com/watchtowrcyber/status/2112611507749982605"&gt;@watchtowrcyber on X&lt;/a&gt; · potwierdzone · critical&lt;/p&gt;</content>
+</entry>
+<entry>
+<title>Kevin Beaumont nagłaśnia przeciek</title>
+<id>tag:php2shell-live.surge.sh,2026:beaumont</id>
+<link rel="alternate" type="text/html" href="https://akirapl.github.io/php2shell/?lang=pl#ev-beaumont"/>
+<link rel="related" href="https://cyberplace.social/@GossiTheDog/117474220875882526"/>
+<published>2026-10-20T16:39:00Z</published>
+<updated>2026-10-20T16:39:00Z</updated>
+<category term="major"/>
+<summary type="text">„Somebody has leaked CVE-2026-109618 and CVE-2026-109619 in PHP before the patch is out.” — z zrzutem wpisu z HN.</summary>
+<content type="html">&lt;p&gt;„Somebody has leaked CVE-2026-109618 and CVE-2026-109619 in PHP before the patch is out.” — z zrzutem wpisu z HN.&lt;/p&gt;&lt;p&gt;Źródło: &lt;a href="https://cyberplace.social/@GossiTheDog/117474220875882526"&gt;Kevin Beaumont (Mastodon)&lt;/a&gt; · potwierdzone · major&lt;/p&gt;</content>
+</entry>
+<entry>
+<title>Przeciek na Hacker News</title>
+<id>tag:php2shell-live.surge.sh,2026:hn-leak</id>
+<link rel="alternate" type="text/html" href="https://akirapl.github.io/php2shell/?lang=pl#ev-hn-leak"/>
+<link rel="related" href="https://news.ycombinator.com/item?id=50167754"/>
+<published>2026-10-20T15:20:35Z</published>
+<updated>2026-10-20T15:20:35Z</updated>
+<category term="critical"/>
+<summary type="text">Wpis „Tell HN: 2x PHP RCE CVEs with CVSS 10.0 Incoming” podaje oba numery CVE i termin 22.10. Autor powołuje się na „trust me, bro”; wpis później usunięto.</summary>
+<content type="html">&lt;p&gt;Wpis „Tell HN: 2x PHP RCE CVEs with CVSS 10.0 Incoming” podaje oba numery CVE i termin 22.10. Autor powołuje się na „trust me, bro”; wpis później usunięto.&lt;/p&gt;&lt;p&gt;Źródło: &lt;a href="https://news.ycombinator.com/item?id=50167754"&gt;Hacker News — Tell HN&lt;/a&gt; · potwierdzone · critical&lt;/p&gt;</content>
+</entry>
+<entry>
+<title>Gotowe tagi wydań 8.2.35–8.5.12</title>
+<id>tag:php2shell-live.surge.sh,2026:tags</id>
+<link rel="alternate" type="text/html" href="https://akirapl.github.io/php2shell/?lang=pl#ev-tags"/>
+<link rel="related" href="https://github.com/php/php-src/releases/tag/php-8.5.12"/>
+<published>2026-10-19T17:04:00Z</published>
+<updated>2026-10-19T17:04:00Z</updated>
+<category term="minor"/>
+<summary type="text">Release managerzy tworzą tagi nowych wersji 19.10 (07:30–17:04 UTC) — dwa dni przed publicznym wydaniem.</summary>
+<content type="html">&lt;p&gt;Release managerzy tworzą tagi nowych wersji 19.10 (07:30–17:04 UTC) — dwa dni przed publicznym wydaniem.&lt;/p&gt;&lt;p&gt;Źródło: &lt;a href="https://github.com/php/php-src/releases/tag/php-8.5.12"&gt;php-src tag php-8.5.12&lt;/a&gt; · potwierdzone · minor&lt;/p&gt;</content>
+</entry>
+<entry>
+<title>Poprawka trafia do repozytorium</title>
+<id>tag:php2shell-live.surge.sh,2026:fix-commit</id>
+<link rel="alternate" type="text/html" href="https://akirapl.github.io/php2shell/?lang=pl#ev-fix-commit"/>
+<link rel="related" href="https://github.com/php/php-src/commit/31c0ea7d7ff1d1fccb6492e52dab544011628065"/>
+<published>2026-10-18T17:23:46Z</published>
+<updated>2026-10-18T17:23:46Z</updated>
+<category term="major"/>
+<summary type="text">Commit „Avoid state corruption via bailout” (autor: Arnaud Le Blanc; współautorzy: Ilija Tovilo, Jakub Zelenka, Nora Dossche, Nicolas Grekas). +11 556 / −1 017 linii w gałęzi 8.5.</summary>
+<content type="html">&lt;p&gt;Commit „Avoid state corruption via bailout” (autor: Arnaud Le Blanc; współautorzy: Ilija Tovilo, Jakub Zelenka, Nora Dossche, Nicolas Grekas). +11 556 / −1 017 linii w gałęzi 8.5.&lt;/p&gt;&lt;p&gt;Źródło: &lt;a href="https://github.com/php/php-src/commit/31c0ea7d7ff1d1fccb6492e52dab544011628065"&gt;php-src commit 31c0ea7&lt;/a&gt; · potwierdzone · major&lt;/p&gt;</content>
+</entry>
+<entry>
+<title>PHP Foundation o obsłudze zgłoszeń bezpieczeństwa</title>
+<id>tag:php2shell-live.surge.sh,2026:phpf-blog</id>
+<link rel="alternate" type="text/html" href="https://akirapl.github.io/php2shell/?lang=pl#ev-phpf-blog"/>
+<link rel="related" href="https://thephp.foundation/blog/2026/10/14/how-the-php-security-team-handles-your-reports/"/>
+<published>2026-10-14T00:00:00Z</published>
+<updated>2026-10-14T00:00:00Z</updated>
+<category term="minor"/>
+<summary type="text">Wpis „How the PHP Security Team Handles Your Reports” opisuje zaległości w zgłoszeniach i użycie narzędzi AI przy ich weryfikacji.</summary>
+<content type="html">&lt;p&gt;Wpis „How the PHP Security Team Handles Your Reports” opisuje zaległości w zgłoszeniach i użycie narzędzi AI przy ich weryfikacji.&lt;/p&gt;&lt;p&gt;Źródło: &lt;a href="https://thephp.foundation/blog/2026/10/14/how-the-php-security-team-handles-your-reports/"&gt;The PHP Foundation blog (14.10.2026)&lt;/a&gt; · potwierdzone · minor&lt;/p&gt;</content>
+</entry>
+<entry>
+<title>PHP potwierdza zgłoszenia</title>
+<id>tag:php2shell-live.surge.sh,2026:php-ack</id>
+<link rel="alternate" type="text/html" href="https://akirapl.github.io/php2shell/?lang=pl#ev-php-ack"/>
+<link rel="related" href="https://www.wiz.io/blog/php2shell-php-rce"/>
+<published>2026-09-21T00:00:00Z</published>
+<updated>2026-09-21T00:00:00Z</updated>
+<category term="minor"/>
+<summary type="text">Według Wiz zespół PHP potwierdza zgłoszenia i zaczyna pracę nad skoordynowaną poprawką.</summary>
+<content type="html">&lt;p&gt;Według Wiz zespół PHP potwierdza zgłoszenia i zaczyna pracę nad skoordynowaną poprawką.&lt;/p&gt;&lt;p&gt;Źródło: &lt;a href="https://www.wiz.io/blog/php2shell-php-rce"&gt;Wiz Research blog&lt;/a&gt; · doniesienie · minor&lt;/p&gt;</content>
+</entry>
+<entry>
+<title>Zgłoszenie do zespołu bezpieczeństwa PHP</title>
+<id>tag:php2shell-live.surge.sh,2026:wiz-report</id>
+<link rel="alternate" type="text/html" href="https://akirapl.github.io/php2shell/?lang=pl#ev-wiz-report"/>
+<link rel="related" href="https://www.wiz.io/blog/php2shell-php-rce"/>
+<published>2026-08-24T00:00:00Z</published>
+<updated>2026-08-24T00:00:00Z</updated>
+<category term="major"/>
+<summary type="text">Wiz: luki zgłoszone zespołowi bezpieczeństwa PHP. Wcześniej (20–21.08) Wiz potwierdził nieuwierzytelnione RCE na Drupalu i WordPressie.</summary>
+<content type="html">&lt;p&gt;Wiz: luki zgłoszone zespołowi bezpieczeństwa PHP. Wcześniej (20–21.08) Wiz potwierdził nieuwierzytelnione RCE na Drupalu i WordPressie.&lt;/p&gt;&lt;p&gt;Źródło: &lt;a href="https://www.wiz.io/blog/php2shell-php-rce"&gt;Wiz Research blog&lt;/a&gt; · doniesienie · major&lt;/p&gt;</content>
+</entry>
+<entry>
+<title>Wiz Research znajduje pierwszą lukę</title>
+<id>tag:php2shell-live.surge.sh,2026:wiz-discovery</id>
+<link rel="alternate" type="text/html" href="https://akirapl.github.io/php2shell/?lang=pl#ev-wiz-discovery"/>
+<link rel="related" href="https://www.wiz.io/blog/php2shell-php-rce"/>
+<published>2026-08-19T00:00:00Z</published>
+<updated>2026-08-19T00:00:00Z</updated>
+<category term="major"/>
+<summary type="text">Według osi czasu Wiz badacze znaleźli pierwszą podatność z pomocą narzędzi AI (Wiz Atlas oraz modeli Gemini 4 Argon i GPT-5.6 Sol).</summary>
+<content type="html">&lt;p&gt;Według osi czasu Wiz badacze znaleźli pierwszą podatność z pomocą narzędzi AI (Wiz Atlas oraz modeli Gemini 4 Argon i GPT-5.6 Sol).&lt;/p&gt;&lt;p&gt;Źródło: &lt;a href="https://www.wiz.io/blog/php2shell-php-rce"&gt;Wiz Research blog&lt;/a&gt; · doniesienie · major&lt;/p&gt;</content>
+</entry>
+</feed>
