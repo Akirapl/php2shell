@@ -10,7 +10,7 @@
       "en": "CVE-2026-109618 and CVE-2026-109619: critical RCE flaws in the PHP core",
       "de": "CVE-2026-109618 und CVE-2026-109619: kritische RCE-Lücken im PHP-Kern"
     },
-    "last_updated": "2026-10-21T19:45:00Z",
+    "last_updated": "2026-10-21T20:10:00Z",
     "maintainer_note": "Single source of truth. Every fact needs source_url, source_name, confidence; texts as {pl,en,de}. Run ./update_and_build.sh \"message\".",
     "timezone_note": {
       "pl": "Wszystkie czasy w UTC. Czasy z NOS (CEST) przeliczone na UTC (−2 h).",
@@ -76,7 +76,7 @@
     "exploitation_threshold": {
       "rule": "confirmed only if CISA KEV lists a CVE or a national CERT publishes credible in-the-wild evidence",
       "kev_listed": false,
-      "kev_checked_utc": "2026-10-21T19:40:00Z",
+      "kev_checked_utc": "2026-10-21T20:05:00Z",
       "kev_catalog_version": "2026.10.21",
       "kev_url": "https://www.cisa.gov/known-exploited-vulnerabilities-catalog",
       "national_cert_itw": []
@@ -2705,6 +2705,79 @@
       "info_credibility": 1,
       "time_kind": "published",
       "time_precision": "second"
+    },
+    {
+      "id": "jp-futureshop-intrusion",
+      "time_utc": "2026-10-21T01:14:00Z",
+      "importance": "major",
+      "title": {
+        "pl": "Japonia: futureshop potwierdza włamanie na serwery — związek z PHP2Shell niepotwierdzony",
+        "en": "Japan: futureshop confirms a server intrusion; no confirmed link to PHP2Shell",
+        "de": "Japan: futureshop bestätigt Einbruch in Server; Zusammenhang mit PHP2Shell unbestätigt"
+      },
+      "description": {
+        "pl": "Platforma e-commerce futureshop wykryła 21.10 ok. 10:14 JST nieautoryzowany dostęp do części serwerów (c02, c05, c12, g06) i od 11:30 JST wyłączyła sklepy, panele, FTP i API na tych serwerach; zakres badany. Komunikat nie wiąże incydentu z PHP. Osobno, od 20:00 JST, firma wyłączyła prewencyjnie funkcje PHP z powodu nowych luk. Sklepy klientów (np. BRADELIS New York) potwierdzają przestój.",
+        "en": "E-commerce platform futureshop detected unauthorised access to some servers (c02, c05, c12, g06) around 10:14 JST on 21 Oct and from 11:30 JST took the shops, admin panels, FTP and API on them offline; scope under investigation. The notice does not link the incident to PHP. Separately, from 20:00 JST, the company disabled PHP features as a precaution because of the new flaws. Customer shops (e.g. BRADELIS New York) confirm the outage.",
+        "de": "Die E-Commerce-Plattform futureshop stellte am 21.10. gegen 10:14 JST unbefugten Zugriff auf einige Server (c02, c05, c12, g06) fest und nahm ab 11:30 JST Shops, Verwaltung, FTP und API darauf vom Netz; der Umfang wird untersucht. Die Mitteilung bringt den Vorfall nicht mit PHP in Verbindung. Getrennt davon schaltete das Unternehmen ab 20:00 JST vorsorglich PHP-Funktionen wegen der neuen Lücken ab. Kunden-Shops (z. B. BRADELIS New York) bestätigen den Ausfall."
+      },
+      "actors": [
+        "futureshop"
+      ],
+      "source_url": "https://www.future-shop.jp/news/2026/10/21.html",
+      "source_name": "futureshop — 第一報 (21.10.2026)",
+      "confidence": "reported",
+      "source_reliability": "A",
+      "info_credibility": 6,
+      "time_kind": "event",
+      "time_precision": "minute",
+      "time_note": {
+        "pl": "10:14 JST przeliczone na UTC (−9 h)",
+        "en": "10:14 JST converted to UTC (−9 h)",
+        "de": "10:14 JST in UTC umgerechnet (−9 Std.)"
+      },
+      "flags": [
+        "needs_second_source"
+      ],
+      "flag_note": {
+        "pl": "Włamanie potwierdzone przez firmę; powiązanie z PHP2Shell to jedynie zbieżność czasowa, firma go nie podaje.",
+        "en": "Intrusion confirmed by the company; any link to PHP2Shell is only a timing coincidence the company does not state.",
+        "de": "Einbruch vom Unternehmen bestätigt; ein Bezug zu PHP2Shell ist nur zeitliche Nähe, die das Unternehmen nicht angibt."
+      }
+    },
+    {
+      "id": "jp-mass-precautionary-outages",
+      "time_utc": "2026-10-21T13:05:00Z",
+      "importance": "major",
+      "title": {
+        "pl": "Japonia: dziesiątki serwisów wyłączają się prewencyjnie przed łatką",
+        "en": "Japan: dozens of services go offline as a precaution ahead of the patch",
+        "de": "Japan: Dutzende Dienste gehen vor dem Patch vorsorglich vom Netz"
+      },
+      "description": {
+        "pl": "Impress Watch: BASE i Codmon od popołudnia, potem pixiv, DMM.com, niconico, część usług Sakura Internet i gry (Granblue Fantasy, Uma Musume) w awaryjnej konserwacji; Narodowe Biuro Cyberbezpieczeństwa (NCO) wskazało czasowe wyłączenie stron jako skuteczny środek, jeśli łatki nie da się szybko wgrać. Zestawienia piyolog/SITE PICK liczą kilkadziesiąt organizacji; większość podaje brak włamania.",
+        "en": "Impress Watch: BASE and Codmon from the afternoon, then pixiv, DMM.com, niconico, some Sakura Internet services and games (Granblue Fantasy, Uma Musume) in emergency maintenance; Japan's National Cybersecurity Office (NCO) named temporarily taking sites down as an effective measure if the patch cannot be applied quickly. piyolog/SITE PICK tallies count dozens of organisations; most say there was no intrusion.",
+        "de": "Impress Watch: BASE und Codmon ab dem Nachmittag, dann pixiv, DMM.com, niconico, Teile von Sakura Internet und Spiele (Granblue Fantasy, Uma Musume) in Notwartung; Japans Nationales Büro für Cybersicherheit (NCO) nannte die vorübergehende Abschaltung von Websites als wirksame Maßnahme, falls der Patch nicht schnell eingespielt werden kann. Zählungen von piyolog/SITE PICK nennen Dutzende Organisationen; die meisten melden keinen Einbruch."
+      },
+      "actors": [
+        "BASE",
+        "pixiv",
+        "DMM.com",
+        "niconico",
+        "Cygames",
+        "NCO (Japan)"
+      ],
+      "source_url": "https://news.yahoo.co.jp/articles/a5d2d59874b769ce9deedc6d2a02cb6bf455dcfe",
+      "source_name": "Impress Watch (via Yahoo! News Japan)",
+      "confidence": "confirmed",
+      "source_reliability": "C",
+      "info_credibility": 1,
+      "time_kind": "published",
+      "time_precision": "minute",
+      "time_note": {
+        "pl": "22:05 JST",
+        "en": "22:05 JST",
+        "de": "22:05 JST"
+      }
     }
   ],
   "actors": [
@@ -3673,6 +3746,22 @@
       "offline_reason": "precautionary",
       "verified_by": "org_statement",
       "source_reliability": "A",
+      "info_credibility": 1
+    },
+    {
+      "site": "BASE · pixiv · DMM.com · niconico · Cygames games · futureshop (PHP features)",
+      "org": {
+        "pl": "m.in. BASE, pixiv, DMM, Dwango, Cygames, futureshop",
+        "en": "incl. BASE, pixiv, DMM, Dwango, Cygames, futureshop",
+        "de": "u. a. BASE, pixiv, DMM, Dwango, Cygames, futureshop"
+      },
+      "country": "JP",
+      "source_url": "https://news.yahoo.co.jp/articles/a5d2d59874b769ce9deedc6d2a02cb6bf455dcfe",
+      "source_name": "Impress Watch (via Yahoo! News Japan)",
+      "confidence": "confirmed",
+      "offline_reason": "precautionary",
+      "verified_by": "media",
+      "source_reliability": "C",
       "info_credibility": 1
     }
   ],
@@ -5074,6 +5163,26 @@
       "name": "Wikimedia cloud-announce — Toolforge and Cloud VPS temporarily offline",
       "url": "https://lists.wikimedia.org/hyperkitty/list/cloud-announce@lists.wikimedia.org/thread/WA6VJ2SDDVK543CTLB7UU5AOQ3TQ6UFV/",
       "type": "official"
+    },
+    {
+      "name": "futureshop — unauthorised access notice (第一報)",
+      "url": "https://www.future-shop.jp/news/2026/10/21.html",
+      "type": "official"
+    },
+    {
+      "name": "futureshop — PHP features suspended",
+      "url": "https://www.future-shop.jp/news/2026/10/21-2.html",
+      "type": "official"
+    },
+    {
+      "name": "Impress Watch (Yahoo! News Japan) — Japanese services suspended",
+      "url": "https://news.yahoo.co.jp/articles/a5d2d59874b769ce9deedc6d2a02cb6bf455dcfe",
+      "type": "press"
+    },
+    {
+      "name": "SITE PICK — Japanese service status tally",
+      "url": "https://sitepick.jp/articles/php-vulnerability/",
+      "type": "press"
     }
   ]
 }
