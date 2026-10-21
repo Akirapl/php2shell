@@ -42,7 +42,7 @@ logging.basicConfig(level=logging.INFO, format="%(asctime)s %(message)s")
 app = FastAPI(title="PHP2Shell-Live-Checker", version="1.0", docs_url=None, redoc_url=None, openapi_url=None)
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["https://php2shell-live.surge.sh", "http://127.0.0.1:8765", "http://localhost:8765"],
+    allow_origins=["https://php2shell-live.surge.sh", "https://akirapl.github.io", "http://127.0.0.1:8765", "http://localhost:8765"],
     allow_origin_regex=r"https://[a-z0-9-]+\.surge\.sh",
     allow_methods=["GET"], allow_headers=["*"], max_age=600,
 )
