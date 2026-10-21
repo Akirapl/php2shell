@@ -10,7 +10,7 @@
       "en": "CVE-2026-109618 and CVE-2026-109619: critical RCE flaws in the PHP core",
       "de": "CVE-2026-109618 und CVE-2026-109619: kritische RCE-Lücken im PHP-Kern"
     },
-    "last_updated": "2026-10-21T19:12:00Z",
+    "last_updated": "2026-10-21T19:45:00Z",
     "maintainer_note": "Single source of truth. Every fact needs source_url, source_name, confidence; texts as {pl,en,de}. Run ./update_and_build.sh \"message\".",
     "timezone_note": {
       "pl": "Wszystkie czasy w UTC. Czasy z NOS (CEST) przeliczone na UTC (−2 h).",
@@ -76,7 +76,7 @@
     "exploitation_threshold": {
       "rule": "confirmed only if CISA KEV lists a CVE or a national CERT publishes credible in-the-wild evidence",
       "kev_listed": false,
-      "kev_checked_utc": "2026-10-21T19:08:00Z",
+      "kev_checked_utc": "2026-10-21T19:40:00Z",
       "kev_catalog_version": "2026.10.21",
       "kev_url": "https://www.cisa.gov/known-exploited-vulnerabilities-catalog",
       "national_cert_itw": []
@@ -2393,9 +2393,9 @@
         "de": "Fedora: PHP2Shell als Blocker für Fedora 45 vorgeschlagen"
       },
       "description": {
-        "pl": "Zgłoszenie w Red Hat Bugzilla (2556842) śledzi reakcję i zostało zaproponowane jako bloker wydania Fedora 45 final. 21.10 o 13:56 UTC widać tam pierwsze (anulowane, testowe) buildy w Koji. Red Hat nie opublikował jeszcze RHSA dla obu CVE.",
-        "en": "Red Hat Bugzilla ticket 2556842 tracks the response and was proposed as a blocker for Fedora 45 final. At 13:56 UTC on 21 Oct it mentions the first (cancelled, test) Koji builds. Red Hat has not yet published an RHSA for either CVE.",
-        "de": "Das Red-Hat-Bugzilla-Ticket 2556842 verfolgt die Reaktion und wurde als Blocker für Fedora 45 final vorgeschlagen. Am 21.10. um 13:56 UTC erwähnt es erste (abgebrochene, Test-)Builds in Koji. Red Hat hat noch kein RHSA für die beiden CVEs veröffentlicht."
+        "pl": "Zgłoszenie w Red Hat Bugzilla (2556842) śledzi reakcję i zostało zaproponowane jako bloker wydania Fedora 45 final. 21.10 o 13:56 UTC widać tam pierwsze (anulowane, testowe) buildy w Koji. Pierwsze RHSA (RHSA-2026:87080, RHEL 8 php:7.4) wyszło 21.10 o 15:53 UTC; dla RHEL 9/10 jeszcze brak (stan ~19:40 UTC).",
+        "en": "Red Hat Bugzilla ticket 2556842 tracks the response and was proposed as a blocker for Fedora 45 final. At 13:56 UTC on 21 Oct it mentions the first (cancelled, test) Koji builds. The first RHSA (RHSA-2026:87080, RHEL 8 php:7.4) came out on 21 Oct at 15:53 UTC; none yet for RHEL 9/10 (as of ~19:40 UTC).",
+        "de": "Das Red-Hat-Bugzilla-Ticket 2556842 verfolgt die Reaktion und wurde als Blocker für Fedora 45 final vorgeschlagen. Am 21.10. um 13:56 UTC erwähnt es erste (abgebrochene, Test-)Builds in Koji. Das erste RHSA (RHSA-2026:87080, RHEL 8 php:7.4) erschien am 21.10. um 15:53 UTC; für RHEL 9/10 noch keines (Stand ~19:40 UTC)."
       },
       "actors": [
         "Fedora",
@@ -2407,7 +2407,25 @@
       "source_reliability": "A",
       "info_credibility": 2,
       "time_kind": "published",
-      "time_precision": "second"
+      "time_precision": "second",
+      "corrections": [
+        {
+          "id": "corr-009",
+          "time": "2026-10-21T19:45:00Z",
+          "field": "description",
+          "previous": {
+            "pl": "Zgłoszenie w Red Hat Bugzilla (2556842) śledzi reakcję i zostało zaproponowane jako bloker wydania Fedora 45 final. 21.10 o 13:56 UTC widać tam pierwsze (anulowane, testowe) buildy w Koji. Red Hat nie opublikował jeszcze RHSA dla obu CVE.",
+            "en": "Red Hat Bugzilla ticket 2556842 tracks the response and was proposed as a blocker for Fedora 45 final. At 13:56 UTC on 21 Oct it mentions the first (cancelled, test) Koji builds. Red Hat has not yet published an RHSA for either CVE.",
+            "de": "Das Red-Hat-Bugzilla-Ticket 2556842 verfolgt die Reaktion und wurde als Blocker für Fedora 45 final vorgeschlagen. Am 21.10. um 13:56 UTC erwähnt es erste (abgebrochene, Test-)Builds in Koji. Red Hat hat noch kein RHSA für die beiden CVEs veröffentlicht."
+          },
+          "reason": {
+            "pl": "Zdanie o braku RHSA było nieaktualne: RHSA-2026:87080 (RHEL 8, php:7.4) wyszło 21.10 o 15:53 UTC; wcześniejsze wyszukiwanie go nie znalazło.",
+            "en": "The sentence about no RHSA was out of date: RHSA-2026:87080 (RHEL 8, php:7.4) was released on 21 Oct at 15:53 UTC; an earlier search missed it.",
+            "de": "Der Satz über das fehlende RHSA war veraltet: RHSA-2026:87080 (RHEL 8, php:7.4) erschien am 21.10. um 15:53 UTC; eine frühere Suche hatte es übersehen."
+          },
+          "reported_by": "internal"
+        }
+      ]
     },
     {
       "id": "securityweek-vega-variants",
@@ -2612,6 +2630,81 @@
         "en": "the blog gives only the date 21 Oct 2026",
         "de": "der Blog nennt nur das Datum 21.10.2026"
       }
+    },
+    {
+      "id": "rhsa-2026-87080",
+      "time_utc": "2026-10-21T15:53:19Z",
+      "importance": "major",
+      "title": {
+        "pl": "Red Hat: pierwsze RHSA (RHEL 8, php:7.4), ocena „Important”, reszta wciąż w drodze",
+        "en": "Red Hat: first RHSA (RHEL 8, php:7.4), rated “Important”, the rest still pending",
+        "de": "Red Hat: erstes RHSA (RHEL 8, php:7.4), Einstufung „Important“, der Rest steht noch aus"
+      },
+      "description": {
+        "pl": "Według bazy bezpieczeństwa Red Hat advisory RHSA-2026:87080 (ważność „important”) z 21.10, 15:53 UTC naprawia oba CVE w strumieniu modułu php:7.4 dla RHEL 8. Red Hat Security pisze na X (19:37 UTC), że przyspiesza poprawki i część aktualizacji jest już dostępna. Dla RHEL 9 i 10 oraz strumienia php:8.2 w RHEL 8 advisory jeszcze nie było (stan ~19:40 UTC). Red Hat ocenia luki jako „Important”, a nie „Critical”.",
+        "en": "According to Red Hat's security data, advisory RHSA-2026:87080 (severity “important”), released 21 Oct at 15:53 UTC, fixes both CVEs in the php:7.4 module stream for RHEL 8. Red Hat Security said on X (19:37 UTC) that it is expediting fixes and some updates are already available. There was no advisory yet for RHEL 9 and 10 or for the php:8.2 stream in RHEL 8 (as of ~19:40 UTC). Red Hat rates the flaws “Important”, not “Critical”.",
+        "de": "Laut den Sicherheitsdaten von Red Hat behebt das Advisory RHSA-2026:87080 (Schweregrad „important“) vom 21.10., 15:53 UTC, beide CVEs im Modul-Stream php:7.4 für RHEL 8. Red Hat Security schrieb auf X (19:37 UTC), man beschleunige die Fixes und einige Updates seien bereits verfügbar. Für RHEL 9 und 10 sowie den Stream php:8.2 in RHEL 8 gab es noch kein Advisory (Stand ~19:40 UTC). Red Hat stuft die Lücken als „Important“ ein, nicht als „Critical“."
+      },
+      "actors": [
+        "Red Hat"
+      ],
+      "source_url": "https://access.redhat.com/hydra/rest/securitydata/csaf.json?cve=CVE-2026-109618",
+      "source_name": "Red Hat Security Data API (RHSA-2026:87080)",
+      "confidence": "confirmed",
+      "source_reliability": "A",
+      "info_credibility": 1,
+      "time_kind": "published",
+      "time_precision": "second"
+    },
+    {
+      "id": "cpanel-easyapache-2591",
+      "time_utc": "2026-10-21T00:00:00Z",
+      "importance": "major",
+      "title": {
+        "pl": "cPanel: łatki dla hostingów współdzielonych (EasyApache 4 25.91, wewnętrzne PHP z Roundcube)",
+        "en": "cPanel: patches for shared hosting (EasyApache 4 25.91, internal PHP incl. Roundcube)",
+        "de": "cPanel: Patches für Shared Hosting (EasyApache 4 25.91, internes PHP inkl. Roundcube)"
+      },
+      "description": {
+        "pl": "cPanel w notach wydania z 21.10 podaje, że zaktualizował wewnętrzne PHP cPanel & WHM (m.in. pod webmailem Roundcube): wersje 138.0.18, 136.0.50 i 134.0.66 mają PHP 8.4.27, a 110.0.153 dostaje backport poprawek do PHP 8.1.34. EasyApache 4 25.91 dostarcza poprawione pakiety PHP klientów. To kluczowe ogniwo dla małych firm na hostingu współdzielonym: łatka działa dopiero, gdy wgra ją dostawca.",
+        "en": "cPanel's release notes of 21 Oct say it updated cPanel & WHM's internal PHP (including the one behind Roundcube webmail): versions 138.0.18, 136.0.50 and 134.0.66 ship PHP 8.4.27, and 110.0.153 gets backported fixes for PHP 8.1.34. EasyApache 4 25.91 delivers the patched customer PHP packages. A key link for small businesses on shared hosting: the fix only works once the provider installs it.",
+        "de": "Laut den Release Notes vom 21.10. hat cPanel das interne PHP von cPanel & WHM aktualisiert (auch das hinter dem Webmailer Roundcube): Die Versionen 138.0.18, 136.0.50 und 134.0.66 enthalten PHP 8.4.27, 110.0.153 erhält zurückportierte Fixes für PHP 8.1.34. EasyApache 4 25.91 liefert die gepatchten PHP-Pakete für Kunden. Ein Schlüsselglied für kleine Firmen im Shared Hosting: Der Fix wirkt erst, wenn der Anbieter ihn einspielt."
+      },
+      "actors": [
+        "cPanel"
+      ],
+      "source_url": "https://docs.cpanel.net/release-notes/release-notes/",
+      "source_name": "cPanel & WHM Documentation — Release Notes",
+      "confidence": "confirmed",
+      "source_reliability": "A",
+      "info_credibility": 1,
+      "time_kind": "published",
+      "time_precision": "day"
+    },
+    {
+      "id": "wikimedia-services-offline",
+      "time_utc": "2026-10-21T13:41:43Z",
+      "importance": "major",
+      "title": {
+        "pl": "Wikimedia: wiki działają, ale Toolforge, Cloud VPS i Phabricator wyłączone prewencyjnie",
+        "en": "Wikimedia: wikis stay up, but Toolforge, Cloud VPS and Phabricator taken offline as a precaution",
+        "de": "Wikimedia: Wikis bleiben online, Toolforge, Cloud VPS und Phabricator vorsorglich abgeschaltet"
+      },
+      "description": {
+        "pl": "Wikimedia Foundation pisze, że stara się uniknąć przestoju wiki, ale celowo wyłączyła wiele usług wspierających do czasu bezpiecznego załatania, m.in. Toolforge i Cloud VPS dla wolontariuszy (tu właściciele narzędzi sami wybierają wersję PHP, więc przerwa może potrwać dłużej). Na listach dyskusyjnych: odcięcie sieci dla Toolforge/Cloud VPS, wyłączenie Phabricatora i wstrzymanie wdrożeń MediaWiki do końca tygodnia.",
+        "en": "The Wikimedia Foundation says it is working to avoid downtime for its wikis but has deliberately taken many supporting services offline until they can be safely patched, including Toolforge and Cloud VPS used by volunteer developers (where tool owners choose their own PHP version, so the outage may last longer). Mailing lists add: network access cut for Toolforge/Cloud VPS, Phabricator offline, and MediaWiki deployments paused for the rest of the week.",
+        "de": "Die Wikimedia Foundation versucht nach eigenen Angaben, Ausfälle der Wikis zu vermeiden, hat aber viele unterstützende Dienste bewusst vom Netz genommen, bis sie sicher gepatcht sind, darunter Toolforge und Cloud VPS für ehrenamtliche Entwickler (dort wählen Tool-Betreiber die PHP-Version selbst, der Ausfall kann daher länger dauern). Laut Mailinglisten: Netzzugang für Toolforge/Cloud VPS gesperrt, Phabricator offline, MediaWiki-Deployments für den Rest der Woche pausiert."
+      },
+      "actors": [
+        "Wikimedia Foundation"
+      ],
+      "source_url": "https://diff.wikimedia.org/2026/10/21/impact-of-php-vulnerabilities-on-wikimedia-tools-and-services/",
+      "source_name": "Wikimedia Foundation — Diff",
+      "confidence": "confirmed",
+      "source_reliability": "A",
+      "info_credibility": 1,
+      "time_kind": "published",
+      "time_precision": "second"
     }
   ],
   "actors": [
@@ -3564,6 +3657,22 @@
       "offline_reason": "precautionary",
       "verified_by": "media",
       "source_reliability": "C",
+      "info_credibility": 1
+    },
+    {
+      "site": "Toolforge · Cloud VPS · Phabricator (Wikimedia)",
+      "org": {
+        "pl": "Wikimedia Foundation",
+        "en": "Wikimedia Foundation",
+        "de": "Wikimedia Foundation"
+      },
+      "country": "US",
+      "source_url": "https://diff.wikimedia.org/2026/10/21/impact-of-php-vulnerabilities-on-wikimedia-tools-and-services/",
+      "source_name": "Wikimedia Foundation — Diff",
+      "confidence": "confirmed",
+      "offline_reason": "precautionary",
+      "verified_by": "org_statement",
+      "source_reliability": "A",
       "info_credibility": 1
     }
   ],
@@ -4944,6 +5053,26 @@
     {
       "name": "NHS England Digital — CC-4875",
       "url": "https://digital.nhs.uk/cyber-alerts/2026/cc-4875",
+      "type": "official"
+    },
+    {
+      "name": "Red Hat Security Data API (RHSA-2026:87080)",
+      "url": "https://access.redhat.com/hydra/rest/securitydata/csaf.json?cve=CVE-2026-109618",
+      "type": "official"
+    },
+    {
+      "name": "cPanel & WHM Documentation — Release Notes",
+      "url": "https://docs.cpanel.net/release-notes/release-notes/",
+      "type": "official"
+    },
+    {
+      "name": "Wikimedia Foundation — Diff",
+      "url": "https://diff.wikimedia.org/2026/10/21/impact-of-php-vulnerabilities-on-wikimedia-tools-and-services/",
+      "type": "official"
+    },
+    {
+      "name": "Wikimedia cloud-announce — Toolforge and Cloud VPS temporarily offline",
+      "url": "https://lists.wikimedia.org/hyperkitty/list/cloud-announce@lists.wikimedia.org/thread/WA6VJ2SDDVK543CTLB7UU5AOQ3TQ6UFV/",
       "type": "official"
     }
   ]

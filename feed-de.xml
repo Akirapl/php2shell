@@ -3,7 +3,7 @@
 <title>PHP2Shell — Chronik (DE)</title>
 <subtitle>Live-Chronik zu PHP2Shell (CVE-2026-109618/109619), kritische RCE im PHP-Kern (CVSS 9.2). Behoben in 8.5.12, 8.4.27, 8.3.36, 8.2.35. Jede Angabe mit Quelle.</subtitle>
 <id>https://akirapl.github.io/php2shell/feed-de.xml</id>
-<updated>2026-10-21T19:12:00Z</updated>
+<updated>2026-10-21T19:45:00Z</updated>
 <link rel="self" type="application/atom+xml" href="https://akirapl.github.io/php2shell/feed-de.xml"/>
 <link rel="alternate" type="text/html" hreflang="de" href="https://akirapl.github.io/php2shell/?lang=de"/>
 <author><name>Dawid Kulik (@Akirapl)</name><uri>https://github.com/Akirapl</uri></author>
@@ -52,6 +52,17 @@
 <category term="major"/>
 <summary type="text">Kelly Shortridge (CPO von Fastly) schreibt von „evidence of active attacks in-the-wild pre-disclosure“, ohne Daten zu veröffentlichen. Der Notabbruch-Mechanismus für Requests (zend_bailout/longjmp) kommt an vielen Stellen im Code vor, die Patches schließen also nur die gefundenen Pfade; Fastly erwartet neue Varianten „diese und nächste Woche“. Entlastend: Bekannte PoCs auf x86_64 brauchen Wissen über die konkrete Binärdatei und das Speicherlayout des Servers. Fastly kündigt eigene Telemetrie an.</summary>
 <content type="html">&lt;p&gt;Kelly Shortridge (CPO von Fastly) schreibt von „evidence of active attacks in-the-wild pre-disclosure“, ohne Daten zu veröffentlichen. Der Notabbruch-Mechanismus für Requests (zend_bailout/longjmp) kommt an vielen Stellen im Code vor, die Patches schließen also nur die gefundenen Pfade; Fastly erwartet neue Varianten „diese und nächste Woche“. Entlastend: Bekannte PoCs auf x86_64 brauchen Wissen über die konkrete Binärdatei und das Speicherlayout des Servers. Fastly kündigt eigene Telemetrie an.&lt;/p&gt;&lt;p&gt;Quelle: &lt;a href="https://www.fastly.com/blog/fastlys-proactive-protection-critical-php-rce-cve-2026-109618"&gt;Fastly blog (Kelly Shortridge)&lt;/a&gt; · gemeldet · major&lt;/p&gt;</content>
+</entry>
+<entry>
+<title>Red Hat: erstes RHSA (RHEL 8, php:7.4), Einstufung „Important“, der Rest steht noch aus</title>
+<id>tag:php2shell-live.surge.sh,2026:rhsa-2026-87080</id>
+<link rel="alternate" type="text/html" href="https://akirapl.github.io/php2shell/?lang=de#ev-rhsa-2026-87080"/>
+<link rel="related" href="https://access.redhat.com/hydra/rest/securitydata/csaf.json?cve=CVE-2026-109618"/>
+<published>2026-10-21T15:53:19Z</published>
+<updated>2026-10-21T15:53:19Z</updated>
+<category term="major"/>
+<summary type="text">Laut den Sicherheitsdaten von Red Hat behebt das Advisory RHSA-2026:87080 (Schweregrad „important“) vom 21.10., 15:53 UTC, beide CVEs im Modul-Stream php:7.4 für RHEL 8. Red Hat Security schrieb auf X (19:37 UTC), man beschleunige die Fixes und einige Updates seien bereits verfügbar. Für RHEL 9 und 10 sowie den Stream php:8.2 in RHEL 8 gab es noch kein Advisory (Stand ~19:40 UTC). Red Hat stuft die Lücken als „Important“ ein, nicht als „Critical“.</summary>
+<content type="html">&lt;p&gt;Laut den Sicherheitsdaten von Red Hat behebt das Advisory RHSA-2026:87080 (Schweregrad „important“) vom 21.10., 15:53 UTC, beide CVEs im Modul-Stream php:7.4 für RHEL 8. Red Hat Security schrieb auf X (19:37 UTC), man beschleunige die Fixes und einige Updates seien bereits verfügbar. Für RHEL 9 und 10 sowie den Stream php:8.2 in RHEL 8 gab es noch kein Advisory (Stand ~19:40 UTC). Red Hat stuft die Lücken als „Important“ ein, nicht als „Critical“.&lt;/p&gt;&lt;p&gt;Quelle: &lt;a href="https://access.redhat.com/hydra/rest/securitydata/csaf.json?cve=CVE-2026-109618"&gt;Red Hat Security Data API (RHSA-2026:87080)&lt;/a&gt; · bestätigt · major&lt;/p&gt;</content>
 </entry>
 <entry>
 <title>Automattic: WordPress.com, VIP, WP Cloud, Pressable und Tumblr bereits geschützt</title>
@@ -327,6 +338,17 @@
 <category term="major"/>
 <summary type="text">Wiz beschreibt die Zusammenarbeit mit PHP, Calif und OpenAI sowie vorbereitete Schutzmaßnahmen mit Partnern wie Cloudflare, AWS, Google und Microsoft.</summary>
 <content type="html">&lt;p&gt;Wiz beschreibt die Zusammenarbeit mit PHP, Calif und OpenAI sowie vorbereitete Schutzmaßnahmen mit Partnern wie Cloudflare, AWS, Google und Microsoft.&lt;/p&gt;&lt;p&gt;Quelle: &lt;a href="https://www.wiz.io/blog/php2shell-php-rce"&gt;Wiz Research blog&lt;/a&gt; · bestätigt · major&lt;/p&gt;</content>
+</entry>
+<entry>
+<title>Wikimedia: Wikis bleiben online, Toolforge, Cloud VPS und Phabricator vorsorglich abgeschaltet</title>
+<id>tag:php2shell-live.surge.sh,2026:wikimedia-services-offline</id>
+<link rel="alternate" type="text/html" href="https://akirapl.github.io/php2shell/?lang=de#ev-wikimedia-services-offline"/>
+<link rel="related" href="https://diff.wikimedia.org/2026/10/21/impact-of-php-vulnerabilities-on-wikimedia-tools-and-services/"/>
+<published>2026-10-21T13:41:43Z</published>
+<updated>2026-10-21T13:41:43Z</updated>
+<category term="major"/>
+<summary type="text">Die Wikimedia Foundation versucht nach eigenen Angaben, Ausfälle der Wikis zu vermeiden, hat aber viele unterstützende Dienste bewusst vom Netz genommen, bis sie sicher gepatcht sind, darunter Toolforge und Cloud VPS für ehrenamtliche Entwickler (dort wählen Tool-Betreiber die PHP-Version selbst, der Ausfall kann daher länger dauern). Laut Mailinglisten: Netzzugang für Toolforge/Cloud VPS gesperrt, Phabricator offline, MediaWiki-Deployments für den Rest der Woche pausiert.</summary>
+<content type="html">&lt;p&gt;Die Wikimedia Foundation versucht nach eigenen Angaben, Ausfälle der Wikis zu vermeiden, hat aber viele unterstützende Dienste bewusst vom Netz genommen, bis sie sicher gepatcht sind, darunter Toolforge und Cloud VPS für ehrenamtliche Entwickler (dort wählen Tool-Betreiber die PHP-Version selbst, der Ausfall kann daher länger dauern). Laut Mailinglisten: Netzzugang für Toolforge/Cloud VPS gesperrt, Phabricator offline, MediaWiki-Deployments für den Rest der Woche pausiert.&lt;/p&gt;&lt;p&gt;Quelle: &lt;a href="https://diff.wikimedia.org/2026/10/21/impact-of-php-vulnerabilities-on-wikimedia-tools-and-services/"&gt;Wikimedia Foundation — Diff&lt;/a&gt; · bestätigt · major&lt;/p&gt;</content>
 </entry>
 <entry>
 <title>Cloudflare: „PHP changes are live. Start patching.“</title>
@@ -692,6 +714,17 @@
 <content type="html">&lt;p&gt;Corelight Labs gibt an, vor der koordinierten Offenlegung mit OpenAI, PHP und anderen Organisationen zusammengearbeitet zu haben, und veröffentlichte dazu offene Netzwerkerkennungen (neun Zeek-Notice-Typen und Suricata-Regeln, darunter eine PHP-Versionsinventur aus HTTP-Headern). In der Credits-Tabelle stehen bei CVE-2026-109618 Calif, Wiz, OpenAI und Quarkslab, bei CVE-2026-109619 Wiz, Calif und OpenAI.&lt;/p&gt;&lt;p&gt;Quelle: &lt;a href="https://corelight.com/blog/php2shell-detection-before-disclosure"&gt;Corelight Labs&lt;/a&gt; · bestätigt · minor&lt;/p&gt;</content>
 </entry>
 <entry>
+<title>cPanel: Patches für Shared Hosting (EasyApache 4 25.91, internes PHP inkl. Roundcube)</title>
+<id>tag:php2shell-live.surge.sh,2026:cpanel-easyapache-2591</id>
+<link rel="alternate" type="text/html" href="https://akirapl.github.io/php2shell/?lang=de#ev-cpanel-easyapache-2591"/>
+<link rel="related" href="https://docs.cpanel.net/release-notes/release-notes/"/>
+<published>2026-10-21T00:00:00Z</published>
+<updated>2026-10-21T00:00:00Z</updated>
+<category term="major"/>
+<summary type="text">Laut den Release Notes vom 21.10. hat cPanel das interne PHP von cPanel &amp; WHM aktualisiert (auch das hinter dem Webmailer Roundcube): Die Versionen 138.0.18, 136.0.50 und 134.0.66 enthalten PHP 8.4.27, 110.0.153 erhält zurückportierte Fixes für PHP 8.1.34. EasyApache 4 25.91 liefert die gepatchten PHP-Pakete für Kunden. Ein Schlüsselglied für kleine Firmen im Shared Hosting: Der Fix wirkt erst, wenn der Anbieter ihn einspielt.</summary>
+<content type="html">&lt;p&gt;Laut den Release Notes vom 21.10. hat cPanel das interne PHP von cPanel &amp;amp; WHM aktualisiert (auch das hinter dem Webmailer Roundcube): Die Versionen 138.0.18, 136.0.50 und 134.0.66 enthalten PHP 8.4.27, 110.0.153 erhält zurückportierte Fixes für PHP 8.1.34. EasyApache 4 25.91 liefert die gepatchten PHP-Pakete für Kunden. Ein Schlüsselglied für kleine Firmen im Shared Hosting: Der Fix wirkt erst, wenn der Anbieter ihn einspielt.&lt;/p&gt;&lt;p&gt;Quelle: &lt;a href="https://docs.cpanel.net/release-notes/release-notes/"&gt;cPanel &amp;amp; WHM Documentation — Release Notes&lt;/a&gt; · bestätigt · major&lt;/p&gt;</content>
+</entry>
+<entry>
 <title>Fedora: PHP2Shell als Blocker für Fedora 45 vorgeschlagen</title>
 <id>tag:php2shell-live.surge.sh,2026:fedora-blocker</id>
 <link rel="alternate" type="text/html" href="https://akirapl.github.io/php2shell/?lang=de#ev-fedora-blocker"/>
@@ -699,8 +732,8 @@
 <published>2026-10-20T22:47:39Z</published>
 <updated>2026-10-20T22:47:39Z</updated>
 <category term="minor"/>
-<summary type="text">Das Red-Hat-Bugzilla-Ticket 2556842 verfolgt die Reaktion und wurde als Blocker für Fedora 45 final vorgeschlagen. Am 21.10. um 13:56 UTC erwähnt es erste (abgebrochene, Test-)Builds in Koji. Red Hat hat noch kein RHSA für die beiden CVEs veröffentlicht.</summary>
-<content type="html">&lt;p&gt;Das Red-Hat-Bugzilla-Ticket 2556842 verfolgt die Reaktion und wurde als Blocker für Fedora 45 final vorgeschlagen. Am 21.10. um 13:56 UTC erwähnt es erste (abgebrochene, Test-)Builds in Koji. Red Hat hat noch kein RHSA für die beiden CVEs veröffentlicht.&lt;/p&gt;&lt;p&gt;Quelle: &lt;a href="https://bugzilla.redhat.com/show_bug.cgi?id=2556842"&gt;Red Hat Bugzilla&lt;/a&gt; · bestätigt · minor&lt;/p&gt;</content>
+<summary type="text">Das Red-Hat-Bugzilla-Ticket 2556842 verfolgt die Reaktion und wurde als Blocker für Fedora 45 final vorgeschlagen. Am 21.10. um 13:56 UTC erwähnt es erste (abgebrochene, Test-)Builds in Koji. Das erste RHSA (RHSA-2026:87080, RHEL 8 php:7.4) erschien am 21.10. um 15:53 UTC; für RHEL 9/10 noch keines (Stand ~19:40 UTC).</summary>
+<content type="html">&lt;p&gt;Das Red-Hat-Bugzilla-Ticket 2556842 verfolgt die Reaktion und wurde als Blocker für Fedora 45 final vorgeschlagen. Am 21.10. um 13:56 UTC erwähnt es erste (abgebrochene, Test-)Builds in Koji. Das erste RHSA (RHSA-2026:87080, RHEL 8 php:7.4) erschien am 21.10. um 15:53 UTC; für RHEL 9/10 noch keines (Stand ~19:40 UTC).&lt;/p&gt;&lt;p&gt;Quelle: &lt;a href="https://bugzilla.redhat.com/show_bug.cgi?id=2556842"&gt;Red Hat Bugzilla&lt;/a&gt; · bestätigt · minor&lt;/p&gt;</content>
 </entry>
 <entry>
 <title>CERT.at warnt; später: Exploitcode ist aufgetaucht</title>
