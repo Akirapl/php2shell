@@ -1,6 +1,6 @@
 # Files the build and operations need that are NOT in the public repository
 
-Manifest generated 2026-10-21 ~18:45 UTC on the owner box (`stat` + `sha256sum`). Status: **Verified (2026-10-21)** for existence, size and hash at that moment.
+Manifest generated 2026-10-21 ~18:45 UTC on the owner box (`stat` + `sha256sum`). Status: **Verified (2026-10-21)** for existence, size and hash at that moment. Updated 2026-10-21 23:50 UTC for `site/build.py`, `site/template.html`, `bible/build/page-head.html` (diagram text descriptions).
 Paths are relative to the box incident root `/workspace/php-incident/` unless they start with `/`.
 None of the listed files contains a credential value (checked with a pattern scan; they reference credentials only by variable or file name).
 
@@ -8,8 +8,8 @@ None of the listed files contains a credential value (checked with a pattern sca
 
 ## A. Site generator (box-only; NOT recoverable from any public source)
 
-- `site/build.py` — 24335 B — sha256 `7948330d5ba6e327ec508e45727c5b39aa94a6c30aff73a087a03bbcc9669971` — renders index.html from template.html + data/facts.json; imports seo, info, methodology
-- `site/template.html` — 42348 B — sha256 `dcf79735184ca0abebb195f0a286b7c2ea90265bd1b92012dc3771e22f60c2b7` — live-center HTML/CSS/JS template; contains the mermaid reveal/.in fix (diagram cards rendered with class `reveal in`)
+- `site/build.py` — 28012 B — sha256 `ae4e500c548f6317023e92c28029fc6be27a2b438409ed6d349a1ead7d14abbb` — renders index.html from template.html + data/facts.json; imports seo, info, methodology
+- `site/template.html` — 44415 B — sha256 `ab56a70f50451085dcaff1a4c8df2d10ea96414206023e0b7e76d94f64061ea0` — live-center HTML/CSS/JS template; contains the mermaid reveal/.in fix (diagram cards rendered with class `reveal in`); since 2026-10-21 23:47 UTC also text equivalents for the diagram cards (role=img + aria-label, `<details class="dgtx">`, prerendered by build.py `prerender_diagrams()`)
 - `site/seo.py` — 18403 B — sha256 `5af15d61916f3ab3ce3fe889271cb0c3d6dfa2828da34135869d718b24e8297d` — meta tags, JSON-LD, feeds (feed*.xml), sitemap.xml, robots.txt
 - `site/info.py` — 18628 B — sha256 `518eb2da5ac31fe945571b12e33364b0c35d306391ace4154eab98b4cb01e92a` — info.html
 - `site/methodology.py` — 27798 B — sha256 `82381e1da1150c66fd91ead122301bbb0f77cb6b6fa6c50deeb6fd65298c51b3` — methodology.html
@@ -39,7 +39,7 @@ None of the listed files contains a credential value (checked with a pattern sca
 - `bible/build/md2html.mjs` — 3141 B — sha256 `9768f61179af92c41a8ace31c9091c0fef7383b961f0df137f32ec0965789c94` — bible/<lang>.md -> bible/<lang>.html (markdown-it 14.3.3 + markdown-it-footnote 4.0.0)
 - `bible/build/html-to-pdf.mjs` — 1612 B — sha256 `0d826aa671ee8e8afbfb3d938d9acaac8b385db28ed0e8677616bb70d66fe325` — HTML -> PDF via puppeteer-core 22.15.0 and `/usr/bin/google-chrome` (hard-coded)
 - `bible/build/render-mmd.mjs` — 3422 B — sha256 `ed5f06741b1f1347011c9459316f13f7db376da11a10cc6e85e750d895e60226` — diagrams/*.mmd -> PNG; hard-codes `/workspace/php-incident/site/vendor/mermaid.min.js`; CHROME env overrides the browser
-- `bible/build/page-head.html` — 5446 B — sha256 `1c8e2e2cfa7db762941675c67f4a76b4908210978f3fe5342c1b5c98742db718`
+- `bible/build/page-head.html` — 6136 B — sha256 `0d9661ce88b1bd54dd4d93d64a0c04d9c8bfb1e70b0bee50b2b5a81fe7c52d87`
 - `bible/build/page-script.html` — 1680 B — sha256 `956dd06078540bc462bc2437e88974604596f276b14a3cfcf8acd0b8266f92e0`
 - `bible/build/package.json` — 410 B — sha256 `e9df7d748fb75f163f4209bd4a1b3a59a72e4bfa44bea6dabf6eb556cbc542b2` — deps: @mermaid-js/mermaid-cli ^11.17.0, markdown-it ^14.3.3, markdown-it-footnote ^4.0.0, puppeteer-core ^22.15.0
 - `bible/build/package-lock.json` — 124029 B — sha256 `59821860c7439be5b491ab058af5ffbade9da1a81a3f48508e54b6b7bb1bed74`

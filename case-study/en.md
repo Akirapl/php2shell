@@ -100,6 +100,20 @@ flowchart TB
   d1 --> d2 --> d3 --> r1 --> r2 --> r3 --> r4 --> l1 --> l2 --> l3 --> l4 --> p1 --> p2 --> p3 --> p4
 ```
 
+<details>
+<summary>Text description of the diagram</summary>
+
+<p>PHP2Shell timeline: 15 events in one chronological chain, split into four phases — discovery (August 2026), remediation, leak (20 October) and patch day (21 October).</p>
+<p>Flow diagram (top to bottom): 15 events linked by arrows into one chain; the last event of each phase leads to the first event of the next. The diagram labels are in English.</p>
+<ul>
+<li><b>Discovery (August 2026):</b> 19 Aug — Wiz finds the first bug → 20–21 Aug — RCE on Drupal and WordPress → 24 Aug — report to PHP.</li>
+<li><b>Remediation:</b> 21 Sep — PHP confirms → 14 Oct — Daybreak triage blog post → 18 Oct — bailout fix commit → 19 Oct — annotated tags 8.2.35 to 8.5.12.</li>
+<li><b>Leak (20 Oct):</b> 15:20 UTC — “Tell HN” post with the CVE numbers → 18:26 — watchTowr confirms the embargo → 19:33 — PHP announces a release for Wednesday 14:00 UTC → 20:27 — php2shell video.</li>
+<li><b>Patch day (21 Oct):</b> morning — mass offline in NL, BE, FR, FI → 07:43 — Cloudflare: early attacks → 13:34 — GHSA and tarballs → 13:43 — Wiz blog post.</li>
+</ul>
+
+</details>
+
 ---
 
 ## 1. Background: PHP on the web and the request lifecycle
@@ -168,6 +182,23 @@ flowchart TB
   classDef risk fill:#3d1f1f,stroke:#f85149,color:#fff
   class ST,GL,SH risk
 ```
+
+<details>
+<summary>Text description of the diagram</summary>
+
+<p>PHP HTTP request lifecycle: client → web server → one of three SAPIs → four stages inside one PHP worker, with the shared worker-global state marked as the risk.</p>
+<p>Block diagram (top to bottom) in four layers: client, web server, SAPI (the connecting layer) and PHP engine (one worker). The diagram labels are in Polish.</p>
+<ul>
+<li><b>Client → web server:</b> a browser / HTTP client sends an HTTP request to the web server (Apache / nginx / LiteSpeed).</li>
+<li><b>Web server → SAPI:</b> the server hands the request to one of three SAPIs: mod_php inside the Apache process, PHP-FPM (worker pool) or php-cgi / CGI.</li>
+<li><b>SAPI → engine:</b> each of the three SAPIs leads to stage 1 in the PHP engine.</li>
+<li><b>Stages inside the worker, in order:</b> 1. request startup (multipart body parsing) → 2. module / executor initialisation → 3. application code → 4. request shutdown (memory release).</li>
+<li><b>Worker-global state</b> (error / session / object): a dashed line from stage 1 labelled “may write state before init” and a dashed line from stage 4 labelled “must clean up”.</li>
+<li><b>Loop:</b> an arrow from stage 4 returns to stage 1 — “next request of the same worker”.</li>
+<li><b>Highlighted in red (risk):</b> request startup, worker-global state and request shutdown.</li>
+</ul>
+
+</details>
 
 ### 1.3 Why this matters
 
@@ -311,6 +342,21 @@ flowchart LR
   F --> P
 ```
 
+<details>
+<summary>Text description of the diagram</summary>
+
+<p>Disclosure flow: private phase (discovery, report, fix, early access), embargo break (HN leak, video) and public phase (PHP announcement, release with GHSA, WAF / agencies / hosts).</p>
+<p>Flow diagram (left to right) in three groups. The diagram labels are in Polish.</p>
+<ul>
+<li><b>Private phase:</b> discovery (Wiz / Calif / OpenAI, Aug 2026) → report to PHP (24 Aug 2026) → confirmation and fix (from 21 Sep 2026) → early access (LTS distributions + partners).</li>
+<li><b>Plan:</b> from early access, a dashed line labelled “plan: 22 Oct” leads to the PHP announcement.</li>
+<li><b>Embargo break:</b> HN leak (20 Oct, 15:20 UTC) and PHP2Shell video (20 Oct, 20:27 UTC) — both lead to the PHP announcement.</li>
+<li><b>Public phase:</b> PHP announcement (20 Oct, 19:33 UTC; moved to 21 Oct, 14:00) → release + GHSA (21 Oct, ~13:34 UTC) → WAF / agencies / hosts.</li>
+<li><b>Shortcut:</b> confirmation and fix also lead directly to release + GHSA.</li>
+</ul>
+
+</details>
+
 1. **Report and remediation** (Aug–Oct 2026) — per Wiz [D][^wiz]. Commit “Avoid state corruption via bailout” on 18 Oct 2026; annotated tags on 19 Oct [P][^commit][^tags].
 2. **Early access.** php.net: “Linux distributions and LTS vendors received the patches in advance” [P][^phpadv]. Wiz lists Automattic, Akamai, AWS, Cloudflare, Fastly, Google, Imperva, Microsoft, Vercel and others for pre-day-zero mitigations [D][^wiz]. watchTowr pushed Active Defense mitigations to watchTowr Platform clients before the patch [P][^wtxad].
 3. **Embargo.** watchTowr: originally **Thursday 22 Oct, 11:00 ET** (= 15:00 UTC) [P][^wtx].
@@ -436,6 +482,21 @@ flowchart TB
   Amplify --> Defenders
   Amplify --> PHPTeam
 ```
+
+<details>
+<summary>Text description of the diagram</summary>
+
+<p>Actors map in four groups (discovery, PHP team, leak and amplification, defenders): arrows from the discoverers to the PHP team, from the PHP team to the defenders, and from the leak group to the defenders and to the PHP team.</p>
+<p>Block diagram (top to bottom): four groups of actors and the arrows between them. The diagram labels are in Polish.</p>
+<ul>
+<li><b>Discovery:</b> Wiz Research; Calif / lcfr-hax / tomash-areion; OpenAI / amyb-oai.</li>
+<li><b>PHP team:</b> Jakub Zelenka (GHSA publisher); Arnaud Le Blanc (fix author); Tovilo / Dossche / Grekas; tag release managers.</li>
+<li><b>Leak and amplification:</b> petecooper (Tell HN); watchTowr; Kevin Beaumont; Kirill Firsov (video).</li>
+<li><b>Defenders:</b> CERT-EU / BSI / NCSC / CERT.at / CERT.pl / CERT-FR; Cloudflare WAF; hosts / CMS / distributions.</li>
+<li><b>Links:</b> Wiz Research, Calif and OpenAI → PHP team; PHP team → defenders; petecooper (Tell HN) → leak and amplification group; leak and amplification → defenders; leak and amplification → PHP team.</li>
+</ul>
+
+</details>
 
 ### 8.1 Agencies
 
