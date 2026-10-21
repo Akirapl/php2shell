@@ -10,7 +10,7 @@
    "en": "CVE-2026-109618 and CVE-2026-109619: critical RCE flaws in the PHP core",
    "de": "CVE-2026-109618 und CVE-2026-109619: kritische RCE-Lücken im PHP-Kern"
   },
-  "last_updated": "2026-10-21T17:45:00Z",
+  "last_updated": "2026-10-21T18:12:00Z",
   "maintainer_note": "Single source of truth. Every fact needs source_url, source_name, confidence; texts as {pl,en,de}. Run ./update_and_build.sh \"message\".",
   "timezone_note": {
    "pl": "Wszystkie czasy w UTC. Czasy z NOS (CEST) przeliczone na UTC (−2 h).",
@@ -76,7 +76,7 @@
   "exploitation_threshold": {
    "rule": "confirmed only if CISA KEV lists a CVE or a national CERT publishes credible in-the-wild evidence",
    "kev_listed": false,
-   "kev_checked_utc": "2026-10-21T17:40:00Z",
+   "kev_checked_utc": "2026-10-21T18:10:00Z",
    "kev_catalog_version": "2026.10.21",
    "kev_url": "https://www.cisa.gov/known-exploited-vulnerabilities-catalog",
    "national_cert_itw": []
@@ -2472,6 +2472,61 @@
     "en": "time from the post https://x.com/CISACyber/status/2112947079458717969",
     "de": "Uhrzeit aus dem Post https://x.com/CISACyber/status/2112947079458717969"
    }
+  },
+  {
+   "id": "virustotal-php-footprint",
+   "time_utc": "2026-10-21T00:00:00Z",
+   "importance": "major",
+   "title": {
+    "pl": "VirusTotal: ok. 5,1 mln IP z PHP, 758 tys. na gałęziach bez wsparcia",
+    "en": "VirusTotal: about 5.1M IPs run PHP, 758K on end-of-life branches",
+    "de": "VirusTotal: rund 5,1 Mio. IPs mit PHP, 758.000 auf Zweigen ohne Support"
+   },
+   "description": {
+    "pl": "VirusTotal rozpoznaje ok. 5,1 mln adresów IP z PHP (ok. 3,8 mln z otwartym portem), ale tylko ok. 1,1 mln ujawnia wersję – mniej więcej cztery na pięć serwerów ją ukrywa. Wśród ujawniających: ok. 272 tys. na gałęziach wspieranych (8.2–8.5), ok. 758 tys. na gałęziach EOL 5.4–8.1 (sama 7.4 ok. 187 tys., 5.4 ok. 119 tys.), ok. 88 tys. na 5.2/5.3. Ok. 85 tys. IP miało dokładnie najnowsze wydania sprzed poprawki (8.5.11, 8.4.26, 8.3.35, 8.2.34). Liczby to zasięg PHP w internecie, nie potwierdzone podatne systemy; mediana siedmiu zapytań z 21.10.",
+    "en": "VirusTotal fingerprints about 5.1M IPs running PHP (about 3.8M with an open port), but only about 1.1M disclose a version – roughly four in five servers hide it. Among those that do: about 272K on supported branches (8.2–8.5), about 758K on end-of-life 5.4–8.1 (7.4 alone about 187K, 5.4 about 119K), about 88K on 5.2/5.3. About 85K IPs ran exactly the latest pre-fix releases (8.5.11, 8.4.26, 8.3.35, 8.2.34). These are PHP's internet footprint, not confirmed vulnerable systems; median of seven queries on 21 Oct.",
+    "de": "VirusTotal erkennt rund 5,1 Mio. IP-Adressen mit PHP (rund 3,8 Mio. mit offenem Port), doch nur etwa 1,1 Mio. nennen eine Version – ungefähr vier von fünf Servern verbergen sie. Unter denen, die sie nennen: etwa 272.000 auf unterstützten Zweigen (8.2–8.5), etwa 758.000 auf EOL-Zweigen 5.4–8.1 (allein 7.4 rund 187.000, 5.4 rund 119.000), etwa 88.000 auf 5.2/5.3. Rund 85.000 IPs liefen genau mit den letzten Releases vor dem Fix (8.5.11, 8.4.26, 8.3.35, 8.2.34). Das ist die PHP-Präsenz im Internet, keine bestätigt verwundbaren Systeme; Median aus sieben Abfragen am 21.10."
+   },
+   "actors": [
+    "VirusTotal"
+   ],
+   "source_url": "https://blog.virustotal.com/2026/",
+   "source_name": "VirusTotal Blog",
+   "confidence": "estimate",
+   "source_reliability": "B",
+   "info_credibility": 2,
+   "time_kind": "published",
+   "time_precision": "day"
+  },
+  {
+   "id": "talos-half-unpatchable",
+   "time_utc": "2026-10-21T15:10:00Z",
+   "importance": "major",
+   "title": {
+    "pl": "Cisco Talos: ok. 50% systemów PHP nie dostanie łatki",
+    "en": "Cisco Talos: about 50% of PHP systems will not get a patch",
+    "de": "Cisco Talos: rund 50 % der PHP-Systeme bekommen keinen Patch"
+   },
+   "description": {
+    "pl": "Talos szacuje (OSINT), że ok. połowa systemów PHP nie otrzyma poprawki, bo działa na gałęziach EOL; przypomina też, że wsparcie bezpieczeństwa PHP 8.2 kończy się 31.12.2026. Wydał sygnatury Snort 67359 i 67360 (także w Community Ruleset). Na 21.10 14:00 UTC Talos nie widział wykorzystania w praktyce. Godzina 11:10 na blogu to czas wschodni USA (ET).",
+    "en": "Talos estimates (OSINT) that about half of PHP systems will not receive a fix because they run end-of-life branches, and notes PHP 8.2 security support ends on 31 Dec 2026. It shipped Snort signatures 67359 and 67360 (also in the Community Ruleset). As of 21 Oct 14:00 UTC Talos had not seen in-the-wild exploitation. The blog's 11:10 is US Eastern time.",
+    "de": "Talos schätzt (OSINT), dass etwa die Hälfte der PHP-Systeme keinen Fix erhält, weil sie auf EOL-Zweigen laufen, und erinnert daran, dass der Sicherheitssupport für PHP 8.2 am 31.12.2026 endet. Veröffentlicht wurden die Snort-Signaturen 67359 und 67360 (auch im Community Ruleset). Stand 21.10., 14:00 UTC, sah Talos keine Ausnutzung in freier Wildbahn. Die 11:10 im Blog ist US-Ostküstenzeit."
+   },
+   "actors": [
+    "Cisco Talos"
+   ],
+   "source_url": "https://blog.talosintelligence.com/two-critical-rces-in-php-core/",
+   "source_name": "Cisco Talos",
+   "confidence": "estimate",
+   "source_reliability": "B",
+   "info_credibility": 3,
+   "time_kind": "published",
+   "time_precision": "minute",
+   "time_note": {
+    "pl": "blog: 11:10 (ET) = 15:10 UTC",
+    "en": "blog: 11:10 (ET) = 15:10 UTC",
+    "de": "Blog: 11:10 (ET) = 15:10 UTC"
+   }
   }
  ],
  "actors": [
@@ -4721,6 +4776,16 @@
    "name": "CISA alert: Critical Vulnerabilities in PHP Require Immediate Patching",
    "url": "https://www.cisa.gov/news-events/alerts/2026/10/21/critical-vulnerabilities-php-require-immediate-patching",
    "type": "agency"
+  },
+  {
+   "name": "VirusTotal Blog — PHP exposure (2026)",
+   "url": "https://blog.virustotal.com/2026/",
+   "type": "research"
+  },
+  {
+   "name": "Cisco Talos — Two critical RCEs in PHP core",
+   "url": "https://blog.talosintelligence.com/two-critical-rces-in-php-core/",
+   "type": "research"
   }
  ]
 }
