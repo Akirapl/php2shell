@@ -10,21 +10,17 @@ asof: "2026-10-21 14:05 UTC (16:05 CEST)"
 
 **A deep case study of the critical core-PHP vulnerabilities CVE-2026-109618 and CVE-2026-109619**
 
-| | |
-|---|---|
-| **Document version** | 1.0 (English adaptation of the Polish master) |
-| **As of** | 21 Oct 2026, 14:05 UTC (16:05 CEST) — about 30 minutes after the patches went public |
-| **Nature** | Defensive, historical analysis — **no** exploit code, payloads, PoCs, or attack instructions |
-| **Labels** | **[P]** primary source · **[D]** third-party report · **[?]** open / conflicting · **[A]** this document’s analysis |
-| **Time zones** | UTC; Warsaw time in parentheses. 20–21 Oct 2026: **CEST = UTC+2** |
+- **Document version:** 1.0 (English adaptation of the Polish master)
+- **As of:** 21 Oct 2026, 14:05 UTC (16:05 CEST) — about 30 minutes after the patches went public
+- **Nature:** Defensive, historical analysis — **no** exploit code, payloads, PoCs, or attack instructions
+- **Labels:** **[P]** primary source · **[D]** third-party report · **[?]** open / conflicting · **[A]** this document’s analysis
+- **Time zones:** UTC; Warsaw time in parentheses. 20–21 Oct 2026: **CEST = UTC+2**
 
 > **Editorial note.** Written on patch day. Distro packages, confirmed exploitation, and full discoverer write-ups are still settling. Every claim is footnoted; section 12 and the changelog say what would revise this picture.
 
 ## Changelog
 
-| Version | Date (UTC) | Changes |
-|---|---|---|
-| 1.0 | 2026-10-21 14:05 | First release. Sources: php.net, GHSA, the fix commit, Wiz, watchTowr, BSI, NCSC UK, NCSC-NL, CERT-EU, CERT.at, CERT Polska, CERT-FR, NOS, W3Techs, Modat, heise, SecurityWeek, Huntress, Tenable, Cloudflare, Docker PR, Ubuntu tracker, HN, Mastodon; historical comparisons (Log4Shell, Heartbleed, CVE-2024-4577, OpenSSL 3.0.7). |
+- **1.0** (2026-10-21 14:05 UTC) — First release. Sources: php.net, GHSA, the fix commit, Wiz, watchTowr, BSI, NCSC UK, NCSC-NL, CERT-EU, CERT.at, CERT Polska, CERT-FR, NOS, W3Techs, Modat, heise, SecurityWeek, Huntress, Tenable, Cloudflare, Docker PR, Ubuntu tracker, HN, Mastodon; historical comparisons (Log4Shell, Heartbleed, CVE-2024-4577, OpenSSL 3.0.7).
 
 ## Contents
 
@@ -54,21 +50,19 @@ asof: "2026-10-21 14:05 UTC (16:05 CEST)"
 
 > ### Key facts
 >
-> | Item | Value | Status |
-> |---|---|---|
-> | IDs | CVE-2026-109618 (GHSA-w8hw-w9fx-j79w), CVE-2026-109619 (GHSA-6wmf-4rv5-p3rp) | [P] |
-> | CVSS v4.0 | 9.2 · `AV:N/AC:H/AT:P/PR:N/UI:N/VC:H/VI:H/VA:H/SC:N/SI:N/SA:N` (both) | [P] |
-> | CWE | 416, 755, 824, 1325, 1419 | [P] |
-> | Impact | unauth RCE as the web worker; 619 also memory disclosure | [P] |
-> | Worst SAPI | Apache mod_php (before application code) | [P] |
-> | Fixed | 8.5.12, 8.4.27, 8.3.36, 8.2.35; minimal source backports for 7.4/8.0/8.1 | [P] |
-> | Publication | GHSA 13:34 UTC; 8.5.12 tarball `Last-Modified` 13:33:59 GMT | [P] |
-> | Original embargo | 22 Oct 2026 11:00 ET (15:00 UTC) | [P] |
-> | GHSA credits | sagitzadik-wiz, tomash-areion, lcfr-hax, amyb-oai | [P] |
-> | Fix | Arnaud Le Blanc (+ Tovilo, Zelenka, Dossche, Grekas); +11,556/−1,017 across 300 files | [P] |
-> | PHP share | 69.3% of sites with a known server-side language (W3Techs 21 Oct) | [P] |
-> | Exposure | 4.38M PHP services / 1.89M hosts; ~79% EOL (Modat 20 Oct) | [D] |
-> | Complete fix | update only | [P] |
+> - **IDs:** CVE-2026-109618 (GHSA-w8hw-w9fx-j79w), CVE-2026-109619 (GHSA-6wmf-4rv5-p3rp) [P]
+> - **CVSS v4.0:** 9.2 · `AV:N/AC:H/AT:P/PR:N/UI:N/VC:H/VI:H/VA:H/SC:N/SI:N/SA:N` (both) [P]
+> - **CWE:** 416, 755, 824, 1325, 1419 [P]
+> - **Impact:** unauth RCE as the web worker; 619 also memory disclosure [P]
+> - **Worst SAPI:** Apache mod_php (before application code) [P]
+> - **Fixed:** 8.5.12, 8.4.27, 8.3.36, 8.2.35; minimal source backports for 7.4/8.0/8.1 [P]
+> - **Publication:** GHSA 13:34 UTC; 8.5.12 tarball `Last-Modified` 13:33:59 GMT [P]
+> - **Original embargo:** 22 Oct 2026 11:00 ET (15:00 UTC) [P]
+> - **GHSA credits:** sagitzadik-wiz, tomash-areion, lcfr-hax, amyb-oai [P]
+> - **Fix:** Arnaud Le Blanc (+ Tovilo, Zelenka, Dossche, Grekas); +11,556/−1,017 across 300 files [P]
+> - **PHP share:** 69.3% of sites with a known server-side language (W3Techs 21 Oct) [P]
+> - **Exposure:** 4.38M PHP services / 1.89M hosts; ~79% EOL (Modat 20 Oct) [D]
+> - **Complete fix:** update only [P]
 
 **What is new here** [A]: (1) a bug in the *runtime*, not the app; (2) AI in discovery and — researchers say — in making exploitation practical; (3) an embargo leak that became a ~22-hour race; (4) precautionary public-site takedowns in several EU countries before a patch existed.
 
@@ -88,13 +82,21 @@ Rasmus Lerdorf created PHP; the first version shipped in 1995 [D][^nos]. Per W3T
 
 PHP is usually embedded in a web server or run as a pool of workers. The glue is called a **SAPI** (Server API).
 
-| SAPI | How it works | Why it matters for PHP2Shell |
-|---|---|---|
-| **Apache mod_php** | PHP inside Apache processes (typically prefork: many processes, each handling requests in sequence). | Worst case: request shutdown always runs, even when startup failed [P][^ghsa618]. |
-| **PHP-FPM** | Separate PHP pool; nginx/Apache via FastCGI. | On failed startup FPM kills the child — breaks the simplest path; others remain [P][^ghsa618][^ghsa619]. |
-| **CGI / php-cgi** | Classically one process per request (or FastCGI). | Listed as affected [P][^phpadv]. |
-| **FrankenPHP** | Modern PHP application server. | Source analysis: likely mod_php-like on shutdown [P][^ghsa618]. |
-| **LiteSpeed LSAPI** | FPM-like model. | App-specific paths “likely, unvalidated” [P][^ghsa618]. |
+- **Apache mod_php**
+  - *How it works:* PHP inside Apache processes (typically prefork: many processes, each handling requests in sequence).
+  - *Why it matters for PHP2Shell:* Worst case: request shutdown always runs, even when startup failed [P][^ghsa618].
+- **PHP-FPM**
+  - *How it works:* Separate PHP pool; nginx/Apache via FastCGI.
+  - *Why it matters for PHP2Shell:* On failed startup FPM kills the child — breaks the simplest path; others remain [P][^ghsa618][^ghsa619].
+- **CGI / php-cgi**
+  - *How it works:* Classically one process per request (or FastCGI).
+  - *Why it matters for PHP2Shell:* Listed as affected [P][^phpadv].
+- **FrankenPHP**
+  - *How it works:* Modern PHP application server.
+  - *Why it matters for PHP2Shell:* Source analysis: likely mod_php-like on shutdown [P][^ghsa618].
+- **LiteSpeed LSAPI**
+  - *How it works:* FPM-like model.
+  - *Why it matters for PHP2Shell:* App-specific paths “likely, unvalidated” [P][^ghsa618].
 
 **Analogy** [A]: a PHP worker is a clerk’s desk. Each request is a case file. After the case, every folder must be put away. If the lights go out in a panic (OOM / fatal), a sticky note with a folder address may remain for a folder that was already shredded. The next visitor — same desk — treats that address as live. That is “stale global state” and “OOM corruption”.
 
@@ -231,14 +233,14 @@ Process criticism (Beaumont and others): early access “sold” as intel by cyb
 
 ### 5.1 What leaked, when and where
 
-| Time (UTC) | Event | Status |
-|---|---|---|
-| 20 Oct 15:20 | “Tell HN: 2x PHP RCE CVEs with CVSS 10.0 Incoming” (petecooper) — CVE numbers, “22 October 2026 at 18:00 CEST”; later deleted | [P][^hnleak] |
-| 20 Oct 16:39 | Kevin Beaumont (Mastodon): leak of the CVE numbers | [P][^beaumont] |
-| 20 Oct 18:26 | watchTowr: “supposed to wait until Thursday 11am ET… We can confirm that they're real.” | [P][^wtx] |
-| 20 Oct 19:33 | Official PHP announcement | [P][^announce] |
-| 20 Oct 20:27 | Kirill Firsov: “php2shell” video (~1.7M views); tool banner “PHP2SHELL — PHP >= 5.4.0 RCE by Calif.IO” (Dormann screenshots) | [P][^firsov][^dormann] |
-| 21 Oct 00:30 | J4ck3LSyN claims a “reproduction”; later retracts the main RCE path | [P/D][^jackal] |
+*Times in UTC.*
+
+- **20 Oct 15:20** — “Tell HN: 2x PHP RCE CVEs with CVSS 10.0 Incoming” (petecooper) — CVE numbers, “22 October 2026 at 18:00 CEST”; later deleted [P][^hnleak]
+- **20 Oct 16:39** — Kevin Beaumont (Mastodon): leak of the CVE numbers [P][^beaumont]
+- **20 Oct 18:26** — watchTowr: “supposed to wait until Thursday 11am ET… We can confirm that they're real.” [P][^wtx]
+- **20 Oct 19:33** — Official PHP announcement [P][^announce]
+- **20 Oct 20:27** — Kirill Firsov: “php2shell” video (~1.7M views); tool banner “PHP2SHELL — PHP >= 5.4.0 RCE by Calif.IO” (Dormann screenshots) [P][^firsov][^dormann]
+- **21 Oct 00:30** — J4ck3LSyN claims a “reproduction”; later retracts the main RCE path [P/D][^jackal]
 
 HN commenter “bwoebi” (identity unverified): the video was why the announcement happened “at that moment” [D][^bwoebi].
 
@@ -267,14 +269,14 @@ Commit `31c0ea7` “Avoid state corruption via bailout”: **+11,556 / −1,017*
 
 ### 6.3 “Patch released” ≠ “patched”
 
-| Channel | State ~14:00 UTC 21 Oct | Status |
-|---|---|---|
-| php.net source / Windows binaries | available | [P][^phpadv] |
-| Docker official `library/php` | PR #1694 opened 13:44; after merge still official-images + builds | [P][^docker] |
-| Remi (`rpms.remirepo.net`) | **no update “today”** — PHP Foundation warning | [P][^phpadv] |
-| Ubuntu tracker | CVE entries, “Needs evaluation” on many releases | [P][^ubuntu] |
-| Debian/RHEL packages | in progress / not verified in this research | [?] |
-| Shared hosting | depends on the host (heise: Uberspace planned a temporary PHP shutdown) | [D][^heise] |
+*State ~14:00 UTC 21 Oct:*
+
+- **php.net source / Windows binaries** — available [P][^phpadv]
+- **Docker official `library/php`** — PR #1694 opened 13:44; after merge still official-images + builds [P][^docker]
+- **Remi (`rpms.remirepo.net`)** — **no update “today”** — PHP Foundation warning [P][^phpadv]
+- **Ubuntu tracker** — CVE entries, “Needs evaluation” on many releases [P][^ubuntu]
+- **Debian/RHEL packages** — in progress / not verified in this research [?]
+- **Shared hosting** — depends on the host (heise: Uberspace planned a temporary PHP shutdown) [D][^heise]
 
 Until workers run binaries that include the fix, the system is vulnerable — press release notwithstanding [A].
 
@@ -294,15 +296,13 @@ Without recipes [A]: given a large public diff (here: hundreds of files around O
 
 ### 7.3 Exploitation telemetry (conflicting)
 
-| Source | Claim | Status |
-|---|---|---|
-| Cloudflare Knecht 07:43 UTC | “early attacks emerging”; WAF stopgap | [P][^knecht] |
-| Huntress (20 Oct) | none in partner environments | [P][^huntress] |
-| watchTowr FAQ | no ITW (as of their FAQ) | [P][^wtxfaq] |
-| NCSC-NL / BSI v1.0 | no confirmed abuse / keine bestätigten Ausnutzungen | [P][^ncscnl][^bsipdf] |
-| PHP Foundation → ANP | no indication of active abuse | [D][^nos] |
-| Patchstack (NBC), Hadrian, Firsov | “active” / “at scale” / “in the wild” | [D] without IoCs |
-| CISA KEV | no entry (research ~13:46 UTC) | [P][^kev] |
+- **Cloudflare Knecht 07:43 UTC** — “early attacks emerging”; WAF stopgap [P][^knecht]
+- **Huntress (20 Oct)** — none in partner environments [P][^huntress]
+- **watchTowr FAQ** — no ITW (as of their FAQ) [P][^wtxfaq]
+- **NCSC-NL / BSI v1.0** — no confirmed abuse / keine bestätigten Ausnutzungen [P][^ncscnl][^bsipdf]
+- **PHP Foundation → ANP** — no indication of active abuse [D][^nos]
+- **Patchstack (NBC), Hadrian, Firsov** — “active” / “at scale” / “in the wild” [D] without IoCs
+- **CISA KEV** — no entry (research ~13:46 UTC) [P][^kev]
 
 **Takeaway [A]:** settling “is it ITW?” needs IoCs from large sensors or a KEV listing — messaging still conflicts.
 
@@ -314,18 +314,16 @@ Without recipes [A]: given a large public diff (here: hundreds of files around O
 
 ### 8.1 Agencies
 
-| Body | Message | Status |
-|---|---|---|
-| **CERT-EU 2026-018** | Patch ASAP or isolate; “all from PHP 5”; CVSS → unauth RCE | [P][^certeu] |
-| **BSI** | BITS-H Orange/3 + Caspers press: “großflächige Ausnutzung innerhalb weniger Stunden”; AI speeds reversing | [P][^bsipdf][^bsipresse] |
-| **CERT-Bund** | WID-SEC-2026-4055 (content behind login — unread here) | [P/?] |
-| **NCSC UK** | Identify PHP; patch; harden; consider offline; inventory bundled PHP | [P][^ncscuk] |
-| **NCSC-NL** | Advisory; ncsc.nl offline; NCSC-NL/php2shell product list; no active abuse seen | [P][^ncscnl] |
-| **CERT.at** | Update #1: exploit code online, functionality unconfirmed | [P][^certat] |
-| **CERT Polska 195/2026** | Inventory; consider taking internet-facing PHP offline | [P][^certpl] |
-| **CERT-FR ALE-014** | upload_progress/multipart workarounds **not qualified** | [P][^certfr] |
-| **ACSC / IPA** | Alerts (ACSC fetch 500 from this environment) | [D] |
-| **CISA** | No KEV for PHP2Shell at research time | [P][^kev] |
+- **CERT-EU 2026-018** — Patch ASAP or isolate; “all from PHP 5”; CVSS → unauth RCE [P][^certeu]
+- **BSI** — BITS-H Orange/3 + Caspers press: “großflächige Ausnutzung innerhalb weniger Stunden”; AI speeds reversing [P][^bsipdf][^bsipresse]
+- **CERT-Bund** — WID-SEC-2026-4055 (content behind login — unread here) [P/?]
+- **NCSC UK** — Identify PHP; patch; harden; consider offline; inventory bundled PHP [P][^ncscuk]
+- **NCSC-NL** — Advisory; ncsc.nl offline; NCSC-NL/php2shell product list; no active abuse seen [P][^ncscnl]
+- **CERT.at** — Update #1: exploit code online, functionality unconfirmed [P][^certat]
+- **CERT Polska 195/2026** — Inventory; consider taking internet-facing PHP offline [P][^certpl]
+- **CERT-FR ALE-014** — upload_progress/multipart workarounds **not qualified** [P][^certfr]
+- **ACSC / IPA** — Alerts (ACSC fetch 500 from this environment) [D]
+- **CISA** — No KEV for PHP2Shell at research time [P][^kev]
 
 ### 8.2 WAFs, hosts, CMSes
 
@@ -362,12 +360,18 @@ NOS/NU and the NCSC-NL notice document precautionary offline for DigiD.nl (site;
 
 ## 10. Historical comparison
 
-| Incident | Similarities | Pace / differences | Sources |
-|---|---|---|---|
-| **Log4Shell** (CVE-2021-44228), Dec 2021 | Mass exposure of an “invisible” dependency; WAF stopgap; meme name | Cloudflare: probes 9 days before disclosure; exploits **9 minutes** after; Check Point: **>800k** attacks / 72 h | [P][^cflog4][^cplog4] |
-| **Heartbleed**, Apr 2014 | Critical bug in Internet foundations; early notify of selected parties | Google/Cloudflare knew before public; CRA Canada: ~900 SINs | [P][^heartbleed] |
-| **PHP-CGI CVE-2024-4577**, Jun 2024 | RCE in PHP; rapid weaponization | Akamai: exploitation **within 24 h**; Imperva: TellYouThePass **<48 h** | [P][^akamai4577][^imperva4577] |
-| **OpenSSL 3.0.7 pre-announce**, Oct–Nov 2022 | Public CRITICAL notice before details | After prenotification **downgraded** to HIGH | [P][^openssl307] |
+- **Log4Shell** (CVE-2021-44228), Dec 2021 [P][^cflog4][^cplog4]
+  - *Similarities:* Mass exposure of an “invisible” dependency; WAF stopgap; meme name
+  - *Pace / differences:* Cloudflare: probes 9 days before disclosure; exploits **9 minutes** after; Check Point: **>800k** attacks / 72 h
+- **Heartbleed**, Apr 2014 [P][^heartbleed]
+  - *Similarities:* Critical bug in Internet foundations; early notify of selected parties
+  - *Pace / differences:* Google/Cloudflare knew before public; CRA Canada: ~900 SINs
+- **PHP-CGI CVE-2024-4577**, Jun 2024 [P][^akamai4577][^imperva4577]
+  - *Similarities:* RCE in PHP; rapid weaponization
+  - *Pace / differences:* Akamai: exploitation **within 24 h**; Imperva: TellYouThePass **<48 h**
+- **OpenSSL 3.0.7 pre-announce**, Oct–Nov 2022 [P][^openssl307]
+  - *Similarities:* Public CRITICAL notice before details
+  - *Pace / differences:* After prenotification **downgraded** to HIGH
 
 **24–72 h pattern [A]:** after a public patch expect (1) mass scanning, (2) PoCs within hours, (3) ransomware/bots within 1–2 days if RCE is credible. With AI, BSI and Sansec assume **hours**, not days [P/D][^bsipresse][^sansec].
 
@@ -409,31 +413,31 @@ Separate official CVSS 9.2 from “CVSS 10” rumors; CDN “early attacks” fr
 
 ## Appendix A: Full timeline
 
-| UTC | Warsaw (CEST) | Event | Status |
-|---|---|---|---|
-| 2026-05-01 | — | Calif: “MAD Bugs” (separate UAF) | [P] |
-| 2026-08-19…24 | — | Wiz: discover → RCE Drupal/WP → report | [D] |
-| 2026-09-21 | — | PHP starts coordinated fix | [D] |
-| 2026-10-14 | — | PHP Foundation blog (Daybreak Red) | [P] |
-| 2026-10-18 15:46 | 17:46 | Bailout-fix commit | [P] |
-| 2026-10-19 07:30–17:04 | 09:30–19:04 | Annotated release tags | [P] |
-| 2026-10-20 15:20 | 17:20 | Tell HN — CVE leak | [P] |
-| 2026-10-20 16:39 | 18:39 | Beaumont | [P] |
-| 2026-10-20 18:26 | 20:26 | watchTowr — embargo Thursday 11am ET | [P] |
-| 2026-10-20 19:33 | 21:33 | PHP ANNOUNCE — Wed 14:00 UTC | [P] |
-| 2026-10-20 19:35 | 21:35 | watchTowr FAQ | [P] |
-| 2026-10-20 20:27 | 22:27 | php2shell video | [P] |
-| 2026-10-20 20:33 | (page timezone ambiguous) | CERT-EU 2026-018 | [P/?] |
-| 2026-10-20 21:20 | 23:20 | CERT.at warning | [P] |
-| 2026-10-21 02:13 | 04:13 | Girgias: only mitigation is patching | [P] |
-| 2026-10-21 07:43 | 09:43 | Knecht: early attacks + WAF | [P] |
-| 2026-10-21 morning–noon | — | Mass offline NL/BE/FR/FI | [P] |
-| 2026-10-21 11:59 | 13:59 | NCSC-NL notice | [P] |
-| 2026-10-21 13:33:59 | 15:33:59 | 8.5.12 tarball Last-Modified | [P] |
-| 2026-10-21 13:34 | 15:34 | Both GHSA published | [P] |
-| 2026-10-21 ~13:35 | ~15:35 | php.net advisory | [P] |
-| 2026-10-21 13:43 | 15:43 | Wiz blog | [P] |
-| 2026-10-21 13:44 | 15:44 | Docker PR #1694 | [P] |
+*Times in UTC; Warsaw time (CEST) in brackets.*
+
+- **2026-05-01** — Calif: “MAD Bugs” (separate UAF) [P]
+- **2026-08-19…24** — Wiz: discover → RCE Drupal/WP → report [D]
+- **2026-09-21** — PHP starts coordinated fix [D]
+- **2026-10-14** — PHP Foundation blog (Daybreak Red) [P]
+- **2026-10-18 15:46** (17:46) — Bailout-fix commit [P]
+- **2026-10-19 07:30–17:04** (09:30–19:04) — Annotated release tags [P]
+- **2026-10-20 15:20** (17:20) — Tell HN — CVE leak [P]
+- **2026-10-20 16:39** (18:39) — Beaumont [P]
+- **2026-10-20 18:26** (20:26) — watchTowr — embargo Thursday 11am ET [P]
+- **2026-10-20 19:33** (21:33) — PHP ANNOUNCE — Wed 14:00 UTC [P]
+- **2026-10-20 19:35** (21:35) — watchTowr FAQ [P]
+- **2026-10-20 20:27** (22:27) — php2shell video [P]
+- **2026-10-20 20:33** (page timezone ambiguous) — CERT-EU 2026-018 [P/?]
+- **2026-10-20 21:20** (23:20) — CERT.at warning [P]
+- **2026-10-21 02:13** (04:13) — Girgias: only mitigation is patching [P]
+- **2026-10-21 07:43** (09:43) — Knecht: early attacks + WAF [P]
+- **2026-10-21 morning–noon** — Mass offline NL/BE/FR/FI [P]
+- **2026-10-21 11:59** (13:59) — NCSC-NL notice [P]
+- **2026-10-21 13:33:59** (15:33:59) — 8.5.12 tarball Last-Modified [P]
+- **2026-10-21 13:34** (15:34) — Both GHSA published [P]
+- **2026-10-21 ~13:35** (~15:35) — php.net advisory [P]
+- **2026-10-21 13:43** (15:43) — Wiz blog [P]
+- **2026-10-21 13:44** (15:44) — Docker PR #1694 [P]
 
 ---
 
