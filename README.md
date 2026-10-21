@@ -12,9 +12,10 @@ Unabhängiges, nicht-kommerzielles Projekt von [@Akirapl](https://github.com/Aki
 
 ## Polski
 
-To repozytorium trzyma obronne studium przypadku PHP2Shell oraz dane, na których działa centrum na żywo. Tekst jest źródłowy: każde twierdzenie w studium ma przypis, a każdy fakt w zbiorze danych ma adres źródła i poziom pewności.
+To repozytorium trzyma obronne studium przypadku PHP2Shell oraz dane, na których działa centrum na żywo. Tekst jest źródłowy: każde twierdzenie w studium ma przypis, a każdy fakt w zbiorze danych ma adres źródła i poziom pewności. Istotne twierdzenia są też w [rejestrze dowodów](case-study/evidence-ledger.jsonl) (identyfikatory CLM-…) z miejscem w źródle pierwotnym i statusem weryfikacji.
 
 - Studium: [polski](case-study/pl.md) · [English](case-study/en.md) · [Deutsch](case-study/de.md)
+- Rejestr dowodów (CLM-…): [evidence-ledger.jsonl](case-study/evidence-ledger.jsonl) · [CSV](case-study/evidence-ledger.csv)
 - Diagramy (PNG i źródła Mermaid): [case-study/diagrams/](case-study/diagrams/)
 - Centrum na żywo: <https://akirapl.github.io/php2shell/>
 - Dane centrum na żywo: [data/facts.json](data/facts.json)
@@ -34,9 +35,10 @@ Kod pozostaje na licencji MIT ([LICENSE](LICENSE)). Tekst studium, diagramy i da
 
 ## English
 
-This repository holds a sourced, defensive case study of the PHP2Shell incident and the dataset behind the live center. Every claim in the study is footnoted. Every fact in the dataset carries a source URL and a confidence level.
+This repository holds a sourced, defensive case study of the PHP2Shell incident and the dataset behind the live center. Every claim in the study is footnoted. Every fact in the dataset carries a source URL and a confidence level. Significant claims are also tracked in the [evidence ledger](case-study/evidence-ledger.jsonl) (CLM-IDs) with primary-source locus and verification status.
 
 - Case study: [Polish](case-study/pl.md) · [English](case-study/en.md) · [German](case-study/de.md)
+- Evidence ledger (CLM-…): [evidence-ledger.jsonl](case-study/evidence-ledger.jsonl) · [CSV](case-study/evidence-ledger.csv)
 - Diagrams (PNG renders and Mermaid sources): [case-study/diagrams/](case-study/diagrams/)
 - Live center: <https://akirapl.github.io/php2shell/>
 - Live-center data: [data/facts.json](data/facts.json)
@@ -56,9 +58,10 @@ Any code stays under the MIT License ([LICENSE](LICENSE)). The case-study text, 
 
 ## Deutsch
 
-Dieses Repository enthält eine quellengestützte, defensive Fallstudie zum PHP2Shell-Vorfall und den Datensatz hinter dem Live-Center. Jede Aussage in der Studie ist belegt. Jeder Fakt im Datensatz trägt eine Quellen-URL und eine Vertrauensstufe.
+Dieses Repository enthält eine quellengestützte, defensive Fallstudie zum PHP2Shell-Vorfall und den Datensatz hinter dem Live-Center. Jede Aussage in der Studie ist belegt. Jeder Fakt im Datensatz trägt eine Quellen-URL und eine Vertrauensstufe. Wesentliche Aussagen stehen zusätzlich im [Evidence Ledger](case-study/evidence-ledger.jsonl) (CLM-IDs) mit Fundstelle in der Primärquelle und Prüfstatus.
 
 - Fallstudie: [Polnisch](case-study/pl.md) · [English](case-study/en.md) · [Deutsch](case-study/de.md)
+- Evidence Ledger (CLM-…): [evidence-ledger.jsonl](case-study/evidence-ledger.jsonl) · [CSV](case-study/evidence-ledger.csv)
 - Diagramme (PNG und Mermaid-Quellen): [case-study/diagrams/](case-study/diagrams/)
 - Live-Center: <https://akirapl.github.io/php2shell/>
 - Daten des Live-Centers: [data/facts.json](data/facts.json)
