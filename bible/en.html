@@ -37,6 +37,12 @@ code, pre { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospac
 code { background: var(--bg3); padding: 1px 5px; border-radius: 4px; }
 pre { background: var(--bg3); padding: 14px; border-radius: 8px; overflow-x: auto; }
 img { max-width: 100%; height: auto; border-radius: 8px; border: 1px solid var(--border); margin: 1em 0; background: #0b0f17; }
+/* diagrams: figure + on-demand text description (a11y / LLM-readable) */
+figure.diagram { margin: 1.4em 0; } figure.diagram img { margin: 0 0 .3em; }
+figure.diagram figcaption { font-style: italic; color: var(--muted); font-size: 14px; }
+details.dgtx { margin-top: .6em; padding: 8px 12px; background: var(--bg2); border: 1px solid var(--border); border-radius: 8px; font-size: 15px; overflow-wrap: anywhere; }
+details.dgtx summary { cursor: pointer; color: var(--link); font-weight: 600; } details.dgtx ul { padding-left: 1.2em; } details.dgtx li { margin: .3em 0; }
+details.dgsrc summary { color: var(--muted); font-weight: 400; font-size: 13px; } details.dgsrc pre { font-size: 12px; }
 .footnotes { margin-top: 3em; padding-top: 1em; border-top: 1px solid var(--border); font-size: 13px; color: var(--muted); }
 .fn-pop { position: absolute; z-index: 50; max-width: 340px; padding: 10px 12px;
   background: #1c2128; border: 1px solid var(--border); border-radius: 8px;
@@ -248,7 +254,45 @@ main,article{min-width:0;overflow-wrap:anywhere}
 <p><em>Ledger: key facts = CLM-0001…CLM-0014; exploitation status = CLM-0054…CLM-0065.</em></p>
 </blockquote>
 <p><strong>What is new here</strong> [A]: (1) a bug in the <em>runtime</em>, not the app; (2) AI in discovery and — researchers say — in making exploitation practical; (3) an embargo leak that became a ~22-hour race; (4) precautionary public-site takedowns in several EU countries before a patch existed.</p>
-<p><img src="diagrams/timeline.png" alt="Timeline" /></p>
+<figure class="diagram" id="dg-timeline">
+<img src="diagrams/timeline.png" alt="PHP2Shell timeline: 15 events in one chronological chain, split into four phases — discovery (August 2026), remediation, leak (20 October) and patch day (21 October).">
+<figcaption>Timeline</figcaption>
+<details class="dgtx"><summary>Text description of the diagram</summary>
+<p>PHP2Shell timeline: 15 events in one chronological chain, split into four phases — discovery (August 2026), remediation, leak (20 October) and patch day (21 October).</p>
+<p>Flow diagram (top to bottom): 15 events linked by arrows into one chain; the last event of each phase leads to the first event of the next. The diagram labels are in English.</p>
+<ul>
+<li><b>Discovery (August 2026):</b> 19 Aug — Wiz finds the first bug → 20–21 Aug — RCE on Drupal and WordPress → 24 Aug — report to PHP.</li>
+<li><b>Remediation:</b> 21 Sep — PHP confirms → 14 Oct — Daybreak triage blog post → 18 Oct — bailout fix commit → 19 Oct — annotated tags 8.2.35 to 8.5.12.</li>
+<li><b>Leak (20 Oct):</b> 15:20 UTC — “Tell HN” post with the CVE numbers → 18:26 — watchTowr confirms the embargo → 19:33 — PHP announces a release for Wednesday 14:00 UTC → 20:27 — php2shell video.</li>
+<li><b>Patch day (21 Oct):</b> morning — mass offline in NL, BE, FR, FI → 07:43 — Cloudflare: early attacks → 13:34 — GHSA and tarballs → 13:43 — Wiz blog post.</li>
+</ul>
+<details class="dgsrc"><summary>Mermaid source</summary><pre><code class="language-mermaid">flowchart TB
+  subgraph D[Discovery Aug 2026]
+    d1[19 Aug: Wiz first bug]
+    d2[20-21 Aug: RCE Drupal and WordPress]
+    d3[24 Aug: Report to PHP]
+  end
+  subgraph R[Remediation]
+    r1[21 Sep: PHP confirms]
+    r2[14 Oct: Daybreak triage blog]
+    r3[18 Oct: Bailout fix commit]
+    r4[19 Oct: Annotated tags 8.2.35 to 8.5.12]
+  end
+  subgraph L[Leak 20 Oct]
+    l1[15:20 UTC: Tell HN CVE numbers]
+    l2[18:26: watchTowr confirms embargo]
+    l3[19:33: PHP announce Wed 14:00 UTC]
+    l4[20:27: php2shell video]
+  end
+  subgraph P[Patch day 21 Oct]
+    p1[Morning: mass offline NL BE FR FI]
+    p2[07:43: Cloudflare early attacks]
+    p3[13:34: GHSA and tarballs]
+    p4[13:43: Wiz blog]
+  end
+  d1 --&gt; d2 --&gt; d3 --&gt; r1 --&gt; r2 --&gt; r3 --&gt; r4 --&gt; l1 --&gt; l2 --&gt; l3 --&gt; l4 --&gt; p1 --&gt; p2 --&gt; p3 --&gt; p4</code></pre></details>
+</details>
+</figure>
 <hr />
 <h2 id="1-background-php-on-the-web-and-the-request-lifecycle">1. Background: PHP on the web and the request lifecycle</h2>
 <h3 id="11-how-large-php-is">1.1 How large PHP is</h3>
@@ -289,7 +333,55 @@ main,article{min-width:0;overflow-wrap:anywhere}
 </li>
 </ul>
 <p><strong>Analogy</strong> [A]: a PHP worker is a clerk’s desk. Each request is a case file. After the case, every folder must be put away. If the lights go out in a panic (OOM / fatal), a sticky note with a folder address may remain for a folder that was already shredded. The next visitor — same desk — treats that address as live. That is “stale global state” and “OOM corruption”.</p>
-<p><img src="diagrams/lifecycle.png" alt="Request lifecycle" /></p>
+<figure class="diagram" id="dg-lifecycle">
+<img src="diagrams/lifecycle.png" alt="PHP HTTP request lifecycle: client → web server → one of three SAPIs → four stages inside one PHP worker, with the shared worker-global state marked as the risk.">
+<figcaption>Request lifecycle</figcaption>
+<details class="dgtx"><summary>Text description of the diagram</summary>
+<p>PHP HTTP request lifecycle: client → web server → one of three SAPIs → four stages inside one PHP worker, with the shared worker-global state marked as the risk.</p>
+<p>Block diagram (top to bottom) in four layers: client, web server, SAPI (the connecting layer) and PHP engine (one worker). The diagram labels are in Polish.</p>
+<ul>
+<li><b>Client → web server:</b> a browser / HTTP client sends an HTTP request to the web server (Apache / nginx / LiteSpeed).</li>
+<li><b>Web server → SAPI:</b> the server hands the request to one of three SAPIs: mod_php inside the Apache process, PHP-FPM (worker pool) or php-cgi / CGI.</li>
+<li><b>SAPI → engine:</b> each of the three SAPIs leads to stage 1 in the PHP engine.</li>
+<li><b>Stages inside the worker, in order:</b> 1. request startup (multipart body parsing) → 2. module / executor initialisation → 3. application code → 4. request shutdown (memory release).</li>
+<li><b>Worker-global state</b> (error / session / object): a dashed line from stage 1 labelled “may write state before init” and a dashed line from stage 4 labelled “must clean up”.</li>
+<li><b>Loop:</b> an arrow from stage 4 returns to stage 1 — “next request of the same worker”.</li>
+<li><b>Highlighted in red (risk):</b> request startup, worker-global state and request shutdown.</li>
+</ul>
+<details class="dgsrc"><summary>Mermaid source</summary><pre><code class="language-mermaid">flowchart TB
+  subgraph Client
+    B[Przeglądarka / klient HTTP]
+  end
+  subgraph WebServer[Serwer WWW]
+    WS[Apache / nginx / LiteSpeed]
+  end
+  subgraph SAPI[SAPI — warstwa łącząca]
+    MP[mod_php w procesie Apache]
+    FPM[PHP-FPM — pula workerów]
+    CGI[php-cgi / CGI]
+  end
+  subgraph Engine[Silnik PHP — jeden worker]
+    ST[1. Start żądania&lt;br/&gt;parsowanie ciała multipart]
+    IN[2. Inicjalizacja modułów / executor]
+    APP[3. Kod aplikacji]
+    SH[4. Shutdown żądania&lt;br/&gt;zwalnianie pamięci]
+    GL[(Stan globalny workera&lt;br/&gt;error / session / object)]
+  end
+  B --&gt;|HTTP| WS
+  WS --&gt; MP
+  WS --&gt; FPM
+  WS --&gt; CGI
+  MP --&gt; ST
+  FPM --&gt; ST
+  CGI --&gt; ST
+  ST --&gt; IN --&gt; APP --&gt; SH
+  ST -.-&gt;|może zapisać stan przed init| GL
+  SH -.-&gt;|musi wyczyścić| GL
+  SH --&gt;|kolejne żądanie tego samego workera| ST
+  classDef risk fill:#3d1f1f,stroke:#f85149,color:#fff
+  class ST,GL,SH risk</code></pre></details>
+</details>
+</figure>
 <h3 id="13-why-this-matters">1.3 Why this matters</h3>
 <p>Most critical PHP-ecosystem bugs live in <em>applications</em>. Here the bug is in the <strong>engine</strong> [P]<sup class="footnote-ref"><a href="#fn3" id="fnref3:3">[3:3]</a></sup>. A “Hello World” app on an affected version is still exposed [D]<sup class="footnote-ref"><a href="#fn4" id="fnref4:3">[4:3]</a></sup>. Inventory must cover CMSes, control panels, appliances with PHP in firmware, and hidden <code>php.exe</code> binaries [D]<sup class="footnote-ref"><a href="#fn11" id="fnref11">[11]</a></sup><sup class="footnote-ref"><a href="#fn12" id="fnref12">[12]</a></sup>.</p>
 <hr />
@@ -468,7 +560,43 @@ main,article{min-width:0;overflow-wrap:anywhere}
 <h3 id="41-coordinated-disclosure-101">4.1 Coordinated disclosure 101</h3>
 <p>Typical flow [A]: (1) private report; (2) confirm and fix; (3) embargoed notice to distros/LTS and selected partners; (4) simultaneous advisories + releases; (5) ecosystem messaging. Goal: shrink the window between attacker knowledge and patch availability.</p>
 <h3 id="42-how-it-went-here">4.2 How it went here</h3>
-<p><img src="diagrams/disclosure.png" alt="Disclosure flow" /></p>
+<figure class="diagram" id="dg-disclosure">
+<img src="diagrams/disclosure.png" alt="Disclosure flow: private phase (discovery, report, fix, early access), embargo break (HN leak, video) and public phase (PHP announcement, release with GHSA, WAF / agencies / hosts).">
+<figcaption>Disclosure flow</figcaption>
+<details class="dgtx"><summary>Text description of the diagram</summary>
+<p>Disclosure flow: private phase (discovery, report, fix, early access), embargo break (HN leak, video) and public phase (PHP announcement, release with GHSA, WAF / agencies / hosts).</p>
+<p>Flow diagram (left to right) in three groups. The diagram labels are in Polish.</p>
+<ul>
+<li><b>Private phase:</b> discovery (Wiz / Calif / OpenAI, Aug 2026) → report to PHP (24 Aug 2026) → confirmation and fix (from 21 Sep 2026) → early access (LTS distributions + partners).</li>
+<li><b>Plan:</b> from early access, a dashed line labelled “plan: 22 Oct” leads to the PHP announcement.</li>
+<li><b>Embargo break:</b> HN leak (20 Oct, 15:20 UTC) and PHP2Shell video (20 Oct, 20:27 UTC) — both lead to the PHP announcement.</li>
+<li><b>Public phase:</b> PHP announcement (20 Oct, 19:33 UTC; moved to 21 Oct, 14:00) → release + GHSA (21 Oct, ~13:34 UTC) → WAF / agencies / hosts.</li>
+<li><b>Shortcut:</b> confirmation and fix also lead directly to release + GHSA.</li>
+</ul>
+<details class="dgsrc"><summary>Mermaid source</summary><pre><code class="language-mermaid">flowchart LR
+  subgraph Private[Faza prywatna]
+    D[Odkrycie&lt;br/&gt;Wiz / Calif / OpenAI&lt;br/&gt;VIII 2026]
+    R[Zgłoszenie do PHP&lt;br/&gt;24.08.2026]
+    F[Potwierdzenie i poprawka&lt;br/&gt;od 21.09.2026]
+    EA[Early access&lt;br/&gt;dystrybucje LTS + partnerzy]
+  end
+  subgraph Break[Zerwanie embarga]
+    L[Wyciek HN&lt;br/&gt;20.10 15:20 UTC]
+    V[Wideo PHP2Shell&lt;br/&gt;20.10 20:27 UTC]
+  end
+  subgraph Public[Faza publiczna]
+    A[Zapowiedź PHP&lt;br/&gt;20.10 19:33 UTC&lt;br/&gt;przesunięcie na 21.10 14:00]
+    P[Release + GHSA&lt;br/&gt;21.10 ~13:34 UTC]
+    W[WAF / agencje / hosty]
+  end
+  D --&gt; R --&gt; F --&gt; EA
+  EA -.-&gt;|plan: 22.10| A
+  L --&gt; A
+  V --&gt; A
+  A --&gt; P --&gt; W
+  F --&gt; P</code></pre></details>
+</details>
+</figure>
 <ol>
 <li><strong>Report and remediation</strong> (Aug–Oct 2026) — per Wiz [D]<sup class="footnote-ref"><a href="#fn4" id="fnref4:15">[4:15]</a></sup>. Commit “Avoid state corruption via bailout” on 18 Oct 2026; annotated tags on 19 Oct [P]<sup class="footnote-ref"><a href="#fn13" id="fnref13:2">[13:2]</a></sup><sup class="footnote-ref"><a href="#fn22" id="fnref22">[22]</a></sup>.</li>
 <li><strong>Early access.</strong> php.net: “Linux distributions and LTS vendors received the patches in advance” [P]<sup class="footnote-ref"><a href="#fn3" id="fnref3:9">[3:9]</a></sup>. Wiz lists Automattic, Akamai, AWS, Cloudflare, Fastly, Google, Imperva, Microsoft, Vercel and others for pre-day-zero mitigations [D]<sup class="footnote-ref"><a href="#fn4" id="fnref4:16">[4:16]</a></sup>. watchTowr pushed Active Defense mitigations to watchTowr Platform clients before the patch [P]<sup class="footnote-ref"><a href="#fn23" id="fnref23">[23]</a></sup>.</li>
@@ -539,7 +667,51 @@ main,article{min-width:0;overflow-wrap:anywhere}
 <p><strong>Takeaway [A]:</strong> settling “is it ITW?” needs IoCs from large sensors or a KEV listing — messaging still conflicts.</p>
 <hr />
 <h2 id="8-defenders-response">8. Defenders’ response</h2>
-<p><img src="diagrams/actors.png" alt="Actors map" /></p>
+<figure class="diagram" id="dg-actors">
+<img src="diagrams/actors.png" alt="Actors map in four groups (discovery, PHP team, leak and amplification, defenders): arrows from the discoverers to the PHP team, from the PHP team to the defenders, and from the leak group to the defenders and to the PHP team.">
+<figcaption>Actors map</figcaption>
+<details class="dgtx"><summary>Text description of the diagram</summary>
+<p>Actors map in four groups (discovery, PHP team, leak and amplification, defenders): arrows from the discoverers to the PHP team, from the PHP team to the defenders, and from the leak group to the defenders and to the PHP team.</p>
+<p>Block diagram (top to bottom): four groups of actors and the arrows between them. The diagram labels are in Polish.</p>
+<ul>
+<li><b>Discovery:</b> Wiz Research; Calif / lcfr-hax / tomash-areion; OpenAI / amyb-oai.</li>
+<li><b>PHP team:</b> Jakub Zelenka (GHSA publisher); Arnaud Le Blanc (fix author); Tovilo / Dossche / Grekas; tag release managers.</li>
+<li><b>Leak and amplification:</b> petecooper (Tell HN); watchTowr; Kevin Beaumont; Kirill Firsov (video).</li>
+<li><b>Defenders:</b> CERT-EU / BSI / NCSC / CERT.at / CERT.pl / CERT-FR; Cloudflare WAF; hosts / CMS / distributions.</li>
+<li><b>Links:</b> Wiz Research, Calif and OpenAI → PHP team; PHP team → defenders; petecooper (Tell HN) → leak and amplification group; leak and amplification → defenders; leak and amplification → PHP team.</li>
+</ul>
+<details class="dgsrc"><summary>Mermaid source</summary><pre><code class="language-mermaid">flowchart TB
+  subgraph Discovery[Odkrycie]
+    Wiz[Wiz Research]
+    Calif[Calif / lcfr-hax / tomash-areion]
+    OAI[OpenAI / amyb-oai]
+  end
+  subgraph PHPTeam[Zespół PHP]
+    Bukka[Jakub Zelenka — publisher GHSA]
+    Arnaud[Arnaud Le Blanc — autor poprawki]
+    Co[Tovilo / Dossche / Grekas]
+    RM[Release managerzy tagów]
+  end
+  subgraph Amplify[Wyciek i amplifikacja]
+    HN[petecooper — Tell HN]
+    WT[watchTowr]
+    Beaumont[Kevin Beaumont]
+    Firsov[Kirill Firsov — wideo]
+  end
+  subgraph Defenders[Obrońcy]
+    CERT[CERT-EU / BSI / NCSC / CERT.at / CERT.pl / CERT-FR]
+    CF[Cloudflare WAF]
+    Host[Hosty / CMS / dystrybucje]
+  end
+  Wiz --&gt; PHPTeam
+  Calif --&gt; PHPTeam
+  OAI --&gt; PHPTeam
+  PHPTeam --&gt; Defenders
+  HN --&gt; Amplify
+  Amplify --&gt; Defenders
+  Amplify --&gt; PHPTeam</code></pre></details>
+</details>
+</figure>
 <h3 id="81-agencies">8.1 Agencies</h3>
 <ul>
 <li><strong>CERT-EU 2026-018</strong> — Patch ASAP or isolate; “all from PHP 5”; CVSS → unauth RCE [P]<sup class="footnote-ref"><a href="#fn15" id="fnref15:1">[15:1]</a></sup></li>
