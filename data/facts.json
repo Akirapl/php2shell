@@ -10,7 +10,7 @@
       "en": "CVE-2026-109618 and CVE-2026-109619: critical RCE flaws in the PHP core",
       "de": "CVE-2026-109618 und CVE-2026-109619: kritische RCE-Lücken im PHP-Kern"
     },
-    "last_updated": "2026-10-21T20:40:00Z",
+    "last_updated": "2026-10-21T23:05:00Z",
     "maintainer_note": "Single source of truth. Every fact needs source_url, source_name, confidence; texts as {pl,en,de}. Run ./update_and_build.sh \"message\".",
     "timezone_note": {
       "pl": "Wszystkie czasy w UTC. Czasy z NOS (CEST) przeliczone na UTC (−2 h).",
@@ -76,7 +76,7 @@
     "exploitation_threshold": {
       "rule": "confirmed only if CISA KEV lists a CVE or a national CERT publishes credible in-the-wild evidence",
       "kev_listed": false,
-      "kev_checked_utc": "2026-10-21T20:35:00Z",
+      "kev_checked_utc": "2026-10-21T23:00:00Z",
       "kev_catalog_version": "2026.10.21",
       "kev_url": "https://www.cisa.gov/known-exploited-vulnerabilities-catalog",
       "national_cert_itw": []
@@ -2833,6 +2833,56 @@
       "info_credibility": 1,
       "time_kind": "published",
       "time_precision": "minute"
+    },
+    {
+      "id": "gh-24488-simplexml-regression",
+      "time_utc": "2026-10-21T17:42:46Z",
+      "importance": "minor",
+      "title": {
+        "pl": "Regresja w 8.4.27/8.5.12: double-free w SimpleXML przy GC (GH-24488)",
+        "en": "Regression in 8.4.27/8.5.12: SimpleXML double free during GC (GH-24488)",
+        "de": "Regression in 8.4.27/8.5.12: Double Free in SimpleXML bei der GC (GH-24488)"
+      },
+      "description": {
+        "pl": "Zgłoszenie w php-src (etykieta „Status: Verified”): od poprawki GH-24050 garbage collector może dwukrotnie zwolnić tablicę właściwości SimpleXMLElement („zend_mm_heap corrupted”); na 8.4.26 problem nie występuje. Opiekun PHP potwierdza diagnozę, poprawka (PR #24494, jedna linia) czeka na scalenie. To błąd stabilności, bez numeru CVE i bez wykazanej zdalnej eksploatacji; nie dowodzi, że łatki na CVE-2026-109618/109619 nie działają. Możliwe, że to źródło plotek o „drugim double-free w 8.5.12” — niepotwierdzone.",
+        "en": "php-src report (label “Status: Verified”): since the GH-24050 fix, the garbage collector can free a SimpleXMLElement properties table twice (“zend_mm_heap corrupted”); 8.4.26 is not affected. A PHP maintainer agrees with the diagnosis; a one-line fix (PR #24494) awaits merging. This is a stability bug with no CVE and no demonstrated remote exploitation; it does not show that the CVE-2026-109618/109619 fixes fail. It may be behind the “second double free in 8.5.12” rumour — unconfirmed.",
+        "de": "Meldung in php-src (Label „Status: Verified“): Seit dem Fix GH-24050 kann der Garbage Collector die Eigenschaftstabelle eines SimpleXMLElement doppelt freigeben („zend_mm_heap corrupted“); 8.4.26 ist nicht betroffen. Ein PHP-Maintainer bestätigt die Diagnose, ein einzeiliger Fix (PR #24494) wartet auf den Merge. Es ist ein Stabilitätsfehler ohne CVE und ohne nachgewiesene Ausnutzung aus der Ferne; er zeigt nicht, dass die Fixes für CVE-2026-109618/109619 versagen. Möglicherweise steckt er hinter dem Gerücht vom „zweiten Double Free in 8.5.12“ — unbestätigt."
+      },
+      "actors": [
+        "PHP"
+      ],
+      "source_url": "https://github.com/php/php-src/issues/24488",
+      "source_name": "php-src issue GH-24488",
+      "confidence": "confirmed",
+      "source_reliability": "B",
+      "info_credibility": 2,
+      "time_kind": "published",
+      "time_precision": "second"
+    },
+    {
+      "id": "unit42-exposed-instances",
+      "time_utc": "2026-10-21T16:04:00Z",
+      "importance": "minor",
+      "title": {
+        "pl": "Unit 42: ponad 22,6 mln potencjalnie podatnych instancji w internecie",
+        "en": "Unit 42: more than 22.6 million potentially vulnerable internet-facing instances",
+        "de": "Unit 42: mehr als 22,6 Millionen potenziell verwundbare Instanzen im Internet"
+      },
+      "description": {
+        "pl": "Według Nextgov/FCW monitoring Unit 42 (Palo Alto Networks) wskazał ponad 22,6 mln wystawionych do internetu instancji potencjalnie podatnych na PHP2Shell. Szacunek oparty na skanach, nie na potwierdzonych podatnościach; inne źródła (np. VirusTotal) podają kilka milionów hostów.",
+        "en": "According to Nextgov/FCW, Unit 42 (Palo Alto Networks) monitoring identified more than 22.6 million internet-exposed instances potentially vulnerable to PHP2Shell. A scan-based estimate, not confirmed vulnerable hosts; other sources (e.g. VirusTotal) cite a few million hosts.",
+        "de": "Laut Nextgov/FCW hat das Monitoring von Unit 42 (Palo Alto Networks) mehr als 22,6 Millionen aus dem Internet erreichbare, potenziell für PHP2Shell anfällige Instanzen erkannt. Eine scanbasierte Schätzung, keine bestätigt verwundbaren Hosts; andere Quellen (z. B. VirusTotal) nennen einige Millionen Hosts."
+      },
+      "actors": [
+        "Palo Alto Networks Unit 42"
+      ],
+      "source_url": "https://www.nextgov.com/cybersecurity/2026/10/us-agencies-urge-fixes-programming-language-flaws-putting-millions-web-systems-risk/416726/",
+      "source_name": "Nextgov/FCW",
+      "confidence": "estimate",
+      "source_reliability": "C",
+      "info_credibility": 3,
+      "time_kind": "published",
+      "time_precision": "minute"
     }
   ],
   "actors": [
@@ -5248,6 +5298,16 @@
       "name": "Cisco Security Advisory cisco-sa-php-october26-Jj384Daq",
       "url": "https://sec.cloudapps.cisco.com/security/center/content/CiscoSecurityAdvisory/cisco-sa-php-october26-Jj384Daq",
       "type": "vendor"
+    },
+    {
+      "name": "php-src issue GH-24488",
+      "url": "https://github.com/php/php-src/issues/24488",
+      "type": "primary"
+    },
+    {
+      "name": "Nextgov/FCW",
+      "url": "https://www.nextgov.com/cybersecurity/2026/10/us-agencies-urge-fixes-programming-language-flaws-putting-millions-web-systems-risk/416726/",
+      "type": "press"
     }
   ]
 }

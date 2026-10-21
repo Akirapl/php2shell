@@ -3,7 +3,7 @@
 <title>PHP2Shell — oś czasu (PL)</title>
 <subtitle>Relacja na żywo: PHP2Shell (CVE-2026-109618/109619), krytyczne RCE w rdzeniu PHP (CVSS 9.2). Poprawki: 8.5.12, 8.4.27, 8.3.36, 8.2.35. Każdy fakt ze źródłem.</subtitle>
 <id>https://akirapl.github.io/php2shell/feed-pl.xml</id>
-<updated>2026-10-21T20:40:00Z</updated>
+<updated>2026-10-21T23:05:00Z</updated>
 <link rel="self" type="application/atom+xml" href="https://akirapl.github.io/php2shell/feed-pl.xml"/>
 <link rel="alternate" type="text/html" hreflang="pl" href="https://akirapl.github.io/php2shell/?lang=pl"/>
 <author><name>Dawid Kulik (@Akirapl)</name><uri>https://github.com/Akirapl</uri></author>
@@ -32,6 +32,17 @@
 <content type="html">&lt;p&gt;Firma Defused, prowadząca sieć honeypotów, pisze, że jak dotąd nie widzi większej aktywności wykorzystania żadnej z luk. Próby ograniczają się do publicznych PoC z ostatnich 24 godzin, które w jej testach w większości nie działały. To obserwacja jednej firmy, bez opublikowanych liczb.&lt;/p&gt;&lt;p&gt;Źródło: &lt;a href="https://x.com/DefusedCyber/status/2112969691668869611"&gt;Defused (X)&lt;/a&gt; · doniesienie · major&lt;/p&gt;</content>
 </entry>
 <entry>
+<title>Regresja w 8.4.27/8.5.12: double-free w SimpleXML przy GC (GH-24488)</title>
+<id>tag:php2shell-live.surge.sh,2026:gh-24488-simplexml-regression</id>
+<link rel="alternate" type="text/html" href="https://akirapl.github.io/php2shell/?lang=pl#ev-gh-24488-simplexml-regression"/>
+<link rel="related" href="https://github.com/php/php-src/issues/24488"/>
+<published>2026-10-21T17:42:46Z</published>
+<updated>2026-10-21T17:42:46Z</updated>
+<category term="minor"/>
+<summary type="text">Zgłoszenie w php-src (etykieta „Status: Verified”): od poprawki GH-24050 garbage collector może dwukrotnie zwolnić tablicę właściwości SimpleXMLElement („zend_mm_heap corrupted”); na 8.4.26 problem nie występuje. Opiekun PHP potwierdza diagnozę, poprawka (PR #24494, jedna linia) czeka na scalenie. To błąd stabilności, bez numeru CVE i bez wykazanej zdalnej eksploatacji; nie dowodzi, że łatki na CVE-2026-109618/109619 nie działają. Możliwe, że to źródło plotek o „drugim double-free w 8.5.12” — niepotwierdzone.</summary>
+<content type="html">&lt;p&gt;Zgłoszenie w php-src (etykieta „Status: Verified”): od poprawki GH-24050 garbage collector może dwukrotnie zwolnić tablicę właściwości SimpleXMLElement („zend_mm_heap corrupted”); na 8.4.26 problem nie występuje. Opiekun PHP potwierdza diagnozę, poprawka (PR #24494, jedna linia) czeka na scalenie. To błąd stabilności, bez numeru CVE i bez wykazanej zdalnej eksploatacji; nie dowodzi, że łatki na CVE-2026-109618/109619 nie działają. Możliwe, że to źródło plotek o „drugim double-free w 8.5.12” — niepotwierdzone.&lt;/p&gt;&lt;p&gt;Źródło: &lt;a href="https://github.com/php/php-src/issues/24488"&gt;php-src issue GH-24488&lt;/a&gt; · potwierdzone · minor&lt;/p&gt;</content>
+</entry>
+<entry>
 <title>SecurityWeek: Vega widzi próby z użyciem publicznego PoC; Wiz mówi o nieobjętych wariantach</title>
 <id>tag:php2shell-live.surge.sh,2026:securityweek-vega-variants</id>
 <link rel="alternate" type="text/html" href="https://akirapl.github.io/php2shell/?lang=pl#ev-securityweek-vega-variants"/>
@@ -52,6 +63,17 @@
 <category term="major"/>
 <summary type="text">Alert CISA „Critical Vulnerabilities in PHP Require Immediate Patching”: aktualizacja do 8.5.12/8.4.27/8.3.36/8.2.35, inwentaryzacja PHP także jako komponentu innych produktów, a systemy, których nie da się zaktualizować lub które działają na PHP 8.1 i starszym, mają zostać wyłączone do czasu aktualizacji. CISA pisze, że w chwili publikacji nie zaobserwowała wykorzystania luk; obu CVE nadal nie ma w katalogu KEV. Godzina to wpis @CISACyber z linkiem do alertu (strona podaje tylko datę).</summary>
 <content type="html">&lt;p&gt;Alert CISA „Critical Vulnerabilities in PHP Require Immediate Patching”: aktualizacja do 8.5.12/8.4.27/8.3.36/8.2.35, inwentaryzacja PHP także jako komponentu innych produktów, a systemy, których nie da się zaktualizować lub które działają na PHP 8.1 i starszym, mają zostać wyłączone do czasu aktualizacji. CISA pisze, że w chwili publikacji nie zaobserwowała wykorzystania luk; obu CVE nadal nie ma w katalogu KEV. Godzina to wpis @CISACyber z linkiem do alertu (strona podaje tylko datę).&lt;/p&gt;&lt;p&gt;Źródło: &lt;a href="https://www.cisa.gov/news-events/alerts/2026/10/21/critical-vulnerabilities-php-require-immediate-patching"&gt;CISA&lt;/a&gt; · potwierdzone · major&lt;/p&gt;</content>
+</entry>
+<entry>
+<title>Unit 42: ponad 22,6 mln potencjalnie podatnych instancji w internecie</title>
+<id>tag:php2shell-live.surge.sh,2026:unit42-exposed-instances</id>
+<link rel="alternate" type="text/html" href="https://akirapl.github.io/php2shell/?lang=pl#ev-unit42-exposed-instances"/>
+<link rel="related" href="https://www.nextgov.com/cybersecurity/2026/10/us-agencies-urge-fixes-programming-language-flaws-putting-millions-web-systems-risk/416726/"/>
+<published>2026-10-21T16:04:00Z</published>
+<updated>2026-10-21T16:04:00Z</updated>
+<category term="minor"/>
+<summary type="text">Według Nextgov/FCW monitoring Unit 42 (Palo Alto Networks) wskazał ponad 22,6 mln wystawionych do internetu instancji potencjalnie podatnych na PHP2Shell. Szacunek oparty na skanach, nie na potwierdzonych podatnościach; inne źródła (np. VirusTotal) podają kilka milionów hostów.</summary>
+<content type="html">&lt;p&gt;Według Nextgov/FCW monitoring Unit 42 (Palo Alto Networks) wskazał ponad 22,6 mln wystawionych do internetu instancji potencjalnie podatnych na PHP2Shell. Szacunek oparty na skanach, nie na potwierdzonych podatnościach; inne źródła (np. VirusTotal) podają kilka milionów hostów.&lt;/p&gt;&lt;p&gt;Źródło: &lt;a href="https://www.nextgov.com/cybersecurity/2026/10/us-agencies-urge-fixes-programming-language-flaws-putting-millions-web-systems-risk/416726/"&gt;Nextgov/FCW&lt;/a&gt; · szacunek · minor&lt;/p&gt;</content>
 </entry>
 <entry>
 <title>Fastly: „dowody ataków przed ujawnieniem” i ostrzeżenie, że problem siedzi w konstrukcji silnika</title>

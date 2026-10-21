@@ -1,5 +1,11 @@
 [
  {
+  "time_utc": "2026-10-21T22:59:21Z",
+  "message": "GH-24488 SimpleXML regression (8.4.27/8.5.12), Unit 42 exposure estimate, KEV re-check",
+  "events": 90,
+  "facts_last_updated": "2026-10-21T23:05:00Z"
+ },
+ {
   "time_utc": "2026-10-21T20:37:01Z",
   "message": "+Red Hat RHSB-2026-013, +Cisco advisory, KEV check 20:35",
   "events": 88,
