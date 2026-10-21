@@ -16,7 +16,7 @@ To repozytorium trzyma obronne studium przypadku PHP2Shell oraz dane, na któryc
 
 - Studium: [polski](case-study/pl.md) · [English](case-study/en.md) · [Deutsch](case-study/de.md)
 - Rejestr dowodów (CLM-…): [evidence-ledger.jsonl](case-study/evidence-ledger.jsonl) · [CSV](case-study/evidence-ledger.csv)
-- Diagramy (PNG i źródła Mermaid): [case-study/diagrams/](case-study/diagrams/)
+- Diagramy: tekst Mermaid osadzony bezpośrednio w studium (GitHub renderuje go natywnie); źródła w [case-study/diagrams/*.mmd](case-study/diagrams/), rendery PNG zachowane jako fallback dla PDF
 - Centrum na żywo: <https://akirapl.github.io/php2shell/>
 - Dane centrum na żywo: [data/facts.json](data/facts.json)
 - Checker API: pasywne sprawdzenie banera, zobacz [checker-api/README.md](checker-api/README.md)
@@ -39,7 +39,7 @@ This repository holds a sourced, defensive case study of the PHP2Shell incident 
 
 - Case study: [Polish](case-study/pl.md) · [English](case-study/en.md) · [German](case-study/de.md)
 - Evidence ledger (CLM-…): [evidence-ledger.jsonl](case-study/evidence-ledger.jsonl) · [CSV](case-study/evidence-ledger.csv)
-- Diagrams (PNG renders and Mermaid sources): [case-study/diagrams/](case-study/diagrams/)
+- Diagrams: Mermaid text inline in the case study (GitHub renders it natively); sources in [case-study/diagrams/*.mmd](case-study/diagrams/), PNG renders kept as fallback for PDF
 - Live center: <https://akirapl.github.io/php2shell/>
 - Live-center data: [data/facts.json](data/facts.json)
 - Checker API: passive banner check, see [checker-api/README.md](checker-api/README.md)
@@ -62,7 +62,7 @@ Dieses Repository enthält eine quellengestützte, defensive Fallstudie zum PHP2
 
 - Fallstudie: [Polnisch](case-study/pl.md) · [English](case-study/en.md) · [Deutsch](case-study/de.md)
 - Evidence Ledger (CLM-…): [evidence-ledger.jsonl](case-study/evidence-ledger.jsonl) · [CSV](case-study/evidence-ledger.csv)
-- Diagramme (PNG und Mermaid-Quellen): [case-study/diagrams/](case-study/diagrams/)
+- Diagramme: Mermaid-Text direkt in der Fallstudie (GitHub rendert ihn nativ); Quellen in [case-study/diagrams/*.mmd](case-study/diagrams/), PNG-Renderings als Fallback für PDF beibehalten
 - Live-Center: <https://akirapl.github.io/php2shell/>
 - Daten des Live-Centers: [data/facts.json](data/facts.json)
 - Checker API: passive Banner-Prüfung, siehe [checker-api/README.md](checker-api/README.md)

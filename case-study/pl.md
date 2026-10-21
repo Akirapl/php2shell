@@ -70,7 +70,35 @@ asof: "2026-10-21 14:05 UTC (16:05 CEST)"
 
 **Co jest nowe** [A]: (1) błąd w *runtime*, nie w aplikacji; (2) AI w odkryciu i — wg badaczy — w uczynieniu exploitu praktycznym; (3) wyciek embarga → 22-godzinny wyścig; (4) profilaktyczne wyłączenia stron w kilku krajach UE przed poprawką.
 
-![Oś czasu](diagrams/timeline.png)
+*Oś czasu*
+
+```mermaid
+flowchart TB
+  subgraph D[Discovery Aug 2026]
+    d1[19 Aug: Wiz first bug]
+    d2[20-21 Aug: RCE Drupal and WordPress]
+    d3[24 Aug: Report to PHP]
+  end
+  subgraph R[Remediation]
+    r1[21 Sep: PHP confirms]
+    r2[14 Oct: Daybreak triage blog]
+    r3[18 Oct: Bailout fix commit]
+    r4[19 Oct: Annotated tags 8.2.35 to 8.5.12]
+  end
+  subgraph L[Leak 20 Oct]
+    l1[15:20 UTC: Tell HN CVE numbers]
+    l2[18:26: watchTowr confirms embargo]
+    l3[19:33: PHP announce Wed 14:00 UTC]
+    l4[20:27: php2shell video]
+  end
+  subgraph P[Patch day 21 Oct]
+    p1[Morning: mass offline NL BE FR FI]
+    p2[07:43: Cloudflare early attacks]
+    p3[13:34: GHSA and tarballs]
+    p4[13:43: Wiz blog]
+  end
+  d1 --> d2 --> d3 --> r1 --> r2 --> r3 --> r4 --> l1 --> l2 --> l3 --> l4 --> p1 --> p2 --> p3 --> p4
+```
 
 ---
 
@@ -104,7 +132,42 @@ PHP zwykle nie „stoi samotnie”: jest wbudowany w serwer WWW albo działa jak
 
 **Analogia** [A]: worker PHP to biurko urzędnika. Każde żądanie to sprawa na biurku. Po sprawie urzędnik powinien schować wszystkie teczki. Jeśli gasi światło w panice (OOM / fatal), może zostawić kartkę z adresem teczki, której już nie ma. Następny petent — to samo biurko — widzi adres i traktuje go jak ważny. Stąd „stale global state” i „OOM corruption”.
 
-![Cykl życia żądania](diagrams/lifecycle.png)
+*Cykl życia żądania*
+
+```mermaid
+flowchart TB
+  subgraph Client
+    B[Przeglądarka / klient HTTP]
+  end
+  subgraph WebServer[Serwer WWW]
+    WS[Apache / nginx / LiteSpeed]
+  end
+  subgraph SAPI[SAPI — warstwa łącząca]
+    MP[mod_php w procesie Apache]
+    FPM[PHP-FPM — pula workerów]
+    CGI[php-cgi / CGI]
+  end
+  subgraph Engine[Silnik PHP — jeden worker]
+    ST[1. Start żądania<br/>parsowanie ciała multipart]
+    IN[2. Inicjalizacja modułów / executor]
+    APP[3. Kod aplikacji]
+    SH[4. Shutdown żądania<br/>zwalnianie pamięci]
+    GL[(Stan globalny workera<br/>error / session / object)]
+  end
+  B -->|HTTP| WS
+  WS --> MP
+  WS --> FPM
+  WS --> CGI
+  MP --> ST
+  FPM --> ST
+  CGI --> ST
+  ST --> IN --> APP --> SH
+  ST -.->|może zapisać stan przed init| GL
+  SH -.->|musi wyczyścić| GL
+  SH -->|kolejne żądanie tego samego workera| ST
+  classDef risk fill:#3d1f1f,stroke:#f85149,color:#fff
+  class ST,GL,SH risk
+```
 
 ### 1.3 Dlaczego to ma znaczenie
 
@@ -221,7 +284,32 @@ Typowy przebieg [A]: (1) prywatne zgłoszenie; (2) potwierdzenie i poprawka; (3)
 
 ### 4.2 Jak poszło tutaj
 
-![Przepływ disclosure](diagrams/disclosure.png)
+*Przepływ disclosure*
+
+```mermaid
+flowchart LR
+  subgraph Private[Faza prywatna]
+    D[Odkrycie<br/>Wiz / Calif / OpenAI<br/>VIII 2026]
+    R[Zgłoszenie do PHP<br/>24.08.2026]
+    F[Potwierdzenie i poprawka<br/>od 21.09.2026]
+    EA[Early access<br/>dystrybucje LTS + partnerzy]
+  end
+  subgraph Break[Zerwanie embarga]
+    L[Wyciek HN<br/>20.10 15:20 UTC]
+    V[Wideo PHP2Shell<br/>20.10 20:27 UTC]
+  end
+  subgraph Public[Faza publiczna]
+    A[Zapowiedź PHP<br/>20.10 19:33 UTC<br/>przesunięcie na 21.10 14:00]
+    P[Release + GHSA<br/>21.10 ~13:34 UTC]
+    W[WAF / agencje / hosty]
+  end
+  D --> R --> F --> EA
+  EA -.->|plan: 22.10| A
+  L --> A
+  V --> A
+  A --> P --> W
+  F --> P
+```
 
 1. **Zgłoszenie i remediacja** (VIII–X 2026) — wg Wiz [D][^wiz]. Commit „Avoid state corruption via bailout” 18.10.2026; annotated tagi 19.10 [P][^commit][^tags].
 2. **Early access.** php.net: „Linux distributions and LTS vendors received the patches in advance” [P][^phpadv]. Wiz wymienia Automattic, Akamai, AWS, Cloudflare, Fastly, Google, Imperva, Microsoft, Vercel i innych przy mitigacjach przed dniem zero [D][^wiz]. watchTowr wdrożył mitigacje Active Defense dla klientów platformy watchTowr przed patchem [P][^wtxad].
@@ -314,7 +402,40 @@ Bez podawania przepisów [A]: przy dużym, publicznym diffie (tu: setki plików 
 
 ## 8. Reakcja obrońców
 
-![Mapa aktorów](diagrams/actors.png)
+*Mapa aktorów*
+
+```mermaid
+flowchart TB
+  subgraph Discovery[Odkrycie]
+    Wiz[Wiz Research]
+    Calif[Calif / lcfr-hax / tomash-areion]
+    OAI[OpenAI / amyb-oai]
+  end
+  subgraph PHPTeam[Zespół PHP]
+    Bukka[Jakub Zelenka — publisher GHSA]
+    Arnaud[Arnaud Le Blanc — autor poprawki]
+    Co[Tovilo / Dossche / Grekas]
+    RM[Release managerzy tagów]
+  end
+  subgraph Amplify[Wyciek i amplifikacja]
+    HN[petecooper — Tell HN]
+    WT[watchTowr]
+    Beaumont[Kevin Beaumont]
+    Firsov[Kirill Firsov — wideo]
+  end
+  subgraph Defenders[Obrońcy]
+    CERT[CERT-EU / BSI / NCSC / CERT.at / CERT.pl / CERT-FR]
+    CF[Cloudflare WAF]
+    Host[Hosty / CMS / dystrybucje]
+  end
+  Wiz --> PHPTeam
+  Calif --> PHPTeam
+  OAI --> PHPTeam
+  PHPTeam --> Defenders
+  HN --> Amplify
+  Amplify --> Defenders
+  Amplify --> PHPTeam
+```
 
 ### 8.1 Agencje
 
