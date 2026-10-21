@@ -3,7 +3,7 @@
 <title>PHP2Shell — Chronik (DE)</title>
 <subtitle>Live-Chronik zu PHP2Shell (CVE-2026-109618/109619), kritische RCE im PHP-Kern (CVSS 9.2). Behoben in 8.5.12, 8.4.27, 8.3.36, 8.2.35. Jede Angabe mit Quelle.</subtitle>
 <id>https://akirapl.github.io/php2shell/feed-de.xml</id>
-<updated>2026-10-21T15:45:00Z</updated>
+<updated>2026-10-21T15:41:59Z</updated>
 <link rel="self" type="application/atom+xml" href="https://akirapl.github.io/php2shell/feed-de.xml"/>
 <link rel="alternate" type="text/html" hreflang="de" href="https://akirapl.github.io/php2shell/?lang=de"/>
 <author><name>Dawid Kulik (@Akirapl)</name><uri>https://github.com/Akirapl</uri></author>
@@ -65,6 +65,17 @@
 <content type="html">&lt;p&gt;Jakub Zelenka (PHP-Security-Team) veröffentlicht die Beschreibungen: -109618 ist ein Fehler in der OOM-Behandlung (longjmp), RCE auf mod_php gezeigt, FPM nur per Quellanalyse; -109619 ist ein Use-after-free durch veralteten globalen Zustand, RCE auf mod_php und PHP-FPM gezeigt. Kein vollständiger Workaround per Konfiguration.&lt;/p&gt;&lt;p&gt;Quelle: &lt;a href="https://seclists.org/oss-sec/2026/q4/277"&gt;oss-security&lt;/a&gt; · bestätigt · minor&lt;/p&gt;</content>
 </entry>
 <entry>
+<title>Der Fix landet in den öffentlichen php-src-Zweigen</title>
+<id>tag:php2shell-live.surge.sh,2026:fix-public</id>
+<link rel="alternate" type="text/html" href="https://akirapl.github.io/php2shell/?lang=de#ev-fix-public"/>
+<link rel="related" href="https://github.com/php/php-src/compare/b9ea38ef63...9705fda1bb"/>
+<published>2026-10-21T14:36:09Z</published>
+<updated>2026-10-21T14:36:09Z</updated>
+<category term="minor"/>
+<summary type="text">Commit 3584a98 (verfasst 18.10. 15:26:39 UTC, committet 21.10. 14:06:22 UTC) und die Merges 8.2→master um 14:36:09 UTC nach master gepusht — etwa eine Stunde nach den Advisories. Davor gab es den Fix nur in den Release-Tags.</summary>
+<content type="html">&lt;p&gt;Commit 3584a98 (verfasst 18.10. 15:26:39 UTC, committet 21.10. 14:06:22 UTC) und die Merges 8.2→master um 14:36:09 UTC nach master gepusht — etwa eine Stunde nach den Advisories. Davor gab es den Fix nur in den Release-Tags.&lt;/p&gt;&lt;p&gt;Quelle: &lt;a href="https://github.com/php/php-src/compare/b9ea38ef63...9705fda1bb"&gt;php-src compare b9ea38e…9705fda (GitHub)&lt;/a&gt; · bestätigt · minor&lt;/p&gt;</content>
+</entry>
+<entry>
 <title>Calif: „Stellen wir das klar“ — Streit um die Erstentdeckung</title>
 <id>tag:php2shell-live.surge.sh,2026:calif-record-straight</id>
 <link rel="alternate" type="text/html" href="https://akirapl.github.io/php2shell/?lang=de#ev-calif-record-straight"/>
@@ -73,7 +84,7 @@
 <updated>2026-10-21T14:31:14Z</updated>
 <category term="minor"/>
 <summary type="text">Calif betont, dass @lcfr_hax php2shell als Erster entdeckt und einen funktionierenden Exploit gebaut habe (Hash vom 05.08.), und dass seine Arbeit die PHP Foundation überzeugt habe, die ganze Fehlerklasse zu beheben. Eine Reaktion auf die Darstellung von Wiz und OpenAI über unabhängige Funde.</summary>
-<content type="html">&lt;p&gt;Calif betont, dass @lcfr_hax php2shell als Erster entdeckt und einen funktionierenden Exploit gebaut habe (Hash vom 05.08.), und dass seine Arbeit die PHP Foundation überzeugt habe, die ganze Fehlerklasse zu beheben. Eine Reaktion auf die Darstellung von Wiz und OpenAI über unabhängige Funde.&lt;/p&gt;&lt;p&gt;Quelle: &lt;a href="https://x.com/calif_io/status/2112914613297668583"&gt;@calif_io na X&lt;/a&gt; · bestätigt · minor&lt;/p&gt;</content>
+<content type="html">&lt;p&gt;Calif betont, dass @lcfr_hax php2shell als Erster entdeckt und einen funktionierenden Exploit gebaut habe (Hash vom 05.08.), und dass seine Arbeit die PHP Foundation überzeugt habe, die ganze Fehlerklasse zu beheben. Eine Reaktion auf die Darstellung von Wiz und OpenAI über unabhängige Funde.&lt;/p&gt;&lt;p&gt;Quelle: &lt;a href="https://x.com/calif_io/status/2112914613297668583"&gt;@calif_io na X&lt;/a&gt; · gemeldet · minor&lt;/p&gt;</content>
 </entry>
 <entry>
 <title>The Record: watchTowr sieht Angriffsversuche, bislang erfolglos</title>
@@ -469,7 +480,7 @@
 <updated>2026-10-21T07:41:00Z</updated>
 <category term="major"/>
 <summary type="text">Laut Foundation hat Chainguard, das den Patch wie andere Distributoren vorab erhalten hatte, um 07:41 UTC „einseitig“ fertige Images mit dem Fix veröffentlicht. Angreifer konnten den Fix damit in Binärform analysieren, während alle anderen noch auf das Release warteten. Außerdem habe Calif sein PoC-Video nach der Vorankündigung „versehentlich“ veröffentlicht, und Hinweise zur Abschwächung, die am 20.10. gegen 23:00 UTC an einige Betreiber kritischer Infrastruktur gingen, könnten ebenfalls durchgesickert sein. Eine Stellungnahme von Chainguard haben wir noch nicht gefunden.</summary>
-<content type="html">&lt;p&gt;Laut Foundation hat Chainguard, das den Patch wie andere Distributoren vorab erhalten hatte, um 07:41 UTC „einseitig“ fertige Images mit dem Fix veröffentlicht. Angreifer konnten den Fix damit in Binärform analysieren, während alle anderen noch auf das Release warteten. Außerdem habe Calif sein PoC-Video nach der Vorankündigung „versehentlich“ veröffentlicht, und Hinweise zur Abschwächung, die am 20.10. gegen 23:00 UTC an einige Betreiber kritischer Infrastruktur gingen, könnten ebenfalls durchgesickert sein. Eine Stellungnahme von Chainguard haben wir noch nicht gefunden.&lt;/p&gt;&lt;p&gt;Quelle: &lt;a href="https://thephp.foundation/blog/2026/10/21/todays-php-security-release-and-how-were-strengthening-php-security/"&gt;The PHP Foundation&lt;/a&gt; · bestätigt · major&lt;/p&gt;</content>
+<content type="html">&lt;p&gt;Laut Foundation hat Chainguard, das den Patch wie andere Distributoren vorab erhalten hatte, um 07:41 UTC „einseitig“ fertige Images mit dem Fix veröffentlicht. Angreifer konnten den Fix damit in Binärform analysieren, während alle anderen noch auf das Release warteten. Außerdem habe Calif sein PoC-Video nach der Vorankündigung „versehentlich“ veröffentlicht, und Hinweise zur Abschwächung, die am 20.10. gegen 23:00 UTC an einige Betreiber kritischer Infrastruktur gingen, könnten ebenfalls durchgesickert sein. Eine Stellungnahme von Chainguard haben wir noch nicht gefunden.&lt;/p&gt;&lt;p&gt;Quelle: &lt;a href="https://thephp.foundation/blog/2026/10/21/todays-php-security-release-and-how-were-strengthening-php-security/"&gt;The PHP Foundation&lt;/a&gt; · gemeldet · major&lt;/p&gt;</content>
 </entry>
 <entry>
 <title>SecurityWeek: „Mass Exploitation Looms“</title>
@@ -670,15 +681,15 @@
 <content type="html">&lt;p&gt;Die Release-Manager legen die Tags der neuen Versionen am 19.10. an (07:30–17:04 UTC) — zwei Tage vor der öffentlichen Veröffentlichung.&lt;/p&gt;&lt;p&gt;Quelle: &lt;a href="https://github.com/php/php-src/releases/tag/php-8.5.12"&gt;php-src tag php-8.5.12&lt;/a&gt; · bestätigt · minor&lt;/p&gt;</content>
 </entry>
 <entry>
-<title>Die Korrektur landet im Repository</title>
+<title>Der Fix wird geschrieben (noch nicht öffentlich)</title>
 <id>tag:php2shell-live.surge.sh,2026:fix-commit</id>
 <link rel="alternate" type="text/html" href="https://akirapl.github.io/php2shell/?lang=de#ev-fix-commit"/>
 <link rel="related" href="https://github.com/php/php-src/commit/31c0ea7d7ff1d1fccb6492e52dab544011628065"/>
-<published>2026-10-18T17:23:46Z</published>
-<updated>2026-10-18T17:23:46Z</updated>
+<published>2026-10-18T15:46:02Z</published>
+<updated>2026-10-18T15:46:02Z</updated>
 <category term="major"/>
-<summary type="text">Commit „Avoid state corruption via bailout“ (Autor: Arnaud Le Blanc; Mitautoren: Ilija Tovilo, Jakub Zelenka, Nora Dossche, Nicolas Grekas). +11.556 / −1.017 Zeilen im 8.5-Zweig.</summary>
-<content type="html">&lt;p&gt;Commit „Avoid state corruption via bailout“ (Autor: Arnaud Le Blanc; Mitautoren: Ilija Tovilo, Jakub Zelenka, Nora Dossche, Nicolas Grekas). +11.556 / −1.017 Zeilen im 8.5-Zweig.&lt;/p&gt;&lt;p&gt;Quelle: &lt;a href="https://github.com/php/php-src/commit/31c0ea7d7ff1d1fccb6492e52dab544011628065"&gt;php-src commit 31c0ea7&lt;/a&gt; · bestätigt · major&lt;/p&gt;</content>
+<summary type="text">Commit „Avoid state corruption via bailout“ (Autor: Arnaud Le Blanc; Mitautoren: Ilija Tovilo, Jakub Zelenka, Nora Dossche, Nicolas Grekas). +11.556 / −1.017 Zeilen im Zweig 8.5. Verfasst 15:46:02 UTC (Zweig 8.2: 15:26:39 UTC); Committer-Datum 17:23:46 UTC. Öffentlich erst am 21.10. mit dem Release.</summary>
+<content type="html">&lt;p&gt;Commit „Avoid state corruption via bailout“ (Autor: Arnaud Le Blanc; Mitautoren: Ilija Tovilo, Jakub Zelenka, Nora Dossche, Nicolas Grekas). +11.556 / −1.017 Zeilen im Zweig 8.5. Verfasst 15:46:02 UTC (Zweig 8.2: 15:26:39 UTC); Committer-Datum 17:23:46 UTC. Öffentlich erst am 21.10. mit dem Release.&lt;/p&gt;&lt;p&gt;Quelle: &lt;a href="https://github.com/php/php-src/commit/31c0ea7d7ff1d1fccb6492e52dab544011628065"&gt;php-src commit 31c0ea7&lt;/a&gt; · bestätigt · major&lt;/p&gt;</content>
 </entry>
 <entry>
 <title>PHP Foundation über den Umgang mit Sicherheitsmeldungen</title>
