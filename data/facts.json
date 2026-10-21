@@ -10,7 +10,7 @@
    "en": "CVE-2026-109618 and CVE-2026-109619: critical RCE flaws in the PHP core",
    "de": "CVE-2026-109618 und CVE-2026-109619: kritische RCE-Lücken im PHP-Kern"
   },
-  "last_updated": "2026-10-21T14:45:00Z",
+  "last_updated": "2026-10-21T15:15:00Z",
   "maintainer_note": "Single source of truth. Every fact needs source_url, source_name, confidence; texts as {pl,en,de}. Run ./update_and_build.sh \"message\".",
   "timezone_note": {
    "pl": "Wszystkie czasy w UTC. Czasy z NOS (CEST) przeliczone na UTC (−2 h).",
@@ -1388,6 +1388,185 @@
    ],
    "source_url": "https://x.com/calif_io/status/2112914613297668583",
    "source_name": "@calif_io na X",
+   "confidence": "confirmed"
+  },
+  {
+   "id": "phpf-backstory",
+   "time_utc": "2026-10-21T14:51:00Z",
+   "importance": "critical",
+   "title": {
+    "pl": "PHP Foundation: problem OOM znany od audytu w 2024, poprawka utknęła na miesiące",
+    "en": "PHP Foundation: the OOM problem was known since the 2024 audit, the fix stalled for months",
+    "de": "PHP Foundation: Das OOM-Problem war seit dem Audit 2024 bekannt, der Fix stockte monatelang"
+   },
+   "description": {
+    "pl": "Fundacja opisuje kulisy. Pierwsze oznaki problemu z brakiem pamięci (OOM) znalazł w 2024 r. jej programista przy naprawie błędu z audytu Quarkslab (finansowanego przez niemiecką Sovereign Tech Agency przez OSTIF). Exploita wtedy tylko teoretyzowano, a zespół bezpieczeństwa, działający na zasadzie konsensusu, nie umiał wybrać między kilkoma poprawkami z wadami, więc praca stawała i ruszała od nowa. Fundacja nazywa to wprost „strukturalną porażką”. Calif zaczął audyt 30.07.2026, 11.08 Ryan A z Calif i OpenAI niezależnie zgłosili ten sam błąd, Wiz 24.08, kolejne wektory OpenAI 18.09. Teraz audytuje też Trail of Bits. Od 1 lipca zespół opublikował 15 CVE i odrzucił ponad 100 zgłoszeń.",
+    "en": "The foundation describes the backstory. Its developer found the first signs of the out-of-memory (OOM) problem in 2024 while fixing an issue from the Quarkslab audit (funded by Germany's Sovereign Tech Agency via OSTIF). An exploit was only theorised, and the consensus-driven security team could not choose between several flawed fixes, so work stalled and restarted repeatedly. The foundation calls this a “structural failure”. Calif began its audit on 30 July 2026; on 11 August Ryan A at Calif and OpenAI independently reported the same root cause, Wiz followed on 24 August and OpenAI added vectors on 18 September. Trail of Bits is now auditing as well. Since 1 July the team has published 15 CVEs and worked through more than 100 invalid reports.",
+    "de": "Die Foundation schildert die Vorgeschichte. Erste Anzeichen des Out-of-Memory-Problems (OOM) fand ihr Entwickler 2024 beim Beheben eines Fundes aus dem Quarkslab-Audit (finanziert von der deutschen Sovereign Tech Agency über OSTIF). Ein Exploit galt damals nur als theoretisch, und das im Konsens arbeitende Security-Team konnte sich zwischen mehreren Fixes mit Nachteilen nicht entscheiden, sodass die Arbeit immer wieder stockte. Die Foundation spricht offen von einem „strukturellen Versagen“. Calif begann sein Audit am 30.07.2026, am 11.08. meldeten Ryan A (Calif) und OpenAI unabhängig dieselbe Ursache, Wiz am 24.08., OpenAI weitere Vektoren am 18.09. Inzwischen prüft auch Trail of Bits. Seit 1. Juli hat das Team 15 CVEs veröffentlicht und über 100 ungültige Meldungen bearbeitet."
+   },
+   "actors": [
+    "PHP Foundation",
+    "Quarkslab",
+    "Sovereign Tech Agency",
+    "Calif",
+    "OpenAI",
+    "Wiz",
+    "Trail of Bits"
+   ],
+   "source_url": "https://thephp.foundation/blog/2026/10/21/todays-php-security-release-and-how-were-strengthening-php-security/",
+   "source_name": "The PHP Foundation",
+   "confidence": "confirmed"
+  },
+  {
+   "id": "chainguard-embargo",
+   "time_utc": "2026-10-21T07:41:00Z",
+   "importance": "major",
+   "title": {
+    "pl": "PHP Foundation: Chainguard złamał embargo i wypuścił obrazy z poprawką 6 godzin przed premierą",
+    "en": "PHP Foundation: Chainguard broke the embargo and shipped fixed images 6 hours early",
+    "de": "PHP Foundation: Chainguard brach das Embargo und veröffentlichte gepatchte Images 6 Stunden zu früh"
+   },
+   "description": {
+    "pl": "Według fundacji Chainguard, który dostał łatkę wcześniej jak inni dystrybutorzy, o 07:41 UTC „jednostronnie” opublikował zbudowane obrazy z poprawką. Każdy atakujący mógł wtedy analizować poprawkę w postaci binarnej, zanim reszta użytkowników dostała wydanie. Fundacja pisze też, że Calif „omyłkowo” opublikował wideo z PoC po zapowiedzi, a porady dot. łagodzenia przekazane ok. 23:00 UTC 20.10 kilku operatorom infrastruktury krytycznej mogły wyciec. Stanowiska Chainguard jeszcze nie znaleźliśmy.",
+    "en": "According to the foundation, Chainguard, which like other distributors received the patch in advance, “unilaterally” published built images containing the fix at 07:41 UTC. Any attacker could then study the fix in binary form while everyone else waited for the release. The foundation also says Calif “mistakenly” published its PoC video after the pre-announcement, and that mitigation advice given to a few critical infrastructure providers around 23:00 UTC on 20 October may have leaked. We have not yet found a statement from Chainguard.",
+    "de": "Laut Foundation hat Chainguard, das den Patch wie andere Distributoren vorab erhalten hatte, um 07:41 UTC „einseitig“ fertige Images mit dem Fix veröffentlicht. Angreifer konnten den Fix damit in Binärform analysieren, während alle anderen noch auf das Release warteten. Außerdem habe Calif sein PoC-Video nach der Vorankündigung „versehentlich“ veröffentlicht, und Hinweise zur Abschwächung, die am 20.10. gegen 23:00 UTC an einige Betreiber kritischer Infrastruktur gingen, könnten ebenfalls durchgesickert sein. Eine Stellungnahme von Chainguard haben wir noch nicht gefunden."
+   },
+   "actors": [
+    "PHP Foundation",
+    "Chainguard",
+    "Calif"
+   ],
+   "source_url": "https://thephp.foundation/blog/2026/10/21/todays-php-security-release-and-how-were-strengthening-php-security/",
+   "source_name": "The PHP Foundation",
+   "confidence": "confirmed"
+  },
+  {
+   "id": "debian-dsa",
+   "time_utc": "2026-10-21T13:45:09Z",
+   "importance": "minor",
+   "title": {
+    "pl": "Debian DSA-6574-1: poprawka dla php8.4 (trixie)",
+    "en": "Debian DSA-6574-1: fix for php8.4 (trixie)",
+    "de": "Debian DSA-6574-1: Fix für php8.4 (trixie)"
+   },
+   "description": {
+    "pl": "Debian wydał 8.4.27-1~deb13u1 dla stabilnej wersji trixie, 11 minut po publikacji tarballi. Dla innych gałęzi PHP w Debianie biuletynu jeszcze nie było.",
+    "en": "Debian shipped 8.4.27-1~deb13u1 for stable (trixie), 11 minutes after the tarballs went public. No advisory yet for other PHP branches in Debian.",
+    "de": "Debian veröffentlichte 8.4.27-1~deb13u1 für Stable (trixie), 11 Minuten nach den Tarballs. Für andere PHP-Zweige in Debian gab es noch kein Advisory."
+   },
+   "actors": [
+    "Debian"
+   ],
+   "source_url": "https://lists.debian.org/debian-security-announce/2026/msg00489.html",
+   "source_name": "debian-security-announce",
+   "confidence": "confirmed"
+  },
+  {
+   "id": "ubuntu-usn",
+   "time_utc": "2026-10-21T13:56:19Z",
+   "importance": "minor",
+   "title": {
+    "pl": "Ubuntu USN-8948-1: poprawki PHP",
+    "en": "Ubuntu USN-8948-1: PHP fixes",
+    "de": "Ubuntu USN-8948-1: PHP-Fixes"
+   },
+   "description": {
+    "pl": "Canonical opublikował biuletyn z poprawkami PHP ok. 22 minuty po wydaniu. Użytkownicy zgłaszają przeciążone serwery PPA (niepotwierdzone).",
+    "en": "Canonical published its PHP notice about 22 minutes after the release. Users report overloaded PPA servers (unconfirmed).",
+    "de": "Canonical veröffentlichte die PHP-Notice etwa 22 Minuten nach dem Release. Nutzer melden überlastete PPA-Server (unbestätigt)."
+   },
+   "actors": [
+    "Canonical"
+   ],
+   "source_url": "https://ubuntu.com/security/notices/USN-8948-1",
+   "source_name": "Ubuntu Security Notices",
+   "confidence": "confirmed"
+  },
+  {
+   "id": "japan-takaichi",
+   "time_utc": "2026-10-21T12:55:59Z",
+   "importance": "major",
+   "title": {
+    "pl": "Japonia: premier Takaichi apeluje na X o pilne działania; serwisy w trybie awaryjnej konserwacji",
+    "en": "Japan: Prime Minister Takaichi posts an urgent appeal on X; services go into emergency maintenance",
+    "de": "Japan: Premierministerin Takaichi ruft auf X zu dringendem Handeln auf; Dienste in Notwartung"
+   },
+   "description": {
+    "pl": "Wpis Sanae Takaichi („bardzo pilna prośba” o działanie jeszcze dziś wieczorem) ma ok. 20 mln wyświetleń. Wieczorem czasu japońskiego użytkownicy zgłaszają awaryjne przerwy m.in. pixiv, Uma Musume i Niconico; to relacje z X, nie sprawdziliśmy ich u samych serwisów.",
+    "en": "Sanae Takaichi's post (an “extremely urgent request” to act tonight) has about 20 million views. In the Japanese evening users report emergency maintenance at pixiv, Uma Musume and Niconico among others; these are X reports we have not checked with the services themselves.",
+    "de": "Der Beitrag von Sanae Takaichi (eine „äußerst dringende Bitte“, noch heute Abend zu handeln) hat rund 20 Mio. Aufrufe. Am japanischen Abend melden Nutzer Notwartungen u. a. bei pixiv, Uma Musume und Niconico; das sind Berichte auf X, die wir bei den Diensten nicht geprüft haben."
+   },
+   "actors": [
+    "Sanae Takaichi",
+    "pixiv"
+   ],
+   "source_url": "https://x.com/takaichi_sanae/status/2112890642590564386",
+   "source_name": "X / @takaichi_sanae",
+   "confidence": "confirmed"
+  },
+  {
+   "id": "breachforums-offline",
+   "time_utc": "2026-10-21T14:50:29Z",
+   "importance": "minor",
+   "title": {
+    "pl": "Fora przestępcze BreachForums i Dread znikają „profilaktycznie”",
+    "en": "Criminal forums BreachForums and Dread go offline “as a precaution”",
+    "de": "Kriminelle Foren BreachForums und Dread gehen „vorsorglich“ offline"
+   },
+   "description": {
+    "pl": "Według konta Pirat_Nation oba fora same się wyłączyły z powodu PHP2Shell. Niepotwierdzone u źródła.",
+    "en": "According to the Pirat_Nation account, both forums took themselves offline because of PHP2Shell. Not confirmed at source.",
+    "de": "Laut dem Account Pirat_Nation haben sich beide Foren wegen PHP2Shell selbst abgeschaltet. An der Quelle nicht bestätigt."
+   },
+   "actors": [
+    "BreachForums",
+    "Dread"
+   ],
+   "source_url": "https://x.com/Pirat_Nation/status/2112919458029211999",
+   "source_name": "X / @Pirat_Nation",
+   "confidence": "reported"
+  },
+  {
+   "id": "watchtowr-credit",
+   "time_utc": "2026-10-21T14:54:24Z",
+   "importance": "minor",
+   "title": {
+    "pl": "watchTowr oddaje zasługę Calif i @lcfr_hax, podaje „aktywne próby eksploatacji”",
+    "en": "watchTowr credits Calif and @lcfr_hax, reports “active exploitation attempts”",
+    "de": "watchTowr würdigt Calif und @lcfr_hax, meldet „aktive Ausnutzungsversuche“"
+   },
+   "description": {
+    "pl": "watchTowr gratuluje odkrycia Calif i @lcfr_hax, a na swojej stronie pisze, że obserwuje aktywne próby wykorzystania obu CVE (bez publicznych danych).",
+    "en": "watchTowr congratulates Calif and @lcfr_hax on the discovery, and its page says it is observing active exploitation attempts against both CVEs (no public data).",
+    "de": "watchTowr gratuliert Calif und @lcfr_hax zur Entdeckung; auf seiner Seite heißt es, man beobachte aktive Ausnutzungsversuche beider CVEs (ohne öffentliche Daten)."
+   },
+   "actors": [
+    "watchTowr",
+    "Calif"
+   ],
+   "source_url": "https://watchtowr.com/intelligence/php-remote-code-execution-php2shell/",
+   "source_name": "watchTowr",
+   "confidence": "reported"
+  },
+  {
+   "id": "brockman-essay",
+   "time_utc": "2026-10-21T14:58:43Z",
+   "importance": "minor",
+   "title": {
+    "pl": "Greg Brockman (OpenAI): esej „Towards securing the internet”",
+    "en": "Greg Brockman (OpenAI): essay “Towards securing the internet”",
+    "de": "Greg Brockman (OpenAI): Essay „Towards securing the internet“"
+   },
+   "description": {
+    "pl": "Prezes OpenAI pisze, że firma od dwóch miesięcy prowadziła koalicję łagodzącą „jeden z najpoważniejszych błędów w open source”. Tymczasem fundacja PHP i Calif akcentują inne role w odkryciu.",
+    "en": "OpenAI's president writes that the company led a coalition for two months to mitigate “one of the most severe bugs in open source”. The PHP Foundation and Calif emphasise different roles in the discovery.",
+    "de": "OpenAIs Präsident schreibt, das Unternehmen habe zwei Monate lang eine Koalition gegen „einen der schwersten Bugs in Open Source“ geführt. PHP Foundation und Calif betonen andere Rollen bei der Entdeckung."
+   },
+   "actors": [
+    "OpenAI"
+   ],
+   "source_url": "https://x.com/gdb/status/2112921529650688312",
+   "source_name": "X / @gdb",
    "confidence": "confirmed"
   }
  ],
@@ -3111,6 +3290,41 @@
    "name": "@calif_io na X",
    "url": "https://x.com/calif_io/status/2112914613297668583",
    "type": "research"
+  },
+  {
+   "name": "The PHP Foundation — Today's PHP Security Release",
+   "url": "https://thephp.foundation/blog/2026/10/21/todays-php-security-release-and-how-were-strengthening-php-security/",
+   "type": "vendor"
+  },
+  {
+   "name": "Debian DSA-6574-1",
+   "url": "https://lists.debian.org/debian-security-announce/2026/msg00489.html",
+   "type": "vendor"
+  },
+  {
+   "name": "Ubuntu USN-8948-1",
+   "url": "https://ubuntu.com/security/notices/USN-8948-1",
+   "type": "vendor"
+  },
+  {
+   "name": "X / @takaichi_sanae",
+   "url": "https://x.com/takaichi_sanae/status/2112890642590564386",
+   "type": "social"
+  },
+  {
+   "name": "X / @Pirat_Nation",
+   "url": "https://x.com/Pirat_Nation/status/2112919458029211999",
+   "type": "social"
+  },
+  {
+   "name": "watchTowr — PHP2Shell",
+   "url": "https://watchtowr.com/intelligence/php-remote-code-execution-php2shell/",
+   "type": "research"
+  },
+  {
+   "name": "X / @gdb",
+   "url": "https://x.com/gdb/status/2112921529650688312",
+   "type": "social"
   }
  ]
 }

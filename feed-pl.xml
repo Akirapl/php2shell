@@ -3,12 +3,56 @@
 <title>PHP2Shell — oś czasu (PL)</title>
 <subtitle>Relacja na żywo: PHP2Shell (CVE-2026-109618/109619), krytyczne RCE w rdzeniu PHP (CVSS 9.2). Poprawki: 8.5.12, 8.4.27, 8.3.36, 8.2.35. Każdy fakt ze źródłem.</subtitle>
 <id>https://akirapl.github.io/php2shell/feed-pl.xml</id>
-<updated>2026-10-21T14:45:00Z</updated>
+<updated>2026-10-21T15:15:00Z</updated>
 <link rel="self" type="application/atom+xml" href="https://akirapl.github.io/php2shell/feed-pl.xml"/>
 <link rel="alternate" type="text/html" hreflang="pl" href="https://akirapl.github.io/php2shell/?lang=pl"/>
 <author><name>Dawid Kulik (@Akirapl)</name><uri>https://github.com/Akirapl</uri></author>
 <icon>https://akirapl.github.io/php2shell/assets/og-image.png</icon>
 <rights>CC BY 4.0</rights>
+<entry>
+<title>Greg Brockman (OpenAI): esej „Towards securing the internet”</title>
+<id>tag:php2shell-live.surge.sh,2026:brockman-essay</id>
+<link rel="alternate" type="text/html" href="https://akirapl.github.io/php2shell/?lang=pl#ev-brockman-essay"/>
+<link rel="related" href="https://x.com/gdb/status/2112921529650688312"/>
+<published>2026-10-21T14:58:43Z</published>
+<updated>2026-10-21T14:58:43Z</updated>
+<category term="minor"/>
+<summary type="text">Prezes OpenAI pisze, że firma od dwóch miesięcy prowadziła koalicję łagodzącą „jeden z najpoważniejszych błędów w open source”. Tymczasem fundacja PHP i Calif akcentują inne role w odkryciu.</summary>
+<content type="html">&lt;p&gt;Prezes OpenAI pisze, że firma od dwóch miesięcy prowadziła koalicję łagodzącą „jeden z najpoważniejszych błędów w open source”. Tymczasem fundacja PHP i Calif akcentują inne role w odkryciu.&lt;/p&gt;&lt;p&gt;Źródło: &lt;a href="https://x.com/gdb/status/2112921529650688312"&gt;X / @gdb&lt;/a&gt; · potwierdzone · minor&lt;/p&gt;</content>
+</entry>
+<entry>
+<title>watchTowr oddaje zasługę Calif i @lcfr_hax, podaje „aktywne próby eksploatacji”</title>
+<id>tag:php2shell-live.surge.sh,2026:watchtowr-credit</id>
+<link rel="alternate" type="text/html" href="https://akirapl.github.io/php2shell/?lang=pl#ev-watchtowr-credit"/>
+<link rel="related" href="https://watchtowr.com/intelligence/php-remote-code-execution-php2shell/"/>
+<published>2026-10-21T14:54:24Z</published>
+<updated>2026-10-21T14:54:24Z</updated>
+<category term="minor"/>
+<summary type="text">watchTowr gratuluje odkrycia Calif i @lcfr_hax, a na swojej stronie pisze, że obserwuje aktywne próby wykorzystania obu CVE (bez publicznych danych).</summary>
+<content type="html">&lt;p&gt;watchTowr gratuluje odkrycia Calif i @lcfr_hax, a na swojej stronie pisze, że obserwuje aktywne próby wykorzystania obu CVE (bez publicznych danych).&lt;/p&gt;&lt;p&gt;Źródło: &lt;a href="https://watchtowr.com/intelligence/php-remote-code-execution-php2shell/"&gt;watchTowr&lt;/a&gt; · doniesienie · minor&lt;/p&gt;</content>
+</entry>
+<entry>
+<title>PHP Foundation: problem OOM znany od audytu w 2024, poprawka utknęła na miesiące</title>
+<id>tag:php2shell-live.surge.sh,2026:phpf-backstory</id>
+<link rel="alternate" type="text/html" href="https://akirapl.github.io/php2shell/?lang=pl#ev-phpf-backstory"/>
+<link rel="related" href="https://thephp.foundation/blog/2026/10/21/todays-php-security-release-and-how-were-strengthening-php-security/"/>
+<published>2026-10-21T14:51:00Z</published>
+<updated>2026-10-21T14:51:00Z</updated>
+<category term="critical"/>
+<summary type="text">Fundacja opisuje kulisy. Pierwsze oznaki problemu z brakiem pamięci (OOM) znalazł w 2024 r. jej programista przy naprawie błędu z audytu Quarkslab (finansowanego przez niemiecką Sovereign Tech Agency przez OSTIF). Exploita wtedy tylko teoretyzowano, a zespół bezpieczeństwa, działający na zasadzie konsensusu, nie umiał wybrać między kilkoma poprawkami z wadami, więc praca stawała i ruszała od nowa. Fundacja nazywa to wprost „strukturalną porażką”. Calif zaczął audyt 30.07.2026, 11.08 Ryan A z Calif i OpenAI niezależnie zgłosili ten sam błąd, Wiz 24.08, kolejne wektory OpenAI 18.09. Teraz audytuje też Trail of Bits. Od 1 lipca zespół opublikował 15 CVE i odrzucił ponad 100 zgłoszeń.</summary>
+<content type="html">&lt;p&gt;Fundacja opisuje kulisy. Pierwsze oznaki problemu z brakiem pamięci (OOM) znalazł w 2024 r. jej programista przy naprawie błędu z audytu Quarkslab (finansowanego przez niemiecką Sovereign Tech Agency przez OSTIF). Exploita wtedy tylko teoretyzowano, a zespół bezpieczeństwa, działający na zasadzie konsensusu, nie umiał wybrać między kilkoma poprawkami z wadami, więc praca stawała i ruszała od nowa. Fundacja nazywa to wprost „strukturalną porażką”. Calif zaczął audyt 30.07.2026, 11.08 Ryan A z Calif i OpenAI niezależnie zgłosili ten sam błąd, Wiz 24.08, kolejne wektory OpenAI 18.09. Teraz audytuje też Trail of Bits. Od 1 lipca zespół opublikował 15 CVE i odrzucił ponad 100 zgłoszeń.&lt;/p&gt;&lt;p&gt;Źródło: &lt;a href="https://thephp.foundation/blog/2026/10/21/todays-php-security-release-and-how-were-strengthening-php-security/"&gt;The PHP Foundation&lt;/a&gt; · potwierdzone · critical&lt;/p&gt;</content>
+</entry>
+<entry>
+<title>Fora przestępcze BreachForums i Dread znikają „profilaktycznie”</title>
+<id>tag:php2shell-live.surge.sh,2026:breachforums-offline</id>
+<link rel="alternate" type="text/html" href="https://akirapl.github.io/php2shell/?lang=pl#ev-breachforums-offline"/>
+<link rel="related" href="https://x.com/Pirat_Nation/status/2112919458029211999"/>
+<published>2026-10-21T14:50:29Z</published>
+<updated>2026-10-21T14:50:29Z</updated>
+<category term="minor"/>
+<summary type="text">Według konta Pirat_Nation oba fora same się wyłączyły z powodu PHP2Shell. Niepotwierdzone u źródła.</summary>
+<content type="html">&lt;p&gt;Według konta Pirat_Nation oba fora same się wyłączyły z powodu PHP2Shell. Niepotwierdzone u źródła.&lt;/p&gt;&lt;p&gt;Źródło: &lt;a href="https://x.com/Pirat_Nation/status/2112919458029211999"&gt;X / @Pirat_Nation&lt;/a&gt; · doniesienie · minor&lt;/p&gt;</content>
+</entry>
 <entry>
 <title>Calif: „Ustalmy fakty” — spór o pierwszeństwo odkrycia</title>
 <id>tag:php2shell-live.surge.sh,2026:calif-record-straight</id>
@@ -54,6 +98,17 @@
 <content type="html">&lt;p&gt;OpenAI pisze, że od dwóch miesięcy prowadziło koalicję opiekunów, badaczy i dostawców bezpieczeństwa. Calif znalazł krytyczny błąd z GPT‑5.6 Sol w ramach programu Patch the Planet, Wiz niezależnie zgłosił oba błędy. OpenAI angażowało rząd USA (White House Super Intelligence Force, ONCD, CISA) i partnerów zagranicznych, zapowiada checker wersji PHP, skill do Codex i 1 mld USD dotowanego dostępu do Daybreak dla obrońców. Proponuje pięcioetapowy schemat koordynacji i pyta otwarcie m.in. o okna disclosure i o to, czy rządy powinny łatać cudze systemy przez lukę.&lt;/p&gt;&lt;p&gt;Źródło: &lt;a href="https://openai.com/index/coordinated-disclosure-of-critical-vulnerabilities/"&gt;OpenAI&lt;/a&gt; · potwierdzone · major&lt;/p&gt;</content>
 </entry>
 <entry>
+<title>Ubuntu USN-8948-1: poprawki PHP</title>
+<id>tag:php2shell-live.surge.sh,2026:ubuntu-usn</id>
+<link rel="alternate" type="text/html" href="https://akirapl.github.io/php2shell/?lang=pl#ev-ubuntu-usn"/>
+<link rel="related" href="https://ubuntu.com/security/notices/USN-8948-1"/>
+<published>2026-10-21T13:56:19Z</published>
+<updated>2026-10-21T13:56:19Z</updated>
+<category term="minor"/>
+<summary type="text">Canonical opublikował biuletyn z poprawkami PHP ok. 22 minuty po wydaniu. Użytkownicy zgłaszają przeciążone serwery PPA (niepotwierdzone).</summary>
+<content type="html">&lt;p&gt;Canonical opublikował biuletyn z poprawkami PHP ok. 22 minuty po wydaniu. Użytkownicy zgłaszają przeciążone serwery PPA (niepotwierdzone).&lt;/p&gt;&lt;p&gt;Źródło: &lt;a href="https://ubuntu.com/security/notices/USN-8948-1"&gt;Ubuntu Security Notices&lt;/a&gt; · potwierdzone · minor&lt;/p&gt;</content>
+</entry>
+<entry>
 <title>Cloudflare: reguły WAF od początku października, ataki i próby obejścia</title>
 <id>tag:php2shell-live.surge.sh,2026:cf-blog</id>
 <link rel="alternate" type="text/html" href="https://akirapl.github.io/php2shell/?lang=pl#ev-cf-blog"/>
@@ -96,6 +151,17 @@
 <category term="minor"/>
 <summary type="text">Obie luki nie figurują w katalogu Known Exploited Vulnerabilities (stan 13:46 UTC).</summary>
 <content type="html">&lt;p&gt;Obie luki nie figurują w katalogu Known Exploited Vulnerabilities (stan 13:46 UTC).&lt;/p&gt;&lt;p&gt;Źródło: &lt;a href="https://www.cisa.gov/known-exploited-vulnerabilities-catalog"&gt;CISA KEV catalog&lt;/a&gt; · potwierdzone · minor&lt;/p&gt;</content>
+</entry>
+<entry>
+<title>Debian DSA-6574-1: poprawka dla php8.4 (trixie)</title>
+<id>tag:php2shell-live.surge.sh,2026:debian-dsa</id>
+<link rel="alternate" type="text/html" href="https://akirapl.github.io/php2shell/?lang=pl#ev-debian-dsa"/>
+<link rel="related" href="https://lists.debian.org/debian-security-announce/2026/msg00489.html"/>
+<published>2026-10-21T13:45:09Z</published>
+<updated>2026-10-21T13:45:09Z</updated>
+<category term="minor"/>
+<summary type="text">Debian wydał 8.4.27-1~deb13u1 dla stabilnej wersji trixie, 11 minut po publikacji tarballi. Dla innych gałęzi PHP w Debianie biuletynu jeszcze nie było.</summary>
+<content type="html">&lt;p&gt;Debian wydał 8.4.27-1~deb13u1 dla stabilnej wersji trixie, 11 minut po publikacji tarballi. Dla innych gałęzi PHP w Debianie biuletynu jeszcze nie było.&lt;/p&gt;&lt;p&gt;Źródło: &lt;a href="https://lists.debian.org/debian-security-announce/2026/msg00489.html"&gt;debian-security-announce&lt;/a&gt; · potwierdzone · minor&lt;/p&gt;</content>
 </entry>
 <entry>
 <title>Oficjalne obrazy Docker w drodze</title>
@@ -184,6 +250,17 @@
 <category term="minor"/>
 <summary type="text">Według NBC News dobrowolnie wyłączano też strony w Japonii.</summary>
 <content type="html">&lt;p&gt;Według NBC News dobrowolnie wyłączano też strony w Japonii.&lt;/p&gt;&lt;p&gt;Źródło: &lt;a href="https://www.nbcnews.com/tech/security/critical-vulnerabilities-php-update-systems-rcna604751"&gt;NBC News&lt;/a&gt; · doniesienie · minor&lt;/p&gt;</content>
+</entry>
+<entry>
+<title>Japonia: premier Takaichi apeluje na X o pilne działania; serwisy w trybie awaryjnej konserwacji</title>
+<id>tag:php2shell-live.surge.sh,2026:japan-takaichi</id>
+<link rel="alternate" type="text/html" href="https://akirapl.github.io/php2shell/?lang=pl#ev-japan-takaichi"/>
+<link rel="related" href="https://x.com/takaichi_sanae/status/2112890642590564386"/>
+<published>2026-10-21T12:55:59Z</published>
+<updated>2026-10-21T12:55:59Z</updated>
+<category term="major"/>
+<summary type="text">Wpis Sanae Takaichi („bardzo pilna prośba” o działanie jeszcze dziś wieczorem) ma ok. 20 mln wyświetleń. Wieczorem czasu japońskiego użytkownicy zgłaszają awaryjne przerwy m.in. pixiv, Uma Musume i Niconico; to relacje z X, nie sprawdziliśmy ich u samych serwisów.</summary>
+<content type="html">&lt;p&gt;Wpis Sanae Takaichi („bardzo pilna prośba” o działanie jeszcze dziś wieczorem) ma ok. 20 mln wyświetleń. Wieczorem czasu japońskiego użytkownicy zgłaszają awaryjne przerwy m.in. pixiv, Uma Musume i Niconico; to relacje z X, nie sprawdziliśmy ich u samych serwisów.&lt;/p&gt;&lt;p&gt;Źródło: &lt;a href="https://x.com/takaichi_sanae/status/2112890642590564386"&gt;X / @takaichi_sanae&lt;/a&gt; · potwierdzone · major&lt;/p&gt;</content>
 </entry>
 <entry>
 <title>Belgia: wszystkie strony rządu Flandrii offline</title>
@@ -338,6 +415,17 @@
 <category term="critical"/>
 <summary type="text">CTO Dane Knecht: reguły WAF wdrożone dla wszystkich klientów, także darmowych; to tylko rozwiązanie doraźne. Brak opublikowanych szczegółów ataków.</summary>
 <content type="html">&lt;p&gt;CTO Dane Knecht: reguły WAF wdrożone dla wszystkich klientów, także darmowych; to tylko rozwiązanie doraźne. Brak opublikowanych szczegółów ataków.&lt;/p&gt;&lt;p&gt;Źródło: &lt;a href="https://x.com/dok2001/status/2112811965735202970"&gt;Dane Knecht (@dok2001) on X&lt;/a&gt; · doniesienie · critical&lt;/p&gt;</content>
+</entry>
+<entry>
+<title>PHP Foundation: Chainguard złamał embargo i wypuścił obrazy z poprawką 6 godzin przed premierą</title>
+<id>tag:php2shell-live.surge.sh,2026:chainguard-embargo</id>
+<link rel="alternate" type="text/html" href="https://akirapl.github.io/php2shell/?lang=pl#ev-chainguard-embargo"/>
+<link rel="related" href="https://thephp.foundation/blog/2026/10/21/todays-php-security-release-and-how-were-strengthening-php-security/"/>
+<published>2026-10-21T07:41:00Z</published>
+<updated>2026-10-21T07:41:00Z</updated>
+<category term="major"/>
+<summary type="text">Według fundacji Chainguard, który dostał łatkę wcześniej jak inni dystrybutorzy, o 07:41 UTC „jednostronnie” opublikował zbudowane obrazy z poprawką. Każdy atakujący mógł wtedy analizować poprawkę w postaci binarnej, zanim reszta użytkowników dostała wydanie. Fundacja pisze też, że Calif „omyłkowo” opublikował wideo z PoC po zapowiedzi, a porady dot. łagodzenia przekazane ok. 23:00 UTC 20.10 kilku operatorom infrastruktury krytycznej mogły wyciec. Stanowiska Chainguard jeszcze nie znaleźliśmy.</summary>
+<content type="html">&lt;p&gt;Według fundacji Chainguard, który dostał łatkę wcześniej jak inni dystrybutorzy, o 07:41 UTC „jednostronnie” opublikował zbudowane obrazy z poprawką. Każdy atakujący mógł wtedy analizować poprawkę w postaci binarnej, zanim reszta użytkowników dostała wydanie. Fundacja pisze też, że Calif „omyłkowo” opublikował wideo z PoC po zapowiedzi, a porady dot. łagodzenia przekazane ok. 23:00 UTC 20.10 kilku operatorom infrastruktury krytycznej mogły wyciec. Stanowiska Chainguard jeszcze nie znaleźliśmy.&lt;/p&gt;&lt;p&gt;Źródło: &lt;a href="https://thephp.foundation/blog/2026/10/21/todays-php-security-release-and-how-were-strengthening-php-security/"&gt;The PHP Foundation&lt;/a&gt; · potwierdzone · major&lt;/p&gt;</content>
 </entry>
 <entry>
 <title>SecurityWeek: „Mass Exploitation Looms”</title>
