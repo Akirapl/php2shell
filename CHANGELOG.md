@@ -1,5 +1,13 @@
 # Changelog
 
+## v1.2 (21.10.2026)
+
+Passive PHP banner checker API in `checker-api/`. The root Render Blueprint `render.yaml` deploys the free Docker web service `php2shell-checker`.
+
+Pasywne API sprawdzania banera PHP w `checker-api/`. Blueprint Render w `render.yaml` wdraża darmową usługę Docker `php2shell-checker`.
+
+Passive PHP-Banner-Prüfung in `checker-api/`. Das Render-Blueprint `render.yaml` deployt den kostenlosen Docker-Webdienst `php2shell-checker`.
+
 ## v1.1 (21.10.2026)
 
 Public contact point and archive plan: `ABOUT.md` (linked from the README), `CONTRIBUTING.md`, GitHub issue templates in `.github/ISSUE_TEMPLATE/`, `SECURITY.md`, and `ARCHIVE.md`.

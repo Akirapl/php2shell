@@ -17,6 +17,7 @@ To repozytorium trzyma obronne studium przypadku PHP2Shell oraz dane, na któryc
 - Studium: [polski](case-study/pl.md) · [English](case-study/en.md) · [Deutsch](case-study/de.md)
 - Diagramy (PNG i źródła Mermaid): [case-study/diagrams/](case-study/diagrams/)
 - Dane centrum na żywo: [data/facts.json](data/facts.json)
+- Checker API: pasywne sprawdzenie banera, zobacz [checker-api/README.md](checker-api/README.md)
 
 W `data/facts.json` każdy fakt niesie `source_url` oraz `confidence`: `confirmed` (potwierdzone), `reported` (relacjonowane) albo `estimate` (szacunek). Z założenia nie ma tu kodu exploita ani instrukcji ataku.
 
@@ -37,6 +38,7 @@ This repository holds a sourced, defensive case study of the PHP2Shell incident 
 - Case study: [Polish](case-study/pl.md) · [English](case-study/en.md) · [German](case-study/de.md)
 - Diagrams (PNG renders and Mermaid sources): [case-study/diagrams/](case-study/diagrams/)
 - Live-center data: [data/facts.json](data/facts.json)
+- Checker API: passive banner check, see [checker-api/README.md](checker-api/README.md)
 
 In `data/facts.json` each fact has a `source_url` and a `confidence` of `confirmed`, `reported`, or `estimate`. By design the repository contains no exploit code and no attack instructions.
 
@@ -57,6 +59,7 @@ Dieses Repository enthält eine quellengestützte, defensive Fallstudie zum PHP2
 - Fallstudie: [Polnisch](case-study/pl.md) · [English](case-study/en.md) · [Deutsch](case-study/de.md)
 - Diagramme (PNG und Mermaid-Quellen): [case-study/diagrams/](case-study/diagrams/)
 - Daten des Live-Centers: [data/facts.json](data/facts.json)
+- Checker API: passive Banner-Prüfung, siehe [checker-api/README.md](checker-api/README.md)
 
 In `data/facts.json` hat jeder Fakt eine `source_url` und ein `confidence` von `confirmed` (bestätigt), `reported` (berichtet) oder `estimate` (Schätzung). Das Repository enthält absichtlich keinen Exploit-Code und keine Angriffsanleitungen.
 

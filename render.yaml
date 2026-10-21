@@ -1,0 +1,15 @@
+# Render Blueprint for the passive PHP banner checker.
+# With rootDir set, dockerfilePath and dockerContext are relative to that
+# directory: https://render.com/docs/monorepo-support
+# autoDeployTrigger: commit is the current form of deprecated autoDeploy: true
+# https://render.com/docs/blueprint-spec
+services:
+  - type: web
+    name: php2shell-checker
+    runtime: docker
+    plan: free
+    rootDir: checker-api
+    dockerfilePath: ./Dockerfile
+    dockerContext: .
+    healthCheckPath: /health
+    autoDeployTrigger: commit
