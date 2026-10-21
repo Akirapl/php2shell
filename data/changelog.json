@@ -1,5 +1,11 @@
 [
  {
+  "time_utc": "2026-10-21T15:40:09Z",
+  "message": "15:45 UTC: BambooHR offline, Chainguard free images, Huntress no ITW, oss-security announcement",
+  "events": 65,
+  "facts_last_updated": "2026-10-21T15:45:00Z"
+ },
+ {
   "time_utc": "2026-10-21T15:10:06Z",
   "message": "Hosting: GitHub Pages primary, Surge serves redirects",
   "events": 61,

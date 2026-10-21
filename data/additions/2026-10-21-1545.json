@@ -1,0 +1,27 @@
+{"timeline": [
+ {"id": "bamboohr-offline", "time_utc": "2026-10-21T11:51:00Z", "importance": "major",
+  "title": {"pl": "BambooHR wyłącza cały serwis (USA, Kanada, Irlandia)", "en": "BambooHR takes its whole service offline (US, Canada, Ireland)", "de": "BambooHR nimmt den gesamten Dienst vom Netz (USA, Kanada, Irland)"},
+  "description": {"pl": "Dostawca oprogramowania HR prewencyjnie wyłącza aplikację z powodu PHP2Shell; przerwane m.in. płace, bez terminu przywrócenia. O 15:03 UTC: poprawka zastosowana, trwają testy przed ponownym uruchomieniem.", "en": "The HR software vendor preventively took its app offline over PHP2Shell; payroll interrupted, no restoration time. At 15:03 UTC: fix applied, testing before restoring access.", "de": "Der HR-Softwareanbieter nahm seine Anwendung wegen PHP2Shell vorsorglich vom Netz; Lohnabrechnung unterbrochen, kein Wiederherstellungstermin. Um 15:03 UTC: Fix eingespielt, Tests vor der Wiederfreigabe."},
+  "actors": ["BambooHR"], "source_url": "https://status.bamboohr.com/", "source_name": "BambooHR status page", "confidence": "confirmed"},
+ {"id": "chainguard-free-images", "time_utc": "2026-10-21T14:08:28Z", "importance": "minor",
+  "title": {"pl": "Chainguard udostępnia darmowe obrazy PHP 8.2–8.5", "en": "Chainguard makes PHP 8.2–8.5 images free", "de": "Chainguard stellt PHP-8.2–8.5-Images kostenlos bereit"},
+  "description": {"pl": "Po wydaniu łatek Chainguard ogłasza bezpłatne obrazy z poprawką. Do publicznego zarzutu PHP Foundation o złamanie embarga firma w tych wpisach się nie odnosi.", "en": "After the release Chainguard announces free patched images. These posts do not address the PHP Foundation's public accusation that it broke the embargo.", "de": "Nach dem Release kündigt Chainguard kostenlose gepatchte Images an. Auf den öffentlichen Vorwurf der PHP Foundation, das Embargo gebrochen zu haben, gehen diese Beiträge nicht ein."},
+  "actors": ["Chainguard"], "source_url": "https://x.com/chainguard_dev/status/2112910754672185842", "source_name": "X / @chainguard_dev", "confidence": "confirmed"},
+ {"id": "huntress-no-itw", "time_utc": "2026-10-21T14:00:00Z", "importance": "minor",
+  "title": {"pl": "Huntress: brak wykorzystania w sieci u klientów (stan na 14:00 UTC)", "en": "Huntress: no in-the-wild exploitation across its partner base (as of 14:00 UTC)", "de": "Huntress: keine Ausnutzung in freier Wildbahn bei Partnern (Stand 14:00 UTC)"},
+  "description": {"pl": "Huntress (John Hammond) nie widzi ataków u swoich partnerów, choć inni zgłaszają pierwsze próby. Obraz telemetrii wciąż niespójny.", "en": "Huntress (John Hammond) sees no attacks across its partners, while others report early attempts. The telemetry picture remains inconsistent.", "de": "Huntress (John Hammond) sieht bei seinen Partnern keine Angriffe, andere melden erste Versuche. Das Telemetriebild bleibt uneinheitlich."},
+  "actors": ["Huntress"], "source_url": "https://www.huntress.com/blog/php2shell-leaked-critical-php-vulnerabilities", "source_name": "Huntress", "confidence": "confirmed"},
+ {"id": "oss-security-official", "time_utc": "2026-10-21T14:41:54Z", "importance": "minor",
+  "title": {"pl": "Oficjalne ogłoszenie obu CVE na oss-security", "en": "Official announcement of both CVEs on oss-security", "de": "Offizielle Ankündigung beider CVEs auf oss-security"},
+  "description": {"pl": "Jakub Zelenka (PHP security team) publikuje opisy: -109618 to błąd obsługi OOM (longjmp) – RCE pokazane na mod_php, dla FPM tylko analiza kodu; -109619 to use-after-free przez nieodświeżony stan globalny – RCE pokazane na mod_php i PHP-FPM. Brak pełnego obejścia konfiguracją.", "en": "Jakub Zelenka (PHP security team) posts the descriptions: -109618 is an OOM handling (longjmp) flaw, RCE demonstrated on mod_php, FPM only by source analysis; -109619 is a use-after-free via stale global state, RCE demonstrated on mod_php and PHP-FPM. No complete configuration workaround.", "de": "Jakub Zelenka (PHP-Security-Team) veröffentlicht die Beschreibungen: -109618 ist ein Fehler in der OOM-Behandlung (longjmp), RCE auf mod_php gezeigt, FPM nur per Quellanalyse; -109619 ist ein Use-after-free durch veralteten globalen Zustand, RCE auf mod_php und PHP-FPM gezeigt. Kein vollständiger Workaround per Konfiguration."},
+  "actors": ["PHP security team"], "source_url": "https://seclists.org/oss-sec/2026/q4/277", "source_name": "oss-security", "confidence": "confirmed"}
+],
+"sites_offline": [
+ {"site": "bamboohr.com", "org": {"pl": "BambooHR (oprogramowanie HR/płace)", "en": "BambooHR (HR/payroll software)", "de": "BambooHR (HR-/Lohnsoftware)"}, "country": "US · CA · IE", "source_url": "https://status.bamboohr.com/", "source_name": "BambooHR status page", "confidence": "confirmed"}
+],
+"sources": [
+ {"name": "BambooHR status page", "url": "https://status.bamboohr.com/", "type": "vendor"},
+ {"name": "X / @chainguard_dev", "url": "https://x.com/chainguard_dev/status/2112910754672185842", "type": "social"},
+ {"name": "Huntress", "url": "https://www.huntress.com/blog/php2shell-leaked-critical-php-vulnerabilities", "type": "vendor"},
+ {"name": "oss-security", "url": "https://seclists.org/oss-sec/2026/q4/277", "type": "official"}
+]}

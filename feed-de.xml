@@ -3,7 +3,7 @@
 <title>PHP2Shell — Chronik (DE)</title>
 <subtitle>Live-Chronik zu PHP2Shell (CVE-2026-109618/109619), kritische RCE im PHP-Kern (CVSS 9.2). Behoben in 8.5.12, 8.4.27, 8.3.36, 8.2.35. Jede Angabe mit Quelle.</subtitle>
 <id>https://akirapl.github.io/php2shell/feed-de.xml</id>
-<updated>2026-10-21T15:15:00Z</updated>
+<updated>2026-10-21T15:45:00Z</updated>
 <link rel="self" type="application/atom+xml" href="https://akirapl.github.io/php2shell/feed-de.xml"/>
 <link rel="alternate" type="text/html" hreflang="de" href="https://akirapl.github.io/php2shell/?lang=de"/>
 <author><name>Dawid Kulik (@Akirapl)</name><uri>https://github.com/Akirapl</uri></author>
@@ -54,6 +54,17 @@
 <content type="html">&lt;p&gt;Laut dem Account Pirat_Nation haben sich beide Foren wegen PHP2Shell selbst abgeschaltet. An der Quelle nicht bestätigt.&lt;/p&gt;&lt;p&gt;Quelle: &lt;a href="https://x.com/Pirat_Nation/status/2112919458029211999"&gt;X / @Pirat_Nation&lt;/a&gt; · gemeldet · minor&lt;/p&gt;</content>
 </entry>
 <entry>
+<title>Offizielle Ankündigung beider CVEs auf oss-security</title>
+<id>tag:php2shell-live.surge.sh,2026:oss-security-official</id>
+<link rel="alternate" type="text/html" href="https://akirapl.github.io/php2shell/?lang=de#ev-oss-security-official"/>
+<link rel="related" href="https://seclists.org/oss-sec/2026/q4/277"/>
+<published>2026-10-21T14:41:54Z</published>
+<updated>2026-10-21T14:41:54Z</updated>
+<category term="minor"/>
+<summary type="text">Jakub Zelenka (PHP-Security-Team) veröffentlicht die Beschreibungen: -109618 ist ein Fehler in der OOM-Behandlung (longjmp), RCE auf mod_php gezeigt, FPM nur per Quellanalyse; -109619 ist ein Use-after-free durch veralteten globalen Zustand, RCE auf mod_php und PHP-FPM gezeigt. Kein vollständiger Workaround per Konfiguration.</summary>
+<content type="html">&lt;p&gt;Jakub Zelenka (PHP-Security-Team) veröffentlicht die Beschreibungen: -109618 ist ein Fehler in der OOM-Behandlung (longjmp), RCE auf mod_php gezeigt, FPM nur per Quellanalyse; -109619 ist ein Use-after-free durch veralteten globalen Zustand, RCE auf mod_php und PHP-FPM gezeigt. Kein vollständiger Workaround per Konfiguration.&lt;/p&gt;&lt;p&gt;Quelle: &lt;a href="https://seclists.org/oss-sec/2026/q4/277"&gt;oss-security&lt;/a&gt; · bestätigt · minor&lt;/p&gt;</content>
+</entry>
+<entry>
 <title>Calif: „Stellen wir das klar“ — Streit um die Erstentdeckung</title>
 <id>tag:php2shell-live.surge.sh,2026:calif-record-straight</id>
 <link rel="alternate" type="text/html" href="https://akirapl.github.io/php2shell/?lang=de#ev-calif-record-straight"/>
@@ -76,6 +87,17 @@
 <content type="html">&lt;p&gt;Jake Knott (watchTowr) sagt The Record, man beobachte Ausnutzungsversuche mit verschiedenen per KI „gevibecodeten“ PoC-Tools; bislang erfolglos, das werde aber nicht lange so bleiben. Der Artikel nennt Warnungen von EU, Deutschland, Japan, Australien, Großbritannien und den Niederlanden sowie Abschaltungen u. a. bei Nintendo. Detectify: etwa die Hälfte der PHP-Seiten läuft auf Versionen ohne Patch.&lt;/p&gt;&lt;p&gt;Quelle: &lt;a href="https://therecord.media/php-script-vulnerabilities-warnings"&gt;The Record&lt;/a&gt; · gemeldet · major&lt;/p&gt;</content>
 </entry>
 <entry>
+<title>Chainguard stellt PHP-8.2–8.5-Images kostenlos bereit</title>
+<id>tag:php2shell-live.surge.sh,2026:chainguard-free-images</id>
+<link rel="alternate" type="text/html" href="https://akirapl.github.io/php2shell/?lang=de#ev-chainguard-free-images"/>
+<link rel="related" href="https://x.com/chainguard_dev/status/2112910754672185842"/>
+<published>2026-10-21T14:08:28Z</published>
+<updated>2026-10-21T14:08:28Z</updated>
+<category term="minor"/>
+<summary type="text">Nach dem Release kündigt Chainguard kostenlose gepatchte Images an. Auf den öffentlichen Vorwurf der PHP Foundation, das Embargo gebrochen zu haben, gehen diese Beiträge nicht ein.</summary>
+<content type="html">&lt;p&gt;Nach dem Release kündigt Chainguard kostenlose gepatchte Images an. Auf den öffentlichen Vorwurf der PHP Foundation, das Embargo gebrochen zu haben, gehen diese Beiträge nicht ein.&lt;/p&gt;&lt;p&gt;Quelle: &lt;a href="https://x.com/chainguard_dev/status/2112910754672185842"&gt;X / @chainguard_dev&lt;/a&gt; · bestätigt · minor&lt;/p&gt;</content>
+</entry>
+<entry>
 <title>Calif: Das Exploit-Video von gestern war unseres</title>
 <id>tag:php2shell-live.surge.sh,2026:calif-video</id>
 <link rel="alternate" type="text/html" href="https://akirapl.github.io/php2shell/?lang=de#ev-calif-video"/>
@@ -96,6 +118,17 @@
 <category term="major"/>
 <summary type="text">OpenAI schreibt, es habe zwei Monate lang eine Koalition aus Maintainern, Forschern und Sicherheitsanbietern geführt. Calif fand eine kritische Lücke mit GPT‑5.6 Sol im Rahmen von Patch the Planet; Wiz meldete beide Fehler unabhängig. OpenAI bezog die US-Regierung (White House Super Intelligence Force, ONCD, CISA) und internationale Partner ein, kündigt einen PHP-Versionschecker, einen Codex-Skill und 1 Mrd. USD subventionierten Daybreak-Zugang für Verteidiger an. Es schlägt ein fünfstufiges Koordinationsschema vor und fragt offen nach Disclosure-Fenstern und danach, ob Regierungen Systeme über die Lücke patchen sollten.</summary>
 <content type="html">&lt;p&gt;OpenAI schreibt, es habe zwei Monate lang eine Koalition aus Maintainern, Forschern und Sicherheitsanbietern geführt. Calif fand eine kritische Lücke mit GPT‑5.6 Sol im Rahmen von Patch the Planet; Wiz meldete beide Fehler unabhängig. OpenAI bezog die US-Regierung (White House Super Intelligence Force, ONCD, CISA) und internationale Partner ein, kündigt einen PHP-Versionschecker, einen Codex-Skill und 1 Mrd. USD subventionierten Daybreak-Zugang für Verteidiger an. Es schlägt ein fünfstufiges Koordinationsschema vor und fragt offen nach Disclosure-Fenstern und danach, ob Regierungen Systeme über die Lücke patchen sollten.&lt;/p&gt;&lt;p&gt;Quelle: &lt;a href="https://openai.com/index/coordinated-disclosure-of-critical-vulnerabilities/"&gt;OpenAI&lt;/a&gt; · bestätigt · major&lt;/p&gt;</content>
+</entry>
+<entry>
+<title>Huntress: keine Ausnutzung in freier Wildbahn bei Partnern (Stand 14:00 UTC)</title>
+<id>tag:php2shell-live.surge.sh,2026:huntress-no-itw</id>
+<link rel="alternate" type="text/html" href="https://akirapl.github.io/php2shell/?lang=de#ev-huntress-no-itw"/>
+<link rel="related" href="https://www.huntress.com/blog/php2shell-leaked-critical-php-vulnerabilities"/>
+<published>2026-10-21T14:00:00Z</published>
+<updated>2026-10-21T14:00:00Z</updated>
+<category term="minor"/>
+<summary type="text">Huntress (John Hammond) sieht bei seinen Partnern keine Angriffe, andere melden erste Versuche. Das Telemetriebild bleibt uneinheitlich.</summary>
+<content type="html">&lt;p&gt;Huntress (John Hammond) sieht bei seinen Partnern keine Angriffe, andere melden erste Versuche. Das Telemetriebild bleibt uneinheitlich.&lt;/p&gt;&lt;p&gt;Quelle: &lt;a href="https://www.huntress.com/blog/php2shell-leaked-critical-php-vulnerabilities"&gt;Huntress&lt;/a&gt; · bestätigt · minor&lt;/p&gt;</content>
 </entry>
 <entry>
 <title>Ubuntu USN-8948-1: PHP-Fixes</title>
@@ -316,6 +349,17 @@
 <category term="major"/>
 <summary type="text">Ein öffentlicher PoC existiert, aktiver Missbrauch wurde aber nicht beobachtet; ncsc.nl ist vorübergehend offline. Empfehlung: Risiko je System bewerten, notfalls abschalten.</summary>
 <content type="html">&lt;p&gt;Ein öffentlicher PoC existiert, aktiver Missbrauch wurde aber nicht beobachtet; ncsc.nl ist vorübergehend offline. Empfehlung: Risiko je System bewerten, notfalls abschalten.&lt;/p&gt;&lt;p&gt;Quelle: &lt;a href="https://www.rijksoverheid.nl/actueel/nieuws/2026/10/21/ncsc-ernstige-kwetsbaarheden-in-php"&gt;Rijksoverheid.nl / NCSC-NL&lt;/a&gt; · bestätigt · major&lt;/p&gt;</content>
+</entry>
+<entry>
+<title>BambooHR nimmt den gesamten Dienst vom Netz (USA, Kanada, Irland)</title>
+<id>tag:php2shell-live.surge.sh,2026:bamboohr-offline</id>
+<link rel="alternate" type="text/html" href="https://akirapl.github.io/php2shell/?lang=de#ev-bamboohr-offline"/>
+<link rel="related" href="https://status.bamboohr.com/"/>
+<published>2026-10-21T11:51:00Z</published>
+<updated>2026-10-21T11:51:00Z</updated>
+<category term="major"/>
+<summary type="text">Der HR-Softwareanbieter nahm seine Anwendung wegen PHP2Shell vorsorglich vom Netz; Lohnabrechnung unterbrochen, kein Wiederherstellungstermin. Um 15:03 UTC: Fix eingespielt, Tests vor der Wiederfreigabe.</summary>
+<content type="html">&lt;p&gt;Der HR-Softwareanbieter nahm seine Anwendung wegen PHP2Shell vorsorglich vom Netz; Lohnabrechnung unterbrochen, kein Wiederherstellungstermin. Um 15:03 UTC: Fix eingespielt, Tests vor der Wiederfreigabe.&lt;/p&gt;&lt;p&gt;Quelle: &lt;a href="https://status.bamboohr.com/"&gt;BambooHR status page&lt;/a&gt; · bestätigt · major&lt;/p&gt;</content>
 </entry>
 <entry>
 <title>Hadrian: Ausnutzung „in großem Umfang“</title>
