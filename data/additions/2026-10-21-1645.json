@@ -1,0 +1,108 @@
+{
+  "timeline": [
+    {
+      "id": "daubois-fix-explained",
+      "time_utc": "2026-10-21T00:00:00Z",
+      "importance": "major",
+      "title": {
+        "pl": "Członek zespołu bezpieczeństwa PHP: poprawka zmienia memory_limit w limit „miękki”",
+        "en": "PHP security team member: the fix turns memory_limit into a soft limit",
+        "de": "Mitglied des PHP-Sicherheitsteams: Der Fix macht memory_limit zu einem weichen Limit"
+      },
+      "description": {
+        "pl": "Alexandre Daubois opisuje poprawkę na poziomie diffu: alokator nie wykonuje już skoku (bailout) w środku alokacji; przekroczenie memory_limit zapisuje błąd odroczony, a przerwanie następuje w bezpiecznym punkcie. Nowy twardy limit memory_hard_limit_percent (domyślnie 200% memory_limit poniżej 1G) kończy proces. Poprawka obejmuje 390 plików. Oś czasu: advisory otwarte 27.08.2026, PR z poprawką 25.09.2026. Autor podkreśla, że najczęściej powtarzana porada (session.upload_progress.enabled = Off) dotyczy tylko CVE-2026-109619.",
+        "en": "Alexandre Daubois explains the fix at diff level: the allocator no longer jumps out (bailout) in the middle of an allocation; exceeding memory_limit records a deferred error and the request stops at a safe point. A new hard limit, memory_hard_limit_percent (default 200% of memory_limit below 1G), ends the process. The fix touches 390 files. Timeline: advisory opened 27 Aug 2026, fix PR opened 25 Sep 2026. He stresses that the most repeated advice (session.upload_progress.enabled = Off) only applies to CVE-2026-109619.",
+        "de": "Alexandre Daubois erklärt den Fix auf Diff-Ebene: Der Allocator springt nicht mehr mitten in einer Allokation heraus (Bailout); das Überschreiten von memory_limit vermerkt einen verzögerten Fehler, abgebrochen wird an einer sicheren Stelle. Ein neues hartes Limit, memory_hard_limit_percent (Standard 200 % von memory_limit unter 1G), beendet den Prozess. Der Fix betrifft 390 Dateien. Zeitleiste: Advisory am 27.08.2026 eröffnet, Fix-PR am 25.09.2026. Der meistgenannte Ratschlag (session.upload_progress.enabled = Off) betrifft nur CVE-2026-109619."
+      },
+      "actors": [
+        "PHP security team"
+      ],
+      "source_url": "https://daubois.dev/blog/cve-2026-109618-php2shell-rumors/",
+      "source_name": "daubois.dev (Alexandre Daubois)",
+      "confidence": "reported",
+      "source_reliability": "B",
+      "info_credibility": 2,
+      "time_kind": "published",
+      "time_precision": "day",
+      "rating_note": {
+        "pl": "Autor przedstawia się jako członek zespołu bezpieczeństwa PHP; opis zgodny z advisory, nie sprawdzony niezależnie.",
+        "en": "The author says he is on the PHP security team; consistent with the advisories, not independently verified.",
+        "de": "Der Autor gibt an, zum PHP-Sicherheitsteam zu gehören; deckt sich mit den Advisories, nicht unabhängig geprüft."
+      }
+    },
+    {
+      "id": "automattic-hosts-protected",
+      "time_utc": "2026-10-21T15:37:27Z",
+      "importance": "minor",
+      "title": {
+        "pl": "Automattic: WordPress.com, VIP, WP Cloud, Pressable i Tumblr już chronione",
+        "en": "Automattic: WordPress.com, VIP, WP Cloud, Pressable and Tumblr already protected",
+        "de": "Automattic: WordPress.com, VIP, WP Cloud, Pressable und Tumblr bereits geschützt"
+      },
+      "description": {
+        "pl": "WordPress.com pisze, że jego strony są już chronione, a Automattic ściśle współpracował z zespołem bezpieczeństwa PHP; krótka przerwa w działaniu nie miała związku z lukami PHP.",
+        "en": "WordPress.com says its sites are already protected and that Automattic worked closely with the PHP security team; a short downtime was not related to the PHP issues.",
+        "de": "WordPress.com erklärt, seine Websites seien bereits geschützt und Automattic habe eng mit dem PHP-Sicherheitsteam zusammengearbeitet; ein kurzer Ausfall habe nichts mit den PHP-Lücken zu tun gehabt."
+      },
+      "actors": [
+        "Automattic"
+      ],
+      "source_url": "https://x.com/wordpressdotcom/status/2112931277267734980",
+      "source_name": "WordPress.com (X)",
+      "confidence": "confirmed",
+      "source_reliability": "A",
+      "info_credibility": 2,
+      "time_kind": "published",
+      "time_precision": "second"
+    },
+    {
+      "id": "france-interior-anssi-maintenance",
+      "time_utc": "2026-10-21T15:34:00Z",
+      "importance": "major",
+      "title": {
+        "pl": "Francja: MSW na prośbę ANSSI wyłącza prewencyjnie wszystkie swoje narażone strony",
+        "en": "France: Interior Ministry takes all its exposed sites into preventive maintenance at ANSSI's request",
+        "de": "Frankreich: Innenministerium nimmt auf Bitte der ANSSI alle exponierten Websites vorsorglich in Wartung"
+      },
+      "description": {
+        "pl": "Według Le Parisien ministerstwo spraw wewnętrznych poinformowało, że na prośbę ANSSI przełączyło wszystkie narażone serwisy w tryb konserwacji prewencyjnej. Niedostępne były m.in. strony prefektur (w tym prefektury policji w Paryżu), Météo-France i impots.gouv.fr; Météo-France wskazuje środek ostrożności do czasu analizy poprawki.",
+        "en": "According to Le Parisien, the Interior Ministry said it put all its exposed websites into preventive maintenance at the request of ANSSI. Prefecture sites (including the Paris police prefecture), Météo-France and impots.gouv.fr were unavailable; Météo-France calls it a precaution pending analysis of the patch.",
+        "de": "Laut Le Parisien hat das Innenministerium auf Bitte der ANSSI alle exponierten Websites vorsorglich in den Wartungsmodus versetzt. Nicht erreichbar waren u. a. Präfekturseiten (auch die Pariser Polizeipräfektur), Météo-France und impots.gouv.fr; Météo-France spricht von einer Vorsichtsmaßnahme bis zur Analyse des Patches."
+      },
+      "actors": [
+        "ANSSI",
+        "Ministère de l'Intérieur"
+      ],
+      "source_url": "https://www.leparisien.fr/societe/nombreux-sites-inaccessibles-comment-une-faille-a-mis-a-larret-une-partie-de-linternet-mondial-21-10-2026-LYZFBDYL6JEOZOEV6ZANJPFYR4.php",
+      "source_name": "Le Parisien",
+      "confidence": "confirmed",
+      "source_reliability": "C",
+      "info_credibility": 1,
+      "time_kind": "published",
+      "time_precision": "minute",
+      "time_note": {
+        "pl": "Godzina publikacji artykułu (17:34 czasu paryskiego); RTL i franceinfo potwierdzają wyłączenia.",
+        "en": "Article publication time (17:34 Paris time); RTL and franceinfo confirm the shutdowns.",
+        "de": "Veröffentlichungszeit des Artikels (17:34 Pariser Zeit); RTL und franceinfo bestätigen die Abschaltungen."
+      }
+    }
+  ],
+  "sites_offline": [
+    {
+      "site": "préfectures · impots.gouv.fr · meteofrance.com",
+      "org": {
+        "pl": "MSW Francji, DGFiP, Météo-France",
+        "en": "French Interior Ministry, DGFiP, Météo-France",
+        "de": "Französisches Innenministerium, DGFiP, Météo-France"
+      },
+      "country": "FR",
+      "source_url": "https://www.rtl.fr/actu/sciences-tech/prefectures-impots-meteo-france-des-sites-mis-hors-ligne-en-urgence-apres-la-decouverte-de-failles-de-securite-critiques-7900687811",
+      "source_name": "RTL",
+      "confidence": "confirmed",
+      "offline_reason": "precautionary",
+      "verified_by": "media",
+      "source_reliability": "C",
+      "info_credibility": 1
+    }
+  ]
+}

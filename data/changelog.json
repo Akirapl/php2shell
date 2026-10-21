@@ -1,5 +1,11 @@
 [
  {
+  "time_utc": "2026-10-21T16:37:40Z",
+  "message": "16:45 UTC: Daubois (fix details), Automattic, France/ANSSI preventive maintenance; KEV re-check",
+  "events": 72,
+  "facts_last_updated": "2026-10-21T16:45:00Z"
+ },
+ {
   "time_utc": "2026-10-21T16:23:11Z",
   "message": "Static first paint: compact time in status pills",
   "events": 69,

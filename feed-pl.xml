@@ -3,7 +3,7 @@
 <title>PHP2Shell — oś czasu (PL)</title>
 <subtitle>Relacja na żywo: PHP2Shell (CVE-2026-109618/109619), krytyczne RCE w rdzeniu PHP (CVSS 9.2). Poprawki: 8.5.12, 8.4.27, 8.3.36, 8.2.35. Każdy fakt ze źródłem.</subtitle>
 <id>https://akirapl.github.io/php2shell/feed-pl.xml</id>
-<updated>2026-10-21T16:15:00Z</updated>
+<updated>2026-10-21T16:45:00Z</updated>
 <link rel="self" type="application/atom+xml" href="https://akirapl.github.io/php2shell/feed-pl.xml"/>
 <link rel="alternate" type="text/html" hreflang="pl" href="https://akirapl.github.io/php2shell/?lang=pl"/>
 <author><name>Dawid Kulik (@Akirapl)</name><uri>https://github.com/Akirapl</uri></author>
@@ -19,6 +19,28 @@
 <category term="major"/>
 <summary type="text">Kelly Shortridge (CPO Fastly) pisze o „evidence of active attacks in-the-wild pre-disclosure”, bez publikacji danych. Mechanizm awaryjnego przerwania żądania (zend_bailout/longjmp) występuje w wielu miejscach kodu, więc łatki zamykają tylko znalezione ścieżki; Fastly spodziewa się nowych wariantów „w tym i przyszłym tygodniu”. Łagodzący szczegół: znane PoC na x86_64 wymagają wiedzy o konkretnej binarce i układzie pamięci serwera. Fastly zapowiada publikację własnej telemetrii.</summary>
 <content type="html">&lt;p&gt;Kelly Shortridge (CPO Fastly) pisze o „evidence of active attacks in-the-wild pre-disclosure”, bez publikacji danych. Mechanizm awaryjnego przerwania żądania (zend_bailout/longjmp) występuje w wielu miejscach kodu, więc łatki zamykają tylko znalezione ścieżki; Fastly spodziewa się nowych wariantów „w tym i przyszłym tygodniu”. Łagodzący szczegół: znane PoC na x86_64 wymagają wiedzy o konkretnej binarce i układzie pamięci serwera. Fastly zapowiada publikację własnej telemetrii.&lt;/p&gt;&lt;p&gt;Źródło: &lt;a href="https://www.fastly.com/blog/fastlys-proactive-protection-critical-php-rce-cve-2026-109618"&gt;Fastly blog (Kelly Shortridge)&lt;/a&gt; · doniesienie · major&lt;/p&gt;</content>
+</entry>
+<entry>
+<title>Automattic: WordPress.com, VIP, WP Cloud, Pressable i Tumblr już chronione</title>
+<id>tag:php2shell-live.surge.sh,2026:automattic-hosts-protected</id>
+<link rel="alternate" type="text/html" href="https://akirapl.github.io/php2shell/?lang=pl#ev-automattic-hosts-protected"/>
+<link rel="related" href="https://x.com/wordpressdotcom/status/2112931277267734980"/>
+<published>2026-10-21T15:37:27Z</published>
+<updated>2026-10-21T15:37:27Z</updated>
+<category term="minor"/>
+<summary type="text">WordPress.com pisze, że jego strony są już chronione, a Automattic ściśle współpracował z zespołem bezpieczeństwa PHP; krótka przerwa w działaniu nie miała związku z lukami PHP.</summary>
+<content type="html">&lt;p&gt;WordPress.com pisze, że jego strony są już chronione, a Automattic ściśle współpracował z zespołem bezpieczeństwa PHP; krótka przerwa w działaniu nie miała związku z lukami PHP.&lt;/p&gt;&lt;p&gt;Źródło: &lt;a href="https://x.com/wordpressdotcom/status/2112931277267734980"&gt;WordPress.com (X)&lt;/a&gt; · potwierdzone · minor&lt;/p&gt;</content>
+</entry>
+<entry>
+<title>Francja: MSW na prośbę ANSSI wyłącza prewencyjnie wszystkie swoje narażone strony</title>
+<id>tag:php2shell-live.surge.sh,2026:france-interior-anssi-maintenance</id>
+<link rel="alternate" type="text/html" href="https://akirapl.github.io/php2shell/?lang=pl#ev-france-interior-anssi-maintenance"/>
+<link rel="related" href="https://www.leparisien.fr/societe/nombreux-sites-inaccessibles-comment-une-faille-a-mis-a-larret-une-partie-de-linternet-mondial-21-10-2026-LYZFBDYL6JEOZOEV6ZANJPFYR4.php"/>
+<published>2026-10-21T15:34:00Z</published>
+<updated>2026-10-21T15:34:00Z</updated>
+<category term="major"/>
+<summary type="text">Według Le Parisien ministerstwo spraw wewnętrznych poinformowało, że na prośbę ANSSI przełączyło wszystkie narażone serwisy w tryb konserwacji prewencyjnej. Niedostępne były m.in. strony prefektur (w tym prefektury policji w Paryżu), Météo-France i impots.gouv.fr; Météo-France wskazuje środek ostrożności do czasu analizy poprawki.</summary>
+<content type="html">&lt;p&gt;Według Le Parisien ministerstwo spraw wewnętrznych poinformowało, że na prośbę ANSSI przełączyło wszystkie narażone serwisy w tryb konserwacji prewencyjnej. Niedostępne były m.in. strony prefektur (w tym prefektury policji w Paryżu), Météo-France i impots.gouv.fr; Météo-France wskazuje środek ostrożności do czasu analizy poprawki.&lt;/p&gt;&lt;p&gt;Źródło: &lt;a href="https://www.leparisien.fr/societe/nombreux-sites-inaccessibles-comment-une-faille-a-mis-a-larret-une-partie-de-linternet-mondial-21-10-2026-LYZFBDYL6JEOZOEV6ZANJPFYR4.php"&gt;Le Parisien&lt;/a&gt; · potwierdzone · major&lt;/p&gt;</content>
 </entry>
 <entry>
 <title>Rapid7: badania są niezależnie odtwarzane, publiczny exploit „wkrótce”</title>
@@ -569,6 +591,17 @@
 <category term="minor"/>
 <summary type="text">Badacz J4ck3LSyN ogłasza odtworzenie błędu; jego własny opis później uznaje główną ścieżkę za nieaktualną i ocenia błąd jako niebędący RCE.</summary>
 <content type="html">&lt;p&gt;Badacz J4ck3LSyN ogłasza odtworzenie błędu; jego własny opis później uznaje główną ścieżkę za nieaktualną i ocenia błąd jako niebędący RCE.&lt;/p&gt;&lt;p&gt;Źródło: &lt;a href="https://jackalsyn.com/posts/php-up-2026.html"&gt;jackalsyn.com write-up&lt;/a&gt; · doniesienie · minor&lt;/p&gt;</content>
+</entry>
+<entry>
+<title>Członek zespołu bezpieczeństwa PHP: poprawka zmienia memory_limit w limit „miękki”</title>
+<id>tag:php2shell-live.surge.sh,2026:daubois-fix-explained</id>
+<link rel="alternate" type="text/html" href="https://akirapl.github.io/php2shell/?lang=pl#ev-daubois-fix-explained"/>
+<link rel="related" href="https://daubois.dev/blog/cve-2026-109618-php2shell-rumors/"/>
+<published>2026-10-21T00:00:00Z</published>
+<updated>2026-10-21T00:00:00Z</updated>
+<category term="major"/>
+<summary type="text">Alexandre Daubois opisuje poprawkę na poziomie diffu: alokator nie wykonuje już skoku (bailout) w środku alokacji; przekroczenie memory_limit zapisuje błąd odroczony, a przerwanie następuje w bezpiecznym punkcie. Nowy twardy limit memory_hard_limit_percent (domyślnie 200% memory_limit poniżej 1G) kończy proces. Poprawka obejmuje 390 plików. Oś czasu: advisory otwarte 27.08.2026, PR z poprawką 25.09.2026. Autor podkreśla, że najczęściej powtarzana porada (session.upload_progress.enabled = Off) dotyczy tylko CVE-2026-109619.</summary>
+<content type="html">&lt;p&gt;Alexandre Daubois opisuje poprawkę na poziomie diffu: alokator nie wykonuje już skoku (bailout) w środku alokacji; przekroczenie memory_limit zapisuje błąd odroczony, a przerwanie następuje w bezpiecznym punkcie. Nowy twardy limit memory_hard_limit_percent (domyślnie 200% memory_limit poniżej 1G) kończy proces. Poprawka obejmuje 390 plików. Oś czasu: advisory otwarte 27.08.2026, PR z poprawką 25.09.2026. Autor podkreśla, że najczęściej powtarzana porada (session.upload_progress.enabled = Off) dotyczy tylko CVE-2026-109619.&lt;/p&gt;&lt;p&gt;Źródło: &lt;a href="https://daubois.dev/blog/cve-2026-109618-php2shell-rumors/"&gt;daubois.dev (Alexandre Daubois)&lt;/a&gt; · doniesienie · major&lt;/p&gt;</content>
 </entry>
 <entry>
 <title>CERT.at ostrzega; później: w sieci pojawił się kod exploita</title>
