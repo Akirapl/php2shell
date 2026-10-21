@@ -5075,7 +5075,7 @@ function renderCharts(){const box=$('charts');const H=F.historical||[];const W=F
    A?'<div class="note">'+esc(tx(A.label))+(A.note?' · '+esc(tx(A.note)):'')+'</div>':'')}
 // Mermaid: lazy-load the local vendor file only when the section approaches the viewport
 let merLoaded=false,merP=null;
-function loadMermaid(){if(merP)return merP;merP=new Promise(r=>{const s=document.createElement('script');s.src='vendor/mermaid.min.js';s.onload=()=>{window.mermaid.initialize({startOnLoad:false,theme:'dark',securityLevel:'strict',themeVariables:{primaryColor:'#151e33',primaryTextColor:'#e7ecf5',lineColor:'#6ea8ff',fontSize:'13px'}});merLoaded=true;r()};document.head.appendChild(s)});return merP}
+function loadMermaid(){if(merP)return merP;merP=new Promise(r=>{const s=document.createElement('script');s.src='vendor/mermaid.min.js';s.onload=()=>{window.mermaid.initialize({startOnLoad:false,theme:'dark',securityLevel:'strict',themeVariables:{primaryColor:'#151e33',primaryTextColor:'#e7ecf5',lineColor:'#6ea8ff',fontSize:'13px'}});merLoaded=true;r()};s.onerror=()=>{merP=null;r()};document.head.appendChild(s)});return merP}
 const clean=s=>tx(s).replace(/["<>{}\[\]()#;|`]/g,' ').replace(/\s+/g,' ').trim().slice(0,46);
 function flowDef(){const ids=(F.diagrams&&F.diagrams.flow_ids)||[];const ev=ids.map(i=>(F.timeline||[]).find(e=>e.id===i)).filter(Boolean);
  if(!ev.length)return null;let d='flowchart TD\n';ev.forEach((e,i)=>{const t=new Date(e.time_utc);const lab=(e.time_utc.length>10?t.toISOString().slice(5,16).replace('T',' '):e.time_utc)+' UTC<br/>'+clean(e.title);
@@ -5084,7 +5084,10 @@ function flowDef(){const ids=(F.diagrams&&F.diagrams.flow_ids)||[];const ev=ids.
 function actorsDef(){const A=F.actors||[];if(!A.length)return null;const groups={};A.forEach(a=>{const g=tx(a.group)||'·';(groups[g]=groups[g]||[]).push(a)});
  let d='flowchart LR\n  PHP(("PHP"))\n';let i=0;Object.entries(groups).forEach(([g,list],gi)=>{d+='  subgraph G'+gi+'["'+clean(g)+'"]\n';list.forEach(a=>{d+='    a'+i+'["'+clean(a.name)+'"]\n';i++});d+='  end\n';d+='  G'+gi+' --- PHP\n'});return d}
 async function renderDiagrams(){const box=$('diagrams');const defs=[['dg_flow',flowDef(),(F.timeline||[]).find(e=>e.id==='ghsa')],['dg_actors',actorsDef(),(F.actors||[])[0]]];
- box.innerHTML=defs.map((d,i)=>'<div class="card reveal"><b>'+esc(T(d[0]))+'</b><div class="mer" id="mer'+i+'">'+(d[1]?'…':'<div class="nodata">'+esc(T('no_data'))+'</div>')+'</div>'+src(d[2])+'</div>').join('');
+ // Diagram cards are created when the section is already (or about to be) in view — show them
+ // immediately. A second renderDiagrams() after Mermaid loads used to replace .reveal nodes
+ // without re-running observe(), leaving opacity:0 forever (black empty gap on mobile).
+ box.innerHTML=defs.map((d,i)=>'<div class="card reveal in"><b>'+esc(T(d[0]))+'</b><div class="mer" id="mer'+i+'">'+(d[1]?'…':'<div class="nodata">'+esc(T('no_data'))+'</div>')+'</div>'+src(d[2])+'</div>').join('');
  if(!merLoaded)return;for(let i=0;i<defs.length;i++){if(!defs[i][1])continue;try{const {svg}=await window.mermaid.render('mg'+i+'_'+Date.now(),defs[i][1]);$('mer'+i).innerHTML=svg}catch(e){$('mer'+i).innerHTML='<div class="nodata">'+esc(T('no_data'))+'</div>'}}}
 let io;
 function observe(){if(io)io.disconnect();if(RM||!('IntersectionObserver' in window)){document.querySelectorAll('.reveal').forEach(e=>e.classList.add('in'));return}
