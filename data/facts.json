@@ -10,7 +10,7 @@
       "en": "CVE-2026-109618 and CVE-2026-109619: critical RCE flaws in the PHP core",
       "de": "CVE-2026-109618 und CVE-2026-109619: kritische RCE-Lücken im PHP-Kern"
     },
-    "last_updated": "2026-10-21T20:10:00Z",
+    "last_updated": "2026-10-21T20:40:00Z",
     "maintainer_note": "Single source of truth. Every fact needs source_url, source_name, confidence; texts as {pl,en,de}. Run ./update_and_build.sh \"message\".",
     "timezone_note": {
       "pl": "Wszystkie czasy w UTC. Czasy z NOS (CEST) przeliczone na UTC (−2 h).",
@@ -76,7 +76,7 @@
     "exploitation_threshold": {
       "rule": "confirmed only if CISA KEV lists a CVE or a national CERT publishes credible in-the-wild evidence",
       "kev_listed": false,
-      "kev_checked_utc": "2026-10-21T20:05:00Z",
+      "kev_checked_utc": "2026-10-21T20:35:00Z",
       "kev_catalog_version": "2026.10.21",
       "kev_url": "https://www.cisa.gov/known-exploited-vulnerabilities-catalog",
       "national_cert_itw": []
@@ -2778,6 +2778,61 @@
         "en": "22:05 JST",
         "de": "22:05 JST"
       }
+    },
+    {
+      "id": "redhat-rhsb-2026-013",
+      "time_utc": "2026-10-21T13:38:00Z",
+      "importance": "major",
+      "title": {
+        "pl": "Red Hat: biuletyn RHSB-2026-013 ocenia „php2shell” jako „Important”",
+        "en": "Red Hat: bulletin RHSB-2026-013 rates “php2shell” as “Important”",
+        "de": "Red Hat: Bulletin RHSB-2026-013 stuft „php2shell“ als „Important“ ein"
+      },
+      "description": {
+        "pl": "Red Hat ocenia oba CVE jako „Important” (nie „Critical”): standardowy RHEL używa PHP-FPM, którego procesy kończą się przy wczesnym błędzie inicjalizacji, zanim dojdą do uszkodzonych struktur, więc zdalne wykonanie kodu jest „trudne w praktyce”; wyższe ryzyko dotyczy mod_php. Dotknięte: RHEL 7, 8, 9, 10 i OpenShift Dev Spaces 3, a także kontenery oparte na obrazach RHEL/UBI. Część poprawek już dostępna, reszta w toku; wskazówki dot. obejścia zapowiedziane później. Podziękowania dla OpenAI, Wiz, calif.io i projektu PHP.",
+        "en": "Red Hat rates both CVEs as “Important” (not “Critical”): standard RHEL uses PHP-FPM, whose workers exit on early initialization failures before reaching the corrupted structures, making remote code execution “difficult in practice”; mod_php setups are at higher risk. Affected: RHEL 7, 8, 9, 10 and OpenShift Dev Spaces 3, plus containers based on RHEL/UBI images. Some fixes are available, others in progress; mitigation guidance is promised later. Credits OpenAI, Wiz, calif.io and the PHP project.",
+        "de": "Red Hat stuft beide CVEs als „Important“ (nicht „Critical“) ein: Standard-RHEL nutzt PHP-FPM, dessen Worker bei frühen Initialisierungsfehlern beendet werden, bevor sie die beschädigten Strukturen erreichen, weshalb Remote-Codeausführung „in der Praxis schwierig“ sei; mod_php ist stärker gefährdet. Betroffen: RHEL 7, 8, 9, 10 und OpenShift Dev Spaces 3 sowie Container auf Basis von RHEL/UBI-Images. Ein Teil der Updates ist verfügbar, der Rest in Arbeit; Hinweise zu Gegenmaßnahmen sollen folgen. Dank an OpenAI, Wiz, calif.io und das PHP-Projekt."
+      },
+      "actors": [
+        "Red Hat"
+      ],
+      "source_url": "https://access.redhat.com/security/vulnerabilities/RHSB-2026-013",
+      "source_name": "Red Hat Security Bulletin RHSB-2026-013",
+      "confidence": "confirmed",
+      "source_reliability": "A",
+      "info_credibility": 1,
+      "time_kind": "published",
+      "time_precision": "minute",
+      "time_note": {
+        "pl": "„Public Date” bulletinu; strona oznaczona jako „Ongoing”, znaleziona 20:35 UTC.",
+        "en": "Bulletin “Public Date”; page marked “Ongoing”, found at 20:35 UTC.",
+        "de": "„Public Date“ des Bulletins; Seite als „Ongoing“ markiert, gefunden um 20:35 UTC."
+      }
+    },
+    {
+      "id": "cisco-psirt-advisory",
+      "time_utc": "2026-10-21T19:12:00Z",
+      "importance": "minor",
+      "title": {
+        "pl": "Cisco sprawdza ponad 30 produktów pod kątem PHP2Shell",
+        "en": "Cisco investigates more than 30 products for PHP2Shell",
+        "de": "Cisco prüft mehr als 30 Produkte auf PHP2Shell"
+      },
+      "description": {
+        "pl": "Advisory cisco-sa-php-october26-Jj384Daq (wersja 1.0, „Interim”): w trakcie badania m.in. ISE, Catalyst Center, Catalyst SD-WAN Manager, Expressway, StarOS, AppDynamics PHP Agent, Umbrella, Webex i Slido. Na razie żaden produkt nie jest potwierdzony jako podatny; brak obejść; Cisco PSIRT nie wie o złośliwym użyciu. Reguły Snort 67359/67360.",
+        "en": "Advisory cisco-sa-php-october26-Jj384Daq (version 1.0, “Interim”): products under investigation include ISE, Catalyst Center, Catalyst SD-WAN Manager, Expressway, StarOS, AppDynamics PHP Agent, Umbrella, Webex and Slido. No product is confirmed vulnerable yet; no workarounds; Cisco PSIRT is not aware of malicious use. Snort rules 67359/67360.",
+        "de": "Advisory cisco-sa-php-october26-Jj384Daq (Version 1.0, „Interim“): Untersucht werden u. a. ISE, Catalyst Center, Catalyst SD-WAN Manager, Expressway, StarOS, AppDynamics PHP Agent, Umbrella, Webex und Slido. Bisher ist kein Produkt als verwundbar bestätigt; keine Workarounds; Cisco PSIRT ist keine böswillige Nutzung bekannt. Snort-Regeln 67359/67360."
+      },
+      "actors": [
+        "Cisco"
+      ],
+      "source_url": "https://sec.cloudapps.cisco.com/security/center/content/CiscoSecurityAdvisory/cisco-sa-php-october26-Jj384Daq",
+      "source_name": "Cisco Security Advisory cisco-sa-php-october26-Jj384Daq",
+      "confidence": "confirmed",
+      "source_reliability": "A",
+      "info_credibility": 1,
+      "time_kind": "published",
+      "time_precision": "minute"
     }
   ],
   "actors": [
@@ -5183,6 +5238,16 @@
       "name": "SITE PICK — Japanese service status tally",
       "url": "https://sitepick.jp/articles/php-vulnerability/",
       "type": "press"
+    },
+    {
+      "name": "Red Hat Security Bulletin RHSB-2026-013",
+      "url": "https://access.redhat.com/security/vulnerabilities/RHSB-2026-013",
+      "type": "vendor"
+    },
+    {
+      "name": "Cisco Security Advisory cisco-sa-php-october26-Jj384Daq",
+      "url": "https://sec.cloudapps.cisco.com/security/center/content/CiscoSecurityAdvisory/cisco-sa-php-october26-Jj384Daq",
+      "type": "vendor"
     }
   ]
 }
