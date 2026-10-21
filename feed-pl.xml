@@ -3,12 +3,23 @@
 <title>PHP2Shell — oś czasu (PL)</title>
 <subtitle>Relacja na żywo: PHP2Shell (CVE-2026-109618/109619), krytyczne RCE w rdzeniu PHP (CVSS 9.2). Poprawki: 8.5.12, 8.4.27, 8.3.36, 8.2.35. Każdy fakt ze źródłem.</subtitle>
 <id>https://akirapl.github.io/php2shell/feed-pl.xml</id>
-<updated>2026-10-21T20:10:00Z</updated>
+<updated>2026-10-21T20:40:00Z</updated>
 <link rel="self" type="application/atom+xml" href="https://akirapl.github.io/php2shell/feed-pl.xml"/>
 <link rel="alternate" type="text/html" hreflang="pl" href="https://akirapl.github.io/php2shell/?lang=pl"/>
 <author><name>Dawid Kulik (@Akirapl)</name><uri>https://github.com/Akirapl</uri></author>
 <icon>https://akirapl.github.io/php2shell/assets/og-image.png</icon>
 <rights>CC BY 4.0</rights>
+<entry>
+<title>Cisco sprawdza ponad 30 produktów pod kątem PHP2Shell</title>
+<id>tag:php2shell-live.surge.sh,2026:cisco-psirt-advisory</id>
+<link rel="alternate" type="text/html" href="https://akirapl.github.io/php2shell/?lang=pl#ev-cisco-psirt-advisory"/>
+<link rel="related" href="https://sec.cloudapps.cisco.com/security/center/content/CiscoSecurityAdvisory/cisco-sa-php-october26-Jj384Daq"/>
+<published>2026-10-21T19:12:00Z</published>
+<updated>2026-10-21T19:12:00Z</updated>
+<category term="minor"/>
+<summary type="text">Advisory cisco-sa-php-october26-Jj384Daq (wersja 1.0, „Interim”): w trakcie badania m.in. ISE, Catalyst Center, Catalyst SD-WAN Manager, Expressway, StarOS, AppDynamics PHP Agent, Umbrella, Webex i Slido. Na razie żaden produkt nie jest potwierdzony jako podatny; brak obejść; Cisco PSIRT nie wie o złośliwym użyciu. Reguły Snort 67359/67360.</summary>
+<content type="html">&lt;p&gt;Advisory cisco-sa-php-october26-Jj384Daq (wersja 1.0, „Interim”): w trakcie badania m.in. ISE, Catalyst Center, Catalyst SD-WAN Manager, Expressway, StarOS, AppDynamics PHP Agent, Umbrella, Webex i Slido. Na razie żaden produkt nie jest potwierdzony jako podatny; brak obejść; Cisco PSIRT nie wie o złośliwym użyciu. Reguły Snort 67359/67360.&lt;/p&gt;&lt;p&gt;Źródło: &lt;a href="https://sec.cloudapps.cisco.com/security/center/content/CiscoSecurityAdvisory/cisco-sa-php-october26-Jj384Daq"&gt;Cisco Security Advisory cisco-sa-php-october26-Jj384Daq&lt;/a&gt; · potwierdzone · minor&lt;/p&gt;</content>
+</entry>
 <entry>
 <title>Defused (honeypoty): brak dużej aktywności, próby głównie z niedziałających publicznych PoC</title>
 <id>tag:php2shell-live.surge.sh,2026:defused-poc-inoperative</id>
@@ -371,6 +382,17 @@
 <category term="critical"/>
 <summary type="text">Ok. 26 minut przed zapowiedzianą godziną. Dystrybucje i dostawcy LTS dostali łatki wcześniej; dla 7.4/8.0/8.1 — minimalne backporty źródłowe.</summary>
 <content type="html">&lt;p&gt;Ok. 26 minut przed zapowiedzianą godziną. Dystrybucje i dostawcy LTS dostali łatki wcześniej; dla 7.4/8.0/8.1 — minimalne backporty źródłowe.&lt;/p&gt;&lt;p&gt;Źródło: &lt;a href="https://x.com/php_net/status/2112901727028379908"&gt;@php_net on X&lt;/a&gt; · potwierdzone · critical&lt;/p&gt;</content>
+</entry>
+<entry>
+<title>Red Hat: biuletyn RHSB-2026-013 ocenia „php2shell” jako „Important”</title>
+<id>tag:php2shell-live.surge.sh,2026:redhat-rhsb-2026-013</id>
+<link rel="alternate" type="text/html" href="https://akirapl.github.io/php2shell/?lang=pl#ev-redhat-rhsb-2026-013"/>
+<link rel="related" href="https://access.redhat.com/security/vulnerabilities/RHSB-2026-013"/>
+<published>2026-10-21T13:38:00Z</published>
+<updated>2026-10-21T13:38:00Z</updated>
+<category term="major"/>
+<summary type="text">Red Hat ocenia oba CVE jako „Important” (nie „Critical”): standardowy RHEL używa PHP-FPM, którego procesy kończą się przy wczesnym błędzie inicjalizacji, zanim dojdą do uszkodzonych struktur, więc zdalne wykonanie kodu jest „trudne w praktyce”; wyższe ryzyko dotyczy mod_php. Dotknięte: RHEL 7, 8, 9, 10 i OpenShift Dev Spaces 3, a także kontenery oparte na obrazach RHEL/UBI. Część poprawek już dostępna, reszta w toku; wskazówki dot. obejścia zapowiedziane później. Podziękowania dla OpenAI, Wiz, calif.io i projektu PHP.</summary>
+<content type="html">&lt;p&gt;Red Hat ocenia oba CVE jako „Important” (nie „Critical”): standardowy RHEL używa PHP-FPM, którego procesy kończą się przy wczesnym błędzie inicjalizacji, zanim dojdą do uszkodzonych struktur, więc zdalne wykonanie kodu jest „trudne w praktyce”; wyższe ryzyko dotyczy mod_php. Dotknięte: RHEL 7, 8, 9, 10 i OpenShift Dev Spaces 3, a także kontenery oparte na obrazach RHEL/UBI. Część poprawek już dostępna, reszta w toku; wskazówki dot. obejścia zapowiedziane później. Podziękowania dla OpenAI, Wiz, calif.io i projektu PHP.&lt;/p&gt;&lt;p&gt;Źródło: &lt;a href="https://access.redhat.com/security/vulnerabilities/RHSB-2026-013"&gt;Red Hat Security Bulletin RHSB-2026-013&lt;/a&gt; · potwierdzone · major&lt;/p&gt;</content>
 </entry>
 <entry>
 <title>Publikacja advisory: dwie luki RCE</title>

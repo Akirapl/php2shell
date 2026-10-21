@@ -1,5 +1,11 @@
 [
  {
+  "time_utc": "2026-10-21T20:37:01Z",
+  "message": "+Red Hat RHSB-2026-013, +Cisco advisory, KEV check 20:35",
+  "events": 88,
+  "facts_last_updated": "2026-10-21T20:40:00Z"
+ },
+ {
   "time_utc": "2026-10-21T20:06:17Z",
   "message": "Japonia: futureshop (włamanie, związek z PHP niepotwierdzony), masowe prewencyjne wyłączenia; KEV 20:05",
   "events": 86,
