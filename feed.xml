@@ -3,7 +3,7 @@
 <title>PHP2Shell — timeline (EN)</title>
 <subtitle>Live timeline of PHP2Shell (CVE-2026-109618/109619), a critical PHP core RCE (CVSS 9.2). Fixed in 8.5.12, 8.4.27, 8.3.36, 8.2.35. Every fact sourced.</subtitle>
 <id>https://akirapl.github.io/php2shell/feed.xml</id>
-<updated>2026-10-21T17:45:00Z</updated>
+<updated>2026-10-21T18:12:00Z</updated>
 <link rel="self" type="application/atom+xml" href="https://akirapl.github.io/php2shell/feed.xml"/>
 <link rel="alternate" type="text/html" hreflang="en" href="https://akirapl.github.io/php2shell/?lang=en"/>
 <author><name>Dawid Kulik (@Akirapl)</name><uri>https://github.com/Akirapl</uri></author>
@@ -74,6 +74,17 @@
 <category term="minor"/>
 <summary type="text">Rapid7 Emergent Threat Response: “multiple indications” that the research is being independently reproduced and a viable exploit is expected to become public soon; in-the-wild exploitation is “expected” but not reported as observed. Rapid7 also notes that rpms.remirepo.net has no updates on 21 Oct.</summary>
 <content type="html">&lt;p&gt;Rapid7 Emergent Threat Response: “multiple indications” that the research is being independently reproduced and a viable exploit is expected to become public soon; in-the-wild exploitation is “expected” but not reported as observed. Rapid7 also notes that rpms.remirepo.net has no updates on 21 Oct.&lt;/p&gt;&lt;p&gt;Source: &lt;a href="https://www.rapid7.com/blog/post/etr-cve-2026-109618-and-cve-2026-109619-critical-unauthenticated-remote-code-execution-in-php"&gt;Rapid7 ETR blog&lt;/a&gt; · reported · minor&lt;/p&gt;</content>
+</entry>
+<entry>
+<title>Cisco Talos: about 50% of PHP systems will not get a patch</title>
+<id>tag:php2shell-live.surge.sh,2026:talos-half-unpatchable</id>
+<link rel="alternate" type="text/html" href="https://akirapl.github.io/php2shell/?lang=en#ev-talos-half-unpatchable"/>
+<link rel="related" href="https://blog.talosintelligence.com/two-critical-rces-in-php-core/"/>
+<published>2026-10-21T15:10:00Z</published>
+<updated>2026-10-21T15:10:00Z</updated>
+<category term="major"/>
+<summary type="text">Talos estimates (OSINT) that about half of PHP systems will not receive a fix because they run end-of-life branches, and notes PHP 8.2 security support ends on 31 Dec 2026. It shipped Snort signatures 67359 and 67360 (also in the Community Ruleset). As of 21 Oct 14:00 UTC Talos had not seen in-the-wild exploitation. The blog's 11:10 is US Eastern time.</summary>
+<content type="html">&lt;p&gt;Talos estimates (OSINT) that about half of PHP systems will not receive a fix because they run end-of-life branches, and notes PHP 8.2 security support ends on 31 Dec 2026. It shipped Snort signatures 67359 and 67360 (also in the Community Ruleset). As of 21 Oct 14:00 UTC Talos had not seen in-the-wild exploitation. The blog&amp;#x27;s 11:10 is US Eastern time.&lt;/p&gt;&lt;p&gt;Source: &lt;a href="https://blog.talosintelligence.com/two-critical-rces-in-php-core/"&gt;Cisco Talos&lt;/a&gt; · estimate · major&lt;/p&gt;</content>
 </entry>
 <entry>
 <title>Greg Brockman (OpenAI): essay “Towards securing the internet”</title>
@@ -635,6 +646,17 @@
 <category term="major"/>
 <summary type="text">Chris Betz on the Google Cloud blog: Wiz used a mix of models, and Gemini 4 Argon made an “invaluable contribution” to finding the vulnerability, exploit development, attack detection and patch validation. Google Cloud itself is not vulnerable; App Engine, Cloud Run and Cloud Functions base images are being updated automatically, PHP 8.1 and older must migrate. Another company claiming a share of the discovery, next to OpenAI, Wiz and Calif.</summary>
 <content type="html">&lt;p&gt;Chris Betz on the Google Cloud blog: Wiz used a mix of models, and Gemini 4 Argon made an “invaluable contribution” to finding the vulnerability, exploit development, attack detection and patch validation. Google Cloud itself is not vulnerable; App Engine, Cloud Run and Cloud Functions base images are being updated automatically, PHP 8.1 and older must migrate. Another company claiming a share of the discovery, next to OpenAI, Wiz and Calif.&lt;/p&gt;&lt;p&gt;Source: &lt;a href="https://cloud.google.com/blog/products/identity-security/responding-to-core-php-vulnerabilities-cve-2026-109618-cve-2026-109619"&gt;Google Cloud Blog (Chris Betz)&lt;/a&gt; · reported · major&lt;/p&gt;</content>
+</entry>
+<entry>
+<title>VirusTotal: about 5.1M IPs run PHP, 758K on end-of-life branches</title>
+<id>tag:php2shell-live.surge.sh,2026:virustotal-php-footprint</id>
+<link rel="alternate" type="text/html" href="https://akirapl.github.io/php2shell/?lang=en#ev-virustotal-php-footprint"/>
+<link rel="related" href="https://blog.virustotal.com/2026/"/>
+<published>2026-10-21T00:00:00Z</published>
+<updated>2026-10-21T00:00:00Z</updated>
+<category term="major"/>
+<summary type="text">VirusTotal fingerprints about 5.1M IPs running PHP (about 3.8M with an open port), but only about 1.1M disclose a version – roughly four in five servers hide it. Among those that do: about 272K on supported branches (8.2–8.5), about 758K on end-of-life 5.4–8.1 (7.4 alone about 187K, 5.4 about 119K), about 88K on 5.2/5.3. About 85K IPs ran exactly the latest pre-fix releases (8.5.11, 8.4.26, 8.3.35, 8.2.34). These are PHP's internet footprint, not confirmed vulnerable systems; median of seven queries on 21 Oct.</summary>
+<content type="html">&lt;p&gt;VirusTotal fingerprints about 5.1M IPs running PHP (about 3.8M with an open port), but only about 1.1M disclose a version – roughly four in five servers hide it. Among those that do: about 272K on supported branches (8.2–8.5), about 758K on end-of-life 5.4–8.1 (7.4 alone about 187K, 5.4 about 119K), about 88K on 5.2/5.3. About 85K IPs ran exactly the latest pre-fix releases (8.5.11, 8.4.26, 8.3.35, 8.2.34). These are PHP&amp;#x27;s internet footprint, not confirmed vulnerable systems; median of seven queries on 21 Oct.&lt;/p&gt;&lt;p&gt;Source: &lt;a href="https://blog.virustotal.com/2026/"&gt;VirusTotal Blog&lt;/a&gt; · estimate · major&lt;/p&gt;</content>
 </entry>
 <entry>
 <title>Fedora: PHP2Shell proposed as a Fedora 45 release blocker</title>

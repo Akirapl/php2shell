@@ -1,5 +1,11 @@
 [
  {
+  "time_utc": "2026-10-21T18:09:06Z",
+  "message": "VirusTotal footprint, Cisco Talos ~50% estimate, KEV re-check",
+  "events": 78,
+  "facts_last_updated": "2026-10-21T18:12:00Z"
+ },
+ {
   "time_utc": "2026-10-21T17:50:27Z",
   "message": "Fix: diagram cards stayed invisible (opacity 0) after Mermaid lazy-load",
   "events": 76,

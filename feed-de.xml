@@ -3,7 +3,7 @@
 <title>PHP2Shell — Chronik (DE)</title>
 <subtitle>Live-Chronik zu PHP2Shell (CVE-2026-109618/109619), kritische RCE im PHP-Kern (CVSS 9.2). Behoben in 8.5.12, 8.4.27, 8.3.36, 8.2.35. Jede Angabe mit Quelle.</subtitle>
 <id>https://akirapl.github.io/php2shell/feed-de.xml</id>
-<updated>2026-10-21T17:45:00Z</updated>
+<updated>2026-10-21T18:12:00Z</updated>
 <link rel="self" type="application/atom+xml" href="https://akirapl.github.io/php2shell/feed-de.xml"/>
 <link rel="alternate" type="text/html" hreflang="de" href="https://akirapl.github.io/php2shell/?lang=de"/>
 <author><name>Dawid Kulik (@Akirapl)</name><uri>https://github.com/Akirapl</uri></author>
@@ -74,6 +74,17 @@
 <category term="minor"/>
 <summary type="text">Rapid7 Emergent Threat Response: „mehrere Hinweise“, dass die Forschung unabhängig nachvollzogen wird und ein funktionsfähiger Exploit bald öffentlich werden dürfte; Ausnutzung in freier Wildbahn wird „erwartet“, aber nicht als beobachtet gemeldet. Rapid7 weist zudem darauf hin, dass rpms.remirepo.net am 21.10. keine Updates hat.</summary>
 <content type="html">&lt;p&gt;Rapid7 Emergent Threat Response: „mehrere Hinweise“, dass die Forschung unabhängig nachvollzogen wird und ein funktionsfähiger Exploit bald öffentlich werden dürfte; Ausnutzung in freier Wildbahn wird „erwartet“, aber nicht als beobachtet gemeldet. Rapid7 weist zudem darauf hin, dass rpms.remirepo.net am 21.10. keine Updates hat.&lt;/p&gt;&lt;p&gt;Quelle: &lt;a href="https://www.rapid7.com/blog/post/etr-cve-2026-109618-and-cve-2026-109619-critical-unauthenticated-remote-code-execution-in-php"&gt;Rapid7 ETR blog&lt;/a&gt; · gemeldet · minor&lt;/p&gt;</content>
+</entry>
+<entry>
+<title>Cisco Talos: rund 50 % der PHP-Systeme bekommen keinen Patch</title>
+<id>tag:php2shell-live.surge.sh,2026:talos-half-unpatchable</id>
+<link rel="alternate" type="text/html" href="https://akirapl.github.io/php2shell/?lang=de#ev-talos-half-unpatchable"/>
+<link rel="related" href="https://blog.talosintelligence.com/two-critical-rces-in-php-core/"/>
+<published>2026-10-21T15:10:00Z</published>
+<updated>2026-10-21T15:10:00Z</updated>
+<category term="major"/>
+<summary type="text">Talos schätzt (OSINT), dass etwa die Hälfte der PHP-Systeme keinen Fix erhält, weil sie auf EOL-Zweigen laufen, und erinnert daran, dass der Sicherheitssupport für PHP 8.2 am 31.12.2026 endet. Veröffentlicht wurden die Snort-Signaturen 67359 und 67360 (auch im Community Ruleset). Stand 21.10., 14:00 UTC, sah Talos keine Ausnutzung in freier Wildbahn. Die 11:10 im Blog ist US-Ostküstenzeit.</summary>
+<content type="html">&lt;p&gt;Talos schätzt (OSINT), dass etwa die Hälfte der PHP-Systeme keinen Fix erhält, weil sie auf EOL-Zweigen laufen, und erinnert daran, dass der Sicherheitssupport für PHP 8.2 am 31.12.2026 endet. Veröffentlicht wurden die Snort-Signaturen 67359 und 67360 (auch im Community Ruleset). Stand 21.10., 14:00 UTC, sah Talos keine Ausnutzung in freier Wildbahn. Die 11:10 im Blog ist US-Ostküstenzeit.&lt;/p&gt;&lt;p&gt;Quelle: &lt;a href="https://blog.talosintelligence.com/two-critical-rces-in-php-core/"&gt;Cisco Talos&lt;/a&gt; · Schätzung · major&lt;/p&gt;</content>
 </entry>
 <entry>
 <title>Greg Brockman (OpenAI): Essay „Towards securing the internet“</title>
@@ -635,6 +646,17 @@
 <category term="major"/>
 <summary type="text">Chris Betz im Google-Cloud-Blog: Wiz nutzte mehrere Modelle, Gemini 4 Argon habe einen „invaluable contribution“ zum Finden der Schwachstelle, zur Exploit-Entwicklung, zur Angriffserkennung und zur Validierung des Patches geleistet. Google Cloud selbst ist nicht betroffen; Basis-Images für App Engine, Cloud Run und Cloud Functions werden automatisch aktualisiert, PHP 8.1 und älter muss migrieren. Ein weiteres Unternehmen, das sich einen Anteil an der Entdeckung zuschreibt, neben OpenAI, Wiz und Calif.</summary>
 <content type="html">&lt;p&gt;Chris Betz im Google-Cloud-Blog: Wiz nutzte mehrere Modelle, Gemini 4 Argon habe einen „invaluable contribution“ zum Finden der Schwachstelle, zur Exploit-Entwicklung, zur Angriffserkennung und zur Validierung des Patches geleistet. Google Cloud selbst ist nicht betroffen; Basis-Images für App Engine, Cloud Run und Cloud Functions werden automatisch aktualisiert, PHP 8.1 und älter muss migrieren. Ein weiteres Unternehmen, das sich einen Anteil an der Entdeckung zuschreibt, neben OpenAI, Wiz und Calif.&lt;/p&gt;&lt;p&gt;Quelle: &lt;a href="https://cloud.google.com/blog/products/identity-security/responding-to-core-php-vulnerabilities-cve-2026-109618-cve-2026-109619"&gt;Google Cloud Blog (Chris Betz)&lt;/a&gt; · gemeldet · major&lt;/p&gt;</content>
+</entry>
+<entry>
+<title>VirusTotal: rund 5,1 Mio. IPs mit PHP, 758.000 auf Zweigen ohne Support</title>
+<id>tag:php2shell-live.surge.sh,2026:virustotal-php-footprint</id>
+<link rel="alternate" type="text/html" href="https://akirapl.github.io/php2shell/?lang=de#ev-virustotal-php-footprint"/>
+<link rel="related" href="https://blog.virustotal.com/2026/"/>
+<published>2026-10-21T00:00:00Z</published>
+<updated>2026-10-21T00:00:00Z</updated>
+<category term="major"/>
+<summary type="text">VirusTotal erkennt rund 5,1 Mio. IP-Adressen mit PHP (rund 3,8 Mio. mit offenem Port), doch nur etwa 1,1 Mio. nennen eine Version – ungefähr vier von fünf Servern verbergen sie. Unter denen, die sie nennen: etwa 272.000 auf unterstützten Zweigen (8.2–8.5), etwa 758.000 auf EOL-Zweigen 5.4–8.1 (allein 7.4 rund 187.000, 5.4 rund 119.000), etwa 88.000 auf 5.2/5.3. Rund 85.000 IPs liefen genau mit den letzten Releases vor dem Fix (8.5.11, 8.4.26, 8.3.35, 8.2.34). Das ist die PHP-Präsenz im Internet, keine bestätigt verwundbaren Systeme; Median aus sieben Abfragen am 21.10.</summary>
+<content type="html">&lt;p&gt;VirusTotal erkennt rund 5,1 Mio. IP-Adressen mit PHP (rund 3,8 Mio. mit offenem Port), doch nur etwa 1,1 Mio. nennen eine Version – ungefähr vier von fünf Servern verbergen sie. Unter denen, die sie nennen: etwa 272.000 auf unterstützten Zweigen (8.2–8.5), etwa 758.000 auf EOL-Zweigen 5.4–8.1 (allein 7.4 rund 187.000, 5.4 rund 119.000), etwa 88.000 auf 5.2/5.3. Rund 85.000 IPs liefen genau mit den letzten Releases vor dem Fix (8.5.11, 8.4.26, 8.3.35, 8.2.34). Das ist die PHP-Präsenz im Internet, keine bestätigt verwundbaren Systeme; Median aus sieben Abfragen am 21.10.&lt;/p&gt;&lt;p&gt;Quelle: &lt;a href="https://blog.virustotal.com/2026/"&gt;VirusTotal Blog&lt;/a&gt; · Schätzung · major&lt;/p&gt;</content>
 </entry>
 <entry>
 <title>Fedora: PHP2Shell als Blocker für Fedora 45 vorgeschlagen</title>

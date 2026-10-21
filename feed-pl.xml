@@ -3,7 +3,7 @@
 <title>PHP2Shell — oś czasu (PL)</title>
 <subtitle>Relacja na żywo: PHP2Shell (CVE-2026-109618/109619), krytyczne RCE w rdzeniu PHP (CVSS 9.2). Poprawki: 8.5.12, 8.4.27, 8.3.36, 8.2.35. Każdy fakt ze źródłem.</subtitle>
 <id>https://akirapl.github.io/php2shell/feed-pl.xml</id>
-<updated>2026-10-21T17:45:00Z</updated>
+<updated>2026-10-21T18:12:00Z</updated>
 <link rel="self" type="application/atom+xml" href="https://akirapl.github.io/php2shell/feed-pl.xml"/>
 <link rel="alternate" type="text/html" hreflang="pl" href="https://akirapl.github.io/php2shell/?lang=pl"/>
 <author><name>Dawid Kulik (@Akirapl)</name><uri>https://github.com/Akirapl</uri></author>
@@ -74,6 +74,17 @@
 <category term="minor"/>
 <summary type="text">Emergent Threat Response Rapid7: „wiele oznak”, że badania są niezależnie odtwarzane, a działający exploit ma się wkrótce pojawić publicznie; wykorzystanie in-the-wild „oczekiwane”, ale nie zgłoszone jako stwierdzone. Rapid7 przypomina też, że rpms.remirepo.net nie ma aktualizacji 21.10.</summary>
 <content type="html">&lt;p&gt;Emergent Threat Response Rapid7: „wiele oznak”, że badania są niezależnie odtwarzane, a działający exploit ma się wkrótce pojawić publicznie; wykorzystanie in-the-wild „oczekiwane”, ale nie zgłoszone jako stwierdzone. Rapid7 przypomina też, że rpms.remirepo.net nie ma aktualizacji 21.10.&lt;/p&gt;&lt;p&gt;Źródło: &lt;a href="https://www.rapid7.com/blog/post/etr-cve-2026-109618-and-cve-2026-109619-critical-unauthenticated-remote-code-execution-in-php"&gt;Rapid7 ETR blog&lt;/a&gt; · doniesienie · minor&lt;/p&gt;</content>
+</entry>
+<entry>
+<title>Cisco Talos: ok. 50% systemów PHP nie dostanie łatki</title>
+<id>tag:php2shell-live.surge.sh,2026:talos-half-unpatchable</id>
+<link rel="alternate" type="text/html" href="https://akirapl.github.io/php2shell/?lang=pl#ev-talos-half-unpatchable"/>
+<link rel="related" href="https://blog.talosintelligence.com/two-critical-rces-in-php-core/"/>
+<published>2026-10-21T15:10:00Z</published>
+<updated>2026-10-21T15:10:00Z</updated>
+<category term="major"/>
+<summary type="text">Talos szacuje (OSINT), że ok. połowa systemów PHP nie otrzyma poprawki, bo działa na gałęziach EOL; przypomina też, że wsparcie bezpieczeństwa PHP 8.2 kończy się 31.12.2026. Wydał sygnatury Snort 67359 i 67360 (także w Community Ruleset). Na 21.10 14:00 UTC Talos nie widział wykorzystania w praktyce. Godzina 11:10 na blogu to czas wschodni USA (ET).</summary>
+<content type="html">&lt;p&gt;Talos szacuje (OSINT), że ok. połowa systemów PHP nie otrzyma poprawki, bo działa na gałęziach EOL; przypomina też, że wsparcie bezpieczeństwa PHP 8.2 kończy się 31.12.2026. Wydał sygnatury Snort 67359 i 67360 (także w Community Ruleset). Na 21.10 14:00 UTC Talos nie widział wykorzystania w praktyce. Godzina 11:10 na blogu to czas wschodni USA (ET).&lt;/p&gt;&lt;p&gt;Źródło: &lt;a href="https://blog.talosintelligence.com/two-critical-rces-in-php-core/"&gt;Cisco Talos&lt;/a&gt; · szacunek · major&lt;/p&gt;</content>
 </entry>
 <entry>
 <title>Greg Brockman (OpenAI): esej „Towards securing the internet”</title>
@@ -635,6 +646,17 @@
 <category term="major"/>
 <summary type="text">Wpis Chrisa Betza na blogu Google Cloud: Wiz użył kilku modeli, a Gemini 4 Argon miał wnieść „invaluable contribution” do znalezienia podatności, opracowania exploita, wykrywania ataków i walidacji poprawki. Sam Google Cloud nie jest podatny; obrazy bazowe App Engine, Cloud Run i Cloud Functions są aktualizowane automatycznie, PHP 8.1 i starsze wymagają migracji. To kolejna firma przypisująca sobie udział w odkryciu, obok OpenAI, Wiz i Calif.</summary>
 <content type="html">&lt;p&gt;Wpis Chrisa Betza na blogu Google Cloud: Wiz użył kilku modeli, a Gemini 4 Argon miał wnieść „invaluable contribution” do znalezienia podatności, opracowania exploita, wykrywania ataków i walidacji poprawki. Sam Google Cloud nie jest podatny; obrazy bazowe App Engine, Cloud Run i Cloud Functions są aktualizowane automatycznie, PHP 8.1 i starsze wymagają migracji. To kolejna firma przypisująca sobie udział w odkryciu, obok OpenAI, Wiz i Calif.&lt;/p&gt;&lt;p&gt;Źródło: &lt;a href="https://cloud.google.com/blog/products/identity-security/responding-to-core-php-vulnerabilities-cve-2026-109618-cve-2026-109619"&gt;Google Cloud Blog (Chris Betz)&lt;/a&gt; · doniesienie · major&lt;/p&gt;</content>
+</entry>
+<entry>
+<title>VirusTotal: ok. 5,1 mln IP z PHP, 758 tys. na gałęziach bez wsparcia</title>
+<id>tag:php2shell-live.surge.sh,2026:virustotal-php-footprint</id>
+<link rel="alternate" type="text/html" href="https://akirapl.github.io/php2shell/?lang=pl#ev-virustotal-php-footprint"/>
+<link rel="related" href="https://blog.virustotal.com/2026/"/>
+<published>2026-10-21T00:00:00Z</published>
+<updated>2026-10-21T00:00:00Z</updated>
+<category term="major"/>
+<summary type="text">VirusTotal rozpoznaje ok. 5,1 mln adresów IP z PHP (ok. 3,8 mln z otwartym portem), ale tylko ok. 1,1 mln ujawnia wersję – mniej więcej cztery na pięć serwerów ją ukrywa. Wśród ujawniających: ok. 272 tys. na gałęziach wspieranych (8.2–8.5), ok. 758 tys. na gałęziach EOL 5.4–8.1 (sama 7.4 ok. 187 tys., 5.4 ok. 119 tys.), ok. 88 tys. na 5.2/5.3. Ok. 85 tys. IP miało dokładnie najnowsze wydania sprzed poprawki (8.5.11, 8.4.26, 8.3.35, 8.2.34). Liczby to zasięg PHP w internecie, nie potwierdzone podatne systemy; mediana siedmiu zapytań z 21.10.</summary>
+<content type="html">&lt;p&gt;VirusTotal rozpoznaje ok. 5,1 mln adresów IP z PHP (ok. 3,8 mln z otwartym portem), ale tylko ok. 1,1 mln ujawnia wersję – mniej więcej cztery na pięć serwerów ją ukrywa. Wśród ujawniających: ok. 272 tys. na gałęziach wspieranych (8.2–8.5), ok. 758 tys. na gałęziach EOL 5.4–8.1 (sama 7.4 ok. 187 tys., 5.4 ok. 119 tys.), ok. 88 tys. na 5.2/5.3. Ok. 85 tys. IP miało dokładnie najnowsze wydania sprzed poprawki (8.5.11, 8.4.26, 8.3.35, 8.2.34). Liczby to zasięg PHP w internecie, nie potwierdzone podatne systemy; mediana siedmiu zapytań z 21.10.&lt;/p&gt;&lt;p&gt;Źródło: &lt;a href="https://blog.virustotal.com/2026/"&gt;VirusTotal Blog&lt;/a&gt; · szacunek · major&lt;/p&gt;</content>
 </entry>
 <entry>
 <title>Fedora: PHP2Shell zgłoszony jako bloker wydania Fedora 45</title>
