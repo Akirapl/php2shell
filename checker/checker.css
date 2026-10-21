@@ -4,6 +4,7 @@
 #p2s-checker .p2c-card{background:linear-gradient(180deg,var(--c-bg),var(--c-bg2));border:1px solid var(--c-line);border-radius:14px;padding:16px}
 #p2s-checker .p2c-intro{color:var(--c-mut);margin:0 0 12px}
 #p2s-checker .p2c-safe{font-size:12px;color:var(--c-mut);border-left:3px solid var(--c-green);padding:4px 10px;margin:0 0 12px}
+#p2s-checker .p2c-own{font-size:13px;color:var(--c-amber);border-left:3px solid var(--c-amber);padding:4px 10px;margin:0 0 12px}
 #p2s-checker form{display:flex;gap:8px;flex-wrap:wrap}
 #p2s-checker input[type=text]{flex:1 1 260px;min-width:0;background:var(--c-bg2);color:var(--c-txt);border:1px solid var(--c-line);border-radius:10px;padding:10px 12px;font:inherit}
 #p2s-checker input[type=text]:focus{outline:2px solid var(--c-blue);outline-offset:1px}

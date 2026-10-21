@@ -11,10 +11,11 @@ var S={
 en:{heading:"Am I affected? Passive PHP banner check",
  intro:"Enter your website address. We send ONE ordinary GET request to its root page (like a browser) and read only what the server voluntarily discloses: the Server and X-Powered-By headers and whether a PHPSESSID cookie is set.",
  safe:"Defensive only: no exploit payloads, no scanning, no other paths or ports. Private and internal addresses are refused.",
+ own:"Check only systems you own or are authorised to test.",
  ph:"https://example.com",btn:"Check",busy:"Checking…",
  e_empty:"Please enter a website address.",e_url:"That does not look like a valid public http(s) address.",e_scheme:"Only http:// and https:// addresses are supported.",
  e_local:"Local, private and internal addresses are not checked.",e_long:"The address is too long.",n_path:"Note: only the root page (/) of this host is checked; the path is ignored.",
- e_net:"The checker service could not be reached. Please try again later.",e_rate:"Too many checks. Please wait a minute and try again.",e_srv:"The checker returned an error:",
+ e_net:"The checker service could not be reached. Please try again later.",e_rate:"Too many checks. Please wait a minute and try again.",e_busy:"The checker is busy right now. Please try again in a few seconds.",e_srv:"The checker returned an error:",
  offline:"The live checker backend is not online yet. Until it is, check on your server: run php -v and compare it with the fixed versions below, and check your distribution's security tracker.",
  st_likely_vulnerable:"Likely vulnerable version",st_likely_patched:"Likely patched version",st_php_detected_version_hidden:"PHP detected, version hidden – unknown",st_no_php_detected:"No PHP detected / unknown",st_host_unreachable:"Host unreachable",
  sum_likely_vulnerable:"The disclosed PHP version is older than the upstream fix for its branch. Update now, or confirm a distribution backport.",
@@ -32,10 +33,11 @@ en:{heading:"Am I affected? Passive PHP banner check",
 pl:{heading:"Czy mnie to dotyczy? Pasywne sprawdzenie banera PHP",
  intro:"Podaj adres swojej strony. Wysyłamy JEDNO zwykłe żądanie GET do strony głównej (jak przeglądarka) i odczytujemy tylko to, co serwer sam ujawnia: nagłówki Server i X-Powered-By oraz to, czy ustawia ciasteczko PHPSESSID.",
  safe:"Wyłącznie defensywnie: bez exploitów, bez skanowania, bez innych ścieżek i portów. Adresy prywatne i wewnętrzne są odrzucane.",
+ own:"Sprawdzaj tylko własne systemy lub takie, na których test masz zgodę.",
  ph:"https://przyklad.pl",btn:"Sprawdź",busy:"Sprawdzam…",
  e_empty:"Wpisz adres strony.",e_url:"To nie wygląda na prawidłowy publiczny adres http(s).",e_scheme:"Obsługiwane są tylko adresy http:// i https://.",
  e_local:"Adresy lokalne, prywatne i wewnętrzne nie są sprawdzane.",e_long:"Adres jest za długi.",n_path:"Uwaga: sprawdzana jest tylko strona główna (/) tego hosta; ścieżka jest pomijana.",
- e_net:"Nie udało się połączyć z usługą sprawdzającą. Spróbuj ponownie później.",e_rate:"Zbyt wiele sprawdzeń. Odczekaj minutę i spróbuj ponownie.",e_srv:"Usługa zwróciła błąd:",
+ e_net:"Nie udało się połączyć z usługą sprawdzającą. Spróbuj ponownie później.",e_rate:"Zbyt wiele sprawdzeń. Odczekaj minutę i spróbuj ponownie.",e_busy:"Sprawdzarka jest teraz mocno obciążona. Spróbuj ponownie za kilka sekund.",e_srv:"Usługa zwróciła błąd:",
  offline:"Backend sprawdzarki nie jest jeszcze online. Do tego czasu sprawdź na serwerze: uruchom php -v, porównaj z wersjami z poprawką poniżej i zajrzyj do trackera bezpieczeństwa swojej dystrybucji.",
  st_likely_vulnerable:"Prawdopodobnie podatna wersja",st_likely_patched:"Prawdopodobnie załatana wersja",st_php_detected_version_hidden:"Wykryto PHP, wersja ukryta – nieznane",st_no_php_detected:"Nie wykryto PHP / nieznane",st_host_unreachable:"Host nieosiągalny",
  sum_likely_vulnerable:"Ujawniona wersja PHP jest starsza niż poprawka upstream dla tej gałęzi. Zaktualizuj teraz albo potwierdź backport w dystrybucji.",
@@ -53,10 +55,11 @@ pl:{heading:"Czy mnie to dotyczy? Pasywne sprawdzenie banera PHP",
 de:{heading:"Bin ich betroffen? Passive Prüfung des PHP-Banners",
  intro:"Geben Sie die Adresse Ihrer Website ein. Wir senden EINE gewöhnliche GET-Anfrage an die Startseite (wie ein Browser) und lesen nur, was der Server freiwillig preisgibt: die Header Server und X-Powered-By sowie, ob ein PHPSESSID-Cookie gesetzt wird.",
  safe:"Rein defensiv: keine Exploit-Payloads, kein Scannen, keine anderen Pfade oder Ports. Private und interne Adressen werden abgelehnt.",
+ own:"Prüfen Sie nur eigene Systeme oder solche, für deren Test Sie eine Erlaubnis haben.",
  ph:"https://beispiel.de",btn:"Prüfen",busy:"Prüfe…",
  e_empty:"Bitte geben Sie eine Website-Adresse ein.",e_url:"Das sieht nicht nach einer gültigen öffentlichen http(s)-Adresse aus.",e_scheme:"Nur http://- und https://-Adressen werden unterstützt.",
  e_local:"Lokale, private und interne Adressen werden nicht geprüft.",e_long:"Die Adresse ist zu lang.",n_path:"Hinweis: Geprüft wird nur die Startseite (/) dieses Hosts; der Pfad wird ignoriert.",
- e_net:"Der Prüfdienst ist nicht erreichbar. Bitte versuchen Sie es später erneut.",e_rate:"Zu viele Prüfungen. Bitte warten Sie eine Minute.",e_srv:"Der Prüfdienst meldet einen Fehler:",
+ e_net:"Der Prüfdienst ist nicht erreichbar. Bitte versuchen Sie es später erneut.",e_rate:"Zu viele Prüfungen. Bitte warten Sie eine Minute.",e_busy:"Der Checker ist gerade ausgelastet. Bitte versuchen Sie es in ein paar Sekunden erneut.",e_srv:"Der Prüfdienst meldet einen Fehler:",
  offline:"Das Backend des Live-Checkers ist noch nicht online. Bis dahin prüfen Sie direkt auf dem Server: php -v ausführen, mit den unten genannten Versionen vergleichen und den Security-Tracker Ihrer Distribution ansehen.",
  st_likely_vulnerable:"Wahrscheinlich verwundbare Version",st_likely_patched:"Wahrscheinlich gepatchte Version",st_php_detected_version_hidden:"PHP erkannt, Version verborgen – unbekannt",st_no_php_detected:"Kein PHP erkannt / unbekannt",st_host_unreachable:"Host nicht erreichbar",
  sum_likely_vulnerable:"Die angezeigte PHP-Version ist älter als der Upstream-Fix ihres Zweigs. Jetzt aktualisieren oder einen Backport der Distribution bestätigen.",
@@ -99,8 +102,9 @@ function loadConfig(){
 function build(){root.textContent='';
  var card=el('div',{'class':'p2c-card'});
  card.appendChild(el('p',{'class':'p2c-intro'},t('intro')));card.appendChild(el('p',{'class':'p2c-safe'},t('safe')));
+ var own=el('p',{'class':'p2c-own',id:'p2c-own'});own.appendChild(el('strong',null,'⚠ '+t('own')));card.appendChild(own);
  var f=el('form',{novalidate:'',autocomplete:'off'});
- var inp=el('input',{type:'text',inputmode:'url',spellcheck:'false',autocapitalize:'off','aria-label':t('ph'),placeholder:t('ph'),maxlength:'2048',id:'p2c-url'});
+ var inp=el('input',{type:'text',inputmode:'url',spellcheck:'false',autocapitalize:'off','aria-label':t('ph'),'aria-describedby':'p2c-own',placeholder:t('ph'),maxlength:'2048',id:'p2c-url'});
  if(root._val)inp.value=root._val;inp.addEventListener('input',function(){root._val=inp.value;inp.removeAttribute('aria-invalid')});
  var btn=el('button',{type:'submit'},t('btn'));f.appendChild(inp);f.appendChild(btn);card.appendChild(f);
  var msg=el('p',{'class':'p2c-msg',role:'status','aria-live':'polite'});card.appendChild(msg);
@@ -121,7 +125,7 @@ function run(inp,btn,msg,res){lastErr=null;lastNote=null;msg.className='p2c-msg'
  fetch(api+'/check?url='+encodeURIComponent(v.url),{signal:ctl?ctl.signal:undefined,headers:{Accept:'application/json'}})
  .then(function(r){return r.json().catch(function(){return{}}).then(function(j){return{s:r.status,j:j}})})
  .then(function(o){
-   if(o.s===429){lastErr={text:function(){return t('e_rate')}};throw 0}
+   if(o.s===429){var busy=o.j&&o.j.error==='busy';lastErr={text:function(){return t(busy?'e_busy':'e_rate')}};throw 0}
    if(o.j&&o.j.classification){last=o.j;render(res,o.j);return}
    var m=(o.j&&(o.j.error==='blocked_ip'||o.j.error==='blocked_host'))?t('e_local'):(o.j&&o.j.error==='bad_scheme')?t('e_scheme'):(t('e_srv')+' '+((o.j&&o.j.message)||('HTTP '+o.s)));
    lastErr={text:function(){return m}};throw 0})

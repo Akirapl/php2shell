@@ -149,9 +149,9 @@
    },
    "as_of": "2026-10-21T13:34:13Z",
    "note": {
-    "pl": "Wyliczone: 14:00 − 13:34 UTC.",
-    "en": "Computed: 14:00 − 13:34 UTC.",
-    "de": "Berechnet: 14:00 − 13:34 UTC."
+    "pl": "Wyliczone: 14:00 − 13:34 UTC (tarballe: Last-Modified 13:33:59 UTC → 26 min 01 s; pierwszy GHSA: 13:34:13 UTC → 25 min 47 s).",
+    "en": "Computed: 14:00 − 13:34 UTC (tarballs: Last-Modified 13:33:59 UTC → 26 min 01 s; first GHSA: 13:34:13 UTC → 25 min 47 s).",
+    "de": "Berechnet: 14:00 − 13:34 UTC (Tarbälle: Last-Modified 13:33:59 UTC → 26 Min. 01 s; erstes GHSA: 13:34:13 UTC → 25 Min. 47 s)."
    },
    "source_url": "https://github.com/php/php-src/security/advisories/GHSA-6wmf-4rv5-p3rp",
    "source_name": "GHSA-6wmf-4rv5-p3rp (CVE-2026-109619)",
@@ -584,7 +584,12 @@
     "de": "F: anonymer/unbestätigter Autor; 1: Beitrag und Inhalt durch Archive und Medien belegt."
    },
    "time_kind": "published",
-   "time_precision": "second"
+   "time_precision": "second",
+   "time_note": {
+    "pl": "Wpis z 20.10 15:20 UTC (17:20 CEST) podawał termin 22.10 18:00 CEST (= 16:00 UTC). watchTowr podał koniec embarga 22.10 11:00 ET (EDT, = 15:00 UTC = 17:00 CEST). Dwie relacje sprzed ujawnienia różnią się o godzinę; nie wiadomo, która była zgodna z faktycznym embargiem.",
+    "en": "Posted 20 Oct 15:20 UTC (17:20 CEST), the post named 22 Oct 18:00 CEST (= 16:00 UTC). watchTowr gave the embargo end as 22 Oct 11:00 ET (EDT, = 15:00 UTC = 17:00 CEST). The two pre-disclosure accounts are one hour apart; which one matched the real embargo is not known.",
+    "de": "Der Beitrag vom 20.10. 15:20 UTC (17:20 MESZ) nannte den 22.10. 18:00 MESZ (= 16:00 UTC). watchTowr nannte als Embargo-Ende den 22.10. 11:00 ET (EDT, = 15:00 UTC = 17:00 MESZ). Die beiden Angaben vor der Offenlegung liegen eine Stunde auseinander; welche dem tatsächlichen Embargo entsprach, ist offen."
+   }
   },
   {
    "id": "beaumont",
@@ -634,7 +639,12 @@
    "source_reliability": "B",
    "info_credibility": 1,
    "time_kind": "published",
-   "time_precision": "second"
+   "time_precision": "second",
+   "time_note": {
+    "pl": "Wpis z 20.10 15:20 UTC (17:20 CEST) podawał termin 22.10 18:00 CEST (= 16:00 UTC). watchTowr podał koniec embarga 22.10 11:00 ET (EDT, = 15:00 UTC = 17:00 CEST). Dwie relacje sprzed ujawnienia różnią się o godzinę; nie wiadomo, która była zgodna z faktycznym embargiem.",
+    "en": "Posted 20 Oct 15:20 UTC (17:20 CEST), the post named 22 Oct 18:00 CEST (= 16:00 UTC). watchTowr gave the embargo end as 22 Oct 11:00 ET (EDT, = 15:00 UTC = 17:00 CEST). The two pre-disclosure accounts are one hour apart; which one matched the real embargo is not known.",
+    "de": "Der Beitrag vom 20.10. 15:20 UTC (17:20 MESZ) nannte den 22.10. 18:00 MESZ (= 16:00 UTC). watchTowr nannte als Embargo-Ende den 22.10. 11:00 ET (EDT, = 15:00 UTC = 17:00 MESZ). Die beiden Angaben vor der Offenlegung liegen eine Stunde auseinander; welche dem tatsächlichen Embargo entsprach, ist offen."
+   }
   },
   {
    "id": "php-preannounce",
@@ -3684,15 +3694,32 @@
   },
   {
    "text": {
-    "pl": "PHP 5, od którego wg agencji zaczynają się podatne wersje, wyszło w 2004 r.; pierwsza wersja PHP — w 1995 r.",
-    "en": "PHP 5, the oldest version agencies call affected, came out in 2004; the first PHP version appeared in 1995.",
-    "de": "PHP 5, laut Behörden die älteste betroffene Version, erschien 2004; die erste PHP-Version 1995."
+    "pl": "PHP 5 wyszło w lipcu 2004 r. (agencje uznają je za najstarszą podatną wersję); Rasmus Lerdorf stworzył PHP w 1994 r., a kod źródłowy udostępnił publicznie w czerwcu 1995 r.",
+    "en": "PHP 5 came out in July 2004 (agencies treat it as the oldest affected version); Rasmus Lerdorf created PHP in 1994 and released its source code to the public in June 1995.",
+    "de": "PHP 5 erschien im Juli 2004 (Behörden sehen es als älteste betroffene Version); Rasmus Lerdorf schuf PHP 1994 und veröffentlichte den Quellcode im Juni 1995."
    },
-   "source_url": "https://www.bbc.com/news/articles/cmly0lg3w5x2o",
-   "source_name": "BBC News",
+   "source_url": "https://www.php.net/manual/en/history.php.php",
+   "source_name": "php.net — History of PHP (PHP Manual)",
    "confidence": "confirmed",
-   "source_reliability": "C",
-   "info_credibility": 1
+   "source_reliability": "A",
+   "info_credibility": 1,
+   "corrections": [
+    {
+     "id": "corr-008",
+     "time": "2026-10-21T16:19:24Z",
+     "field": "text",
+     "previous": {
+      "pl": "PHP 5, od którego wg agencji zaczynają się podatne wersje, wyszło w 2004 r.; pierwsza wersja PHP — w 1995 r.",
+      "en": "PHP 5, the oldest version agencies call affected, came out in 2004; the first PHP version appeared in 1995.",
+      "de": "PHP 5, laut Behörden die älteste betroffene Version, erschien 2004; die erste PHP-Version 1995."
+     },
+     "reason": {
+      "pl": "Historia PHP: źródło pierwotne (php.net, History of PHP) zamiast relacji medialnej (BBC News); doprecyzowano 1994/1995.",
+      "en": "PHP history: primary source (php.net, History of PHP) instead of a media report (BBC News); 1994/1995 made precise.",
+      "de": "PHP-Geschichte: Primärquelle (php.net, History of PHP) statt Medienbericht (BBC News); 1994/1995 präzisiert."
+     }
+    }
+   ]
   },
   {
    "text": {
@@ -4409,6 +4436,11 @@
    "name": "FBI Cyber Division (X)",
    "url": "https://x.com/FBICyberDiv/status/2112921648252719420",
    "type": "agency"
+  },
+  {
+   "name": "php.net — History of PHP (PHP Manual)",
+   "url": "https://www.php.net/manual/en/history.php.php",
+   "type": "vendor"
   }
  ]
 }

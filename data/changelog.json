@@ -1,5 +1,11 @@
 [
  {
+  "time_utc": "2026-10-21T16:19:30Z",
+  "message": "Review fixes: public sources replace local footnote (Beaumont, Imunify360, bunny.net), static no-JS content, checker ownership warning, PHP history source, leak-time note",
+  "events": 69,
+  "facts_last_updated": "2026-10-21T16:15:00Z"
+ },
+ {
   "time_utc": "2026-10-21T16:08:58Z",
   "message": "16:15 UTC: Rapid7, Fastly (pre-disclosure ITW claim, reported), unconfirmed new bug on 8.5.12, NSA/FBI warnings, KEV re-check",
   "events": 69,
