@@ -1,12 +1,12 @@
 ---
-title: "PHP2Shell — die Bibel des Angriffs"
+title: "PHP2Shell — die Fallstudie"
 subtitle: "Langfristige Tiefenanalyse von CVE-2026-109618 und CVE-2026-109619"
 lang: de
 version: "1.0"
 asof: "2026-10-21 14:05 UTC (16:05 CEST)"
 ---
 
-# PHP2Shell — die Bibel des Angriffs
+# PHP2Shell — die Fallstudie
 
 **Tiefenanalyse der kritischen Schwachstellen CVE-2026-109618 und CVE-2026-109619 im PHP-Kern**
 
@@ -57,7 +57,7 @@ asof: "2026-10-21 14:05 UTC (16:05 CEST)"
 > - **Schlechtester SAPI:** Apache mod_php (vor Anwendungscode) [P]
 > - **Behoben:** 8.5.12, 8.4.27, 8.3.36, 8.2.35; minimale Source-Backports für 7.4/8.0/8.1 [P]
 > - **Veröffentlichung:** GHSA 13:34 UTC; Tarball 8.5.12 `Last-Modified` 13:33:59 GMT [P]
-> - **Ursprüngliches Embargo:** 22.10.2026 11:00 ET (15:00 UTC) [P]
+> - **Ursprüngliches Embargo:** 22.10.2026 11:00 ET (15:00 UTC = 17:00 MESZ; der HN-Leak nannte 18:00 MESZ, siehe 5.1) [P]
 > - **GHSA-Credits:** sagitzadik-wiz, tomash-areion, lcfr-hax, amyb-oai [P]
 > - **Fix:** Arnaud Le Blanc (+ Tovilo, Zelenka, Dossche, Grekas); +11.556/−1.017 in 300 Dateien [P]
 > - **PHP-Anteil:** 69,3 % der Sites mit bekannter serverseitiger Sprache (W3Techs 21.10.) [P]
@@ -74,7 +74,7 @@ asof: "2026-10-21 14:05 UTC (16:05 CEST)"
 
 ### 1.1 Wie groß PHP ist
 
-Rasmus Lerdorf schuf PHP; die erste Version erschien 1995 [D][^nos]. Laut W3Techs (21.10.2026) nutzen **69,3 %** der Websites mit bekannter Server-Sprache PHP; darunter **65,2 %** Version 8, **27,0 %** Version 7, **7,7 %** Version 5, **0,1 %** Version 4 [P][^w3t]. WordPress, Drupal, Joomla, Magento und MediaWiki laufen auf PHP [D][^wiz].
+Rasmus Lerdorf schuf PHP 1994 (als „Personal Home Page Tools“) und veröffentlichte den Quellcode im Juni 1995 [P][^phphist]. Laut W3Techs (21.10.2026) nutzen **69,3 %** der Websites mit bekannter Server-Sprache PHP; darunter **65,2 %** Version 8, **27,0 %** Version 7, **7,7 %** Version 5, **0,1 %** Version 4 [P][^w3t]. WordPress, Drupal, Joomla, Magento und MediaWiki laufen auf PHP [D][^wiz].
 
 **Methodischer Hinweis** [A]: „69,3 %“ bezieht sich auf Sites *mit erkannter* Server-Sprache, nicht auf „das ganze Internet“. Schlagzeilen wie „70 % of the Internet“ (Wiz) sind Vereinfachungen [D][^wiz].
 
@@ -225,7 +225,7 @@ Typischer Ablauf [A]: (1) private Meldung; (2) Bestätigung und Fix; (3) embargi
 4. **Vorankündigung nach dem Leak.** Am 20.10. um 19:33 UTC kündigte Jakub Zelenka (`bukka`) **Mittwoch, 21.10., 14:00 UTC** an, mit dem Recht auf frühere Freigabe bei Leak oder Ausnutzung [P][^announce].
 5. **Trade-off** [A]: Die Ankündigung gab ~18 h für Inventar und Patch-Fenster, bestätigte aber auch die Realität der CVEs. OpenSSL 3.0.7 (2022) zeigte eine andere Variante: CRITICAL-Preannounce, später auf HIGH abgestuft [P][^openssl307]. Hier hielt die 9.2.
 
-Prozesskritik (Beaumont u. a.): Early Access als „verkaufte“ Intel durch Cyber-Vendoren versus kleine Orgs ohne Vertrag [D][^case].
+Prozesskritik (Kevin Beaumont, 21.10., 08:07 UTC): Cyber-Anbieter mit Vorabinformation hätten Kunden „Details mitgeteilt“ – für ihn „faktisch ein gewinnorientierter Weiterverkauf von Wissen aus Open-Source-Projekten“ („Protecting the ivory tower sucks“) [P][^beaumont2]. Diese Spannung kehrt bei jedem Infrastruktur-Embargo wieder [A].
 
 ---
 
@@ -235,7 +235,7 @@ Prozesskritik (Beaumont u. a.): Early Access als „verkaufte“ Intel durch Cyb
 
 *Zeiten in UTC.*
 
-- **20.10. 15:20** — „Tell HN: 2x PHP RCE CVEs with CVSS 10.0 Incoming“ (petecooper) — CVE-Nummern, Termin „22 October 2026 at 18:00 CEST“; später gelöscht [P][^hnleak]
+- **20.10. 15:20** — „Tell HN: 2x PHP RCE CVEs with CVSS 10.0 Incoming“ (petecooper) — CVE-Nummern, Termin „22 October 2026 at 18:00 CEST“; später gelöscht [P][^hnleak]. Zeitabgleich: Der Beitrag erschien am 20.10. um 15:20 UTC (17:20 MESZ) und nannte den 22.10. **18:00 MESZ** (= 16:00 UTC), watchTowr dagegen 22.10. **11:00 ET** (EDT, = 15:00 UTC = **17:00 MESZ**) – zwei Angaben vor der Offenlegung, eine Stunde auseinander; welche dem tatsächlichen Embargo entsprach, ist offen [?][^wtx]
 - **20.10. 16:39** — Kevin Beaumont (Mastodon): Leak der CVE-Nummern [P][^beaumont]
 - **20.10. 18:26** — watchTowr: „supposed to wait until Thursday 11am ET… We can confirm that they're real.“ [P][^wtx]
 - **20.10. 19:33** — Offizielle PHP-Ankündigung [P][^announce]
@@ -250,7 +250,7 @@ HN-Kommentar „bwoebi“ (Identität unverifiziert): Das Video sei der Grund f�
 
 ### 5.3 Wirkung des Leaks
 
-PHP verschob den Tag von Donnerstag auf Mittwoch und behielt sich frühere Freigabe vor [P][^announce][^phppre]. Tarbälle und GHSA erschienen schließlich ~25 Minuten vor den angekündigten 14:00 UTC [P][^tarball]. Das Embargo gab Distros Zeit, verhinderte aber kein öffentliches „Zero-Day-Gefühl“ für ~22 Stunden [A].
+PHP verschob den Tag von Donnerstag auf Mittwoch und behielt sich frühere Freigabe vor [P][^announce][^phppre]. Tarbälle und GHSA erschienen schließlich ~26 Minuten vor den angekündigten 14:00 UTC (Last-Modified der Tarbälle 13:33:59 UTC, erstes GHSA 13:34:13 UTC) [P][^tarball][^ghsa619]. Das Embargo gab Distros Zeit, verhinderte aber kein öffentliches „Zero-Day-Gefühl“ für ~22 Stunden [A].
 
 ---
 
@@ -322,13 +322,13 @@ Ohne Rezepte [A]: Bei großem öffentlichem Diff (hier: Hunderte Dateien um OOM 
 - **CERT.at** — Update #1: Exploit im Netz, Funktionalität unbestätigt [P][^certat]
 - **CERT Polska 195/2026** — Inventar; Internet-facing PHP ggf. abschalten [P][^certpl]
 - **CERT-FR ALE-014** — Workarounds upload_progress/multipart **nicht qualifiziert** [P][^certfr]
-- **ACSC / IPA** — Alerts (ACSC-Fetch hier 500) [D]
+- **ACSC (ASD, Australien) / IPA (Japan)** — Warnungen vor dem Release (21.10.): PHP inventarisieren und Update vorbereiten; dem ACSC war bei Veröffentlichung keine Ausnutzung bekannt [P][^acsc][^ipa]
 - **CISA** — Kein KEV zu PHP2Shell zum Research-Zeitpunkt [P][^kev]
 
 ### 8.2 WAFs, Hoster, CMSe
 
 - **Cloudflare:** Emergency Managed Ruleset — sieben Regeln „Anomalous Execution“; auch Free; Knecht: nur Stopgap [P][^cfwaf][^knecht].
-- **CloudLinux Imunify360 / bunny.net:** berichtete Rulesets [D][^case].
+- **CloudLinux Imunify360:** WAF-Ruleset 8.83 blockiert das kursierende Anfragemuster auf ModSecurity/Coraza (auf LiteSpeed nur Logging); laut Hersteller ein virtueller Patch, kein Fix [P][^imunify]. **bunny.net:** verwaltete WAF-Regeln in Bunny Shield, die nur im Blocking-Modus blockieren; ein Notbehelf – PHP muss gepatcht werden [P][^bunny].
 - **Sansec (Magento):** Mass Attacks in 15 Minuten; Fix auf Infrastruktur-Ebene, nicht im Shop [D][^sansec].
 - **Wordfence / Shared WP:** Fix kommt nicht per WordPress-Auto-Update — hängt vom Hoster ab [D][^verge].
 
@@ -488,7 +488,7 @@ Offizielles CVSS 9.2 von „CVSS 10“-Gerüchten trennen; CDN-„early attacks�
 [^audit2024]: https://thephp.foundation/blog/2025/04/10/php-core-security-audit-results/
 [^tarball]: https://www.php.net/distributions/php-8.5.12.tar.xz (Last-Modified-Header)
 [^atom]: https://www.php.net/releases/feed.php
-[^tags]: GitHub-API git/tags für php-8.2.35…8.5.12 (Erstellung 19.10.2026)
+[^tags]: https://api.github.com/repos/php/php-src/git/tags/c96586077b050b362744ba295f97f6395f58a75a (annotated Tag php-8.5.12, Tagger-Datum 2026-10-19; Tags 8.4.27/8.3.36/8.2.35: https://github.com/php/php-src/tags)
 [^girgias]: https://phpc.social/@Girgias/117476477429221001
 
 ### Entdeckung / Research
@@ -526,7 +526,12 @@ Offizielles CVSS 9.2 von „CVSS 10“-Gerüchten trennen; CDN-„early attacks�
 [^thn]: https://thehackernews.com/2026/10/php2shell-two-unpatched-critical-php.html
 [^verge]: https://www.theverge.com/tech/1015257/php-vulnerability-patch-website-security-wordpress
 [^bwoebi]: https://news.ycombinator.com/item?id=50175654
-[^case]: /workspace/php-incident/case-study.md (Arbeitsentwurf)
+[^beaumont2]: https://cyberplace.social/@GossiTheDog/117477870253346830
+[^imunify]: https://blog.imunify360.com/php-cve-2026-109618-cve-2026-109619/
+[^bunny]: https://bunny.net/blog/cve-2026-109618-and-cve-2026-109619/
+[^acsc]: https://www.cyber.gov.au/alert/critical-vulnerabilities-in-php
+[^ipa]: https://www.ipa.go.jp/security/security-alert/2026/pre-alert20261021.html
+[^phphist]: https://www.php.net/manual/en/history.php.php
 
 ### Historisch
 [^cflog4]: https://blog.cloudflare.com/exploitation-of-cve-2021-44228-before-public-disclosure-and-evolution-of-waf-evasion-patterns/
