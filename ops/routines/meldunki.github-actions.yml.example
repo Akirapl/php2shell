@@ -1,0 +1,24 @@
+# DISABLED TEMPLATE — lives outside .github/workflows on purpose, so GitHub never runs it.
+# To use (owner approval + a token with Workflows: write): copy to .github/workflows/meldunki.yml, remove `if: false`.
+# Today it can only run repo-side checks: the site build pipeline is box-only (ops/MISSING_FROM_REPO.md).
+# The editorial part of the routine (research + facts.json edits) needs an agent with web search; that is not modelled here.
+name: php2shell-meldunki (template)
+on:
+  workflow_dispatch: {}
+  # schedule:                      # GitHub cron is UTC only. 08:00–22:30 Warsaw = 06:00–20:30 UTC (CEST, until 25 Oct 2026)
+  #   - cron: "0,30 6-20 * * *"
+jobs:
+  checks:
+    if: false                      # disabled by default
+    runs-on: ubuntu-latest
+    steps:
+      - name: Stop after the watch end (2026-10-23 21:00 UTC)
+        run: '[ "$(date -u +%s)" -lt "$(date -u -d 2026-10-23T21:00:00Z +%s)" ] || { echo "watch ended"; exit 1; }'
+      - uses: actions/checkout@v4
+        with: { fetch-depth: 0 }
+      - uses: actions/setup-python@v5
+        with: { python-version: "3.12" }
+      - name: Repository checks (read-only)
+        run: bash ops/verify_handover.sh
+      # - name: Build + publish  (only after the pipeline is imported into the repo; needs GITHUB_PAGES_TOKEN secret,
+      #   concurrency group to replace flock, and NO Surge step unless SURGE_LOGIN/SURGE_TOKEN secrets exist)

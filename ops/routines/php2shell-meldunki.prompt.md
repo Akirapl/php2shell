@@ -1,0 +1,16 @@
+Track the critical PHP security incident ("PHP2Shell", CVE-2026-109618 and CVE-2026-109619, CVSS 9.2, unauthenticated remote code execution; fixed in PHP 8.5.12, 8.4.27, 8.3.36 and 8.2.35, released 21.10.2026) as material for Dawid's case study. He cares less about patch advice and more about what is happening behind the scenes and what happens next. This watch ends at 23:00 Warsaw time on 23.10.2026: if a run finds that deadline has passed, send Dawid a one-line closing note in Polish, turn off the php2shell trigger rules in /workspace/nygus-monitor/triggers.yaml, and delete this routine (the public website stays up).
+
+Files: /workspace/php-incident/log.md (timeline), case-study.md (Polish working draft), and site/ (the live center website, publicly hosted at https://php2shell-live.surge.sh in Polish, English and German; data/facts.json is its single source of truth, see site/README.md for how to add facts, rebuild and publish). Read log.md first to know what was already reported.
+
+1. Run the security monitor and work the trigger queue as described in /workspace/nygus-monitor/README.md (fetch the security category for the last couple of hours, list pending high-priority items, investigate each by reading the source and finding primary sources, then mark it done with a short note; skim normal-priority items and mark them done).
+2. Beyond the queue, look for news on the backstory and dynamics:
+   - disclosure and coordination: who found the bugs, the leak, embargo, pre-announcement, credit disputes, and who knew early;
+   - technical root cause at the level of the official advisories and patch diffs, and the time from patch to public PoC (describe only; never copy, save or link exploit code or payloads);
+   - attacker activity: scanning and exploitation telemetry (GreyNoise, Shadowserver, CISA KEV, vendors), campaigns, and the number of exposed or unpatched servers over time;
+   - the response chain: agencies (CISA, CERT.PL, BSI, NCSC, CERT-EU, JPCERT and others), Linux distributions, Docker images, hosting providers, CMS/frameworks, companies taking services offline;
+   - what comes next: open questions, EOL PHP versions, policy debates, AI-assisted discovery.
+   Use web search and the public X tools; prefer primary sources and mark unconfirmed claims as such.
+3. Append a new timestamped (UTC) section to log.md with what is new, each item with its source URL. Add confirmed and clearly labelled reported items to site/data/facts.json following site/README.md. ALWAYS hold `flock /workspace/php-incident/site/data/.lock` while editing facts.json or any site file, and run site/update_and_build.sh after releasing the lock (it takes the lock itself); it validates, builds and publishes. If the build fails, restore the previous facts.json and report it. Update case-study.md only when something changes the story.
+4. Report to Dawid in Polish, short, in the nygus style: only what is genuinely new since the last report, each point with its link, plus anything still unconfirmed or missing. If nothing meaningful changed, stay quiet (no message).
+
+Safety: defensive and journalistic only; never publish exploit code, payloads or step-by-step attack details; never print the contents of .surge-credentials or .render-credentials; don't delete anything except as stated for the end of the watch.

@@ -1,84 +1,72 @@
-# NEXT_TASK — make the site build reproducible from the repository
+# NEXT_TASK — make the checks fail loudly and run them in CI
 
-Priority: **highest**. Status: not started (2026-10-21 18:30 UTC).
+Priority: high. Doable from a **fresh public clone alone** (no box, no credentials needed to implement and test).
+Status: not started (2026-10-21 ~18:55 UTC).
 
-## Why this task
+## Why
 
-The site generator and the case-study renderer exist only on the owner's box (VERIFIED, HANDOVER.md §2.1 and §8):
+- `checker-api/test_classify.py` prints `FAIL` but always exits 0 [V HANDOVER §9], so any automation treats a broken checker as green.
+- The repo has no CI [V: no `.github/workflows/`]. `ops/checks.py` (facts, ledger, PL/EN/DE parity, local paths, secrets) and the
+  checker tests only run when someone remembers to run them. The 30-min routine edits `data/facts.json` on `main` until 2026-10-23 21:00 UTC.
+- The bigger gap — the site build pipeline being box-only — needs the owner's files (see "Follow-up" below), so it cannot be the next task for an agent without the box.
 
-- `main` has no build scripts. `gh-pages` holds only built output.
-- Whoever lacks box access cannot fix a typo in the site template, rebuild after a facts.json correction, or regenerate the case-study HTML/PDF.
-- The live routine ends on 23 Oct 2026. After that the box may not be maintained.
+## Prerequisites
 
-Every other open item depends on this one or is owner-only: Zenodo, topics, Search Console, licence wording.
+- `git`, Python ≥ 3.10, network for `pip` (checker deps pinned in `checker-api/requirements.txt`).
+- `bash ops/verify_handover.sh` passes on an untouched clone (`0 FAIL`) — run it first and keep the output.
 
-## Scope
+## Steps
 
-Bring the build source into the repo **on a local branch**, prepared for the owner to review. In this document `$BOX` means the owner's incident directory (path in HANDOVER.md §8).
+1. **test_classify.py exit code.** Count failures and end with `sys.exit(1 if failures else 0)`; keep every existing case and output line format
+   (`OK …` / `FAIL …`). Do not change `app.py`. Prove the negative path: temporarily break one expectation, run, see exit 1, revert.
+2. **verify script.** In `ops/verify_handover.sh` §3, trust the exit code (keep the `^FAIL` count as a second guard) and update the comment that says it always exits 0.
+3. **CI workflow** `.github/workflows/checks.yml`: on `push` and `pull_request` to `main` (+ `workflow_dispatch`); `ubuntu-latest`;
+   `actions/checkout@v4` with `fetch-depth: 0`; `actions/setup-python@v5` with Python 3.12; run `bash ops/verify_handover.sh` (no `--live`, no secrets,
+   `permissions: contents: read`). The routine's facts.json commits will trigger it — that is the point.
+4. **Docs.** Update HANDOVER.md §9 (test exit code) and §7 (CI exists), AGENTS.md §8 if commands change, and add a CHANGELOG entry
+   (version number is the owner's choice; write "Unreleased").
 
-- **`site/`** (new) is copied from `$BOX/site/`. It holds:
-  - `build.py`, `template.html`, `seo.py`, `info.py`, `methodology.py`, `validate.py`, `sync_bible.py`, `pages_lib.py`
-  - `update_and_build.sh`, `publish_pages.sh`, `enable_pages.sh`, `README.md`
-  - `checker/` (widget source), `assets/`, `.surgeignore` (publish list)
-  - the static `data/checker-config.json`
-- **`case-study/build/`** (new) is copied from `$BOX/bible/build/`: `md2html.mjs`, `html-to-pdf.mjs`, `render-mmd.mjs`, `page-head.html`, `page-script.html`, `package.json`, `package-lock.json`. Do not copy `node_modules/`.
-- **Vendor JS.** Either commit `vendor/mermaid.min.js` and `vendor/chart.umd.min.js` together with their upstream licence notices (both MIT), or replace them with a pinned download plus a SHA-256 check in the build. Record which option you chose.
-- **Path parametrisation.** Replace the hard-coded box paths with variables that default to repo-relative paths:
-  - in `update_and_build.sh`, the redirect deploy step becomes optional or off by default
-  - the `WORK` default in `publish_pages.sh`
-  - `../bible` in `sync_bible.py`, which should read `case-study/`
-- **Docs.** A `site/README.md` section "Build from a fresh clone" with the exact commands.
+## Commands
 
-Must NOT be included:
+```bash
+git clone https://github.com/Akirapl/php2shell.git /tmp/p2s && cd /tmp/p2s && git checkout -b ci/checks
+bash ops/verify_handover.sh                                  # baseline, expect 0 FAIL
+# … edit checker-api/test_classify.py, ops/verify_handover.sh, add .github/workflows/checks.yml, docs …
+VENV=/tmp/php2shell-verify-venv; cd checker-api && $VENV/bin/python test_classify.py; echo "exit=$?"; cd ..     # expect exit=0, 15 OK
+sed -i '0,/"likely_patched"),/s//"likely_vulnerable"),/' checker-api/test_classify.py   # GNU sed: breaks exactly ONE case
+cd checker-api && $VENV/bin/python test_classify.py; echo "exit=$?"; cd .. && git checkout checker-api/test_classify.py   # expect exit=1, then revert
+$VENV/bin/pip install -q pyyaml && $VENV/bin/python -c 'import yaml;yaml.safe_load(open(".github/workflows/checks.yml"))'   # syntax check
+bash ops/verify_handover.sh && python3 ops/checks.py
+```
 
-- `CNAME` (the Surge domain; it would set a custom domain on Pages)
-- `__pycache__/`, `data/.lock`, `data/raw/`
-- generated `*.html`, feeds, `sitemap.xml`, PDFs, `indexnow.json`
-- any credentials file, token, or `$BOX` path
-
-`data/facts.json` stays where it is: the repo root `data/` is the single source of truth.
+[V 2026-10-21] the `sed` line breaks exactly one case: the current script then prints 1 `FAIL` line and still exits 0.
 
 ## Acceptance criteria
 
-1. These commands run in a fresh clone of the branch with no box access:
-   - `python3 site/validate.py data/facts.json` prints `Walidacja OK`, exit 0
-   - the documented build command writes the site into a temp dir
-2. Diff the generated site with `origin/gh-pages` (`diff -r` minus `.git`). It shows no differences except build timestamps and `changelog.json`. List every residual difference in the PR notes.
-3. `npm ci && node case-study/build/md2html.mjs …` regenerates `bible/{pl,en,de}.html`, and the output matches gh-pages apart from timestamps. Producing PDFs is optional; if you do, note the renderer used.
-4. These checks find nothing:
-   - `rg -n '/workspace|file://' -g '!HANDOVER.md' -g '!AGENTS.md' -g '!NEXT_TASK.md'`
-   - `rg -n 'ghp_|github_pat_|SURGE_TOKEN='`
-   - `git ls-files | rg -i 'cname$|credentials|\.lock$'`
-5. `python3 checker-api/test_classify.py | grep -c FAIL` prints 0, and the existing data checks from HANDOVER.md §2.3–2.5 still pass.
-6. One readable commit (or a small series) on a local branch with author `Nygus (bot for @Akirapl) <akira3179082@gmail.com>`. CHANGELOG gets an entry for the next version (owner picks the number). It is **not pushed**; you deliver a `git format-patch` for review.
+1. `python test_classify.py` exits 0 with all 15 `OK` lines on the unmodified tests, and exits 1 when any case fails.
+2. `bash ops/verify_handover.sh` ends with `0 FAIL` on the branch; its §3 relies on the exit code.
+3. `.github/workflows/checks.yml` parses as YAML, uses only `contents: read`, needs no secrets, and runs `ops/verify_handover.sh`.
+4. `python3 ops/checks.py` passes (no local paths outside the allowlist, no secrets).
+5. `git diff --stat origin/main` lists only: `checker-api/test_classify.py`, `ops/verify_handover.sh`, `.github/workflows/checks.yml`, `HANDOVER.md`, `AGENTS.md` (if changed), `CHANGELOG.md`. No `app.py` change.
+6. Commit author `Nygus (bot for @Akirapl) <akira3179082@gmail.com>`, one commit or a short series with clear messages.
 
-## Verification procedure
+## Verification and delivery
 
-```bash
-git clone <patched branch or apply patch> /tmp/verify && cd /tmp/verify
-python3 site/validate.py data/facts.json
-OUT=$(mktemp -d) && <documented build command> --out "$OUT"
-git fetch origin gh-pages && git worktree add /tmp/ghp origin/gh-pages
-diff -r -x .git "$OUT" /tmp/ghp | head -50
-```
+- Fresh-clone re-run: `git clone <your branch or apply the patch> /tmp/verify && cd /tmp/verify && bash ops/verify_handover.sh`.
+- Delivery: `git format-patch origin/main` unless the owner has explicitly approved a push for this task.
+  Pushing a file under `.github/workflows/` needs a token with **Workflows: write**; `GITHUB_PAGES_TOKEN` is not known to have it [U].
+  If a push is rejected for that reason, push nothing else in its place: hand back the patch and say the owner must push it or widen the token.
+- After an approved push: the Actions tab shows a green run for the commit (owner or `gh run list` with read access); a later routine facts.json commit also runs green.
 
-Record the outputs in the hand-back report, in the format given in AGENTS.md.
+## Expected outcome
 
-## Dependencies
+A failing checker test or a broken facts.json/ledger/translation parity turns `main` red within minutes instead of going unnoticed.
 
-- Read access to `$BOX/site/` and `$BOX/bible/build/`. If you have no box access, stop and ask the owner for a tarball of exactly those paths, minus the excluded files.
-- Python 3 (stdlib only, VERIFIED for validate.py). Node and npm for the case-study renderer.
-- The owner's approval before any push. The routine pushes to `main` and `gh-pages` every 30 minutes until 23 Oct 2026, 21:00 UTC.
+## Follow-up (needs the owner): import the build pipeline
 
-## Risks
-
-- **Two sources of truth.** If the box `site/` keeps being edited after the copy, the repo copy goes stale. Mitigation: keep the box pipeline authoritative until the routine ends, then switch publish to the repo copy, with owner approval.
-- **Lock conflicts.** Do not write to the box `facts.json`. If you must, hold `flock $BOX/site/data/.lock`.
-- **An accidental custom domain or credential leak** through the copied files. The acceptance check 4 guards against this.
-- **Copying a script that publishes.** `publish_pages.sh` pushes when `GITHUB_PAGES_TOKEN` is set. Never run it, `update_and_build.sh`, or `$BOX/deploy.sh` during this task.
-- **Vendor licence obligations.** Keep the upstream MIT notices if you commit the minified files.
-
-## Rollback
-
-- Until the owner pushes, the work is a local branch plus a patch file: delete the branch and nothing changes.
-- After a push to `main`: `git revert <sha>`, a new commit with no force-push. Neither the live site nor gh-pages is affected, because the box pipeline still publishes.
+Bring box `site/` generator, `bible/build/` renderer and the Surge redirect builder into the repo (list, sizes and sha256 in
+`ops/MISSING_FROM_REPO.md`), parametrising the hard-coded paths (`update_and_build.sh` line 33, `publish_pages.sh` `WORK`,
+`sync_bible.py` `../bible` → `case-study/`, `render-mmd.mjs` Mermaid path), never importing `CNAME`, credentials, `.lock`, generated output.
+Acceptance: the generated site diffs clean against `origin/gh-pages` except timestamps and `changelog.json`.
+Recovery path without the box: the owner runs the tarball command in `ops/MISSING_FROM_REPO.md` and shares the file privately.
+Keep the box pipeline authoritative until the routine ends (2026-10-23 21:00 UTC); switching publishing to the repo copy is an owner decision.

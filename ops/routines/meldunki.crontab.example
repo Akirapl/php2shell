@@ -1,0 +1,15 @@
+# DISABLED TEMPLATE — not installed anywhere. Re-creates "php2shell-meldunki" as box cron. Owner approval required.
+# Install (owner only):  crontab -l > /tmp/ct; cat ops/routines/meldunki.crontab.example >> /tmp/ct; edit; crontab /tmp/ct
+# The original ran on the Grok Bot server scheduler (not box cron). Its watch ENDS 2026-10-23 21:00 UTC; the guard below
+# makes every run after that a no-op. AGENT_CMD is a placeholder for whatever agent CLI you use (e.g. a headless
+# Claude Code / Codex invocation reading the prompt file); it must have web search and must NOT print credentials.
+CRON_TZ=Europe/Warsaw
+SHELL=/bin/bash
+# m    h    dom mon dow  command
+# 0,30 8-22 *   *   *    [ "$(date -u +\%s)" -lt "$(date -u -d 2026-10-23T21:00:00Z +\%s)" ] && cd /workspace/php-incident && AGENT_CMD --prompt-file /path/to/php2shell-clone/ops/routines/php2shell-meldunki.prompt.md >> /workspace/php-incident/routine.log 2>&1
+#
+# Rules the agent run must keep (from the prompt and AGENTS.md):
+#  - every write to site/data/facts.json holds:  flock /workspace/php-incident/site/data/.lock <cmd>
+#  - after releasing the lock run site/update_and_build.sh "<message>" (it takes the lock itself)
+#  - never run /workspace/php-incident/deploy.sh (would overwrite the Surge redirects)
+#  - if the build fails, restore the previous facts.json and report

@@ -1,323 +1,288 @@
-# Handover — php2shell (2026-10-21)
+# HANDOVER — php2shell (reconstruction guide)
 
-Handover for the next autonomous agent working on this repository.
-Snapshot taken 2026-10-21 18:20–18:30 UTC against `main` @ `c23e976` and `gh-pages` @ `59bf473`.
+For the next autonomous agent (Claude Code, Codex, …) that starts with **only a fresh public clone** of
+<https://github.com/Akirapl/php2shell>. Owner: **Dawid Kulik** (GitHub `@Akirapl`). Rewritten 2026-10-21 ~18:50 UTC
+on the owner's box against `main` @ `da7f470` (+ this commit) and `gh-pages` @ `1c94005`.
 
-Labels used throughout:
+Every statement carries one tag:
 
-- **VERIFIED**: checked in this session; the command and a trimmed output are given.
-- **REPORTED**: taken from the previous agent's notes and not re-checked. Treat it as a lead, not a fact.
-- **ASSUMPTION**: my inference. Confirm it before you rely on it.
+- **[V]** Verified on 2026-10-21 (18:20–18:55 UTC) by running or reading the thing named.
+- **[C]** Recovered-from-config: read from a file (script, config, exported routine), not executed.
+- **[U]** Unverified assumption or second-hand report. Confirm before you rely on it.
 
-State moves every 30 minutes while the monitoring routine runs (see "Routine"). Re-run the checks below before you trust any number here.
+Numbers that the 30-minute routine changes (sources, events, timestamps) are snapshots. Re-run `ops/verify_handover.sh`.
 
 ---
 
-## 1. Exact first action
-
-Re-check that the build pipeline is still missing from the repo, then start NEXT_TASK.md step 1:
+## 0. First command for a successor
 
 ```bash
-git clone https://github.com/Akirapl/php2shell.git /tmp/p2s && cd /tmp/p2s && git fetch origin gh-pages
-git ls-tree -r --name-only origin/main | grep -E '^(site|case-study/build)/' || echo "build source NOT in repo"
+git clone https://github.com/Akirapl/php2shell.git && cd php2shell && bash ops/verify_handover.sh --live
 ```
 
-If it prints `build source NOT in repo`, carry out NEXT_TASK.md. Work on a local branch only and do not push without the owner's approval.
+Expected on a fresh machine [V, fresh clone in /tmp, see §11]: all checks `PASS`, `0 FAIL`, plus `MISSING` lines for the
+box-only build pipeline and `WARN` lines for optional tools. Then read `AGENTS.md` (rules) and do `NEXT_TASK.md`.
 
 ---
 
-## 2. Verified current state
+## 1. What this project is and what ran where
 
-### 2.1 Git (VERIFIED, fresh clone)
+- **Public repo `main`** [V]: trilingual case study (`case-study/{pl,en,de}.md`, diagrams, evidence ledger),
+  the live-center dataset `data/facts.json`, the checker API source (`checker-api/`), docs, `render.yaml`, and `ops/` (handover tooling).
+- **Public repo `gh-pages`** [V]: built static site only (37 files), served by GitHub Pages at
+  **<https://akirapl.github.io/php2shell/>** (canonical). Overwritten by every publish.
+- **Owner box** (one Linux machine, Debian 13, user `box`) [V]: the build pipeline, working notes, evidence archive, monitor and
+  credentials live under `/workspace/php-incident/` and `/workspace/nygus-monitor/`. **Not in the repo.** See §5 and `ops/MISSING_FROM_REPO.md`.
+- **Grok Bot server-side scheduler** [C: routine export]: ran the `php2shell-meldunki` routine every 30 min. Not cron on the box.
+  A successor does not have it (§7).
+- **Render** (free plan, service `php2shell-checker`) [V live, C config]: runs `checker-api/` from `render.yaml` (Docker), at
+  <https://php2shell-checker.onrender.com>. Cloudflare sits in front (`server: cloudflare` header) [V].
+- **Surge** `php2shell-live.surge.sh` [V]: legacy host, now serves only "moved" redirect pages (+ copies of feeds and facts.json), `robots.txt: Disallow: /`.
+- **Fly.io** `checker-api/fly.toml` [C]: alternative config, not in use [U].
 
-```
-$ git log --oneline -30        # 27 commits on main, newest first
-c23e976 Live update 2026-10-21 18:09 UTC: +2 events, sources 99→101, ...
-67d1810 Live update 2026-10-21 17:40 UTC: +1 event, +1 agency response, ...
-98f9a53 Add evidence ledger (CLM-IDs) for case-study claims
-...
-6ab1719 Docs: make the GitHub Pages URL canonical, add "How to cite" and CITATION.cff
-5b3a74e Checker: ownership notice, global limit raised to 600/min ...
-...
-cc27ac0 Initial commit
-$ git tag                      -> v1.0
-$ git rev-list -n1 v1.0        -> 22112a0 (3rd commit "Add README, changelog and content licence")
-$ git branch -a                -> main, origin/main, origin/gh-pages
-$ git log --oneline origin/gh-pages | wc -l   -> 15 ; head 59bf473 "Live update 18:09 UTC: site rebuild"
-```
+---
 
-`git ls-tree -r --name-only HEAD` on main gives 35 files:
+## 2. Directory tree
 
-- `.github/ISSUE_TEMPLATE/*` (4 files)
-- `.gitignore`
-- the top-level docs: ABOUT, ARCHIVE, CHANGELOG, CITATION.cff, CONTRIBUTING, LICENSE, LICENSE-CONTENT, README, SECURITY
-- `case-study/{pl,en,de}.md`, `case-study/evidence-ledger.{jsonl,csv}`, `case-study/diagrams/*.{mmd,png}` (4 diagrams)
-- `checker-api/{app.py,test_classify.py,requirements.txt,Dockerfile,fly.toml,README.md}`
-- `data/facts.json`
-- `render.yaml`
-
-The tree has **no build scripts and no PDFs**.
-
-`gh-pages` has 36 files of built output only:
-
-- `index.html`, `info.html`, `methodology.html`, the feeds, `sitemap.xml`, `robots.txt`
-- `bible/*.html` plus diagrams, `checker/*`
-- `data/{facts,changelog,checker-config}.json`, `data/additions/*.json`
-- `vendor/{mermaid,chart.umd}.min.js`, `.nojekyll`, the IndexNow key file
-
-`git diff --stat main origin/gh-pages -- data/facts.json` prints nothing, so the two copies are identical.
-
-### 2.2 Checker unit tests (VERIFIED)
+### 2.1 Public repo (main) [V, `git ls-files`]
 
 ```
-$ python3 -m venv venv && . venv/bin/activate && pip install -r checker-api/requirements.txt
-  fastapi==0.157.0 pydantic==2.14.1 starlette==1.9.0 uvicorn==0.54.0   (Python 3.13.5)
-$ cd checker-api && python3 test_classify.py
-OK  {'x-powered-by': 'PHP/8.3.10'} [] -> likely_vulnerable 8.3.10
-... (11 classification cases, all OK)
-OK  per-client limit: 10 allowed, then rate_limited (Retry-After 60s)
-OK  global cap 600/min reached -> busy (Retry-After 15s)
-OK  limits: per-client 10/min kept, global raised to 600
-OK  ownership notice is the first caveat
-exit=0      # 15 OK, 0 FAIL
+.github/ISSUE_TEMPLATE/{config,correction,new-source,translation}.yml
+ABOUT.md ARCHIVE.md(plan only) CHANGELOG.md CITATION.cff CONTRIBUTING.md SECURITY.md README.md
+LICENSE (MIT, code)  LICENSE-CONTENT (CC BY 4.0, text/diagrams/facts.json)
+HANDOVER.md AGENTS.md NEXT_TASK.md          <- operational docs; may contain box paths on purpose
+case-study/{pl,en,de}.md                     <- pl.md is the master
+case-study/diagrams/{actors,disclosure,lifecycle,timeline}.{mmd,png}
+case-study/evidence-ledger.{jsonl,csv}       <- CLM-0001..CLM-0089
+checker-api/{app.py,test_classify.py,requirements.txt,Dockerfile,fly.toml,README.md}
+data/facts.json                              <- single source of truth of the live center (copy pushed by the routine)
+render.yaml                                  <- Render blueprint for checker-api
+ops/verify_handover.sh ops/checks.py         <- fresh-clone verification (this handover)
+ops/env.example ops/MISSING_FROM_REPO.md ops/README.md
+ops/routines/{README.md,php2shell-meldunki.prompt.md,meldunki.crontab.example,meldunki.github-actions.yml.example}
 ```
 
-Caveat: the script always exits 0. Grep its output for `FAIL`.
+### 2.2 gh-pages [V, `git ls-tree -r origin/gh-pages`]
 
-### 2.3 data/facts.json (VERIFIED)
+`index.html info.html methodology.html feed.xml feed-pl.xml feed-de.xml sitemap.xml robots.txt .nojekyll`
+`dbc98eb4bceea3f0edf36cc6769afd2b.txt` (IndexNow key file; keep published), `assets/og-image.png`,
+`bible/{pl,en,de}.html bible/diagrams/*.png`, `checker/{index.html,section.html,checker.js,checker.css}`,
+`data/{facts.json,changelog.json,checker-config.json}`, `data/additions/2026-10-21-HHMM.json` (10 per-run snapshots),
+`vendor/mermaid.min.js` (Mermaid 10.9.1), `vendor/chart.umd.min.js` (Chart.js 4.4.4).
 
-```
-$ python3 -c 'import json;json.load(open("data/facts.json"))'   -> parses
-meta.last_updated = 2026-10-21T18:12:00Z ; tlp = CLEAR
-items: status.sources 4, key_numbers 10, timeline 78, actors 11, versions 6, sapi_risk 4,
-       agency_responses 13, sites_offline 16, quotes 13, trivia 10, historical 4,
-       open_questions 10, sources 101
-```
-
-- **Confidence values:** across all objects that carry `confidence` (182, including `web_share`, `exposure` and `exploitation_data`) the counts are confirmed 135, reported 45, estimate 2. No other values occur.
-- **Source URLs:** all 182 have an http(s) `source_url`. All 101 `sources[]` entries have an https `url`. No URL field uses `http://`.
-- **Validator:** the box validator `validate.py data/facts.json` prints `Walidacja OK`, exit 0.
-- **Local paths:** `rg -n '/workspace|file://'` over the repo before this handover commit had 0 hits. After this commit it matches HANDOVER.md, on purpose; see section 7.
-
-### 2.4 Evidence ledger (VERIFIED)
+### 2.3 Owner box [V, `ls`]
 
 ```
-case-study/evidence-ledger.jsonl: 89 lines, all parse; ids unique and contiguous CLM-0001..CLM-0089
-status: confirmed 79, partially_confirmed 4, conflicting 2, unverified 1, refuted 3   (= REPORTED numbers)
-case-study/evidence-ledger.csv: 90 lines = header + 89 rows; id order identical to JSONL
-primary_source_url: 89/89 https ; last_verified_at: 2026-10-21T17:30:00Z for all rows
-```
-
-Minor gaps:
-
-- `claim_lang_source` is empty in all 89 rows.
-- `label_in_text` is empty for CLM-0027.
-
-### 2.5 PL/EN/DE consistency (VERIFIED)
-
-- pl / en / de lines: 558 / 558 / 558
-- headings H1/H2/H3: 1/19/37 in all three
-- footnote refs / defs: 172 / 64 in all three
-- CLM ids cited: 4, images: 4, in all three
-
-- The heading-level sequence, the footnote-definition ids and the URL sets are identical across the three files.
-- There are no undefined, unused or duplicate footnotes.
-- No differences were found. Word counts differ only through language (4776/5001/4541).
-
-### 2.6 Live endpoints (VERIFIED, 18:22–18:25 UTC)
-
-```
-curl -sI https://akirapl.github.io/php2shell/        -> HTTP/2 200, last-modified 18:09:41 GMT, max-age=600
-curl https://akirapl.github.io/                      -> 404 (normal: project site lives under /php2shell/)
-live data/facts.json meta.last_updated               -> 2026-10-21T18:12:00Z (= main), sources 101, timeline 78
-/bible/en.html 200 · /methodology.html 200 · /info.html 200 · /checker/index.html 200 · /feed.xml 200
-/bible/en.pdf 404   (PDFs are not published at all; see 4.2)
-robots.txt: "User-agent: * / Allow: /" + sitemap
-feed.xml entry <id>s: tag:php2shell-live.surge.sh,2026:...  (permanent IDs, intentional per REPORTED notes)
-https://php2shell-live.surge.sh/  -> 200 "live center has moved" page, JS + meta refresh + canonical to Pages
-https://php2shell-live.surge.sh/robots.txt -> "Disallow: /"
-```
-
-Checker on Render (`https://php2shell-checker.onrender.com`). The first `/health` call took 13.4 s (cold start); later calls took under 1 s.
-
-```
-/health                                  -> 200 {"ok":true,"service":"PHP2Shell-Live-Checker","version":"1.0"}
-/check?url=https://www.php.net           -> 200 no_php_detected, server BunnyCDN-DE1-1329, 1 hop;
-                                            caveats[0] = "Check only systems you own or are authorised to test."
-?url=http://127.0.0.1                    -> 400 blocked_ip
-?url=http://169.254.169.254              -> 400 blocked_ip
-?url=http://[::1]                        -> 400 blocked_ip
-?url=http://localhost                    -> 400 blocked_host
-?url=https://www.php.net:8443            -> 400 bad_port
-?url=file:///etc/passwd                  -> 400 bad_scheme
-OPTIONS /check, Origin https://akirapl.github.io -> 200, ACAO https://akirapl.github.io, methods GET, max-age 600
-OPTIONS /check, Origin https://evil.example      -> 400, no ACAO
-GET response headers include: server: cloudflare, x-render-origin-server: uvicorn
-```
-
-I sent 9 requests in total and ran no load test. The deployed code includes the ownership-caveat change (`5b3a74e` or later), but I could not confirm the exact deployed commit. The previous agent reported `6ab1719`.
-
-Exploitation status (VERIFIED 18:2x UTC): the CISA KEV JSON feed (catalogVersion 2026.10.21, 1754 entries) contains neither CVE-2026-109618 nor CVE-2026-109619. `facts.json` has `status.exploitation = "reported"` and `kev_listed: false`.
-
-### 2.7 GitHub API, unauthenticated (VERIFIED)
-
-```
-description: "Evidence-based security case studies and structured datasets for human and AI analysis. ..."
-homepage: null · topics: [] · default_branch main · archived false · license detected: MIT
-open issues/PRs: 0 · stars 0 · forks 0 · pushed_at 2026-10-21T18:09:21Z
-releases: v1.0 "v1.0", published 2026-10-21T16:22:03Z, not draft, no assets
-GET /repos/Akirapl/php2shell/pages -> 404 unauthenticated (site itself is live, so this is an API visibility issue)
+/workspace/php-incident/
+  .render-credentials .surge-credentials   <- secrets (mode 600). Never read/print/copy.
+  deploy.sh                                <- legacy full-site Surge deploy. NEVER RUN.
+  log.md case-study.md best-practices.md   <- working notes (Polish), never publish
+  site/            build pipeline + generated site (see ops/MISSING_FROM_REPO.md §A–B)
+    data/facts.json data/.lock data/changelog.json data/additions/ data/raw/ data/checker-config.json
+    CNAME          <- Surge domain; must never reach gh-pages
+  bible/           case-study masters {pl,en,de}.md + .html + .pdf, diagrams/, evidence-ledger.*, build/ (Node renderer)
+  checker-api/     same app.py/test_classify.py as repo + DEV-NOTES.md run.sh uitest.py .venv/
+  evidence/        archive.py index.csv (59 URLs, 58 local copies with sha256, 21 Wayback URLs) copies/ (26 MB)
+  staging/         patch/test workspaces; surge-redirect/{build_redirect.py,deploy_redirect.sh,public/}; handover/
+  pages-repo/{gh-pages,main}   <- temporary clones used by publish_pages.sh. Do not use or modify.
+/workspace/nygus-monitor/      fetch_feeds.py triggers.py sources.yaml triggers.yaml x_watchlist.yaml notes/ seen.db
 ```
 
 ---
 
-## 3. Architecture
+## 3. Data flow and publication pipeline
 
-- **`main` branch (GitHub):** case study (md, diagrams, ledger), `data/facts.json`, checker API source, docs. The routine commits only `data/facts.json` here.
-- **`gh-pages` branch (GitHub → Pages):** the built static site at https://akirapl.github.io/php2shell/. Overwritten by every publish.
-- **Build pipeline (owner box only):** generates gh-pages from facts.json and the case-study markdown (section 8).
-- **Checker API (Render free plan, service `php2shell-checker`):** built from `checker-api/` via `render.yaml` (Docker). The site reads `data/checker-config.json` → `{"api_base":"https://php2shell-checker.onrender.com"}`.
-- **Surge (php2shell-live.surge.sh):** the legacy address. It now serves only the "moved" redirect pages (plus feeds and facts.json, REPORTED).
-- **`checker-api/fly.toml`:** an alternative Fly.io config, present but not in use (ASSUMPTION).
+```
+ monitor (nygus-monitor) ─┐
+ web search / X tools ────┼─> agent run (meldunki routine) ──> log.md (working notes)
+                          │        │
+                          │        └─ flock site/data/.lock ─> site/data/facts.json  (single source of truth)
+                          │
+ bible/{pl,en,de}.md ─(bible/build/md2html.mjs, manual)─> bible/*.html ─┐
+ bible/diagrams/*.mmd ─(render-mmd.mjs, manual)─> *.png                  │
+                                                                         v
+ site/update_and_build.sh:  validate.py ─> sync_bible.py ─> build.py (+seo/info/methodology) ─> changelog.json
+        ├─ publish_pages.sh ─> gh-pages (whole built site)  and  main:data/facts.json  (no force, pull --rebase on reject)
+        └─ staging/surge-redirect/deploy_redirect.sh ─> php2shell-live.surge.sh (moved pages + feeds + facts.json)
+ case-study md + ledger ─> repo main: committed MANUALLY (e.g. 98f9a53); publish_pages.sh only pushes data/facts.json
+ checker-api/ on main ─> Render (Docker) ─> site widget reads data/checker-config.json {"api_base": ...}
+```
 
----
-
-## 4. Known defects, open questions, outstanding tasks
-
-### 4.1 Defects and risks (VERIFIED unless marked)
-
-1. **The build is not reproducible from the repo.** main contains no site generator, template or validator, and no case-study md→html/pdf tooling. Both exist only on the owner's box (section 8). Without the box nobody can rebuild gh-pages. This is the subject of NEXT_TASK.md.
-2. **The case-study PDFs are stale and unpublished.**
-   - The box PDFs date from 16:16 UTC; the md/html date from 17:07 UTC, after the ledger edits.
-   - The PDFs are excluded from publishing (`bible/*.pdf` in the publish ignore list) and are not in the repo, so `/bible/en.pdf` returns 404.
-   - The REPORTED claim that "PDFs in repo/gh-pages lag" is therefore moot: they are not in either place.
-3. **The v1.0 tag points to `22112a0`, the 3rd commit.** That commit predates CONTRIBUTING, SECURITY, ARCHIVE, the checker, CITATION.cff and the ledger. `CITATION.cff` says `version: v1.0`. Releases have no assets.
-4. **The copyright line reads `Copyright (c) 2026 Dawid `** in both LICENSE and LICENSE-CONTENT, with no surname and a trailing space. CITATION.cff credits "Dawid Kulik (@Akirapl)". The owner should decide whether to change it; do not edit it unasked.
-5. **The scope of LICENSE-CONTENT does not name the evidence ledger.** It names "case-study text and diagrams under `case-study/`" and `data/facts.json`. The ledger files sit in `case-study/` but are neither text nor diagrams. The README says "text, diagrams and data". Open question for the owner.
-6. **The checker docs overstate one guarantee.** The README says "only the root path `/`" and "no other paths". In code, hop 0 is forced to `/`, but redirect hops (max 2) request the `Location` path. Every hop is still re-validated, IP-pinned, limited to ports 80/443 and http(s), and capped at 4 KB.
-7. **CORS is broader than needed.** It allows `https://[a-z0-9-]+\.surge\.sh` (any Surge subdomain) and `http://127.0.0.1:8765` / `localhost:8765`. The API is read-only GET, so the impact is low. Consider narrowing it after the Surge redirect period.
-8. **Rate-limit keying is unverified.** `_client_ip` takes the rightmost `X-Forwarded-For` hop. Live responses show `server: cloudflare` in front of Render. If that rightmost hop is a proxy address, all users share one per-IP bucket (10/min). This is untested; do not load-test production. Verify by reading Render's logs (owner access) or with a staging service.
-9. **test_classify.py always exits 0** (see 2.2).
-10. **Ledger metadata gaps** (see 2.4).
-
-### 4.2 Open questions and outstanding tasks (REPORTED unless marked)
-
-- Render auto-deploy did not trigger reliably; a manual "Deploy latest commit" was needed twice. The service is deployed from the public repo URL without a GitHub connection.
-- Repo homepage and topics are empty (VERIFIED). The available token lacks Administration:write (403). The owner must set them.
-- Zenodo DOI not done. The owner must enable the Zenodo GitHub integration and then publish a new release.
-- Google Search Console verification is pending; the owner must supply the meta tag. IndexNow was submitted to Bing.
-- `ARCHIVE.md` is a plan (VERIFIED: "These steps are not carried out"). The evidence archive on the box contains 56 local copies with SHA-256 hashes; 21 of 59 URLs are in Wayback.
-- The diagram-card opacity fix exists only in the box `template.html`. It was published to gh-pages (VERIFIED: gh-pages commits `3d0b5d9` and `7097202` at 17:50 UTC).
-- The GitHub private vulnerability reporting flag is disabled, per SECURITY.md (not re-checked).
+- [C] `update_and_build.sh`: `exec 9>data/.lock; flock -w 120 9`, then `validate.py [--relaxed]`, `sync_bible.py`, `build.py`,
+  changelog append, `publish_pages.sh` only if `GITHUB_PAGES_TOKEN` is set (a failure is a WARNING, not fatal), then the Surge redirect deploy (hard-coded path, line 33).
+- [C] `publish_pages.sh`: auth via `GIT_CONFIG_*` env → `http.https://github.com/.extraheader` (Bearer, fallback Basic `x-access-token`);
+  author `Nygus (bot for @Akirapl) <akira3179082@gmail.com>`; message `Live update <UTC>: <diff summary> — <hint>`; publish set = `.surgeignore` minus `CNAME` plus `.nojekyll`.
+- [V] Box `bible/{pl,en,de}.md`, `evidence-ledger.jsonl`, `checker-api/app.py`, `test_classify.py` are byte-identical to the repo; box `site/data/facts.json` == `main` == `gh-pages` copy (18:41 UTC, `cmp`).
+- [V] Box PDFs (16:16 UTC) are older than the md/html (17:07 UTC) and are excluded from publishing (`bible/*.pdf` in `.surgeignore`): `/bible/en.pdf` → 404.
+- [V] The 4 PNG diagrams in `case-study/diagrams/` are rendered by `render-mmd.mjs` with the vendored Mermaid 10.9.1 (not the 11.x mermaid-cli in package.json) [C].
 
 ---
 
-## 5. Decisions not obvious from the code (REPORTED unless marked)
+## 4. Dependencies and versions
 
-- **The GitHub Pages URL is canonical.** Surge forces `robots: Disallow` (VERIFIED), so it serves redirects only.
-- **Atom `<id>`s keep the `tag:php2shell-live.surge.sh,…` prefix on purpose,** so feed entries keep permanent IDs (VERIFIED present).
-- **Exploitation threshold.** The previous agent reported that "confirmed" is used only at the CISA KEV threshold. VERIFIED: `status.exploitation_threshold.rule` in facts.json reads "confirmed only if CISA KEV lists a CVE **or a national CERT publishes credible in-the-wild evidence**". The file is authoritative.
-- **Global checker limit of 600/min with a friendly "busy" 429.** The per-IP limit of 10/min is the real abuse control (VERIFIED in code and tests).
-- **Mobile-first case study.** Wide tables became lists (CHANGELOG v1.3, VERIFIED).
-- **No local or working-draft sources in public text.** CHANGELOG v1.4, VERIFIED.
+Public repo (what a fresh clone needs):
 
----
+- Python **≥ 3.10** for `ops/checks.py` (stdlib) [V: ran on 3.13.5]. Checker container: `python:3.12-slim` [C Dockerfile].
+- Checker pins [C requirements.txt, V installed]: `fastapi==0.157.0 pydantic==2.14.1 starlette==1.9.0 uvicorn==0.54.0`
+  (resolved extras: pydantic_core 2.50.1, anyio 4.15.1, h11 0.16.0, click 8.5.0, idna 3.20) [V `pip freeze`].
+- `git`, `curl` (for `--live`); optional `rg`, `docker` [V].
 
-## 6. Routine schedule (REPORTED)
+Box-only pipeline [V versions on the box]:
 
-- Routine "PHP2Shell – meldunki" runs every 30 min, 08:00–22:30 Europe/Warsaw (06:00–20:30 UTC while CEST lasts, until 25 Oct).
-- Each run edits facts.json and the working log, runs the build, and pushes `data/facts.json` to main and the built site to gh-pages.
-- It **ends 23:00 Warsaw on 23 Oct 2026 (21:00 UTC)**. Planned shutdown: closing note, disable the php2shell triggers, delete the routine. The website stays up.
-- VERIFIED consistent: main has "Live update" commits at 15:03–18:09 UTC, roughly every 30 min.
-- Do not fight the routine. Never push to main or gh-pages while it can run unless the owner approves, and always hold the lock (section 8).
-
----
-
-## 7. Secrets (names and paths only; never print or echo them)
-
-- `GITHUB_PAGES_TOKEN` (env var): fine-grained token. Per the box script it has Contents read/write on Akirapl/php2shell (REPORTED). It lacks Administration:write. It is used only via an in-memory `http.extraheader`.
-- `.render-credentials` (in the box incident root): Render account credentials.
-- `.surge-credentials` (in the box incident root): Surge login and token, sourced by `deploy.sh` and the redirect deploy.
-
-Do not copy any of these into the repo, logs, commits, or issue text.
-
-Note on paths: this file intentionally contains owner-box paths (section 8). The repo-wide `rg -n '/workspace|file://'` check will now match HANDOVER.md. The owner should decide before pushing whether HANDOVER.md belongs on public main.
+- Python 3.13.5 (site/*.py are stdlib only [C imports]); bash; `flock` (util-linux 2.41.5); git 2.47.3; jq 1.7; ripgrep 14.1.1.
+- Node v20.19.2, npm 11.21.0; `bible/build` deps installed: `@mermaid-js/mermaid-cli 11.17.0`, `markdown-it 14.3.3`,
+  `markdown-it-footnote 4.0.0`, `puppeteer-core 22.15.0`; Google Chrome 155.0.8059.84 at `/usr/bin/google-chrome` (PDF/diagrams).
+- Surge CLI 0.46.0 at `/home/box/.local/bin/surge`.
+- Monitor: feedparser 6.0.14, PyYAML 6.0.3, requests 2.34.2.
+- Not used: pandoc (not installed) [V].
 
 ---
 
-## 8. Owner infrastructure (not in repo)
+## 5. Install, configure, build, test, run
 
-Everything here lives on the owner's box. A successor without box access cannot use it. All entries are VERIFIED by a directory listing unless marked.
+### 5.1 From a fresh clone (works without the box) [V §11]
 
-**Incident root:** `/workspace/php-incident/`
+```bash
+bash ops/verify_handover.sh            # creates ${TMPDIR:-/tmp}/php2shell-verify-venv, installs checker deps, runs everything
+python3 ops/checks.py                  # facts / ledger / parity / paths / secrets only, no deps
+python3 -m venv .venv && . .venv/bin/activate && pip install -r checker-api/requirements.txt
+cd checker-api && python test_classify.py | tee /tmp/t.txt; grep -c '^FAIL' /tmp/t.txt   # expect 0 (script exits 0 even on FAIL)
+cd checker-api && uvicorn app:app --host 127.0.0.1 --port 8799   # local API; CHECKER_RESOLVER=auto if DNS returns 198.18/15
+docker build -t p2s-checker checker-api && docker run -p 8080:8080 p2s-checker   # [U] not run (no docker on the box)
+```
 
-**`site/` — the build that generates gh-pages:**
+### 5.2 Site and case-study build (box only, until the pipeline is imported)
 
-- `build.py`, `template.html`, `seo.py`, `info.py`, `methodology.py`, `validate.py`, `sync_bible.py`, `pages_lib.py`
-- `update_and_build.sh`, `publish_pages.sh`, `enable_pages.sh`, `README.md`
-- `data/facts.json`: byte-identical to main at 18:2x UTC (`cmp`)
-- `data/changelog.json`, `data/additions/`, `data/checker-config.json`
-- `checker/` (widget: `index.html`, `section.html`, `checker.js`, `checker.css`, `INTEGRATE.md`)
-- `vendor/mermaid.min.js`, `vendor/chart.umd.min.js` (3.4 MB)
-- `assets/`, `CNAME` (the Surge domain; must never go to Pages), `.surgeignore` (publish exclude list)
-- Generated output: `index.html`, feeds, etc.
+```bash
+cd /workspace/php-incident/site
+python3 validate.py data/facts.json          # [V] "Walidacja OK", exit 0; read-only
+# DO NOT run update_and_build.sh while testing: it PUBLISHES (gh-pages, main, Surge) when the token is present.
+cd ../bible/build && npm ci && node md2html.mjs [pl en de]    # [C] md -> ../{lang}.html
+node render-mmd.mjs                                            # [C] ../diagrams/*.mmd -> png (needs Chrome)
+node html-to-pdf.mjs                                           # [C] ../{lang}.html -> pdf (hard-coded Chrome path)
+```
 
-**`bible/` — case-study master copies:**
-
-- `pl.md`, `en.md`, `de.md` and `evidence-ledger.jsonl` are byte-identical to the repo's `case-study/`.
-- `pl|en|de.html` and `.pdf`, `diagrams/`.
-- `build/` holds `md2html.mjs`, `html-to-pdf.mjs`, `render-mmd.mjs`, `page-head.html`, `page-script.html`, `package.json`, `package-lock.json` (Node). `bible/README.md` there is stale ("Not published", as of 14:05).
-
-**`checker-api/`:** `app.py` is identical to the repo.
-
-**`staging/surge-redirect/`:** `build_redirect.py`, `deploy_redirect.sh`, `public/`. These produce the Surge "moved" set.
-
-**`pages-repo/{gh-pages,main}`:** temporary clones used by `publish_pages.sh` for pushing. **Do not use or modify them.**
-
-**`evidence/`:** `archive.py`, `index.csv` and local source copies (REPORTED: 56 copies with SHA-256).
-
-**`deploy.sh`:** the legacy full-site Surge deploy. **NEVER run it.** It would overwrite the Surge redirect set with the full site.
-
-**Build flow** (`site/update_and_build.sh`, VERIFIED by reading):
-
-1. Take the lock with `flock -w 120 data/.lock`.
-2. Run `validate.py`, then `sync_bible.py` (copies `../bible/`), then `build.py`, then append to `data/changelog.json`.
-3. If `GITHUB_PAGES_TOKEN` is set, run `publish_pages.sh`: it commits the built site to gh-pages and `data/facts.json` to main, with no force-push and `pull --rebase` on rejection.
-4. Run `staging/surge-redirect/deploy_redirect.sh`.
-
-**Hard-coded box paths:**
-
-- `update_and_build.sh` line 33 (the redirect deploy)
-- `publish_pages.sh` `WORK` default
-- `sync_bible.py` `../bible`
-
-**Lock rule:** any write to `site/data/facts.json` must hold `flock /workspace/php-incident/site/data/.lock`. `update_and_build.sh` takes the lock itself.
+A build-only run without publishing is not supported by `update_and_build.sh` [C]; run `validate.py`, `sync_bible.py`, `build.py` by hand
+in a **copy** of `site/` (they write into their own directory) [C: paths derived from `__file__`].
 
 ---
 
-## 9. Summary: VERIFIED vs REPORTED vs ASSUMPTION
+## 6. Environment variables, credentials, external services (names only; values never)
 
-- **VERIFIED:**
-  - git state, trees and tags
-  - test results
-  - facts.json and ledger integrity and counts
-  - PL/EN/DE structural parity
-  - live Pages, Surge, checker, SSRF and CORS behaviour
-  - KEV absence
-  - GitHub metadata and releases
-  - licence texts
-  - the build pipeline being box-only
-  - box ↔ repo file identity
-  - PDFs unpublished
-- **REPORTED:**
-  - routine schedule and end date
-  - Render deploy history and the deployed commit
-  - token permissions and the 403
-  - Zenodo, Search Console and IndexNow status
-  - evidence-archive counts
-  - the private-reporting flag
-  - owner preferences (see AGENTS.md)
-- **ASSUMPTION:**
-  - fly.toml is unused
-  - the rightmost XFF hop may be a proxy
-  - box timestamps are UTC (box `date` shows UTC)
+Full list with scopes: `ops/env.example`.
+
+- `GITHUB_PAGES_TOKEN` [V set on box; C scopes from scripts]: fine-grained PAT, repo Akirapl/php2shell, **Contents: read & write**
+  (publish), **Pages: read & write** (only `enable_pages.sh`). Lacks **Administration: write** (repo homepage/topics → 403) [U, reported].
+  Workflows: write unknown [U]. Used by `publish_pages.sh`, `enable_pages.sh`, and manual pushes like this handover.
+- `.render-credentials` [V exists; key names RENDER_EMAIL, RENDER_PASSWORD]: Render dashboard login for account `akira3179082@gmail.com`. No API key in use.
+- `.surge-credentials` [V exists; key names SURGE_LOGIN, SURGE_PASSWORD, SURGE_TOKEN]: sourced by `deploy_redirect.sh` (and `deploy.sh`).
+- Optional knobs: `PAGES_REPO_URL`, `PAGES_WORK`, `RELAXED`, `CHECKER_RESOLVER`, `PORT`, `CHROME` [C].
+- External services: GitHub (repo + Pages) [V], Render free plan [V], Cloudflare in front of Render [V header], Surge [V],
+  CISA KEV JSON feed (exploitation threshold check), IndexNow (Bing submission, reported done) [U], Wayback Machine (evidence) [C index.csv],
+  Google Search Console verification pending [U]. Zenodo DOI not set up [U].
+
+---
+
+## 7. Automated tasks and triggers
+
+- `php2shell-meldunki` [C `ops/routines/`]: `CRON_TZ=Europe/Warsaw 0,30 8-22 * * *` (±15 min; ran at :11/:41), on the Grok Bot server scheduler.
+  [V] main has `Live update …` commits roughly every 30 min (15:03–18:37 UTC on 21 Oct).
+  **Ends 23:00 Europe/Warsaw, 23.10.2026 (21:00 UTC)**: closing note to Dawid, disable php2shell rules in `triggers.yaml`, routine deletes itself; the website stays up.
+- Its saved prompt (`ops/routines/php2shell-meldunki.prompt.md`, verbatim) still names Surge as the public host; canonical is GitHub Pages [V].
+- Re-creation templates (disabled): `ops/routines/meldunki.crontab.example`, `ops/routines/meldunki.github-actions.yml.example`.
+- No GitHub Actions workflows exist in the repo [V]. Render "auto-deploy on commit" is configured in `render.yaml` [C] but did not fire reliably (§9).
+- While the routine runs, **every ~30 min** `main` (facts.json) and `gh-pages` move: always `git fetch && git rebase origin/main` before pushing; never force.
+
+---
+
+## 8. Live state (2026-10-21 18:40–18:43 UTC) [V, read-only GETs]
+
+- `https://akirapl.github.io/php2shell/` → 200, `cache-control: max-age=600`; live `data/facts.json` meta.last_updated `2026-10-21T18:42:00Z`, 103 sources, 78 events (= main).
+- `/bible/en.pdf` → 404 (PDFs unpublished). Surge `robots.txt` → `Disallow: /`.
+- Checker `/health` → `{"ok":true,"service":"PHP2Shell-Live-Checker","version":"1.0"}` after a 12.4 s cold start;
+  `/check?url=https://example.com` → 200 `no_php_detected`, 1 hop, `caveats[0]` = ownership notice; `?url=http://127.0.0.1` → 400.
+  Earlier the same day the previous handover saw 400 for 169.254.169.254, `[::1]`, `localhost`, port 8443, `file://`, and CORS allowing only `https://akirapl.github.io` of the tested origins [V by previous agent, not repeated].
+- Exploitation status in facts.json: `status.exploitation = "reported"`; `exploitation_threshold.kev_listed = false`, `kev_checked_utc 18:40`, catalogVersion `2026.10.21` [V file].
+- Deployed checker commit on Render: unknown [U]; it includes the ownership-caveat change (`5b3a74e`+) [V by behaviour].
+- GitHub repo: homepage null, topics empty, release `v1.0` without assets [V by previous agent, unauthenticated API].
+
+---
+
+## 9. Known failure modes
+
+- **Render auto-deploy unreliable** [U, reported twice]: the service was created from the public repo URL without a GitHub connection.
+  After changing `checker-api/` the owner must press **Manual Deploy → Deploy latest commit** in the dashboard. Verify with `/health` and a behaviour that only the new code has.
+- **Lock rule**: every write to `/workspace/php-incident/site/data/facts.json` must hold `flock /workspace/php-incident/site/data/.lock`
+  (`update_and_build.sh` takes it itself, `-w 120`) [C]. Without it a routine run can clobber your edit or publish a half-written file.
+- **Mermaid lazy-load reveal bug** (fixed) [V template.html lines ~331–334]: a second `renderDiagrams()` after Mermaid loaded replaced
+  `.reveal` cards without `observe()`, leaving them `opacity:0` (black gap on mobile). Fix: diagram cards are rendered as `card reveal in`.
+  The fix exists only in the box `template.html` (and its output on gh-pages); keep it when importing.
+- **Poll/grep false negatives** [V mechanics; original incident U]: checking "is my change live?" with `curl … | grep` fails spuriously because
+  Pages caches 10 min (`max-age=600`) and `facts.json` is pretty-printed (`"key": "value"` with a space), and `grep -c` exits 1 when the count is 0
+  (aborts `set -e` scripts on the *good* result). Use `?t=$(date +%s)`, parse JSON, and `|| true` around `grep -c` — as `ops/verify_handover.sh` does.
+- **`test_classify.py` exits 0 on FAIL** [V by reading]: CI or scripts must count `^FAIL` lines. Fixing it is NEXT_TASK.
+- **`update_and_build.sh` publishes** whenever `GITHUB_PAGES_TOKEN` is set; there is no dry-run flag [C].
+- **`deploy.sh` would overwrite the Surge redirects** with the full site [C]. Never run it.
+- **Box DNS returns fake IPs (198.18.0.0/15)** [C DEV-NOTES]: local checker tests of real hosts need `CHECKER_RESOLVER=auto`.
+- **Checker cold start** 12–50 s on Render free plan [V 12.4 s]: do not treat the first slow response as an outage.
+
+---
+
+## 10. Known discrepancies and open owner decisions (do not change silently)
+
+1. **v1.0 tag → `22112a0`** [V], the 3rd commit; predates CITATION.cff (which says `version: v1.0`), the checker and the ledger. Re-tagging/new release = owner.
+2. **LICENSE and LICENSE-CONTENT say `Copyright (c) 2026 Dawid `** (no surname, trailing space in LICENSE) [V]; CITATION.cff says Dawid Kulik.
+   The owner is fine with the real name "Dawid Kulik", but changing licence files is his decision: listed, not changed.
+3. **LICENSE-CONTENT scope** names case-study text/diagrams and `data/facts.json`, not the evidence ledger [V]. Owner to decide.
+4. **CORS too broad** [V app.py:50–51]: allows `https://[a-z0-9-]+\.surge\.sh` (any Surge site) and `http://127.0.0.1:8765`/`localhost:8765`. Read-only GET, low impact.
+5. **Checker README says "only the root path `/`" / "no other paths"** [V]: hop 0 is forced to `/`, but up to 2 redirect hops request the `Location` path (each re-validated, IP-pinned, 80/443, 4 KB cap).
+6. **Per-IP limit keys on the rightmost `X-Forwarded-For` hop** [V app.py:81–87]. Behind Cloudflare→Render this may be a proxy address, so all users could share one 10/min bucket [U]. Do not load-test production; check Render logs (owner) or a staging service.
+7. **Exploitation threshold** [V facts.json]: "confirmed only if CISA KEV lists a CVE **or a national CERT publishes credible in-the-wild evidence**" — broader than "KEV only" in older notes. The file is authoritative.
+8. **PDFs not published and older than markdown** [V].
+9. **Repo homepage/topics empty**; token lacks Administration: write [U for the scope, V for the empty fields]. Owner sets them in the UI.
+10. **Local-path check vs. this file**: public docs must not contain `/workspace` or `file://` (CHANGELOG v1.4 rule, ledger builder assertion). The owner decided
+    (2026-10-21) that the operational docs keep real box paths. Resolution: `ops/checks.py` (`paths` check) allowlists exactly
+    `HANDOVER.md`, `AGENTS.md`, `NEXT_TASK.md` and `ops/`; every other tracked file must stay free of local paths.
+11. **Ledger metadata gaps** [V]: `claim_lang_source` empty in all 89 rows; `label_in_text` empty for CLM-0027.
+12. Zenodo DOI, Search Console, GitHub private vulnerability reporting: owner-only, not done [U].
+
+---
+
+## 11. Verification record (this handover)
+
+- [V 18:42 UTC, box clone] `bash ops/verify_handover.sh --live` → `28 PASS, 0 FAIL, 9 WARN/MISSING`
+  (test_classify 15 OK / 0 FAIL; local uvicorn smoke OK; box `validate.py` exit 0; 6 live GETs OK).
+- [V 18:47 UTC, fresh clone] `git clone https://github.com/Akirapl/php2shell /tmp/fresh-20261021T184739Z`, fast-forwarded to this
+  commit, fresh venv under a fresh `TMPDIR`, `GITHUB_PAGES_TOKEN` unset, `P2S_BOX=/nonexistent`:
+  `bash ops/verify_handover.sh --live` → `18 PASS, 0 FAIL, 11 WARN/MISSING` (pip install of the 4 pins OK; test_classify 15 OK / 0 FAIL;
+  local uvicorn smoke OK; facts/ledger/parity/paths/secrets PASS; 7 MISSING box-pipeline/PDF files; box absent; token unset; docker absent; PDF 404).
+- [V] negative tests in that clone (reverted afterwards): a bad `confidence` value, a deleted ledger row, a `/workspace` line in README.md,
+  a fake `ghp_` token in CONTRIBUTING.md and a demoted heading in `de.md` each made `ops/checks.py` FAIL (exit 1). One broken checker test case made
+  `test_classify.py` print 1 `FAIL` and **exit 0**, and `verify_handover.sh` still reported it as FAIL (counts lines).
+- [V] secret scan: no token/key patterns in tracked files on main, nor in `git log -p` of main and gh-pages. Two pattern hits are
+  false positives (`checker-api/app.py:159` `u.password` check; a regex in docs).
+
+---
+
+## 12. Fallback procedures
+
+- **No box** (most likely for you): everything in §5.1 works. To rebuild the site you need the pipeline: ask the owner for the
+  tarball in `ops/MISSING_FROM_REPO.md`. Until then, small site fixes can be made by editing built files from `origin/gh-pages`
+  — **only with owner approval**, because the routine overwrites gh-pages every 30 min until 23 Oct 21:00 UTC.
+  Vendor JS, checker widget and og-image are byte-identical on gh-pages and can be recovered with `git show origin/gh-pages:<path>` [V].
+- **No `GITHUB_PAGES_TOKEN`**: `update_and_build.sh` prints one line and skips Pages (live site NOT updated) [C]. Hand back a
+  `git format-patch` for the owner to push.
+- **Render down / account unavailable**: the site degrades (widget cannot reach the API) but stays up. Re-deploy `checker-api/`
+  anywhere that runs Docker (`render.yaml` or `fly.toml`), then the owner changes `data/checker-config.json` `api_base` (box `site/data/`, rebuild). Keep SSRF guards and limits (AGENTS.md §6).
+- **Surge unavailable**: only old links/feeds are affected; Pages is canonical. Remove or skip the last line of `update_and_build.sh` (owner decision).
+- **Scheduler unavailable / routine gone**: nothing breaks; the site simply stops updating. Re-create from `ops/routines/` only with owner approval and before the end date.
+- **GitHub Pages down**: no hot standby. Surge could host the full site again via `deploy.sh`, but that is an owner decision (it undoes the redirects).
+
+---
+
+## 13. Unfinished work
+
+- Build pipeline not in the repo (`ops/MISSING_FROM_REPO.md`) — the biggest gap; requires the owner's files.
+- `test_classify.py` exit code + CI checks — `NEXT_TASK.md`.
+- PDFs stale/unpublished; ledger metadata gaps; CORS narrowing after the Surge redirect period; XFF keying verification.
+- End-of-watch steps on 23 Oct (routine does them itself); `ARCHIVE.md` is **only a plan** — freezing, final release and archiving need owner approval.
