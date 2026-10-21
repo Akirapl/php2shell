@@ -16,18 +16,23 @@ from fastapi import FastAPI, Query, Request
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse
 
-UA = "PHP2Shell-Live-Checker/1.0 (defensive version check; +https://php2shell-live.surge.sh)"
+UA = "PHP2Shell-Live-Checker/1.0 (defensive version check; +https://akirapl.github.io/php2shell/)"
 TOTAL_TIMEOUT = 8.0
 MAX_REDIRECTS = 2
 MAX_BODY = 4096            # we read at most this many body bytes, then hang up
 ALLOWED_PORTS = {80, 443}  # no arbitrary ports -> cannot be used as a port scanner
+# Per-client limit = the real abuse control. The global cap only protects the free instance from overload:
+# when it is hit, callers get a friendly "busy, try again shortly" 429 with a short Retry-After.
 PER_IP_LIMIT, PER_IP_WINDOW = 10, 60
-GLOBAL_LIMIT, GLOBAL_WINDOW = 120, 60
+GLOBAL_LIMIT, GLOBAL_WINDOW = 600, 60
 
 # Fixed upstream releases per branch (PHP2Shell advisories).
 FIXED = {(8, 5): (8, 5, 12), (8, 4): (8, 4, 27), (8, 3): (8, 3, 36), (8, 2): (8, 2, 35)}
 
+OWNERSHIP = "Check only systems you own or are authorised to test."
+
 CAVEATS = [
+    OWNERSHIP,
     "This only reads the public banner (Server / X-Powered-By headers). It does not and cannot verify actual patch status.",
     "A hidden or missing banner is NOT evidence of safety. Many patched and unpatched servers hide their version (expose_php=Off).",
     "Linux distributions (Debian, Ubuntu, RHEL/AlmaLinux/Rocky, SUSE) backport security fixes WITHOUT changing the upstream version string, so a version that looks old may actually be fixed. Check your distro's security tracker / package changelog.",
@@ -52,7 +57,10 @@ _lock = threading.Lock()
 _per_ip: dict = {}
 _global: deque = deque()
 
-def _allow(ip: str) -> bool:
+def _allow(ip: str):
+    """Returns (None, 0) when allowed, else (reason, retry_after_seconds).
+    reason "rate_limited": this client used its PER_IP_LIMIT checks in the window (abuse control).
+    reason "busy": the service-wide GLOBAL_LIMIT is reached (overload protection, not a block)."""
     now = time.monotonic()
     with _lock:
         while _global and now - _global[0] > GLOBAL_WINDOW:
@@ -60,17 +68,19 @@ def _allow(ip: str) -> bool:
         q = _per_ip.setdefault(ip, deque())
         while q and now - q[0] > PER_IP_WINDOW:
             q.popleft()
-        if len(q) >= PER_IP_LIMIT or len(_global) >= GLOBAL_LIMIT:
-            return False
+        if len(q) >= PER_IP_LIMIT:
+            return "rate_limited", max(1, int(PER_IP_WINDOW - (now - q[0])) + 1)
+        if len(_global) >= GLOBAL_LIMIT:
+            return "busy", min(15, max(1, int(GLOBAL_WINDOW - (now - _global[0])) + 1))
         q.append(now); _global.append(now)
         if len(_per_ip) > 10000:  # bound memory
             for k in [k for k, v in _per_ip.items() if not v][:5000]:
                 _per_ip.pop(k, None)
-        return True
+        return None, 0
 
 def _client_ip(req: Request) -> str:
-    # The app listens on 127.0.0.1 only; the tunnel appends the real peer as the
-    # LAST X-Forwarded-For hop, so take the rightmost value (client cannot forge it).
+    # Deployed behind the hosting platform's reverse proxy (or a local tunnel), which appends the real
+    # peer as the LAST X-Forwarded-For hop, so take the rightmost value (client cannot forge it).
     xff = req.headers.get("x-forwarded-for")
     if xff:
         return xff.split(",")[-1].strip()
@@ -99,7 +109,7 @@ def _ip_ok(ip: ipaddress._BaseAddress) -> bool:
     return True
 
 RESOLVER = os.environ.get("CHECKER_RESOLVER", "auto")  # auto | system | doh
-_FAKE_IP = ipaddress.ip_network("198.18.0.0/15")  # sandbox egress fake-IP DNS
+_FAKE_IP = ipaddress.ip_network("198.18.0.0/15")  # benchmark range some egress proxies use for fake-IP DNS answers
 _DOH = ["https://dns.google/resolve", "https://cloudflare-dns.com/dns-query"]
 
 def _doh(host):
@@ -120,7 +130,8 @@ def _doh(host):
     return list(out)
 
 def _resolve(host, port):
-    """System DNS; if it returns only sandbox fake-IPs (or RESOLVER=doh), ask a public
+    """System DNS; if it returns only fake-IP answers (198.18.0.0/15, used by some egress proxies)
+    or RESOLVER=doh, ask a public
     DNS-over-HTTPS resolver for the real records. Every address is validated by the caller
     and the connection is pinned to a validated address (no DNS-rebinding window)."""
     addrs = []
@@ -281,10 +292,16 @@ def check(request: Request, url: str = Query(..., max_length=2048)):
     ip_tag = hashlib.sha256(ip.encode()).hexdigest()[:10]
     base = {"input": url, "resolved_host": None, "php_detected": False, "version": None,
             "classification": None, "classification_label": None, "details": {}, "caveats": CAVEATS, "checked_at": now}
-    if not _allow(ip):
+    reason, retry = _allow(ip)
+    if reason == "busy":
+        log.info("busy (global limit) client=%s", ip_tag)
+        return JSONResponse({**base, "error": "busy",
+                             "message": f"The checker is busy right now. Please try again in about {retry} seconds."},
+                            status_code=429, headers={"Retry-After": str(retry)})
+    if reason:
         log.info("ratelimited client=%s", ip_tag)
-        return JSONResponse({**base, "error": "rate_limited", "message": "Too many checks; try again in a minute."},
-                            status_code=429, headers={"Retry-After": "60"})
+        return JSONResponse({**base, "error": "rate_limited", "message": "Too many checks from your address; try again in a minute."},
+                            status_code=429, headers={"Retry-After": str(retry)})
     u = url.strip()
     if "://" not in u:
         u = "https://" + u
