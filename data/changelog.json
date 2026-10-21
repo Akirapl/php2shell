@@ -1,5 +1,11 @@
 [
  {
+  "time_utc": "2026-10-21T18:09:18Z",
+  "message": "--help",
+  "events": 78,
+  "facts_last_updated": "2026-10-21T18:12:00Z"
+ },
+ {
   "time_utc": "2026-10-21T18:09:06Z",
   "message": "VirusTotal footprint, Cisco Talos ~50% estimate, KEV re-check",
   "events": 78,
