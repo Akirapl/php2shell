@@ -3,7 +3,7 @@
 <title>PHP2Shell — Chronik (DE)</title>
 <subtitle>Live-Chronik zu PHP2Shell (CVE-2026-109618/109619), kritische RCE im PHP-Kern (CVSS 9.2). Behoben in 8.5.12, 8.4.27, 8.3.36, 8.2.35. Jede Angabe mit Quelle.</subtitle>
 <id>https://akirapl.github.io/php2shell/feed-de.xml</id>
-<updated>2026-10-21T19:45:00Z</updated>
+<updated>2026-10-21T20:10:00Z</updated>
 <link rel="self" type="application/atom+xml" href="https://akirapl.github.io/php2shell/feed-de.xml"/>
 <link rel="alternate" type="text/html" hreflang="de" href="https://akirapl.github.io/php2shell/?lang=de"/>
 <author><name>Dawid Kulik (@Akirapl)</name><uri>https://github.com/Akirapl</uri></author>
@@ -417,6 +417,17 @@
 <content type="html">&lt;p&gt;Laut NBC News wurden auch in Japan Websites freiwillig abgeschaltet.&lt;/p&gt;&lt;p&gt;Quelle: &lt;a href="https://www.nbcnews.com/tech/security/critical-vulnerabilities-php-update-systems-rcna604751"&gt;NBC News&lt;/a&gt; · gemeldet · minor&lt;/p&gt;</content>
 </entry>
 <entry>
+<title>Japan: Dutzende Dienste gehen vor dem Patch vorsorglich vom Netz</title>
+<id>tag:php2shell-live.surge.sh,2026:jp-mass-precautionary-outages</id>
+<link rel="alternate" type="text/html" href="https://akirapl.github.io/php2shell/?lang=de#ev-jp-mass-precautionary-outages"/>
+<link rel="related" href="https://news.yahoo.co.jp/articles/a5d2d59874b769ce9deedc6d2a02cb6bf455dcfe"/>
+<published>2026-10-21T13:05:00Z</published>
+<updated>2026-10-21T13:05:00Z</updated>
+<category term="major"/>
+<summary type="text">Impress Watch: BASE und Codmon ab dem Nachmittag, dann pixiv, DMM.com, niconico, Teile von Sakura Internet und Spiele (Granblue Fantasy, Uma Musume) in Notwartung; Japans Nationales Büro für Cybersicherheit (NCO) nannte die vorübergehende Abschaltung von Websites als wirksame Maßnahme, falls der Patch nicht schnell eingespielt werden kann. Zählungen von piyolog/SITE PICK nennen Dutzende Organisationen; die meisten melden keinen Einbruch.</summary>
+<content type="html">&lt;p&gt;Impress Watch: BASE und Codmon ab dem Nachmittag, dann pixiv, DMM.com, niconico, Teile von Sakura Internet und Spiele (Granblue Fantasy, Uma Musume) in Notwartung; Japans Nationales Büro für Cybersicherheit (NCO) nannte die vorübergehende Abschaltung von Websites als wirksame Maßnahme, falls der Patch nicht schnell eingespielt werden kann. Zählungen von piyolog/SITE PICK nennen Dutzende Organisationen; die meisten melden keinen Einbruch.&lt;/p&gt;&lt;p&gt;Quelle: &lt;a href="https://news.yahoo.co.jp/articles/a5d2d59874b769ce9deedc6d2a02cb6bf455dcfe"&gt;Impress Watch (via Yahoo! News Japan)&lt;/a&gt; · bestätigt · major&lt;/p&gt;</content>
+</entry>
+<entry>
 <title>Japan: Premierministerin Takaichi ruft auf X zu dringendem Handeln auf; Dienste in Notwartung</title>
 <id>tag:php2shell-live.surge.sh,2026:japan-takaichi</id>
 <link rel="alternate" type="text/html" href="https://akirapl.github.io/php2shell/?lang=de#ev-japan-takaichi"/>
@@ -646,6 +657,17 @@
 <category term="minor"/>
 <summary type="text">Eine Behauptung ohne vorgelegte Belege.</summary>
 <content type="html">&lt;p&gt;Eine Behauptung ohne vorgelegte Belege.&lt;/p&gt;&lt;p&gt;Quelle: &lt;a href="https://x.com/k_firsov/status/2112714573287698763"&gt;@k_firsov on X&lt;/a&gt; · gemeldet · minor&lt;/p&gt;</content>
+</entry>
+<entry>
+<title>Japan: futureshop bestätigt Einbruch in Server; Zusammenhang mit PHP2Shell unbestätigt</title>
+<id>tag:php2shell-live.surge.sh,2026:jp-futureshop-intrusion</id>
+<link rel="alternate" type="text/html" href="https://akirapl.github.io/php2shell/?lang=de#ev-jp-futureshop-intrusion"/>
+<link rel="related" href="https://www.future-shop.jp/news/2026/10/21.html"/>
+<published>2026-10-21T01:14:00Z</published>
+<updated>2026-10-21T01:14:00Z</updated>
+<category term="major"/>
+<summary type="text">Die E-Commerce-Plattform futureshop stellte am 21.10. gegen 10:14 JST unbefugten Zugriff auf einige Server (c02, c05, c12, g06) fest und nahm ab 11:30 JST Shops, Verwaltung, FTP und API darauf vom Netz; der Umfang wird untersucht. Die Mitteilung bringt den Vorfall nicht mit PHP in Verbindung. Getrennt davon schaltete das Unternehmen ab 20:00 JST vorsorglich PHP-Funktionen wegen der neuen Lücken ab. Kunden-Shops (z. B. BRADELIS New York) bestätigen den Ausfall.</summary>
+<content type="html">&lt;p&gt;Die E-Commerce-Plattform futureshop stellte am 21.10. gegen 10:14 JST unbefugten Zugriff auf einige Server (c02, c05, c12, g06) fest und nahm ab 11:30 JST Shops, Verwaltung, FTP und API darauf vom Netz; der Umfang wird untersucht. Die Mitteilung bringt den Vorfall nicht mit PHP in Verbindung. Getrennt davon schaltete das Unternehmen ab 20:00 JST vorsorglich PHP-Funktionen wegen der neuen Lücken ab. Kunden-Shops (z. B. BRADELIS New York) bestätigen den Ausfall.&lt;/p&gt;&lt;p&gt;Quelle: &lt;a href="https://www.future-shop.jp/news/2026/10/21.html"&gt;futureshop — 第一報 (21.10.2026)&lt;/a&gt; · gemeldet · major&lt;/p&gt;</content>
 </entry>
 <entry>
 <title>Öffentliche „Rekonstruktion“ — später teilweise zurückgezogen</title>

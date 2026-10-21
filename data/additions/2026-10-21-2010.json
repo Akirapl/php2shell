@@ -1,0 +1,75 @@
+[
+ {
+  "id": "jp-futureshop-intrusion",
+  "time_utc": "2026-10-21T01:14:00Z",
+  "importance": "major",
+  "title": {
+   "pl": "Japonia: futureshop potwierdza włamanie na serwery — związek z PHP2Shell niepotwierdzony",
+   "en": "Japan: futureshop confirms a server intrusion; no confirmed link to PHP2Shell",
+   "de": "Japan: futureshop bestätigt Einbruch in Server; Zusammenhang mit PHP2Shell unbestätigt"
+  },
+  "description": {
+   "pl": "Platforma e-commerce futureshop wykryła 21.10 ok. 10:14 JST nieautoryzowany dostęp do części serwerów (c02, c05, c12, g06) i od 11:30 JST wyłączyła sklepy, panele, FTP i API na tych serwerach; zakres badany. Komunikat nie wiąże incydentu z PHP. Osobno, od 20:00 JST, firma wyłączyła prewencyjnie funkcje PHP z powodu nowych luk. Sklepy klientów (np. BRADELIS New York) potwierdzają przestój.",
+   "en": "E-commerce platform futureshop detected unauthorised access to some servers (c02, c05, c12, g06) around 10:14 JST on 21 Oct and from 11:30 JST took the shops, admin panels, FTP and API on them offline; scope under investigation. The notice does not link the incident to PHP. Separately, from 20:00 JST, the company disabled PHP features as a precaution because of the new flaws. Customer shops (e.g. BRADELIS New York) confirm the outage.",
+   "de": "Die E-Commerce-Plattform futureshop stellte am 21.10. gegen 10:14 JST unbefugten Zugriff auf einige Server (c02, c05, c12, g06) fest und nahm ab 11:30 JST Shops, Verwaltung, FTP und API darauf vom Netz; der Umfang wird untersucht. Die Mitteilung bringt den Vorfall nicht mit PHP in Verbindung. Getrennt davon schaltete das Unternehmen ab 20:00 JST vorsorglich PHP-Funktionen wegen der neuen Lücken ab. Kunden-Shops (z. B. BRADELIS New York) bestätigen den Ausfall."
+  },
+  "actors": [
+   "futureshop"
+  ],
+  "source_url": "https://www.future-shop.jp/news/2026/10/21.html",
+  "source_name": "futureshop — 第一報 (21.10.2026)",
+  "confidence": "reported",
+  "source_reliability": "A",
+  "info_credibility": 6,
+  "time_kind": "event",
+  "time_precision": "minute",
+  "time_note": {
+   "pl": "10:14 JST przeliczone na UTC (−9 h)",
+   "en": "10:14 JST converted to UTC (−9 h)",
+   "de": "10:14 JST in UTC umgerechnet (−9 Std.)"
+  },
+  "flags": [
+   "needs_second_source"
+  ],
+  "flag_note": {
+   "pl": "Włamanie potwierdzone przez firmę; powiązanie z PHP2Shell to jedynie zbieżność czasowa, firma go nie podaje.",
+   "en": "Intrusion confirmed by the company; any link to PHP2Shell is only a timing coincidence the company does not state.",
+   "de": "Einbruch vom Unternehmen bestätigt; ein Bezug zu PHP2Shell ist nur zeitliche Nähe, die das Unternehmen nicht angibt."
+  }
+ },
+ {
+  "id": "jp-mass-precautionary-outages",
+  "time_utc": "2026-10-21T13:05:00Z",
+  "importance": "major",
+  "title": {
+   "pl": "Japonia: dziesiątki serwisów wyłączają się prewencyjnie przed łatką",
+   "en": "Japan: dozens of services go offline as a precaution ahead of the patch",
+   "de": "Japan: Dutzende Dienste gehen vor dem Patch vorsorglich vom Netz"
+  },
+  "description": {
+   "pl": "Impress Watch: BASE i Codmon od popołudnia, potem pixiv, DMM.com, niconico, część usług Sakura Internet i gry (Granblue Fantasy, Uma Musume) w awaryjnej konserwacji; Narodowe Biuro Cyberbezpieczeństwa (NCO) wskazało czasowe wyłączenie stron jako skuteczny środek, jeśli łatki nie da się szybko wgrać. Zestawienia piyolog/SITE PICK liczą kilkadziesiąt organizacji; większość podaje brak włamania.",
+   "en": "Impress Watch: BASE and Codmon from the afternoon, then pixiv, DMM.com, niconico, some Sakura Internet services and games (Granblue Fantasy, Uma Musume) in emergency maintenance; Japan's National Cybersecurity Office (NCO) named temporarily taking sites down as an effective measure if the patch cannot be applied quickly. piyolog/SITE PICK tallies count dozens of organisations; most say there was no intrusion.",
+   "de": "Impress Watch: BASE und Codmon ab dem Nachmittag, dann pixiv, DMM.com, niconico, Teile von Sakura Internet und Spiele (Granblue Fantasy, Uma Musume) in Notwartung; Japans Nationales Büro für Cybersicherheit (NCO) nannte die vorübergehende Abschaltung von Websites als wirksame Maßnahme, falls der Patch nicht schnell eingespielt werden kann. Zählungen von piyolog/SITE PICK nennen Dutzende Organisationen; die meisten melden keinen Einbruch."
+  },
+  "actors": [
+   "BASE",
+   "pixiv",
+   "DMM.com",
+   "niconico",
+   "Cygames",
+   "NCO (Japan)"
+  ],
+  "source_url": "https://news.yahoo.co.jp/articles/a5d2d59874b769ce9deedc6d2a02cb6bf455dcfe",
+  "source_name": "Impress Watch (via Yahoo! News Japan)",
+  "confidence": "confirmed",
+  "source_reliability": "C",
+  "info_credibility": 1,
+  "time_kind": "published",
+  "time_precision": "minute",
+  "time_note": {
+   "pl": "22:05 JST",
+   "en": "22:05 JST",
+   "de": "22:05 JST"
+  }
+ }
+]

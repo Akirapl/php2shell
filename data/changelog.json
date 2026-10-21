@@ -1,5 +1,11 @@
 [
  {
+  "time_utc": "2026-10-21T20:06:17Z",
+  "message": "Japonia: futureshop (włamanie, związek z PHP niepotwierdzony), masowe prewencyjne wyłączenia; KEV 20:05",
+  "events": 86,
+  "facts_last_updated": "2026-10-21T20:10:00Z"
+ },
+ {
   "time_utc": "2026-10-21T19:40:27Z",
   "message": "RHSA-2026:87080, cPanel EA4 25.91, Wikimedia services offline, corr-009",
   "events": 84,
