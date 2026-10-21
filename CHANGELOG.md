@@ -1,5 +1,13 @@
 # Changelog
 
+## v1.4 (21.10.2026)
+
+Review fixes. Case study: a footnote that pointed to a local working draft is replaced with public sources (Kevin Beaumont's post; Imunify360 and bunny.net vendor posts). Other unsourced or internal notes are replaced with public sources: ACSC, IPA, php.net "History of PHP", and the GitHub tag API. The leak and embargo times are now stated with time zones. The release lead is corrected to ~26 min. "Attack bible" is renamed to "case study". Live-center links point to the canonical <https://akirapl.github.io/php2shell/>. Checker: ownership notice, a friendly "busy" 429 and a higher global cap (the per-client limit is unchanged). New `CITATION.cff` and a "How to cite" section.
+
+Poprawki po recenzji. Studium: przypis wskazujący lokalny szkic roboczy zastąpiono źródłami publicznymi (wpis Kevina Beaumonta; wpisy producentów Imunify360 i bunny.net). Inne notatki bez źródła lub wewnętrzne zastąpiono źródłami publicznymi: ACSC, IPA, „History of PHP” z php.net i API tagów GitHuba. Czasy przecieku i embarga podano ze strefami czasowymi. Wyprzedzenie wydania poprawiono na ~26 min. „Biblię ataku” przemianowano na „studium przypadku”. Linki do centrum na żywo prowadzą na kanoniczny adres GitHub Pages. Sprawdzarka: ostrzeżenie o własnych systemach, przyjazny komunikat 429 „zajęte” i wyższy limit globalny (limit na klienta bez zmian). Nowy `CITATION.cff` i sekcja „Jak cytować”.
+
+Korrekturen nach Review. Fallstudie: Eine Fußnote, die auf einen lokalen Arbeitsentwurf verwies, ist durch öffentliche Quellen ersetzt (Beitrag von Kevin Beaumont; Beiträge der Anbieter Imunify360 und bunny.net). Weitere unbelegte oder interne Notizen sind durch öffentliche Quellen ersetzt: ACSC, IPA, „History of PHP“ von php.net und die GitHub-Tag-API. Leak- und Embargozeiten stehen jetzt mit Zeitzone. Der Vorsprung des Releases ist auf ~26 Min. korrigiert. „Bibel des Angriffs“ heißt jetzt „Fallstudie“. Links zum Live-Center zeigen auf die kanonische GitHub-Pages-Adresse. Checker: Hinweis auf eigene Systeme, freundliche 429-Antwort „ausgelastet“ und ein höheres globales Limit (das Limit pro Client bleibt unverändert). Neu: `CITATION.cff` und ein Abschnitt „Zitieren“.
+
 ## v1.3 (21.10.2026)
 
 Case study formatting for mobile: 10 wide tables per language turned into lists; content unchanged.

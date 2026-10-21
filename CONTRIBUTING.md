@@ -12,6 +12,8 @@ Blank issues are disabled. Templates: correction, new source, translation fix.
 
 Leere Issues sind deaktiviert. Vorlagen: Korrektur, neue Quelle, Übersetzungsfehler.
 
+Live center / Centrum na żywo / Live-Center: <https://akirapl.github.io/php2shell/>
+
 ## Polski
 
 ### Korekta

@@ -6,6 +6,8 @@ Stan: plan, 21.10.2026. Tych kroków nie wykonano.
 
 Stand: Plan, 21.10.2026. Diese Schritte sind nicht ausgeführt.
 
+Live center / Centrum na żywo / Live-Center: <https://akirapl.github.io/php2shell/>
+
 ## Polski
 
 Pokrycie na żywo kończy się, gdy przez około 14 dni nie ma istotnych nowych ustaleń, albo gdy tak zdecyduje właściciel.

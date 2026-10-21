@@ -1,6 +1,6 @@
 # PHP2Shell
 
-Sourced public record of CVE-2026-109618 and CVE-2026-109619, patched in PHP 8.5.12 / 8.4.27 / 8.3.36 / 8.2.35 on 21.10.2026. The live center built on this data is at <https://php2shell-live.surge.sh>.
+Sourced public record of CVE-2026-109618 and CVE-2026-109619, patched in PHP 8.5.12 / 8.4.27 / 8.3.36 / 8.2.35 on 21.10.2026. The live center built on this data is at <https://akirapl.github.io/php2shell/>. The old address php2shell-live.surge.sh only redirects there.
 
 ## About / O projekcie / Über
 
@@ -16,6 +16,7 @@ To repozytorium trzyma obronne studium przypadku PHP2Shell oraz dane, na któryc
 
 - Studium: [polski](case-study/pl.md) · [English](case-study/en.md) · [Deutsch](case-study/de.md)
 - Diagramy (PNG i źródła Mermaid): [case-study/diagrams/](case-study/diagrams/)
+- Centrum na żywo: <https://akirapl.github.io/php2shell/>
 - Dane centrum na żywo: [data/facts.json](data/facts.json)
 - Checker API: pasywne sprawdzenie banera, zobacz [checker-api/README.md](checker-api/README.md)
 
@@ -37,6 +38,7 @@ This repository holds a sourced, defensive case study of the PHP2Shell incident 
 
 - Case study: [Polish](case-study/pl.md) · [English](case-study/en.md) · [German](case-study/de.md)
 - Diagrams (PNG renders and Mermaid sources): [case-study/diagrams/](case-study/diagrams/)
+- Live center: <https://akirapl.github.io/php2shell/>
 - Live-center data: [data/facts.json](data/facts.json)
 - Checker API: passive banner check, see [checker-api/README.md](checker-api/README.md)
 
@@ -58,6 +60,7 @@ Dieses Repository enthält eine quellengestützte, defensive Fallstudie zum PHP2
 
 - Fallstudie: [Polnisch](case-study/pl.md) · [English](case-study/en.md) · [Deutsch](case-study/de.md)
 - Diagramme (PNG und Mermaid-Quellen): [case-study/diagrams/](case-study/diagrams/)
+- Live-Center: <https://akirapl.github.io/php2shell/>
 - Daten des Live-Centers: [data/facts.json](data/facts.json)
 - Checker API: passive Banner-Prüfung, siehe [checker-api/README.md](checker-api/README.md)
 
@@ -72,3 +75,13 @@ In `data/facts.json` hat jeder Fakt eine `source_url` und ein `confidence` von `
 - Atom-Feed der Commits: <https://github.com/Akirapl/php2shell/commits/main.atom>
 
 Code bleibt unter der MIT-Lizenz ([LICENSE](LICENSE)). Text der Fallstudie, Diagramme und Daten stehen unter CC BY 4.0 ([LICENSE-CONTENT](LICENSE-CONTENT)).
+
+## How to cite / Jak cytować / Zitieren
+
+Machine-readable metadata: [CITATION.cff](CITATION.cff). GitHub shows it as "Cite this repository" in the sidebar.
+
+> Kulik, Dawid (@Akirapl). *PHP2Shell (CVE-2026-109618 / CVE-2026-109619): a sourced, trilingual live case study and passive banner checker.* Version v1.0, 21 October 2026. <https://akirapl.github.io/php2shell/> · <https://github.com/Akirapl/php2shell>
+
+- Cite a version: the [v1.0 release](https://github.com/Akirapl/php2shell/releases/tag/v1.0), or a specific commit for later corrections.
+- Link a specific claim: the case-study file and section, for example `case-study/en.md#5-the-leak-and-the-name-php2shell`. For the dataset, use `data/facts.json` together with the item id.
+- Licences: text, diagrams and data are CC BY 4.0 ([LICENSE-CONTENT](LICENSE-CONTENT)). Code is MIT ([LICENSE](LICENSE)).

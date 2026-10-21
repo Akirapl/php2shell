@@ -1,0 +1,26 @@
+cff-version: 1.2.0
+message: "If you use this case study or dataset, please cite it as below."
+type: dataset
+title: "PHP2Shell (CVE-2026-109618 / CVE-2026-109619): sourced, trilingual live case study and passive banner checker"
+abstract: >-
+  Sourced, defensive case study (PL/EN/DE) of the PHP2Shell vulnerabilities CVE-2026-109618 and
+  CVE-2026-109619 in the PHP core, fixed in PHP 8.5.12, 8.4.27, 8.3.36 and 8.2.35 on 21 October 2026,
+  with the live-center dataset (data/facts.json; every fact carries a source URL and confidence level)
+  and a passive PHP banner checker. No exploit code.
+authors:
+  - given-names: Dawid
+    family-names: Kulik
+    alias: "@Akirapl"
+version: v1.0
+date-released: "2026-10-21"
+url: "https://akirapl.github.io/php2shell/"
+repository-code: "https://github.com/Akirapl/php2shell"
+license: CC-BY-4.0
+keywords:
+  - php
+  - security
+  - cve
+  - case-study
+  - incident-response
+  - vulnerability
+  - disclosure
