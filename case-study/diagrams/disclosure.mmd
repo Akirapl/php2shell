@@ -1,0 +1,22 @@
+flowchart LR
+  subgraph Private[Faza prywatna]
+    D[Odkrycie<br/>Wiz / Calif / OpenAI<br/>VIII 2026]
+    R[Zgłoszenie do PHP<br/>24.08.2026]
+    F[Potwierdzenie i poprawka<br/>od 21.09.2026]
+    EA[Early access<br/>dystrybucje LTS + partnerzy]
+  end
+  subgraph Break[Zerwanie embarga]
+    L[Wyciek HN<br/>20.10 15:20 UTC]
+    V[Wideo PHP2Shell<br/>20.10 20:27 UTC]
+  end
+  subgraph Public[Faza publiczna]
+    A[Zapowiedź PHP<br/>20.10 19:33 UTC<br/>przesunięcie na 21.10 14:00]
+    P[Release + GHSA<br/>21.10 ~13:34 UTC]
+    W[WAF / agencje / hosty]
+  end
+  D --> R --> F --> EA
+  EA -.->|plan: 22.10| A
+  L --> A
+  V --> A
+  A --> P --> W
+  F --> P

@@ -1,0 +1,32 @@
+flowchart TB
+  subgraph Client
+    B[Przeglądarka / klient HTTP]
+  end
+  subgraph WebServer[Serwer WWW]
+    WS[Apache / nginx / LiteSpeed]
+  end
+  subgraph SAPI[SAPI — warstwa łącząca]
+    MP[mod_php w procesie Apache]
+    FPM[PHP-FPM — pula workerów]
+    CGI[php-cgi / CGI]
+  end
+  subgraph Engine[Silnik PHP — jeden worker]
+    ST[1. Start żądania<br/>parsowanie ciała multipart]
+    IN[2. Inicjalizacja modułów / executor]
+    APP[3. Kod aplikacji]
+    SH[4. Shutdown żądania<br/>zwalnianie pamięci]
+    GL[(Stan globalny workera<br/>error / session / object)]
+  end
+  B -->|HTTP| WS
+  WS --> MP
+  WS --> FPM
+  WS --> CGI
+  MP --> ST
+  FPM --> ST
+  CGI --> ST
+  ST --> IN --> APP --> SH
+  ST -.->|może zapisać stan przed init| GL
+  SH -.->|musi wyczyścić| GL
+  SH -->|kolejne żądanie tego samego workera| ST
+  classDef risk fill:#3d1f1f,stroke:#f85149,color:#fff
+  class ST,GL,SH risk
