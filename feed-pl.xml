@@ -3,12 +3,23 @@
 <title>PHP2Shell — oś czasu (PL)</title>
 <subtitle>Relacja na żywo: PHP2Shell (CVE-2026-109618/109619), krytyczne RCE w rdzeniu PHP (CVSS 9.2). Poprawki: 8.5.12, 8.4.27, 8.3.36, 8.2.35. Każdy fakt ze źródłem.</subtitle>
 <id>https://akirapl.github.io/php2shell/feed-pl.xml</id>
-<updated>2026-10-21T16:45:00Z</updated>
+<updated>2026-10-21T17:15:00Z</updated>
 <link rel="self" type="application/atom+xml" href="https://akirapl.github.io/php2shell/feed-pl.xml"/>
 <link rel="alternate" type="text/html" hreflang="pl" href="https://akirapl.github.io/php2shell/?lang=pl"/>
 <author><name>Dawid Kulik (@Akirapl)</name><uri>https://github.com/Akirapl</uri></author>
 <icon>https://akirapl.github.io/php2shell/assets/og-image.png</icon>
 <rights>CC BY 4.0</rights>
+<entry>
+<title>SecurityWeek: Vega widzi próby z użyciem publicznego PoC; Wiz mówi o nieobjętych wariantach</title>
+<id>tag:php2shell-live.surge.sh,2026:securityweek-vega-variants</id>
+<link rel="alternate" type="text/html" href="https://akirapl.github.io/php2shell/?lang=pl#ev-securityweek-vega-variants"/>
+<link rel="related" href="https://www.securityweek.com/php2shell-patches-land-as-first-exploitation-attempts-hit-sensors/"/>
+<published>2026-10-21T16:50:00Z</published>
+<updated>2026-10-21T16:50:00Z</updated>
+<category term="minor"/>
+<summary type="text">Zbiorczy artykuł: firma Vega obserwowała próby wykorzystania oparte na publicznym PoC; według Wiz oba CVE grupują cztery błędy bezpieczeństwa pamięci, ale nie obejmują wszystkich wariantów (istnieją też nieśledzone). Bez danych liczbowych o skuteczności ataków.</summary>
+<content type="html">&lt;p&gt;Zbiorczy artykuł: firma Vega obserwowała próby wykorzystania oparte na publicznym PoC; według Wiz oba CVE grupują cztery błędy bezpieczeństwa pamięci, ale nie obejmują wszystkich wariantów (istnieją też nieśledzone). Bez danych liczbowych o skuteczności ataków.&lt;/p&gt;&lt;p&gt;Źródło: &lt;a href="https://www.securityweek.com/php2shell-patches-land-as-first-exploitation-attempts-hit-sensors/"&gt;SecurityWeek&lt;/a&gt; · doniesienie · minor&lt;/p&gt;</content>
+</entry>
 <entry>
 <title>Fastly: „dowody ataków przed ujawnieniem” i ostrzeżenie, że problem siedzi w konstrukcji silnika</title>
 <id>tag:php2shell-live.surge.sh,2026:fastly-blog</id>
@@ -602,6 +613,28 @@
 <category term="major"/>
 <summary type="text">Alexandre Daubois opisuje poprawkę na poziomie diffu: alokator nie wykonuje już skoku (bailout) w środku alokacji; przekroczenie memory_limit zapisuje błąd odroczony, a przerwanie następuje w bezpiecznym punkcie. Nowy twardy limit memory_hard_limit_percent (domyślnie 200% memory_limit poniżej 1G) kończy proces. Poprawka obejmuje 390 plików. Oś czasu: advisory otwarte 27.08.2026, PR z poprawką 25.09.2026. Autor podkreśla, że najczęściej powtarzana porada (session.upload_progress.enabled = Off) dotyczy tylko CVE-2026-109619.</summary>
 <content type="html">&lt;p&gt;Alexandre Daubois opisuje poprawkę na poziomie diffu: alokator nie wykonuje już skoku (bailout) w środku alokacji; przekroczenie memory_limit zapisuje błąd odroczony, a przerwanie następuje w bezpiecznym punkcie. Nowy twardy limit memory_hard_limit_percent (domyślnie 200% memory_limit poniżej 1G) kończy proces. Poprawka obejmuje 390 plików. Oś czasu: advisory otwarte 27.08.2026, PR z poprawką 25.09.2026. Autor podkreśla, że najczęściej powtarzana porada (session.upload_progress.enabled = Off) dotyczy tylko CVE-2026-109619.&lt;/p&gt;&lt;p&gt;Źródło: &lt;a href="https://daubois.dev/blog/cve-2026-109618-php2shell-rumors/"&gt;daubois.dev (Alexandre Daubois)&lt;/a&gt; · doniesienie · major&lt;/p&gt;</content>
+</entry>
+<entry>
+<title>Google Cloud: Gemini 4 Argon pomógł znaleźć błąd, zbudować exploit i sprawdzić łatkę</title>
+<id>tag:php2shell-live.surge.sh,2026:google-cloud-gemini-claim</id>
+<link rel="alternate" type="text/html" href="https://akirapl.github.io/php2shell/?lang=pl#ev-google-cloud-gemini-claim"/>
+<link rel="related" href="https://cloud.google.com/blog/products/identity-security/responding-to-core-php-vulnerabilities-cve-2026-109618-cve-2026-109619"/>
+<published>2026-10-21T00:00:00Z</published>
+<updated>2026-10-21T00:00:00Z</updated>
+<category term="major"/>
+<summary type="text">Wpis Chrisa Betza na blogu Google Cloud: Wiz użył kilku modeli, a Gemini 4 Argon miał wnieść „invaluable contribution” do znalezienia podatności, opracowania exploita, wykrywania ataków i walidacji poprawki. Sam Google Cloud nie jest podatny; obrazy bazowe App Engine, Cloud Run i Cloud Functions są aktualizowane automatycznie, PHP 8.1 i starsze wymagają migracji. To kolejna firma przypisująca sobie udział w odkryciu, obok OpenAI, Wiz i Calif.</summary>
+<content type="html">&lt;p&gt;Wpis Chrisa Betza na blogu Google Cloud: Wiz użył kilku modeli, a Gemini 4 Argon miał wnieść „invaluable contribution” do znalezienia podatności, opracowania exploita, wykrywania ataków i walidacji poprawki. Sam Google Cloud nie jest podatny; obrazy bazowe App Engine, Cloud Run i Cloud Functions są aktualizowane automatycznie, PHP 8.1 i starsze wymagają migracji. To kolejna firma przypisująca sobie udział w odkryciu, obok OpenAI, Wiz i Calif.&lt;/p&gt;&lt;p&gt;Źródło: &lt;a href="https://cloud.google.com/blog/products/identity-security/responding-to-core-php-vulnerabilities-cve-2026-109618-cve-2026-109619"&gt;Google Cloud Blog (Chris Betz)&lt;/a&gt; · doniesienie · major&lt;/p&gt;</content>
+</entry>
+<entry>
+<title>Fedora: PHP2Shell zgłoszony jako bloker wydania Fedora 45</title>
+<id>tag:php2shell-live.surge.sh,2026:fedora-blocker</id>
+<link rel="alternate" type="text/html" href="https://akirapl.github.io/php2shell/?lang=pl#ev-fedora-blocker"/>
+<link rel="related" href="https://bugzilla.redhat.com/show_bug.cgi?id=2556842"/>
+<published>2026-10-20T22:47:39Z</published>
+<updated>2026-10-20T22:47:39Z</updated>
+<category term="minor"/>
+<summary type="text">Zgłoszenie w Red Hat Bugzilla (2556842) śledzi reakcję i zostało zaproponowane jako bloker wydania Fedora 45 final. 21.10 o 13:56 UTC widać tam pierwsze (anulowane, testowe) buildy w Koji. Red Hat nie opublikował jeszcze RHSA dla obu CVE.</summary>
+<content type="html">&lt;p&gt;Zgłoszenie w Red Hat Bugzilla (2556842) śledzi reakcję i zostało zaproponowane jako bloker wydania Fedora 45 final. 21.10 o 13:56 UTC widać tam pierwsze (anulowane, testowe) buildy w Koji. Red Hat nie opublikował jeszcze RHSA dla obu CVE.&lt;/p&gt;&lt;p&gt;Źródło: &lt;a href="https://bugzilla.redhat.com/show_bug.cgi?id=2556842"&gt;Red Hat Bugzilla&lt;/a&gt; · potwierdzone · minor&lt;/p&gt;</content>
 </entry>
 <entry>
 <title>CERT.at ostrzega; później: w sieci pojawił się kod exploita</title>

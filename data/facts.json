@@ -10,7 +10,7 @@
       "en": "CVE-2026-109618 and CVE-2026-109619: critical RCE flaws in the PHP core",
       "de": "CVE-2026-109618 und CVE-2026-109619: kritische RCE-Lücken im PHP-Kern"
     },
-    "last_updated": "2026-10-21T16:45:00Z",
+    "last_updated": "2026-10-21T17:15:00Z",
     "maintainer_note": "Single source of truth. Every fact needs source_url, source_name, confidence; texts as {pl,en,de}. Run ./update_and_build.sh \"message\".",
     "timezone_note": {
       "pl": "Wszystkie czasy w UTC. Czasy z NOS (CEST) przeliczone na UTC (−2 h).",
@@ -76,7 +76,7 @@
     "exploitation_threshold": {
       "rule": "confirmed only if CISA KEV lists a CVE or a national CERT publishes credible in-the-wild evidence",
       "kev_listed": false,
-      "kev_checked_utc": "2026-10-21T16:40:00Z",
+      "kev_checked_utc": "2026-10-21T17:10:00Z",
       "kev_catalog_version": "2026.10.21",
       "kev_url": "https://www.cisa.gov/known-exploited-vulnerabilities-catalog",
       "national_cert_itw": []
@@ -2351,6 +2351,97 @@
         "en": "Article publication time (17:34 Paris time); RTL and franceinfo confirm the shutdowns.",
         "de": "Veröffentlichungszeit des Artikels (17:34 Pariser Zeit); RTL und franceinfo bestätigen die Abschaltungen."
       }
+    },
+    {
+      "id": "google-cloud-gemini-claim",
+      "time_utc": "2026-10-21T00:00:00Z",
+      "importance": "major",
+      "title": {
+        "pl": "Google Cloud: Gemini 4 Argon pomógł znaleźć błąd, zbudować exploit i sprawdzić łatkę",
+        "en": "Google Cloud: Gemini 4 Argon helped find the bug, build the exploit and validate the patch",
+        "de": "Google Cloud: Gemini 4 Argon half beim Finden des Fehlers, beim Exploit und bei der Prüfung des Patches"
+      },
+      "description": {
+        "pl": "Wpis Chrisa Betza na blogu Google Cloud: Wiz użył kilku modeli, a Gemini 4 Argon miał wnieść „invaluable contribution” do znalezienia podatności, opracowania exploita, wykrywania ataków i walidacji poprawki. Sam Google Cloud nie jest podatny; obrazy bazowe App Engine, Cloud Run i Cloud Functions są aktualizowane automatycznie, PHP 8.1 i starsze wymagają migracji. To kolejna firma przypisująca sobie udział w odkryciu, obok OpenAI, Wiz i Calif.",
+        "en": "Chris Betz on the Google Cloud blog: Wiz used a mix of models, and Gemini 4 Argon made an “invaluable contribution” to finding the vulnerability, exploit development, attack detection and patch validation. Google Cloud itself is not vulnerable; App Engine, Cloud Run and Cloud Functions base images are being updated automatically, PHP 8.1 and older must migrate. Another company claiming a share of the discovery, next to OpenAI, Wiz and Calif.",
+        "de": "Chris Betz im Google-Cloud-Blog: Wiz nutzte mehrere Modelle, Gemini 4 Argon habe einen „invaluable contribution“ zum Finden der Schwachstelle, zur Exploit-Entwicklung, zur Angriffserkennung und zur Validierung des Patches geleistet. Google Cloud selbst ist nicht betroffen; Basis-Images für App Engine, Cloud Run und Cloud Functions werden automatisch aktualisiert, PHP 8.1 und älter muss migrieren. Ein weiteres Unternehmen, das sich einen Anteil an der Entdeckung zuschreibt, neben OpenAI, Wiz und Calif."
+      },
+      "actors": [
+        "Google Cloud",
+        "Wiz"
+      ],
+      "source_url": "https://cloud.google.com/blog/products/identity-security/responding-to-core-php-vulnerabilities-cve-2026-109618-cve-2026-109619",
+      "source_name": "Google Cloud Blog (Chris Betz)",
+      "confidence": "reported",
+      "source_reliability": "B",
+      "info_credibility": 3,
+      "rating_note": {
+        "pl": "Twierdzenie o roli modelu pochodzi od jego producenta.",
+        "en": "The claim about the model's role comes from its maker.",
+        "de": "Die Aussage zur Rolle des Modells stammt von dessen Hersteller."
+      },
+      "time_kind": "published",
+      "time_precision": "day"
+    },
+    {
+      "id": "fedora-blocker",
+      "time_utc": "2026-10-20T22:47:39Z",
+      "importance": "minor",
+      "title": {
+        "pl": "Fedora: PHP2Shell zgłoszony jako bloker wydania Fedora 45",
+        "en": "Fedora: PHP2Shell proposed as a Fedora 45 release blocker",
+        "de": "Fedora: PHP2Shell als Blocker für Fedora 45 vorgeschlagen"
+      },
+      "description": {
+        "pl": "Zgłoszenie w Red Hat Bugzilla (2556842) śledzi reakcję i zostało zaproponowane jako bloker wydania Fedora 45 final. 21.10 o 13:56 UTC widać tam pierwsze (anulowane, testowe) buildy w Koji. Red Hat nie opublikował jeszcze RHSA dla obu CVE.",
+        "en": "Red Hat Bugzilla ticket 2556842 tracks the response and was proposed as a blocker for Fedora 45 final. At 13:56 UTC on 21 Oct it mentions the first (cancelled, test) Koji builds. Red Hat has not yet published an RHSA for either CVE.",
+        "de": "Das Red-Hat-Bugzilla-Ticket 2556842 verfolgt die Reaktion und wurde als Blocker für Fedora 45 final vorgeschlagen. Am 21.10. um 13:56 UTC erwähnt es erste (abgebrochene, Test-)Builds in Koji. Red Hat hat noch kein RHSA für die beiden CVEs veröffentlicht."
+      },
+      "actors": [
+        "Fedora",
+        "Red Hat"
+      ],
+      "source_url": "https://bugzilla.redhat.com/show_bug.cgi?id=2556842",
+      "source_name": "Red Hat Bugzilla",
+      "confidence": "confirmed",
+      "source_reliability": "A",
+      "info_credibility": 2,
+      "time_kind": "published",
+      "time_precision": "second"
+    },
+    {
+      "id": "securityweek-vega-variants",
+      "time_utc": "2026-10-21T16:50:00Z",
+      "importance": "minor",
+      "title": {
+        "pl": "SecurityWeek: Vega widzi próby z użyciem publicznego PoC; Wiz mówi o nieobjętych wariantach",
+        "en": "SecurityWeek: Vega sees attempts using a public PoC; Wiz points to untracked variants",
+        "de": "SecurityWeek: Vega sieht Versuche mit öffentlichem PoC; Wiz verweist auf nicht erfasste Varianten"
+      },
+      "description": {
+        "pl": "Zbiorczy artykuł: firma Vega obserwowała próby wykorzystania oparte na publicznym PoC; według Wiz oba CVE grupują cztery błędy bezpieczeństwa pamięci, ale nie obejmują wszystkich wariantów (istnieją też nieśledzone). Bez danych liczbowych o skuteczności ataków.",
+        "en": "Round-up article: Vega observed exploitation attempts built on a public PoC; according to Wiz the two CVEs group four memory-safety issues but do not cover all variants (untracked ones exist too). No numbers on successful attacks.",
+        "de": "Sammelartikel: Vega beobachtete Ausnutzungsversuche auf Basis eines öffentlichen PoC; laut Wiz fassen die beiden CVEs vier Speichersicherheitsfehler zusammen, decken aber nicht alle Varianten ab (es gibt auch nicht erfasste). Keine Zahlen zu erfolgreichen Angriffen."
+      },
+      "actors": [
+        "Vega",
+        "Wiz"
+      ],
+      "source_url": "https://www.securityweek.com/php2shell-patches-land-as-first-exploitation-attempts-hit-sensors/",
+      "source_name": "SecurityWeek",
+      "confidence": "reported",
+      "source_reliability": "C",
+      "info_credibility": 3,
+      "flags": [
+        "needs_second_source"
+      ],
+      "flag_note": {
+        "pl": "Próby Vega znane tylko z jednej relacji.",
+        "en": "Vega's attempts known from one report only.",
+        "de": "Versuche von Vega nur aus einem Bericht bekannt."
+      },
+      "time_kind": "published",
+      "time_precision": "minute"
     }
   ],
   "actors": [
@@ -4562,6 +4653,21 @@
     {
       "name": "RTL",
       "url": "https://www.rtl.fr/actu/sciences-tech/prefectures-impots-meteo-france-des-sites-mis-hors-ligne-en-urgence-apres-la-decouverte-de-failles-de-securite-critiques-7900687811",
+      "type": "news"
+    },
+    {
+      "name": "Google Cloud Blog (Chris Betz)",
+      "url": "https://cloud.google.com/blog/products/identity-security/responding-to-core-php-vulnerabilities-cve-2026-109618-cve-2026-109619",
+      "type": "vendor"
+    },
+    {
+      "name": "Red Hat Bugzilla",
+      "url": "https://bugzilla.redhat.com/show_bug.cgi?id=2556842",
+      "type": "official"
+    },
+    {
+      "name": "SecurityWeek",
+      "url": "https://www.securityweek.com/php2shell-patches-land-as-first-exploitation-attempts-hit-sensors/",
       "type": "news"
     }
   ]

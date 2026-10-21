@@ -1,5 +1,11 @@
 [
  {
+  "time_utc": "2026-10-21T17:05:54Z",
+  "message": "17:15 UTC: Google Cloud/Gemini claim, Fedora blocker, SecurityWeek round-up, KEV re-check",
+  "events": 75,
+  "facts_last_updated": "2026-10-21T17:15:00Z"
+ },
+ {
   "time_utc": "2026-10-21T16:37:40Z",
   "message": "16:45 UTC: Daubois (fix details), Automattic, France/ANSSI preventive maintenance; KEV re-check",
   "events": 72,
