@@ -3,12 +3,23 @@
 <title>PHP2Shell — Chronik (DE)</title>
 <subtitle>Live-Chronik zu PHP2Shell (CVE-2026-109618/109619), kritische RCE im PHP-Kern (CVSS 9.2). Behoben in 8.5.12, 8.4.27, 8.3.36, 8.2.35. Jede Angabe mit Quelle.</subtitle>
 <id>https://akirapl.github.io/php2shell/feed-de.xml</id>
-<updated>2026-10-22T08:20:00Z</updated>
+<updated>2026-10-22T10:25:00Z</updated>
 <link rel="self" type="application/atom+xml" href="https://akirapl.github.io/php2shell/feed-de.xml"/>
 <link rel="alternate" type="text/html" hreflang="de" href="https://akirapl.github.io/php2shell/?lang=de"/>
 <author><name>Dawid Kulik (@Akirapl)</name><uri>https://github.com/Akirapl</uri></author>
 <icon>https://akirapl.github.io/php2shell/assets/og-image.png</icon>
 <rights>CC BY 4.0</rights>
+<entry>
+<title>Ausmaß der Versuche: Cloudflare meldet Millionen, Censys rund 1,57 Mio. ungepatchte Hosts; laut watchTowr erreichen kursierende PoCs keine RCE</title>
+<id>tag:php2shell-live.surge.sh,2026:securityweek-scale-telemetry-1022</id>
+<link rel="alternate" type="text/html" href="https://akirapl.github.io/php2shell/?lang=de#ev-securityweek-scale-telemetry-1022"/>
+<link rel="related" href="https://www.securityweek.com/php2shell-exploitation-started-days-before-patches/"/>
+<published>2026-10-22T09:48:00Z</published>
+<updated>2026-10-22T09:48:00Z</updated>
+<category term="major"/>
+<summary type="text">SecurityWeek (22.10.) fasst Telemetrie zusammen: Cloudflare-CEO Matthew Prince nennt Tausende Versuche in den 10 Stunden vor der Ankündigung, Zehntausende in den 45 Minuten danach, Hunderttausende binnen 2 Stunden und „jetzt Millionen“. Censys: Von 2,58 Mio. am 21.10. gesehenen Hosts zeigten rund 1,58 Mio. eine PHP-Version, davon etwa 1,57 Mio. ungepatcht. watchTowr: breite Versuche, doch die kursierenden Exploits funktionieren nicht, messen nur Zeitunterschiede oder bringen das Ziel zum Absturz. Die Zahlen sind Firmenangaben; keine bestätigten Kompromittierungen.</summary>
+<content type="html">&lt;p&gt;SecurityWeek (22.10.) fasst Telemetrie zusammen: Cloudflare-CEO Matthew Prince nennt Tausende Versuche in den 10 Stunden vor der Ankündigung, Zehntausende in den 45 Minuten danach, Hunderttausende binnen 2 Stunden und „jetzt Millionen“. Censys: Von 2,58 Mio. am 21.10. gesehenen Hosts zeigten rund 1,58 Mio. eine PHP-Version, davon etwa 1,57 Mio. ungepatcht. watchTowr: breite Versuche, doch die kursierenden Exploits funktionieren nicht, messen nur Zeitunterschiede oder bringen das Ziel zum Absturz. Die Zahlen sind Firmenangaben; keine bestätigten Kompromittierungen.&lt;/p&gt;&lt;p&gt;Quelle: &lt;a href="https://www.securityweek.com/php2shell-exploitation-started-days-before-patches/"&gt;SecurityWeek&lt;/a&gt; · gemeldet · major&lt;/p&gt;</content>
+</entry>
 <entry>
 <title>Cisco prüft mehr als 30 Produkte auf PHP2Shell</title>
 <id>tag:php2shell-live.surge.sh,2026:cisco-psirt-advisory</id>

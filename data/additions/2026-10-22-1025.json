@@ -1,0 +1,32 @@
+{
+ "added": [
+  {
+   "id": "securityweek-scale-telemetry-1022",
+   "time_utc": "2026-10-22T09:48:00Z",
+   "importance": "major",
+   "title": {
+    "pl": "Skala prób: Cloudflare mówi o milionach, Censys – ok. 1,57 mln niezałatanych hostów; watchTowr: krążące PoC nie dają RCE",
+    "en": "Scale of attempts: Cloudflare reports millions, Censys about 1.57M unpatched hosts; watchTowr says circulating PoCs don't achieve RCE",
+    "de": "Ausmaß der Versuche: Cloudflare meldet Millionen, Censys rund 1,57 Mio. ungepatchte Hosts; laut watchTowr erreichen kursierende PoCs keine RCE"
+   },
+   "description": {
+    "pl": "SecurityWeek (22.10) zbiera telemetrię: CEO Cloudflare Matthew Prince – tysiące prób w 10 h przed ogłoszeniem, dziesiątki tysięcy w 45 min po nim, setki tysięcy w 2 h, „miliony teraz”. Censys: z 2,58 mln hostów widocznych 21.10 ok. 1,58 mln ujawniało wersję PHP, z czego ok. 1,57 mln niezałatanych. watchTowr: masowe próby, ale krążące exploity nie działają, mierzą różnice czasowe albo wywracają cel. Liczby to deklaracje firm, bez potwierdzonych włamań.",
+    "en": "SecurityWeek (22 Oct) rounds up telemetry: Cloudflare CEO Matthew Prince said thousands of attempts in the 10 hours before the announcement, tens of thousands in the 45 minutes after, hundreds of thousands within 2 hours and \"millions now\". Censys: of 2.58M hosts seen on 21 Oct, about 1.58M exposed a PHP version and about 1.57M were unpatched. watchTowr: broad attempts, but circulating exploits don't work, only test timing differences, or crash the target. Figures are company statements; no confirmed compromises.",
+    "de": "SecurityWeek (22.10.) fasst Telemetrie zusammen: Cloudflare-CEO Matthew Prince nennt Tausende Versuche in den 10 Stunden vor der Ankündigung, Zehntausende in den 45 Minuten danach, Hunderttausende binnen 2 Stunden und „jetzt Millionen“. Censys: Von 2,58 Mio. am 21.10. gesehenen Hosts zeigten rund 1,58 Mio. eine PHP-Version, davon etwa 1,57 Mio. ungepatcht. watchTowr: breite Versuche, doch die kursierenden Exploits funktionieren nicht, messen nur Zeitunterschiede oder bringen das Ziel zum Absturz. Die Zahlen sind Firmenangaben; keine bestätigten Kompromittierungen."
+   },
+   "actors": [
+    "Cloudflare",
+    "Censys",
+    "watchTowr",
+    "SecurityWeek"
+   ],
+   "source_url": "https://www.securityweek.com/php2shell-exploitation-started-days-before-patches/",
+   "source_name": "SecurityWeek",
+   "confidence": "reported",
+   "source_reliability": "C",
+   "info_credibility": 2,
+   "time_kind": "published",
+   "time_precision": "minute"
+  }
+ ]
+}
