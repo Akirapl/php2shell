@@ -3,12 +3,23 @@
 <title>PHP2Shell — Chronik (DE)</title>
 <subtitle>Live-Chronik zu PHP2Shell (CVE-2026-109618/109619), kritische RCE im PHP-Kern (CVSS 9.2). Behoben in 8.5.12, 8.4.27, 8.3.36, 8.2.35. Jede Angabe mit Quelle.</subtitle>
 <id>https://akirapl.github.io/php2shell/feed-de.xml</id>
-<updated>2026-10-22T14:25:00Z</updated>
+<updated>2026-10-22T18:38:41Z</updated>
 <link rel="self" type="application/atom+xml" href="https://akirapl.github.io/php2shell/feed-de.xml"/>
 <link rel="alternate" type="text/html" hreflang="de" href="https://akirapl.github.io/php2shell/?lang=de"/>
 <author><name>Dawid Kulik (@Akirapl)</name><uri>https://github.com/Akirapl</uri></author>
 <icon>https://akirapl.github.io/php2shell/assets/og-image.png</icon>
 <rights>CC BY 4.0</rights>
+<entry>
+<title>Stimmungs- und Medienschau (22.10. abends)</title>
+<id>tag:php2shell-live.surge.sh,2026:social-media-review-1022</id>
+<link rel="alternate" type="text/html" href="https://akirapl.github.io/php2shell/?lang=de#ev-social-media-review-1022"/>
+<link rel="related" href="https://news.ycombinator.com/item?id=50188948"/>
+<published>2026-10-22T18:30:00Z</published>
+<updated>2026-10-22T18:30:00Z</updated>
+<category term="minor"/>
+<summary type="text">Erste vollständige Schau: #PHP2Shell auf X stieg von 2.971 Beiträgen (21.10.) auf 6.811 (22.10., unvollständiger Tag); rund 40 % der Erwähnungen auf Japanisch. Es dominieren PoC-Skepsis (meistdiskutierter HN-Thread: 597 Punkte) und ein alarmierter Ton in PL/DE; die Presse teilt sich in „die Attacken haben begonnen“ und „öffentliche PoCs funktionieren nicht“. Details in den Abschnitten Stimmung, Hashtags und Presseschau. [Beobachtung]</summary>
+<content type="html">&lt;p&gt;Erste vollständige Schau: #PHP2Shell auf X stieg von 2.971 Beiträgen (21.10.) auf 6.811 (22.10., unvollständiger Tag); rund 40 % der Erwähnungen auf Japanisch. Es dominieren PoC-Skepsis (meistdiskutierter HN-Thread: 597 Punkte) und ein alarmierter Ton in PL/DE; die Presse teilt sich in „die Attacken haben begonnen“ und „öffentliche PoCs funktionieren nicht“. Details in den Abschnitten Stimmung, Hashtags und Presseschau. [Beobachtung]&lt;/p&gt;&lt;p&gt;Quelle: &lt;a href="https://news.ycombinator.com/item?id=50188948"&gt;Hacker News — “There isn&amp;#x27;t an easy exploit for this PHP vulnerability”&lt;/a&gt; · gemeldet · minor&lt;/p&gt;</content>
+</entry>
 <entry>
 <title>SecurityWeek: Überblick über Herstellerreaktionen; Sophos nahm eigenes MyUTM-Portal vom Netz</title>
 <id>tag:php2shell-live.surge.sh,2026:securityweek-vendor-roundup-sophos</id>

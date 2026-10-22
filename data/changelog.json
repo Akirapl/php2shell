@@ -1,5 +1,11 @@
 [
  {
+  "time_utc": "2026-10-22T18:44:53Z",
+  "message": "Mood & media review #1: new sections social_mood, hashtags, press_review, media_contradictions; timeline event; case study 1.3 §7.5",
+  "events": 101,
+  "facts_last_updated": "2026-10-22T18:38:41Z"
+ },
+ {
   "time_utc": "2026-10-22T14:17:14Z",
   "message": "+2 events: Palo Alto PAN-OS/Panorama affected (no fix), SecurityWeek vendor roundup/Sophos MyUTM",
   "events": 100,

@@ -10,7 +10,7 @@
    "en": "CVE-2026-109618 and CVE-2026-109619: critical RCE flaws in the PHP core",
    "de": "CVE-2026-109618 und CVE-2026-109619: kritische RCE-Lücken im PHP-Kern"
   },
-  "last_updated": "2026-10-22T14:25:00Z",
+  "last_updated": "2026-10-22T18:38:41Z",
   "maintainer_note": "Single source of truth. Every fact needs source_url, source_name, confidence; texts as {pl,en,de}. Run ./update_and_build.sh \"message\".",
   "timezone_note": {
    "pl": "Wszystkie czasy w UTC. Czasy z NOS (CEST) przeliczone na UTC (−2 h).",
@@ -20,7 +20,24 @@
   "tlp": "CLEAR",
   "methodology_url": "methodology.html",
   "corrections_url": "https://github.com/Akirapl/php2shell/commits/main/data/facts.json",
-  "schema_note": "Optional per-item fields: source_reliability A-F, info_credibility 1-6, time_kind event|published|modified|retrieved, time_precision, time_note, corrections[{time,field,previous,reason}], flags[needs_second_source], flag_note, offline_reason (sites_offline). See README."
+  "schema_note": "Optional per-item fields: source_reliability A-F, info_credibility 1-6, time_kind event|published|modified|retrieved, time_precision, time_note, corrections[{time,field,previous,reason}], flags[needs_second_source], flag_note, offline_reason (sites_offline). See README.",
+  "review_rounds": [
+   {
+    "as_of": "2026-10-22T18:30:00Z",
+    "label": {
+     "pl": "Przegląd nastrojów i mediów #1 (22.10 wieczór)",
+     "en": "Mood & media review #1 (22 Oct evening)",
+     "de": "Stimmungs- und Medienschau Nr. 1 (22.10. abends)"
+    },
+    "sections": [
+     "social_mood",
+     "hashtags",
+     "press_review",
+     "media_contradictions"
+    ],
+    "timeline_id": "social-media-review-1022"
+   }
+  ]
  },
  "status": {
   "patch_shipped": true,
@@ -3290,6 +3307,33 @@
     "en": "Trade-press report based on vendor statements; the Sophos notice itself was not checked directly.",
     "de": "Fachpresse-Bericht auf Basis von Herstellerangaben; die Sophos-Mitteilung selbst wurde nicht direkt geprüft."
    }
+  },
+  {
+   "id": "social-media-review-1022",
+   "time_utc": "2026-10-22T18:30:00Z",
+   "importance": "minor",
+   "title": {
+    "pl": "Przegląd nastrojów i mediów (22.10 wieczór)",
+    "en": "Social mood and media review (22 Oct evening)",
+    "de": "Stimmungs- und Medienschau (22.10. abends)"
+   },
+   "description": {
+    "pl": "Pierwszy pełny przegląd: #PHP2Shell na X wzrósł z 2 971 wpisów (21.10) do 6 811 (22.10, dzień niepełny); ok. 40% wzmianek po japońsku. Dominują sceptycyzm wobec PoC (najpopularniejszy wątek HN: 597 pkt) i ton alarmowy w PL/DE; prasa dzieli się na „ataki się zaczęły” i „publiczne PoC nie działają”. Szczegóły w sekcjach Nastroje, Hashtagi i Przegląd prasy. [obserwacja]",
+    "en": "First full review: #PHP2Shell on X rose from 2,971 posts (21 Oct) to 6,811 (22 Oct, partial day); about 40% of mentions are in Japanese. PoC skepticism (top HN thread: 597 points) and an alarmed tone in PL/DE dominate; the press splits into “attacks have begun” and “public PoCs don't work”. Details in the Mood, Hashtags and Press review sections. [observation]",
+    "de": "Erste vollständige Schau: #PHP2Shell auf X stieg von 2.971 Beiträgen (21.10.) auf 6.811 (22.10., unvollständiger Tag); rund 40 % der Erwähnungen auf Japanisch. Es dominieren PoC-Skepsis (meistdiskutierter HN-Thread: 597 Punkte) und ein alarmierter Ton in PL/DE; die Presse teilt sich in „die Attacken haben begonnen“ und „öffentliche PoCs funktionieren nicht“. Details in den Abschnitten Stimmung, Hashtags und Presseschau. [Beobachtung]"
+   },
+   "source_url": "https://news.ycombinator.com/item?id=50188948",
+   "source_name": "Hacker News — “There isn't an easy exploit for this PHP vulnerability”",
+   "confidence": "reported",
+   "source_reliability": "C",
+   "info_credibility": "3",
+   "time_kind": "retrieved",
+   "time_precision": "hour",
+   "time_note": {
+    "pl": "Czas pobrania danych (X API, HN, Mastodon).",
+    "en": "Data retrieval time (X API, HN, Mastodon).",
+    "de": "Zeitpunkt des Datenabrufs (X API, HN, Mastodon)."
+   }
   }
  ],
  "actors": [
@@ -5864,6 +5908,1414 @@
    "name": "SecurityWeek — Tech and Security Companies Respond to PHP2Shell",
    "url": "https://www.securityweek.com/tech-and-security-companies-respond-to-php2shell-vulnerabilities/",
    "type": "news"
+  },
+  {
+   "name": "Hacker News — “There isn't an easy exploit for this PHP vulnerability”",
+   "url": "https://news.ycombinator.com/item?id=50188948",
+   "type": "social"
+  },
+  {
+   "name": "X — public search “php2shell” (sample read 22.10)",
+   "url": "https://x.com/search?q=php2shell&src=typed_query&f=live",
+   "type": "social"
+  },
+  {
+   "name": "Mastodon — #php2shell (public tag timeline)",
+   "url": "https://infosec.exchange/tags/php2shell",
+   "type": "social"
+  },
+  {
+   "name": "Hacker News — “Tell HN: I unknowingly broke the PHP RCE embargo”",
+   "url": "https://news.ycombinator.com/item?id=50193416",
+   "type": "social"
+  },
+  {
+   "name": "X — @averyjparker (EOL versions and distro lag)",
+   "url": "https://x.com/averyjparker/status/2112906550410973670",
+   "type": "social"
+  },
+  {
+   "name": "X — @almokhtar_al (fake PoC repos may carry malware)",
+   "url": "https://x.com/almokhtar_al/status/2113049448985100441",
+   "type": "social"
+  },
+  {
+   "name": "Hacker News — “PHP2Shell: AI uncovers critical RCE in PHP”",
+   "url": "https://news.ycombinator.com/item?id=50180836",
+   "type": "social"
+  },
+  {
+   "name": "X — @MaciejOko1 (political comment on the BIP shutdown)",
+   "url": "https://x.com/MaciejOko1/status/2113245706613821629",
+   "type": "social"
+  },
+  {
+   "name": "X API v2 — recent post counts (retrieved 22.10, 18:30 UTC)",
+   "url": "https://x.com/search?q=CVE-2026-109618&src=typed_query&f=live",
+   "type": "social"
+  },
+  {
+   "name": "X API v2 — recent post counts (retrieved 22.10, 18:30 UTC)",
+   "url": "https://x.com/search?q=php2shell%20lang%3Aja&src=typed_query&f=live",
+   "type": "social"
+  },
+  {
+   "name": "X API v2 — recent post counts (retrieved 22.10, 18:30 UTC)",
+   "url": "https://x.com/search?q=%23PHP2Shell&src=typed_query&f=live",
+   "type": "social"
+  },
+  {
+   "name": "X API v2 — recent post counts (retrieved 22.10, 18:30 UTC)",
+   "url": "https://x.com/search?q=php2shell%20lang%3Ade&src=typed_query&f=live",
+   "type": "social"
+  },
+  {
+   "name": "X API v2 — recent post counts (retrieved 22.10, 18:30 UTC)",
+   "url": "https://x.com/search?q=php2shell%20%23PHP&src=typed_query&f=live",
+   "type": "social"
+  },
+  {
+   "name": "X API v2 — recent post counts (retrieved 22.10, 18:30 UTC)",
+   "url": "https://x.com/search?q=php2shell%20%23infosec&src=typed_query&f=live",
+   "type": "social"
+  },
+  {
+   "name": "X API v2 — recent post counts (retrieved 22.10, 18:30 UTC)",
+   "url": "https://x.com/search?q=php2shell%20lang%3Apl&src=typed_query&f=live",
+   "type": "social"
+  },
+  {
+   "name": "X API v2 — recent post counts (retrieved 22.10, 18:30 UTC)",
+   "url": "https://x.com/search?q=%23CVE2026109618&src=typed_query&f=live",
+   "type": "social"
+  },
+  {
+   "name": "X API v2 — recent post counts (retrieved 22.10, 18:30 UTC)",
+   "url": "https://x.com/search?q=php2shell%20log4j&src=typed_query&f=live",
+   "type": "social"
+  },
+  {
+   "name": "X API v2 — recent post counts (retrieved 22.10, 18:30 UTC)",
+   "url": "https://x.com/search?q=php2shell%20%23WordPress&src=typed_query&f=live",
+   "type": "social"
+  },
+  {
+   "name": "X API v2 — recent post counts (retrieved 22.10, 18:30 UTC)",
+   "url": "https://x.com/search?q=PHPocalypse&src=typed_query&f=live",
+   "type": "social"
+  },
+  {
+   "name": "CNN Business",
+   "url": "https://www.cnn.com/2026/10/21/tech/php2shell-vulnerability-ai",
+   "type": "press"
+  },
+  {
+   "name": "Dark Reading",
+   "url": "https://www.darkreading.com/application-security/php2shell-bugs-red-alert-security-industry",
+   "type": "press"
+  },
+  {
+   "name": "CNBC",
+   "url": "https://www.cnbc.com/2026/10/22/php-google-openai-and-amazon-cyber.html",
+   "type": "press"
+  },
+  {
+   "name": "Bloomberg",
+   "url": "https://www.bloomberg.com/news/articles/2026-10-22/researchers-say-hackers-targeted-php-before-flaws-were-known",
+   "type": "press"
+  },
+  {
+   "name": "ZDFheute",
+   "url": "https://www.zdfheute.de/politik/php-luecke-cybersicherheit-experten-bedrohung-100.html",
+   "type": "press"
+  },
+  {
+   "name": "DER SPIEGEL",
+   "url": "https://www.spiegel.de/netzwelt/netzpolitik/php2shell-wie-eine-server-schwachstelle-behoerden-aus-dem-netz-kegelte-a-1d993c5a-2f97-4190-86b1-64bc2bf5070b",
+   "type": "press"
+  },
+  {
+   "name": "tagesschau.de",
+   "url": "https://www.tagesschau.de/wirtschaft/digitales/php-panne-100.html",
+   "type": "press"
+  },
+  {
+   "name": "Linux-Magazin",
+   "url": "https://www.linux-magazin.de/news/kritische-php-schwachstellen-waren-seit-jahren-bekannt/",
+   "type": "press"
+  },
+  {
+   "name": "Onet",
+   "url": "https://wiadomosci.onet.pl/swiat/ai-odkryla-luke-ktora-moze-zagrozic-milionom-stron-eksperci-bija-na-alarm/6dsce33",
+   "type": "press"
+  },
+  {
+   "name": "TVN24 Biznes",
+   "url": "https://tvn24.pl/biznes/z-kraju/strony-biuletynu-informacji-publicznej-wylaczone-krzysztof-gawkowski-wykryto-powazne-luki-st9299779",
+   "type": "press"
+  }
+ ],
+ "social_mood": [
+  {
+   "confidence": "reported",
+   "observation": true,
+   "source_reliability": "C",
+   "info_credibility": "3",
+   "time_kind": "retrieved",
+   "time_precision": "hour",
+   "as_of": "2026-10-22T18:30:00Z",
+   "id": "mood-poc-skepticism",
+   "rank": 1,
+   "mood": "skepticism",
+   "prominence": "high",
+   "platforms": [
+    "X",
+    "Hacker News",
+    "Mastodon"
+   ],
+   "label": {
+    "pl": "Sceptycyzm wobec PoC i „fałszywe exploity”",
+    "en": "PoC skepticism and “fake exploits”",
+    "de": "Skepsis gegenüber PoCs und „falsche Exploits“"
+   },
+   "text": {
+    "pl": "Najgłośniejszy wątek techniczny: czy krążące PoC w ogóle działają. Najpopularniejszy wątek HN (597 pkt, 392 komentarze) to tekst „There isn't an easy exploit”; komentujący opisują PoC, które wymagają wcześniejszej luki LFI albo nie działają. Część odpowiada, że RCE jest realne, tylko trudne. [obserwacja]",
+    "en": "The loudest technical thread: do the circulating PoCs work at all. The top Hacker News thread (597 points, 392 comments) is the post “There isn't an easy exploit”; commenters describe PoCs that need a pre-existing LFI bug or do not run. Others reply that RCE is real, just hard. [observation]",
+    "de": "Der lauteste technische Strang: Funktionieren die kursierenden PoCs überhaupt? Der meistdiskutierte Hacker-News-Thread (597 Punkte, 392 Kommentare) ist der Beitrag „There isn't an easy exploit“; Kommentatoren beschreiben PoCs, die eine bereits vorhandene LFI-Lücke voraussetzen oder nicht laufen. Andere halten dagegen: RCE ist real, nur schwer. [Beobachtung]"
+   },
+   "examples": [
+    {
+     "author": "kgeist",
+     "platform": "Hacker News",
+     "lang": "en",
+     "text": "I ran 2 PoCs from GitHub today: one indeed expected Local File Inclusion (LFI) to already be present (so it's just LFI with extra steps), and the other one didn't work at all out of the box",
+     "url": "https://news.ycombinator.com/item?id=50189528",
+     "posted_utc": "2026-10-22T00:29:21Z",
+     "translations": {
+      "pl": "Uruchomiłem dziś 2 PoC z GitHuba: jeden rzeczywiście zakładał, że luka LFI już istnieje (czyli to LFI z dodatkowymi krokami), a drugi w ogóle nie działał od ręki",
+      "de": "Ich habe heute 2 PoCs von GitHub ausgeführt: Einer setzte tatsächlich eine bereits vorhandene LFI-Lücke voraus (also nur LFI mit Extraschritten), der andere funktionierte ohne Anpassungen gar nicht"
+     }
+    },
+    {
+     "author": "@Huntio",
+     "platform": "X",
+     "lang": "en",
+     "text": "everyone is staging the leaked PHP RCE, no one has landed it 🫠",
+     "url": "https://x.com/Huntio/status/2113283896225743058",
+     "posted_utc": "2026-10-22T14:58:38Z",
+     "translations": {
+      "pl": "wszyscy przygotowują wyciekłe PHP RCE, nikomu się jeszcze nie udało 🫠",
+      "de": "alle bereiten den geleakten PHP-RCE vor, gelandet hat ihn noch niemand 🫠"
+     }
+    },
+    {
+     "author": "tptacek",
+     "platform": "Hacker News",
+     "lang": "en",
+     "text": "So, yeah, this aged like milk. … Sure, this is a harder vulnerability to exploit than Log4Shell. Everything is harder to exploit than Log4Shell.",
+     "url": "https://news.ycombinator.com/item?id=50198093",
+     "posted_utc": "2026-10-22T17:00:48Z",
+     "translations": {
+      "pl": "No cóż, to zestarzało się jak mleko. … Jasne, tę lukę trudniej wykorzystać niż Log4Shell. Wszystko jest trudniejsze do wykorzystania niż Log4Shell.",
+      "de": "Tja, das ist schlecht gealtert. … Klar, diese Lücke ist schwerer auszunutzen als Log4Shell. Alles ist schwerer auszunutzen als Log4Shell."
+     }
+    }
+   ],
+   "source_url": "https://news.ycombinator.com/item?id=50188948",
+   "source_name": "Hacker News — “There isn't an easy exploit for this PHP vulnerability”"
+  },
+  {
+   "confidence": "reported",
+   "observation": true,
+   "source_reliability": "C",
+   "info_credibility": "3",
+   "time_kind": "retrieved",
+   "time_precision": "hour",
+   "as_of": "2026-10-22T18:30:00Z",
+   "id": "mood-patch-now",
+   "rank": 2,
+   "mood": "urgency",
+   "prominence": "high",
+   "platforms": [
+    "X"
+   ],
+   "label": {
+    "pl": "Alarm i „łataj teraz”",
+    "en": "Alarm and “patch now”",
+    "de": "Alarm und „jetzt patchen“"
+   },
+   "text": {
+    "pl": "W polskim i niemieckim X dominuje ton alarmowy: „incydent na skalę całego internetu”, „masowa eksploatacja”, apele o natychmiastową aktualizację; po stronie dostawców hostingu komunikaty statusowe są spokojniejsze. [obserwacja]",
+    "en": "Polish- and German-language X is dominated by alarm: “an internet-wide security incident”, “mass exploitation is imminent”, calls to update immediately; hosting providers' status posts are calmer. [observation]",
+    "de": "Im polnisch- und deutschsprachigen X dominiert Alarm: „Sicherheitsvorfall im Ausmaß des ganzen Internets“, „Massen-Exploitation steht bevor“, Aufrufe zum sofortigen Update; Statusmeldungen der Hoster sind ruhiger. [Beobachtung]"
+   },
+   "examples": [
+    {
+     "author": "@prywatnik",
+     "platform": "X",
+     "lang": "pl",
+     "text": "Dziś: incydent bezpieczeństwa na skalę całego internetu. Krytyczne luki w PHP. Zasięg ogromny. Będzie wykorzystywane natychmiast...",
+     "url": "https://x.com/prywatnik/status/2112872533389394350",
+     "posted_utc": "2026-10-21T11:44:01Z",
+     "translations": {
+      "en": "Today: a security incident on the scale of the whole internet. Critical flaws in PHP. Huge reach. It will be exploited immediately...",
+      "de": "Heute: ein Sicherheitsvorfall im Ausmaß des ganzen Internets. Kritische Lücken in PHP. Riesige Reichweite. Wird sofort ausgenutzt werden..."
+     }
+    },
+    {
+     "author": "@Wilehalm",
+     "platform": "X",
+     "lang": "de",
+     "text": "Massen-Exploitation steht bevor",
+     "url": "https://x.com/Wilehalm/status/2112812111722070414",
+     "posted_utc": "2026-10-21T07:43:56Z",
+     "translations": {
+      "pl": "Masowa eksploatacja jest tuż-tuż",
+      "en": "Mass exploitation is imminent"
+     }
+    }
+   ],
+   "source_url": "https://x.com/search?q=php2shell&src=typed_query&f=live",
+   "source_name": "X — public search “php2shell” (sample read 22.10)"
+  },
+  {
+   "confidence": "reported",
+   "observation": true,
+   "source_reliability": "C",
+   "info_credibility": "3",
+   "time_kind": "retrieved",
+   "time_precision": "hour",
+   "as_of": "2026-10-22T18:30:00Z",
+   "id": "mood-humour",
+   "rank": 3,
+   "mood": "humour",
+   "prominence": "medium",
+   "platforms": [
+    "X",
+    "Hacker News",
+    "Mastodon"
+   ],
+   "label": {
+    "pl": "Humor i porównania z Log4j",
+    "en": "Humour and Log4j comparisons",
+    "de": "Humor und Log4j-Vergleiche"
+   },
+   "text": {
+    "pl": "Dużo ironii: porównania z Log4Shell („przynajmniej w środę, nie w piątek”), żart „php0shell” o PoC z backdoorem, „pokuta” dla autora wpisu o złamaniu embarga. [obserwacja]",
+    "en": "Plenty of irony: Log4Shell comparisons (“at least it was on a Wednesday, not a Friday”), a “php0shell” joke about backdoored PoCs, “penance” for the author of the embargo-break post. [observation]",
+    "de": "Viel Ironie: Log4Shell-Vergleiche („wenigstens an einem Mittwoch, nicht an einem Freitag“), der Witz „php0shell“ über PoCs mit Hintertür, „Buße“ für den Autor des Embargo-Beitrags. [Beobachtung]"
+   },
+   "examples": [
+    {
+     "author": "@B4nd1t0_",
+     "platform": "X",
+     "lang": "en",
+     "text": "At least the Php2Shell was on a Wednesday. I vaguely remember that Log4j was on a Friday. I remember working the weekend on-call.",
+     "url": "https://x.com/B4nd1t0_/status/2113331780371558423",
+     "posted_utc": "2026-10-22T18:08:54Z",
+     "translations": {
+      "pl": "Przynajmniej Php2Shell wypadł w środę. Mgliście pamiętam, że Log4j był w piątek. Pamiętam weekendowy dyżur.",
+      "de": "Wenigstens kam Php2Shell an einem Mittwoch. Ich erinnere mich dunkel, dass Log4j an einem Freitag war. Ich weiß noch, wie ich am Wochenende Bereitschaft hatte."
+     }
+    },
+    {
+     "author": "Sebastian@pertsch.social",
+     "platform": "Mastodon",
+     "lang": "de",
+     "text": "Jetzt wird moniert, dass #php2shell in #PHP schon 20 Jahre alt ist. Leute, #Windows ist mehr als 40 Jahre alt. 💡",
+     "url": "https://Pertsch.social/@Sebastian/117485538076784447",
+     "posted_utc": "2026-10-22T16:37:00Z",
+     "translations": {
+      "pl": "Teraz narzeka się, że #php2shell w #PHP ma już 20 lat. Ludzie, #Windows ma ponad 40 lat. 💡",
+      "en": "Now people complain that #php2shell in #PHP is already 20 years old. Folks, #Windows is more than 40 years old. 💡"
+     }
+    }
+   ],
+   "source_url": "https://infosec.exchange/tags/php2shell",
+   "source_name": "Mastodon — #php2shell (public tag timeline)"
+  },
+  {
+   "confidence": "reported",
+   "observation": true,
+   "source_reliability": "C",
+   "info_credibility": "3",
+   "time_kind": "retrieved",
+   "time_precision": "hour",
+   "as_of": "2026-10-22T18:30:00Z",
+   "id": "mood-embargo-process",
+   "rank": 4,
+   "mood": "process_anger",
+   "prominence": "medium",
+   "platforms": [
+    "Hacker News",
+    "Mastodon",
+    "X"
+   ],
+   "label": {
+    "pl": "Embargo, wyciek i proces naprawy",
+    "en": "Embargo, leak and the fix process",
+    "de": "Embargo, Leak und Fix-Prozess"
+   },
+   "text": {
+    "pl": "Pytania o dwumiesięczne okno między zgłoszeniem a publikacją i o to, kto złamał embargo; autor wpisu „Tell HN: I unknowingly broke the PHP RCE embargo” dostał głównie wsparcie. Linux-Magazin nazywa przyznanie PHP Foundation, że problem OOM był znany od audytu 2024, „debaklem governance”. [obserwacja]",
+    "en": "Questions about the two-month window between report and disclosure and about who broke the embargo; the author of “Tell HN: I unknowingly broke the PHP RCE embargo” mostly got support. Linux-Magazin calls the PHP Foundation's admission that the OOM problem was known since the 2024 audit a “governance debacle”. [observation]",
+    "de": "Fragen zum zweimonatigen Fenster zwischen Meldung und Veröffentlichung und dazu, wer das Embargo brach; der Autor von „Tell HN: I unknowingly broke the PHP RCE embargo“ bekam überwiegend Zuspruch. Das Linux-Magazin nennt das Eingeständnis der PHP Foundation, das OOM-Problem sei seit dem Audit 2024 bekannt, ein „Governance-Debakel“. [Beobachtung]"
+   },
+   "examples": [
+    {
+     "author": "cwillu",
+     "platform": "Hacker News",
+     "lang": "en",
+     "text": "Don't be silly, you can't possibly be responsible for breaking an embargo you weren't subject to or informed about.",
+     "url": "https://news.ycombinator.com/item?id=50193835",
+     "posted_utc": "2026-10-22T11:17:03Z",
+     "translations": {
+      "pl": "Nie przesadzaj, nie możesz odpowiadać za złamanie embarga, które cię nie obejmowało i o którym nie wiedziałeś.",
+      "de": "Sei nicht albern, du kannst nicht für den Bruch eines Embargos verantwortlich sein, dem du nicht unterlagst und von dem du nichts wusstest."
+     }
+    }
+   ],
+   "source_url": "https://news.ycombinator.com/item?id=50193416",
+   "source_name": "Hacker News — “Tell HN: I unknowingly broke the PHP RCE embargo”"
+  },
+  {
+   "confidence": "reported",
+   "observation": true,
+   "source_reliability": "C",
+   "info_credibility": "3",
+   "time_kind": "retrieved",
+   "time_precision": "hour",
+   "as_of": "2026-10-22T18:30:00Z",
+   "id": "mood-eol-fatigue",
+   "rank": 5,
+   "mood": "eol_fatigue",
+   "prominence": "medium",
+   "platforms": [
+    "X",
+    "Hacker News"
+   ],
+   "label": {
+    "pl": "Zmęczenie łataniem i frustracja EOL",
+    "en": "Patch fatigue and EOL frustration",
+    "de": "Patch-Müdigkeit und EOL-Frust"
+   },
+   "text": {
+    "pl": "Administratorzy starszych systemów (PHP 8.0/8.1, wygasłe wydania Ubuntu) piszą, że oficjalne poprawki ich nie obejmują, a dystrybucje się spóźniają; wraca pytanie, czy SELinux ogranicza skutki. [obserwacja]",
+    "en": "Admins of older systems (PHP 8.0/8.1, end-of-life Ubuntu releases) say official fixes do not cover them and distributions lag; the question whether SELinux limits the damage keeps coming back. [observation]",
+    "de": "Admins älterer Systeme (PHP 8.0/8.1, abgekündigte Ubuntu-Versionen) schreiben, dass offizielle Fixes sie nicht abdecken und Distributionen hinterherhinken; die Frage, ob SELinux den Schaden begrenzt, taucht immer wieder auf. [Beobachtung]"
+   },
+   "examples": [],
+   "source_url": "https://x.com/averyjparker/status/2112906550410973670",
+   "source_name": "X — @averyjparker (EOL versions and distro lag)"
+  },
+  {
+   "confidence": "reported",
+   "observation": true,
+   "source_reliability": "C",
+   "info_credibility": "3",
+   "time_kind": "retrieved",
+   "time_precision": "hour",
+   "as_of": "2026-10-22T18:30:00Z",
+   "id": "mood-scams",
+   "rank": 6,
+   "mood": "scams",
+   "prominence": "medium",
+   "platforms": [
+    "X",
+    "GitHub (via X/HN)"
+   ],
+   "label": {
+    "pl": "Pasożyty: fałszywe repozytoria i memecoiny",
+    "en": "Parasites: fake repos and memecoins",
+    "de": "Trittbrettfahrer: falsche Repos und Memecoins"
+   },
+   "text": {
+    "pl": "Ostrzeżenia przed „PoC” z backdoorem lub malware, prośbami o przesyłanie działających PoC oraz spamem memecoinów podczepionym pod nazwę PHP2Shell. Strona nie linkuje żadnych repozytoriów PoC. [obserwacja]",
+    "en": "Warnings about backdoored or malware-laden “PoCs”, requests to hand over working PoCs, and memecoin spam riding on the PHP2Shell name. This site links no PoC repositories. [observation]",
+    "de": "Warnungen vor „PoCs“ mit Hintertür oder Malware, vor Aufforderungen, funktionierende PoCs einzusenden, und vor Memecoin-Spam unter dem Namen PHP2Shell. Diese Seite verlinkt keine PoC-Repositories. [Beobachtung]"
+   },
+   "examples": [
+    {
+     "author": "@YoungSTD",
+     "platform": "X",
+     "lang": "pt",
+     "text": "nenhum desses repo tem poc do php2shell, tudo com backdoor... php0shell :(",
+     "url": "https://x.com/YoungSTD/status/2113059003689472475",
+     "posted_utc": "2026-10-22T00:04:59Z",
+     "translations": {
+      "pl": "żadne z tych repozytoriów nie ma PoC php2shell, wszystkie z backdoorem... php0shell :(",
+      "en": "none of these repos has a php2shell PoC, all of them backdoored... php0shell :(",
+      "de": "keines dieser Repos hat einen php2shell-PoC, alle mit Hintertür... php0shell :("
+     }
+    },
+    {
+     "author": "@h4x0r_dz",
+     "platform": "X",
+     "lang": "en",
+     "text": "HackerScam is telling security researchers to send them php2shell valid POC lol",
+     "url": "https://x.com/h4x0r_dz/status/2112999525262528579",
+     "posted_utc": "2026-10-21T20:08:39Z",
+     "translations": {
+      "pl": "HackerScam każe badaczom bezpieczeństwa przysyłać działający PoC php2shell, lol",
+      "de": "HackerScam fordert Sicherheitsforscher auf, ihnen einen funktionierenden php2shell-PoC zu schicken, lol"
+     }
+    }
+   ],
+   "source_url": "https://x.com/almokhtar_al/status/2113049448985100441",
+   "source_name": "X — @almokhtar_al (fake PoC repos may carry malware)"
+  },
+  {
+   "confidence": "reported",
+   "observation": true,
+   "source_reliability": "C",
+   "info_credibility": "3",
+   "time_kind": "retrieved",
+   "time_precision": "hour",
+   "as_of": "2026-10-22T18:30:00Z",
+   "id": "mood-ai-hype",
+   "rank": 7,
+   "mood": "ai_debate",
+   "prominence": "medium",
+   "platforms": [
+    "Hacker News",
+    "X"
+   ],
+   "label": {
+    "pl": "Spór o AI: przełom czy szum",
+    "en": "The AI argument: breakthrough or hype",
+    "de": "Der KI-Streit: Durchbruch oder Hype"
+   },
+   "text": {
+    "pl": "Narracja mediów „AI znalazła lukę w 70% internetu” zderza się w społecznościach technicznych z zarzutem, że modele generują nieweryfikowane „exploity”; inni podkreślają, że odkrycie z pomocą AI było prawdziwe. [obserwacja]",
+    "en": "The media narrative “AI found a flaw in 70% of the internet” clashes in technical communities with the charge that models churn out unverified “exploits”; others stress that the AI-assisted discovery was real. [observation]",
+    "de": "Das Mediennarrativ „KI fand eine Lücke in 70 % des Internets“ prallt in Tech-Communities auf den Vorwurf, Modelle produzierten ungeprüfte „Exploits“; andere betonen, dass die KI-gestützte Entdeckung echt war. [Beobachtung]"
+   },
+   "examples": [
+    {
+     "author": "nemothekid",
+     "platform": "Hacker News",
+     "lang": "en",
+     "text": "It really does feel like a lot of people went \"Claude found a bug, and Claude says it's dangerous\" but no one actually verified how exploitable it actually is?",
+     "url": "https://news.ycombinator.com/item?id=50190613",
+     "posted_utc": "2026-10-22T02:56:57Z",
+     "translations": {
+      "pl": "Naprawdę wygląda na to, że wielu ludzi uznało: „Claude znalazł błąd i Claude mówi, że jest groźny”, ale nikt nie sprawdził, na ile da się go faktycznie wykorzystać?",
+      "de": "Es wirkt wirklich so, als hätten viele gesagt: „Claude hat einen Bug gefunden und Claude sagt, er sei gefährlich“, aber niemand hat geprüft, wie ausnutzbar er tatsächlich ist?"
+     }
+    }
+   ],
+   "source_url": "https://news.ycombinator.com/item?id=50180836",
+   "source_name": "Hacker News — “PHP2Shell: AI uncovers critical RCE in PHP”"
+  },
+  {
+   "confidence": "reported",
+   "observation": true,
+   "source_reliability": "C",
+   "info_credibility": "3",
+   "time_kind": "retrieved",
+   "time_precision": "hour",
+   "as_of": "2026-10-22T18:30:00Z",
+   "id": "mood-pl-politics",
+   "rank": 8,
+   "mood": "politics",
+   "prominence": "low",
+   "platforms": [
+    "X"
+   ],
+   "label": {
+    "pl": "Polska: BIP i polityka",
+    "en": "Poland: BIP and politics",
+    "de": "Polen: BIP und Politik"
+   },
+   "text": {
+    "pl": "W polskim X wyłączenie stron BIP (SSDIP) stało się tematem politycznym: obok rzeczowych alertów pojawiają się złośliwości wobec rządu i refleksje o „kruchości internetu”. [obserwacja]",
+    "en": "On Polish X the BIP (SSDIP) shutdown turned political: next to factual alerts there are jabs at the government and reflections on “the fragility of the internet”. [observation]",
+    "de": "Im polnischen X wurde die Abschaltung der BIP-Seiten (SSDIP) politisch: Neben sachlichen Warnungen gibt es Seitenhiebe gegen die Regierung und Gedanken über die „Zerbrechlichkeit des Internets“. [Beobachtung]"
+   },
+   "examples": [
+    {
+     "author": "@Informacjeworld",
+     "platform": "X",
+     "lang": "pl",
+     "text": "Dwie luki w PHP wystarczyły, by administracje kilku państw wyłączyły serwisy. To lekcja o kruchości internetu...",
+     "url": "https://x.com/Informacjeworld/status/2112952602811871548",
+     "posted_utc": "2026-10-21T17:02:11Z",
+     "translations": {
+      "en": "Two flaws in PHP were enough for the administrations of several countries to switch off their services. It is a lesson about the fragility of the internet...",
+      "de": "Zwei Lücken in PHP reichten, damit Verwaltungen mehrerer Staaten ihre Dienste abschalteten. Eine Lektion über die Zerbrechlichkeit des Internets..."
+     }
+    }
+   ],
+   "source_url": "https://x.com/MaciejOko1/status/2113245706613821629",
+   "source_name": "X — @MaciejOko1 (political comment on the BIP shutdown)"
+  },
+  {
+   "confidence": "reported",
+   "observation": true,
+   "source_reliability": "C",
+   "info_credibility": "3",
+   "time_kind": "retrieved",
+   "time_precision": "hour",
+   "as_of": "2026-10-22T18:30:00Z",
+   "id": "mood-calm-ops",
+   "rank": 9,
+   "mood": "calm_ops",
+   "prominence": "low",
+   "platforms": [
+    "Mastodon",
+    "X"
+   ],
+   "label": {
+    "pl": "Spokojna praca operacyjna",
+    "en": "Calm operational work",
+    "de": "Ruhige operative Arbeit"
+   },
+   "text": {
+    "pl": "Na Mastodonie przeważają wpisy praktyczne: aktualizacje Synology, transparentne komunikaty firm („czy nas to dotyczy”), detekcje dopiero po walidacji; hosterzy raportują powrót usług. [obserwacja]",
+    "en": "Mastodon leans practical: Synology updates, transparent company notes (“were we affected”), detections only after validation; hosters report services coming back. [observation]",
+    "de": "Auf Mastodon überwiegt Praktisches: Synology-Updates, transparente Firmenhinweise („waren wir betroffen“), Detections erst nach Validierung; Hoster melden die Rückkehr ihrer Dienste. [Beobachtung]"
+   },
+   "examples": [
+    {
+     "author": "ifin@infosec.exchange",
+     "platform": "Mastodon",
+     "lang": "en",
+     "text": "We will have useful detections for #PHP2Shell in our post and in MISP shortly. We're doing rigorous validation to make sure we don't provide nonsense.",
+     "url": "https://infosec.exchange/@ifin/117485725079896574",
+     "posted_utc": "2026-10-22T17:24:00Z",
+     "translations": {
+      "pl": "Wkrótce udostępnimy przydatne detekcje #PHP2Shell w naszym wpisie i w MISP. Rygorystycznie je walidujemy, żeby nie podawać bzdur.",
+      "de": "Wir haben in Kürze brauchbare Detections für #PHP2Shell in unserem Beitrag und in MISP. Wir validieren gründlich, damit wir keinen Unsinn liefern."
+     }
+    },
+    {
+     "author": "@netcup",
+     "platform": "X",
+     "lang": "de",
+     "text": "Alle Systeme ... wieder verfügbar. Daten intakt, keine Hinweise auf Ausnutzung. WCP bleibt vorsorglich offline.",
+     "url": "https://x.com/netcup/status/2113032462326522297",
+     "posted_utc": "2026-10-21T22:19:31Z",
+     "translations": {
+      "pl": "Wszystkie systemy ... znów dostępne. Dane nienaruszone, brak oznak wykorzystania. WCP pozostaje zapobiegawczo offline.",
+      "en": "All systems ... available again. Data intact, no signs of exploitation. WCP stays offline as a precaution."
+     }
+    }
+   ],
+   "source_url": "https://infosec.exchange/tags/php2shell",
+   "source_name": "Mastodon — #php2shell (public tag timeline)"
+  },
+  {
+   "confidence": "reported",
+   "observation": true,
+   "source_reliability": "C",
+   "info_credibility": "3",
+   "time_kind": "retrieved",
+   "time_precision": "hour",
+   "as_of": "2026-10-22T18:30:00Z",
+   "id": "mood-recurring-questions",
+   "rank": 10,
+   "mood": "questions",
+   "prominence": "medium",
+   "platforms": [
+    "Hacker News",
+    "X",
+    "Mastodon"
+   ],
+   "label": {
+    "pl": "Powracające pytania",
+    "en": "Recurring questions",
+    "de": "Wiederkehrende Fragen"
+   },
+   "text": {
+    "pl": "Czy dotyczy mnie PHP-FPM, czy tylko mod_php? Czy PHP 7.4/8.0/8.1 dostanie poprawkę? Czy któryś PoC jest prawdziwy? Czym sprawdzić, że łatka działa? Czy SELinux ogranicza skutki? Dlaczego od zgłoszenia do publikacji minęły dwa miesiące? [obserwacja]",
+    "en": "Does PHP-FPM affect me, or only mod_php? Will PHP 7.4/8.0/8.1 get a fix? Is any PoC real? How do I verify the fix works? Does SELinux limit the damage? Why did two months pass between report and disclosure? [observation]",
+    "de": "Betrifft mich PHP-FPM oder nur mod_php? Bekommen PHP 7.4/8.0/8.1 einen Fix? Ist irgendein PoC echt? Wie prüfe ich, ob der Fix wirkt? Begrenzt SELinux den Schaden? Warum vergingen zwei Monate zwischen Meldung und Veröffentlichung? [Beobachtung]"
+   },
+   "examples": [],
+   "source_url": "https://news.ycombinator.com/item?id=50180836",
+   "source_name": "Hacker News — “PHP2Shell: AI uncovers critical RCE in PHP”"
+  }
+ ],
+ "hashtags": [
+  {
+   "tag": "php2shell",
+   "platform": "X",
+   "rank": 1,
+   "counts": {
+    "2026-10-20": 263,
+    "2026-10-21": 27345,
+    "2026-10-22": 27913
+   },
+   "total": 55521,
+   "note": {
+    "pl": "Słowo kluczowe (z hashtagiem i bez). Dzień 2 ≥ dzień 1. 22.10 = dzień niepełny (do ok. 18:30 UTC); liczby obejmują reposty.",
+    "en": "Keyword (with or without #). Day 2 ≥ day 1. 22.10 = partial day (to ~18:30 UTC); counts include reposts.",
+    "de": "Stichwort (mit oder ohne #). Tag 2 ≥ Tag 1. 22.10. = unvollständiger Tag (bis ca. 18:30 UTC); Zahlen enthalten Reposts."
+   },
+   "source_url": "https://x.com/search?q=php2shell&src=typed_query&f=live",
+   "source_name": "X API v2 — recent post counts (retrieved 22.10, 18:30 UTC)",
+   "confidence": "estimate",
+   "observation": true,
+   "source_reliability": "B",
+   "info_credibility": "2",
+   "time_kind": "retrieved",
+   "time_precision": "hour",
+   "as_of": "2026-10-22T18:30:00Z"
+  },
+  {
+   "tag": "CVE-2026-109618 / CVE-2026-109619",
+   "platform": "X",
+   "rank": 2,
+   "counts": {
+    "2026-10-20": 267,
+    "2026-10-21": 13567,
+    "2026-10-22": 9189
+   },
+   "total": 23023,
+   "note": {
+    "pl": "Numery CVE jako słowa kluczowe; spadek w dniu 2 — rozmowa przechodzi na nazwę „PHP2Shell”.",
+    "en": "CVE IDs as keywords; down on day 2 as the conversation shifts to the “PHP2Shell” name.",
+    "de": "CVE-Nummern als Stichwort; Rückgang an Tag 2, die Debatte wechselt zum Namen „PHP2Shell“."
+   },
+   "source_url": "https://x.com/search?q=CVE-2026-109618&src=typed_query&f=live",
+   "source_name": "X API v2 — recent post counts (retrieved 22.10, 18:30 UTC)",
+   "confidence": "estimate",
+   "observation": true,
+   "source_reliability": "B",
+   "info_credibility": "2",
+   "time_kind": "retrieved",
+   "time_precision": "hour",
+   "as_of": "2026-10-22T18:30:00Z"
+  },
+  {
+   "tag": "php2shell (lang:ja)",
+   "platform": "X",
+   "rank": 3,
+   "counts": {
+    "2026-10-21": 10980,
+    "2026-10-22": 10933
+   },
+   "total": 21919,
+   "note": {
+    "pl": "Wpisy po japońsku to ok. 40% wszystkich wzmianek „php2shell” — największa grupa językowa (po apelu premier Japonii).",
+    "en": "Japanese-language posts are about 40% of all “php2shell” mentions — the largest language group (after the Japanese prime minister's appeal).",
+    "de": "Japanischsprachige Beiträge machen rund 40 % aller „php2shell“-Erwähnungen aus — die größte Sprachgruppe (nach dem Appell der japanischen Premierministerin)."
+   },
+   "source_url": "https://x.com/search?q=php2shell%20lang%3Aja&src=typed_query&f=live",
+   "source_name": "X API v2 — recent post counts (retrieved 22.10, 18:30 UTC)",
+   "confidence": "estimate",
+   "observation": true,
+   "source_reliability": "B",
+   "info_credibility": "2",
+   "time_kind": "retrieved",
+   "time_precision": "hour",
+   "as_of": "2026-10-22T18:30:00Z"
+  },
+  {
+   "tag": "#PHP2Shell",
+   "platform": "X",
+   "rank": 4,
+   "counts": {
+    "2026-10-20": 4,
+    "2026-10-21": 2971,
+    "2026-10-22": 6811
+   },
+   "total": 9786,
+   "note": {
+    "pl": "Hashtag ponad 2× częstszy w dniu 2 niż w dniu 1 — nazwa się utrwala.",
+    "en": "Hashtag more than doubled on day 2 — the name is sticking.",
+    "de": "Hashtag an Tag 2 mehr als verdoppelt — der Name setzt sich durch."
+   },
+   "source_url": "https://x.com/search?q=%23PHP2Shell&src=typed_query&f=live",
+   "source_name": "X API v2 — recent post counts (retrieved 22.10, 18:30 UTC)",
+   "confidence": "estimate",
+   "observation": true,
+   "source_reliability": "B",
+   "info_credibility": "2",
+   "time_kind": "retrieved",
+   "time_precision": "hour",
+   "as_of": "2026-10-22T18:30:00Z"
+  },
+  {
+   "tag": "DE: php2shell / CVE / „PHP-Lücke“ (lang:de)",
+   "platform": "X",
+   "rank": 5,
+   "counts": {},
+   "total": 1431,
+   "note": {
+    "pl": "Niemieckojęzyczne wpisy, 20–22.10.",
+    "en": "German-language posts, 20–22 Oct.",
+    "de": "Deutschsprachige Beiträge, 20.–22.10."
+   },
+   "source_url": "https://x.com/search?q=php2shell%20lang%3Ade&src=typed_query&f=live",
+   "source_name": "X API v2 — recent post counts (retrieved 22.10, 18:30 UTC)",
+   "confidence": "estimate",
+   "observation": true,
+   "source_reliability": "B",
+   "info_credibility": "2",
+   "time_kind": "retrieved",
+   "time_precision": "hour",
+   "as_of": "2026-10-22T18:30:00Z"
+  },
+  {
+   "tag": "php2shell #PHP",
+   "platform": "X",
+   "rank": 6,
+   "counts": {},
+   "total": 1272,
+   "note": {
+    "pl": "Najczęstszy hashtag towarzyszący.",
+    "en": "Most common companion hashtag.",
+    "de": "Häufigster Begleit-Hashtag."
+   },
+   "source_url": "https://x.com/search?q=php2shell%20%23PHP&src=typed_query&f=live",
+   "source_name": "X API v2 — recent post counts (retrieved 22.10, 18:30 UTC)",
+   "confidence": "estimate",
+   "observation": true,
+   "source_reliability": "B",
+   "info_credibility": "2",
+   "time_kind": "retrieved",
+   "time_precision": "hour",
+   "as_of": "2026-10-22T18:30:00Z"
+  },
+  {
+   "tag": "#php2shell (Mastodon)",
+   "platform": "Mastodon",
+   "rank": 7,
+   "counts": {
+    "2026-10-21": 508,
+    "2026-10-22": 234
+   },
+   "total": 742,
+   "note": {
+    "pl": "Użycia hashtagu widziane z infosec.exchange (21.10: 508 użyć / 372 konta; 22.10 do ok. 18:30: 234 / 188).",
+    "en": "Hashtag uses as seen from infosec.exchange (21 Oct: 508 uses / 372 accounts; 22 Oct to ~18:30: 234 / 188).",
+    "de": "Hashtag-Nutzung aus Sicht von infosec.exchange (21.10.: 508 Nutzungen / 372 Konten; 22.10. bis ca. 18:30: 234 / 188)."
+   },
+   "source_url": "https://infosec.exchange/tags/php2shell",
+   "source_name": "infosec.exchange — hashtag history (Mastodon API, retrieved 22.10, 18:30 UTC)",
+   "confidence": "estimate",
+   "observation": true,
+   "source_reliability": "B",
+   "info_credibility": "2",
+   "time_kind": "retrieved",
+   "time_precision": "hour",
+   "as_of": "2026-10-22T18:30:00Z"
+  },
+  {
+   "tag": "php2shell #cybersecurity / #infosec",
+   "platform": "X",
+   "rank": 8,
+   "counts": {},
+   "total": 507,
+   "note": {
+    "pl": "Hashtagi branżowe.",
+    "en": "Industry hashtags.",
+    "de": "Branchen-Hashtags."
+   },
+   "source_url": "https://x.com/search?q=php2shell%20%23infosec&src=typed_query&f=live",
+   "source_name": "X API v2 — recent post counts (retrieved 22.10, 18:30 UTC)",
+   "confidence": "estimate",
+   "observation": true,
+   "source_reliability": "B",
+   "info_credibility": "2",
+   "time_kind": "retrieved",
+   "time_precision": "hour",
+   "as_of": "2026-10-22T18:30:00Z"
+  },
+  {
+   "tag": "PL: php2shell / CVE / „luka w PHP” (lang:pl)",
+   "platform": "X",
+   "rank": 9,
+   "counts": {},
+   "total": 352,
+   "note": {
+    "pl": "Polskojęzyczne wpisy, 20–22.10.",
+    "en": "Polish-language posts, 20–22 Oct.",
+    "de": "Polnischsprachige Beiträge, 20.–22.10."
+   },
+   "source_url": "https://x.com/search?q=php2shell%20lang%3Apl&src=typed_query&f=live",
+   "source_name": "X API v2 — recent post counts (retrieved 22.10, 18:30 UTC)",
+   "confidence": "estimate",
+   "observation": true,
+   "source_reliability": "B",
+   "info_credibility": "2",
+   "time_kind": "retrieved",
+   "time_precision": "hour",
+   "as_of": "2026-10-22T18:30:00Z"
+  },
+  {
+   "tag": "#CVE2026109618 / #CVE2026109619",
+   "platform": "X",
+   "rank": 10,
+   "counts": {},
+   "total": 212,
+   "note": {
+    "pl": "Hashtagi z numerem CVE — rzadkie.",
+    "en": "CVE-number hashtags — rare.",
+    "de": "CVE-Nummer als Hashtag — selten."
+   },
+   "source_url": "https://x.com/search?q=%23CVE2026109618&src=typed_query&f=live",
+   "source_name": "X API v2 — recent post counts (retrieved 22.10, 18:30 UTC)",
+   "confidence": "estimate",
+   "observation": true,
+   "source_reliability": "B",
+   "info_credibility": "2",
+   "time_kind": "retrieved",
+   "time_precision": "hour",
+   "as_of": "2026-10-22T18:30:00Z"
+  },
+  {
+   "tag": "php2shell + log4shell / log4j",
+   "platform": "X",
+   "rank": 11,
+   "counts": {},
+   "total": 192,
+   "note": {
+    "pl": "Porównania z Log4Shell.",
+    "en": "Comparisons with Log4Shell.",
+    "de": "Vergleiche mit Log4Shell."
+   },
+   "source_url": "https://x.com/search?q=php2shell%20log4j&src=typed_query&f=live",
+   "source_name": "X API v2 — recent post counts (retrieved 22.10, 18:30 UTC)",
+   "confidence": "estimate",
+   "observation": true,
+   "source_reliability": "B",
+   "info_credibility": "2",
+   "time_kind": "retrieved",
+   "time_precision": "hour",
+   "as_of": "2026-10-22T18:30:00Z"
+  },
+  {
+   "tag": "php2shell #WordPress",
+   "platform": "X",
+   "rank": 12,
+   "counts": {},
+   "total": 134,
+   "note": {
+    "pl": "Kontekst WordPressa.",
+    "en": "WordPress context.",
+    "de": "WordPress-Kontext."
+   },
+   "source_url": "https://x.com/search?q=php2shell%20%23WordPress&src=typed_query&f=live",
+   "source_name": "X API v2 — recent post counts (retrieved 22.10, 18:30 UTC)",
+   "confidence": "estimate",
+   "observation": true,
+   "source_reliability": "B",
+   "info_credibility": "2",
+   "time_kind": "retrieved",
+   "time_precision": "hour",
+   "as_of": "2026-10-22T18:30:00Z"
+  },
+  {
+   "tag": "PHPokalipsa / PHPocalypse",
+   "platform": "X",
+   "rank": 13,
+   "counts": {},
+   "total": 49,
+   "note": {
+    "pl": "Memiczne nazwy — marginalne.",
+    "en": "Meme names — marginal.",
+    "de": "Meme-Namen — Randerscheinung."
+   },
+   "source_url": "https://x.com/search?q=PHPocalypse&src=typed_query&f=live",
+   "source_name": "X API v2 — recent post counts (retrieved 22.10, 18:30 UTC)",
+   "confidence": "estimate",
+   "observation": true,
+   "source_reliability": "B",
+   "info_credibility": "2",
+   "time_kind": "retrieved",
+   "time_precision": "hour",
+   "as_of": "2026-10-22T18:30:00Z"
+  }
+ ],
+ "press_review": [
+  {
+   "id": "cnn-1021",
+   "outlet": "CNN Business",
+   "lang": "en",
+   "region": "intl",
+   "published_utc": "2026-10-21T16:36:00Z",
+   "title": "Websites shut down globally after AI finds cybersecurity flaw affecting 70% of the internet",
+   "angle": {
+    "pl": "AI jako przełom; światowi przywódcy i wyłączenia stron; ekspert IBM studzi: to nie „jeden przycisk”.",
+    "en": "AI as an inflection point; world leaders and shutdowns; an IBM expert cools it down: not “push a button”.",
+    "de": "KI als Wendepunkt; Regierungschefs und Abschaltungen; ein IBM-Experte bremst: kein „Knopfdruck“."
+   },
+   "source_url": "https://www.cnn.com/2026/10/21/tech/php2shell-vulnerability-ai",
+   "source_name": "CNN Business",
+   "confidence": "confirmed",
+   "source_reliability": "B",
+   "info_credibility": "2",
+   "time_kind": "published",
+   "time_precision": "minute",
+   "link_check": {
+    "status": "ok",
+    "checked_utc": "2026-10-22T18:30:00Z"
+   },
+   "new_fact": {
+    "pl": "Brytyjska minister: prawie trzy tuziny usług rządu UK niedostępnych; Wikimedia potwierdza zapobiegawcze wyłączenia (aktualizacja 22.10).",
+    "en": "UK minister: nearly three dozen UK government services unavailable; Wikimedia confirms precautionary takedowns (update of 22 Oct).",
+    "de": "Britische Ministerin: fast drei Dutzend Dienste der UK-Regierung nicht verfügbar; Wikimedia bestätigt vorsorgliche Abschaltungen (Update vom 22.10.)."
+   },
+   "time_note": {
+    "pl": "Opublikowano 21.10 12:36 ET, aktualizacja 22.10 14:26 ET.",
+    "en": "Published 21 Oct 12:36 ET, updated 22 Oct 14:26 ET.",
+    "de": "Veröffentlicht 21.10. 12:36 ET, aktualisiert 22.10. 14:26 ET."
+   }
+  },
+  {
+   "id": "darkreading-1021",
+   "outlet": "Dark Reading",
+   "lang": "en",
+   "region": "intl",
+   "published_utc": "2026-10-21",
+   "title": "'PHP2Shell' Bugs Signal Red Alert for Security Industry",
+   "angle": {
+    "pl": "Branża w trybie alarmowym; watchTowr: próby w sieci, ale bez udanych ataków; Mondoo chwali zespół PHP, ostrzega przed przeciążeniem wolontariuszy.",
+    "en": "Industry on red alert; watchTowr: attempts in the wild but none successful yet; Mondoo praises the PHP team, warns about volunteer overload.",
+    "de": "Branche im Alarmzustand; watchTowr: Versuche in freier Wildbahn, aber noch keine erfolgreichen; Mondoo lobt das PHP-Team, warnt vor Überlastung Ehrenamtlicher."
+   },
+   "source_url": "https://www.darkreading.com/application-security/php2shell-bugs-red-alert-security-industry",
+   "source_name": "Dark Reading",
+   "confidence": "confirmed",
+   "source_reliability": "B",
+   "info_credibility": "2",
+   "time_kind": "published",
+   "time_precision": "day",
+   "link_check": {
+    "status": "ok",
+    "checked_utc": "2026-10-22T18:30:00Z"
+   }
+  },
+  {
+   "id": "cnbc-1022",
+   "outlet": "CNBC",
+   "lang": "en",
+   "region": "intl",
+   "published_utc": "2026-10-22T01:05:00Z",
+   "title": "Critical PHP web security flaws spark global alarm as Google, OpenAI and Amazon respond",
+   "angle": {
+    "pl": "Perspektywa Big Tech: Google/Wiz, OpenAI, Amazon, Cloudflare; NSA radzi wyłączać systemy bez łatki.",
+    "en": "Big Tech angle: Google/Wiz, OpenAI, Amazon, Cloudflare; NSA advises taking unpatched systems offline.",
+    "de": "Big-Tech-Blickwinkel: Google/Wiz, OpenAI, Amazon, Cloudflare; NSA rät, ungepatchte Systeme vom Netz zu nehmen."
+   },
+   "source_url": "https://www.cnbc.com/2026/10/22/php-google-openai-and-amazon-cyber.html",
+   "source_name": "CNBC",
+   "confidence": "confirmed",
+   "source_reliability": "B",
+   "info_credibility": "2",
+   "time_kind": "published",
+   "time_precision": "minute",
+   "link_check": {
+    "status": "ok",
+    "checked_utc": "2026-10-22T18:30:00Z"
+   },
+   "new_fact": {
+    "pl": "Zastrzega, że nie każda strona na PHP jest podatna.",
+    "en": "Notes that not every PHP website is necessarily vulnerable.",
+    "de": "Betont, dass nicht jede PHP-Website zwingend verwundbar ist."
+   }
+  },
+  {
+   "id": "bloomberg-1022",
+   "outlet": "Bloomberg",
+   "lang": "en",
+   "region": "intl",
+   "published_utc": "2026-10-22",
+   "title": "PHP Vulnerabilities Targeted by Hackers Days Ahead of Public Release",
+   "angle": {
+    "pl": "Ataki przed publikacją (wątek Amazon/AWS) jako główna oś.",
+    "en": "Pre-disclosure targeting (the Amazon/AWS thread) as the main angle.",
+    "de": "Angriffe vor der Veröffentlichung (Amazon/AWS) als Hauptthema."
+   },
+   "source_url": "https://www.bloomberg.com/news/articles/2026-10-22/researchers-say-hackers-targeted-php-before-flaws-were-known",
+   "source_name": "Bloomberg",
+   "confidence": "confirmed",
+   "source_reliability": "B",
+   "info_credibility": "2",
+   "time_kind": "published",
+   "time_precision": "day",
+   "link_check": {
+    "status": "bot_wall",
+    "checked_utc": "2026-10-22T18:30:00Z"
+   }
+  },
+  {
+   "id": "zdf-1022",
+   "outlet": "ZDFheute",
+   "lang": "de",
+   "region": "de",
+   "published_utc": "2026-10-22T06:41:47Z",
+   "title": "PHP-Sicherheitslücke: Was Experten Website-Betreibern jetzt raten",
+   "angle": {
+    "pl": "Eksperci: niezałatane strony wyłączyć; problem forensyki i RODO.",
+    "en": "Experts: switch off unpatched sites; forensics and GDPR problem.",
+    "de": "Experten: ungeschützte Seiten abschalten; Forensik- und DSGVO-Problem."
+   },
+   "source_url": "https://www.zdfheute.de/politik/php-luecke-cybersicherheit-experten-bedrohung-100.html",
+   "source_name": "ZDFheute",
+   "confidence": "confirmed",
+   "source_reliability": "B",
+   "info_credibility": "2",
+   "time_kind": "published",
+   "time_precision": "minute",
+   "link_check": {
+    "status": "ok",
+    "checked_utc": "2026-10-22T18:30:00Z"
+   },
+   "new_fact": {
+    "pl": "Christopher Kunz (heise): próby ataków trwają, ale głównie z błędnie napisanym kodem, więc na razie zawodzą.",
+    "en": "Christopher Kunz (heise): attack attempts are ongoing but mostly use incorrectly written code, so they fail for now.",
+    "de": "Christopher Kunz (heise): Angriffsversuche laufen, meist aber mit nicht korrekt programmierter Schadsoftware, daher scheitern sie vorerst."
+   }
+  },
+  {
+   "id": "spiegel-1022",
+   "outlet": "DER SPIEGEL",
+   "lang": "de",
+   "region": "de",
+   "published_utc": "2026-10-22T11:45:00Z",
+   "title": "PHP2Shell: Die Attacken auf Server-Schwachstellen haben begonnen",
+   "angle": {
+    "pl": "Ataki się zaczęły; wycieki informacji jako przyczyna „wypadku”; skala szkód otwarta (SPIEGEL+, płatny).",
+    "en": "Attacks have begun; information leaks blamed for the “accident”; scale of damage open (SPIEGEL+, paywalled).",
+    "de": "Die Attacken haben begonnen; Informationslecks als Ursache; Schadensumfang offen (SPIEGEL+)."
+   },
+   "source_url": "https://www.spiegel.de/netzwelt/netzpolitik/php2shell-wie-eine-server-schwachstelle-behoerden-aus-dem-netz-kegelte-a-1d993c5a-2f97-4190-86b1-64bc2bf5070b",
+   "source_name": "DER SPIEGEL",
+   "confidence": "confirmed",
+   "source_reliability": "B",
+   "info_credibility": "2",
+   "time_kind": "published",
+   "time_precision": "minute",
+   "link_check": {
+    "status": "ok",
+    "checked_utc": "2026-10-22T18:30:00Z"
+   }
+  },
+  {
+   "id": "tagesschau-1022",
+   "outlet": "tagesschau.de",
+   "lang": "de",
+   "region": "de",
+   "published_utc": "2026-10-22T13:41:00Z",
+   "title": "PHP-Bedrohung: Was über die Sicherheitslücke bekannt ist",
+   "angle": {
+    "pl": "Objaśnienie dla szerokiej publiczności: BSI poziom 3/pomarańczowy, porady dla właścicieli stron.",
+    "en": "Explainer for the general public: BSI level 3/orange, advice for site owners.",
+    "de": "Erklärstück: BSI-Warnstufe 3/Orange, Rat für Website-Betreiber."
+   },
+   "source_url": "https://www.tagesschau.de/wirtschaft/digitales/php-panne-100.html",
+   "source_name": "tagesschau.de",
+   "confidence": "confirmed",
+   "source_reliability": "B",
+   "info_credibility": "2",
+   "time_kind": "published",
+   "time_precision": "minute",
+   "link_check": {
+    "status": "ok",
+    "checked_utc": "2026-10-22T18:30:00Z"
+   },
+   "new_fact": {
+    "pl": "Minister cyfryzacji Wildberger (wg „Bild”): brak szkód w systemach IT federacji; Marc Henrichmann (Handelsblatt): jedna z najpoważniejszych luk ostatnich lat.",
+    "en": "Digital minister Wildberger (per Bild): no damage to federal IT systems; Marc Henrichmann (Handelsblatt): one of the most serious flaws in recent years.",
+    "de": "Digitalminister Wildberger (laut Bild): keine Schäden an IT-Systemen des Bundes; Marc Henrichmann (Handelsblatt): eine der ernstesten Lücken der vergangenen Jahre."
+   }
+  },
+  {
+   "id": "linuxmagazin-1022",
+   "outlet": "Linux-Magazin",
+   "lang": "de",
+   "region": "de",
+   "published_utc": "2026-10-22T16:47:49Z",
+   "title": "Kritische PHP-Schwachstellen waren seit Jahren bekannt",
+   "angle": {
+    "pl": "„Debakl governance”: problem znany od audytu 2024, poprawkę blokowały kompatybilność i jednomyślność zespołu.",
+    "en": "“Governance debacle”: problem known since the 2024 audit, fix blocked by compatibility fears and a unanimity rule.",
+    "de": "„Governance-Debakel“: seit dem Audit 2024 bekannt, Fix blockiert durch Kompatibilitätsangst und Einstimmigkeitsprinzip."
+   },
+   "source_url": "https://www.linux-magazin.de/news/kritische-php-schwachstellen-waren-seit-jahren-bekannt/",
+   "source_name": "Linux-Magazin",
+   "confidence": "confirmed",
+   "source_reliability": "B",
+   "info_credibility": "2",
+   "time_kind": "published",
+   "time_precision": "minute",
+   "link_check": {
+    "status": "ok",
+    "checked_utc": "2026-10-22T18:30:00Z"
+   },
+   "time_note": {
+    "pl": "Czas = wpis redakcji na Mastodonie.",
+    "en": "Time = the editors' Mastodon post.",
+    "de": "Zeit = Mastodon-Beitrag der Redaktion."
+   }
+  },
+  {
+   "id": "onet-1022",
+   "outlet": "Onet",
+   "lang": "pl",
+   "region": "pl",
+   "published_utc": "2026-10-22T04:54:00Z",
+   "title": "AI odkryła lukę, która może zagrozić milionom stron. Polska reaguje",
+   "angle": {
+    "pl": "Za „WSJ”: AI w odkryciu luki, porównanie z Heartbleed (Volker Dusch), reakcja Polski (BIP).",
+    "en": "Following the WSJ: AI in the discovery, Heartbleed comparison (Volker Dusch), Poland's reaction (BIP).",
+    "de": "Nach dem WSJ: KI bei der Entdeckung, Heartbleed-Vergleich (Volker Dusch), Polens Reaktion (BIP)."
+   },
+   "source_url": "https://wiadomosci.onet.pl/swiat/ai-odkryla-luke-ktora-moze-zagrozic-milionom-stron-eksperci-bija-na-alarm/6dsce33",
+   "source_name": "Onet",
+   "confidence": "confirmed",
+   "source_reliability": "B",
+   "info_credibility": "2",
+   "time_kind": "published",
+   "time_precision": "minute",
+   "link_check": {
+    "status": "ok",
+    "checked_utc": "2026-10-22T18:30:00Z"
+   },
+   "time_note": {
+    "pl": "Utworzono 22.10 06:54, aktualizacja 13:25 (czas polski).",
+    "en": "Created 22 Oct 06:54, updated 13:25 (Polish time).",
+    "de": "Erstellt 22.10. 06:54, aktualisiert 13:25 (polnische Zeit)."
+   }
+  },
+  {
+   "id": "tvn24-1022",
+   "outlet": "TVN24 Biznes",
+   "lang": "pl",
+   "region": "pl",
+   "published_utc": "2026-10-22T06:51:00Z",
+   "title": "Poważne luki w PHP. Ministerstwo Cyfryzacji reaguje",
+   "angle": {
+    "pl": "Wyłączenie BIP (SSDIP) przez COI, posiedzenie PCOC, plan przywracania.",
+    "en": "BIP (SSDIP) shutdown by COI, joint cyber operations centre (PCOC) meeting, restore plan.",
+    "de": "BIP-Abschaltung (SSDIP) durch COI, Sitzung des PCOC, Wiederherstellungsplan."
+   },
+   "source_url": "https://tvn24.pl/biznes/z-kraju/strony-biuletynu-informacji-publicznej-wylaczone-krzysztof-gawkowski-wykryto-powazne-luki-st9299779",
+   "source_name": "TVN24 Biznes",
+   "confidence": "confirmed",
+   "source_reliability": "B",
+   "info_credibility": "2",
+   "time_kind": "published",
+   "time_precision": "minute",
+   "link_check": {
+    "status": "ok",
+    "checked_utc": "2026-10-22T18:30:00Z"
+   },
+   "new_fact": {
+    "pl": "Przeglądanie stron ssdip.bip.gov.pl miało wrócić 22.10 po 16:00; wyszukiwarka i część redakcyjna później.",
+    "en": "Browsing of ssdip.bip.gov.pl pages was due back on 22 Oct after 16:00; search and editing later.",
+    "de": "Lesen der Seiten auf ssdip.bip.gov.pl sollte am 22.10. nach 16:00 zurückkommen; Suche und Redaktion später."
+   },
+   "time_note": {
+    "pl": "Opublikowano 08:51, aktualizacja 13:22 (czas polski).",
+    "en": "Published 08:51, updated 13:22 (Polish time).",
+    "de": "Veröffentlicht 08:51, aktualisiert 13:22 (polnische Zeit)."
+   }
+  },
+  {
+   "id": "crowdstrike-1022",
+   "outlet": "CrowdStrike (vendor blog)",
+   "lang": "en",
+   "region": "intl",
+   "published_utc": "2026-10-22",
+   "title": "CrowdStrike Protects Customers from Threats Delivered via PHP2Shell",
+   "angle": {
+    "pl": "Dostawca: RCE zweryfikowane w laboratorium (mod_php) — przeciwwaga dla głosów „PoC nie działają”.",
+    "en": "Vendor: lab-verified RCE (mod_php) — the counterweight to “the PoCs don't work”.",
+    "de": "Hersteller: im Labor verifizierte RCE (mod_php) — Gegengewicht zu „die PoCs funktionieren nicht“."
+   },
+   "source_url": "https://www.crowdstrike.com/en-us/blog/crowdstrike-protects-customers-from-php-rce-zero-days/",
+   "source_name": "CrowdStrike blog — PHP2Shell (Amit Serper)",
+   "confidence": "confirmed",
+   "source_reliability": "B",
+   "info_credibility": "3",
+   "time_kind": "published",
+   "time_precision": "day",
+   "link_check": {
+    "status": "ok",
+    "checked_utc": "2026-10-22T18:30:00Z"
+   }
+  },
+  {
+   "id": "eliastaylor-hn-1021",
+   "outlet": "Elias Taylor (blog) via Hacker News",
+   "lang": "en",
+   "region": "intl",
+   "published_utc": "2026-10-21T23:13:00Z",
+   "title": "There isn't an easy exploit for this PHP vulnerability",
+   "angle": {
+    "pl": "Głos sceptyczny: brak łatwego exploita, PoC „oszukują”; najpopularniejsza dyskusja HN (597 pkt).",
+    "en": "Skeptical voice: no easy exploit, PoCs “cheat”; the top HN discussion (597 points).",
+    "de": "Skeptische Stimme: kein einfacher Exploit, PoCs „schummeln“; meistdiskutiert auf HN (597 Punkte)."
+   },
+   "source_url": "https://news.ycombinator.com/item?id=50188948",
+   "source_name": "Hacker News — “There isn't an easy exploit for this PHP vulnerability”",
+   "confidence": "confirmed",
+   "source_reliability": "C",
+   "info_credibility": "3",
+   "time_kind": "published",
+   "time_precision": "minute",
+   "link_check": {
+    "status": "ok",
+    "checked_utc": "2026-10-22T18:30:00Z"
+   },
+   "time_note": {
+    "pl": "Link do dyskusji HN, nie do bloga (blog linkuje repozytoria PoC).",
+    "en": "Linked to the HN discussion, not the blog (the blog links PoC repositories).",
+    "de": "Verlinkt ist die HN-Diskussion, nicht der Blog (der Blog verlinkt PoC-Repositories)."
+   }
+  }
+ ],
+ "media_contradictions": [
+  {
+   "id": "contra-exploitability",
+   "topic": {
+    "pl": "Czy da się to łatwo wykorzystać?",
+    "en": "Is it easy to exploit?",
+    "de": "Ist es leicht auszunutzen?"
+   },
+   "text": {
+    "pl": "CrowdStrike i Wiz opisują działające RCE w laboratorium (m.in. mod_php, obrazy Docker WordPress/Drupal/Joomla); watchTowr, Hunt.io, heise i IBM mówią, że publiczne PoC nie trafiają, a atak nie jest „na jeden przycisk”. Oba mogą być prawdą: RCE jest realne w warunkach badawczych, krążące skrypty zwykle nie działają. [?]",
+    "en": "CrowdStrike and Wiz describe working lab RCE (incl. mod_php, WordPress/Drupal/Joomla Docker images); watchTowr, Hunt.io, heise and IBM say the public PoCs don't land and it is not push-button. Both can be true: RCE is real under research conditions, circulating scripts mostly fail. [?]",
+    "de": "CrowdStrike und Wiz beschreiben funktionierende Labor-RCE (u. a. mod_php, Docker-Images von WordPress/Drupal/Joomla); watchTowr, Hunt.io, heise und IBM sagen, die öffentlichen PoCs treffen nicht und es sei kein Knopfdruck-Angriff. Beides kann stimmen: RCE ist unter Forschungsbedingungen real, kursierende Skripte scheitern meist. [?]"
+   },
+   "sides": [
+    {
+     "label": {
+      "pl": "RCE w laboratorium",
+      "en": "Lab RCE",
+      "de": "Labor-RCE"
+     },
+     "source_url": "https://www.crowdstrike.com/en-us/blog/crowdstrike-protects-customers-from-php-rce-zero-days/",
+     "source_name": "CrowdStrike blog"
+    },
+    {
+     "label": {
+      "pl": "Brak udanych prób",
+      "en": "No successful attempts",
+      "de": "Keine erfolgreichen Versuche"
+     },
+     "source_url": "https://www.darkreading.com/application-security/php2shell-bugs-red-alert-security-industry",
+     "source_name": "Dark Reading (watchTowr)"
+    },
+    {
+     "label": {
+      "pl": "Ataki z błędnym kodem",
+      "en": "Attacks with broken code",
+      "de": "Angriffe mit fehlerhaftem Code"
+     },
+     "source_url": "https://www.zdfheute.de/politik/php-luecke-cybersicherheit-experten-bedrohung-100.html",
+     "source_name": "ZDFheute (heise)"
+    }
+   ],
+   "status": {
+    "pl": "otwarte",
+    "en": "open",
+    "de": "offen"
+   },
+   "source_url": "https://www.crowdstrike.com/en-us/blog/crowdstrike-protects-customers-from-php-rce-zero-days/",
+   "source_name": "CrowdStrike blog",
+   "confidence": "reported",
+   "source_reliability": "B",
+   "info_credibility": "3",
+   "time_kind": "retrieved",
+   "time_precision": "hour",
+   "as_of": "2026-10-22T18:30:00Z"
+  },
+  {
+   "id": "contra-70-percent",
+   "topic": {
+    "pl": "„70% internetu” a realna podatność",
+    "en": "“70% of the internet” vs real exposure",
+    "de": "„70 % des Internets“ vs. tatsächliche Gefährdung"
+   },
+   "text": {
+    "pl": "CNN i Onet piszą o luce dotyczącej 70% stron (udział PHP wg W3Techs); CNBC zastrzega, że nie każda strona na PHP jest podatna. 70% to udział technologii, nie liczba podatnych serwerów. [A]",
+    "en": "CNN and Onet frame it as a flaw affecting 70% of websites (PHP's W3Techs share); CNBC notes not every PHP site is necessarily vulnerable. 70% is the technology's share, not a count of vulnerable servers. [A]",
+    "de": "CNN und Onet sprechen von einer Lücke, die 70 % der Websites betrifft (PHP-Anteil laut W3Techs); CNBC betont, dass nicht jede PHP-Seite verwundbar ist. 70 % ist der Technologieanteil, keine Zahl verwundbarer Server. [A]"
+   },
+   "sides": [
+    {
+     "label": {
+      "pl": "70% stron",
+      "en": "70% of sites",
+      "de": "70 % der Seiten"
+     },
+     "source_url": "https://www.cnn.com/2026/10/21/tech/php2shell-vulnerability-ai",
+     "source_name": "CNN Business"
+    },
+    {
+     "label": {
+      "pl": "Nie każda strona",
+      "en": "Not every site",
+      "de": "Nicht jede Seite"
+     },
+     "source_url": "https://www.cnbc.com/2026/10/22/php-google-openai-and-amazon-cyber.html",
+     "source_name": "CNBC"
+    }
+   ],
+   "status": {
+    "pl": "wyjaśnione (różne miary)",
+    "en": "explained (different measures)",
+    "de": "geklärt (verschiedene Maße)"
+   },
+   "source_url": "https://www.cnn.com/2026/10/21/tech/php2shell-vulnerability-ai",
+   "source_name": "CNN Business",
+   "confidence": "reported",
+   "source_reliability": "B",
+   "info_credibility": "3",
+   "time_kind": "retrieved",
+   "time_precision": "hour",
+   "as_of": "2026-10-22T18:30:00Z"
+  },
+  {
+   "id": "contra-attacks-begun",
+   "topic": {
+    "pl": "„Ataki się zaczęły” a brak potwierdzonych włamań",
+    "en": "“Attacks have begun” vs no confirmed compromise",
+    "de": "„Die Attacken haben begonnen“ vs. keine bestätigte Kompromittierung"
+   },
+   "text": {
+    "pl": "Nagłówki (SPIEGEL) i Cloudflare mówią o milionach prób; jednocześnie watchTowr i Recorded Future nie potwierdzają udanych włamań, a CVE nie ma w CISA KEV. Próby ≠ skuteczne ataki. [?]",
+    "en": "Headlines (SPIEGEL) and Cloudflare speak of millions of attempts; at the same time watchTowr and Recorded Future confirm no successful compromise and the CVEs are not in CISA KEV. Attempts ≠ successful attacks. [?]",
+    "de": "Schlagzeilen (SPIEGEL) und Cloudflare sprechen von Millionen Versuchen; zugleich bestätigen watchTowr und Recorded Future keine erfolgreiche Kompromittierung, und die CVEs stehen nicht im CISA-KEV. Versuche ≠ erfolgreiche Angriffe. [?]"
+   },
+   "sides": [
+    {
+     "label": {
+      "pl": "Ataki się zaczęły",
+      "en": "Attacks have begun",
+      "de": "Attacken haben begonnen"
+     },
+     "source_url": "https://www.spiegel.de/netzwelt/netzpolitik/php2shell-wie-eine-server-schwachstelle-behoerden-aus-dem-netz-kegelte-a-1d993c5a-2f97-4190-86b1-64bc2bf5070b",
+     "source_name": "DER SPIEGEL"
+    },
+    {
+     "label": {
+      "pl": "Brak potwierdzonych włamań",
+      "en": "No confirmed compromise",
+      "de": "Keine bestätigte Kompromittierung"
+     },
+     "source_url": "https://www.recordedfuture.com/blog/php2shell-vulnerability-exploitation",
+     "source_name": "Recorded Future — PHP2Shell Exploitation (Insikt Group)"
+    }
+   ],
+   "status": {
+    "pl": "otwarte",
+    "en": "open",
+    "de": "offen"
+   },
+   "source_url": "https://www.spiegel.de/netzwelt/netzpolitik/php2shell-wie-eine-server-schwachstelle-behoerden-aus-dem-netz-kegelte-a-1d993c5a-2f97-4190-86b1-64bc2bf5070b",
+   "source_name": "DER SPIEGEL",
+   "confidence": "reported",
+   "source_reliability": "B",
+   "info_credibility": "3",
+   "time_kind": "retrieved",
+   "time_precision": "hour",
+   "as_of": "2026-10-22T18:30:00Z"
   }
  ]
 }
