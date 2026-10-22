@@ -10,7 +10,7 @@
    "en": "CVE-2026-109618 and CVE-2026-109619: critical RCE flaws in the PHP core",
    "de": "CVE-2026-109618 und CVE-2026-109619: kritische RCE-Lücken im PHP-Kern"
   },
-  "last_updated": "2026-10-22T10:34:00Z",
+  "last_updated": "2026-10-22T12:25:00Z",
   "maintainer_note": "Single source of truth. Every fact needs source_url, source_name, confidence; texts as {pl,en,de}. Run ./update_and_build.sh \"message\".",
   "timezone_note": {
    "pl": "Wszystkie czasy w UTC. Czasy z NOS (CEST) przeliczone na UTC (−2 h).",
@@ -104,7 +104,7 @@
   "exploitation_threshold": {
    "rule": "confirmed only if CISA KEV lists a CVE or a national CERT publishes credible in-the-wild evidence",
    "kev_listed": false,
-   "kev_checked_utc": "2026-10-22T10:27:00Z",
+   "kev_checked_utc": "2026-10-22T12:16:00Z",
    "kev_catalog_version": "2026.10.21",
    "kev_url": "https://www.cisa.gov/known-exploited-vulnerabilities-catalog",
    "national_cert_itw": []
@@ -3198,6 +3198,36 @@
     "en": "Status “as of 7 PM UTC” per the post; the blog shows no publication time.",
     "de": "Stand „as of 7 PM UTC“ laut Beitrag; der Blog nennt keine Veröffentlichungszeit."
    }
+  },
+  {
+   "id": "crowdstrike-verified-rce-modphp",
+   "time_utc": "2026-10-21",
+   "importance": "major",
+   "title": {
+    "pl": "CrowdStrike: w laboratorium zweryfikowane zdalne wykonanie kodu na Apache mod_php",
+    "en": "CrowdStrike: remote code execution verified in the lab on Apache mod_php",
+    "de": "CrowdStrike: Remote Code Execution auf Apache mod_php im Labor verifiziert"
+   },
+   "description": {
+    "pl": "CrowdStrike (Amit Serper) pisze, że zweryfikował pełny łańcuch: jedno anonimowe żądanie POST sprawiło, że worker Apache mod_php uruchomił powłokę i wykonał polecenie, bez uwierzytelnienia i bez podatnego kodu aplikacji. Exploit nie został opublikowany. Według CrowdStrike domyślne ustawienia PHP (post_max_size 8M, memory_limit 128M) nie pozwalają dojść do błędu opisaną drogą; narażone są konfiguracje z memory_limit mniejszym niż ok. 4 × post_max_size. Ślad dla obrońców: błąd przekroczenia pamięci „in Unknown on line 0” w logu serwera WWW.",
+    "en": "CrowdStrike (Amit Serper) says it verified the full chain: a single anonymous POST request made an Apache mod_php worker launch a shell and run a command, with no authentication and no vulnerable application code. The exploit has not been published. According to CrowdStrike, PHP’s shipped defaults (post_max_size 8M, memory_limit 128M) cannot be driven into the bug along the path it demonstrated; exposed are configurations with memory_limit below roughly 4 × post_max_size. Trace for defenders: a memory-exhaustion fatal error “in Unknown on line 0” in the web server log.",
+    "de": "CrowdStrike (Amit Serper) schreibt, die vollständige Kette verifiziert zu haben: Ein einziger anonymer POST-Request brachte einen Apache-mod_php-Worker dazu, eine Shell zu starten und einen Befehl auszuführen, ohne Authentifizierung und ohne verwundbaren Anwendungscode. Der Exploit wurde nicht veröffentlicht. Laut CrowdStrike lässt sich der Fehler mit den PHP-Standardwerten (post_max_size 8M, memory_limit 128M) auf dem gezeigten Weg nicht auslösen; gefährdet sind Konfigurationen mit memory_limit unter etwa 4 × post_max_size. Spur für Verteidiger: ein Speicherfehler „in Unknown on line 0“ im Webserver-Log."
+   },
+   "actors": [
+    "CrowdStrike"
+   ],
+   "source_url": "https://www.crowdstrike.com/en-us/blog/crowdstrike-protects-customers-from-php-rce-zero-days/",
+   "source_name": "CrowdStrike blog (Amit Serper)",
+   "confidence": "reported",
+   "source_reliability": "B",
+   "info_credibility": 2,
+   "time_kind": "published",
+   "time_precision": "day",
+   "rating_note": {
+    "pl": "Wynik laboratoryjny dostawcy, publicznie niepowtórzony; zgodny z oceną PHP, że mod_php jest najbardziej narażony.",
+    "en": "Vendor lab result, not publicly reproduced; consistent with PHP’s view that mod_php is most exposed.",
+    "de": "Laborergebnis des Herstellers, öffentlich nicht reproduziert; deckt sich mit der Einschätzung von PHP, dass mod_php am stärksten gefährdet ist."
+   }
   }
  ],
  "actors": [
@@ -5757,6 +5787,11 @@
    "name": "The Copenhagen Post (Ritzau) — Danish websites offline",
    "url": "https://cphpost.dk/2026-10-22/news/round-up/security-flaw-in-widely-used-software-forces-danish-websites-offline/",
    "type": "press"
+  },
+  {
+   "name": "CrowdStrike blog — PHP2Shell (Amit Serper)",
+   "url": "https://www.crowdstrike.com/en-us/blog/crowdstrike-protects-customers-from-php-rce-zero-days/",
+   "type": "research"
   }
  ]
 }
