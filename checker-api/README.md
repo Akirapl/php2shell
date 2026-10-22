@@ -13,7 +13,7 @@ Passive, defensive PHP banner checker behind the "Am I affected?" widget on the 
 - `GET /health` is the liveness probe.
 
 `classification` is one of `likely_vulnerable`, `likely_patched`, `php_detected_version_hidden`, `no_php_detected` or `host_unreachable`.
-Fixed upstream versions: 8.5.12 / 8.4.27 / 8.3.36 / 8.2.35. Anything below 8.2 is end-of-life and is classed as `likely_vulnerable`, with the `eol` and `distro_build_suspected` flags set where they apply.
+Fixed upstream versions: 8.5.12 / 8.4.27 / 8.3.36 / 8.2.35. Anything below 8.2 is end-of-life (no official fixed release; source-only upstream backports exist for 7.4/8.0/8.1) and is classed as `likely_vulnerable`, with the `eol` and `distro_build_suspected` flags set where they apply.
 
 The result only reflects the public banner. Distributions backport fixes without changing the version string. Proxies and CDNs can hide or rewrite the headers. The reliable check is `php -v` on the server, plus your package changelog.
 

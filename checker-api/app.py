@@ -37,7 +37,7 @@ CAVEATS = [
     "A hidden or missing banner is NOT evidence of safety. Many patched and unpatched servers hide their version (expose_php=Off).",
     "Linux distributions (Debian, Ubuntu, RHEL/AlmaLinux/Rocky, SUSE) backport security fixes WITHOUT changing the upstream version string, so a version that looks old may actually be fixed. Check your distro's security tracker / package changelog.",
     "Reverse proxies, CDNs and WAFs can strip, rewrite or fake these headers; the banner may describe a different machine than the one running your application.",
-    "PHP below 8.2 is end-of-life upstream and receives no official fix; only a distro or vendor with extended support could have patched it.",
+    "PHP below 8.2 is end-of-life upstream: no official release contains the fix. The PHP team published minimal source backports for 7.4/8.0/8.1 (build from source), and some distros/LTS vendors ship backported packages; for 7.3 and older only vendor backports exist.",
     "The only reliable check is on the server itself: `php -v` plus your package manager's changelog, against the official advisory.",
 ]
 
@@ -275,8 +275,8 @@ def _classify(headers: dict, cookies: list):
     if (maj, mnr) > (8, 5):
         details["note"] = "Branch newer than any affected branch listed in the advisories."
         return True, version, "likely_patched", "likely patched version", details
-    details["note"] = ("PHP < 8.2 is end-of-life upstream: no official fix exists" +
-                       ("; distro build suspected - an extended-support backport is possible, verify with your vendor." if distro else "."))
+    details["note"] = ("PHP < 8.2 is end-of-life upstream: no official fixed release (source-only backports exist for 7.4/8.0/8.1)" +
+                       ("; distro build suspected - a vendor backport is possible, verify with your vendor." if distro else "."))
     details["eol"] = True
     return True, version, "likely_vulnerable", "likely vulnerable version", details
 
