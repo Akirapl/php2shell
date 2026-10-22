@@ -3,7 +3,7 @@
 <title>PHP2Shell — oś czasu (PL)</title>
 <subtitle>Relacja na żywo: PHP2Shell (CVE-2026-109618/109619), krytyczne RCE w rdzeniu PHP (CVSS 9.2). Poprawki: 8.5.12, 8.4.27, 8.3.36, 8.2.35. Każdy fakt ze źródłem.</subtitle>
 <id>https://akirapl.github.io/php2shell/feed-pl.xml</id>
-<updated>2026-10-22T10:34:00Z</updated>
+<updated>2026-10-22T12:25:00Z</updated>
 <link rel="self" type="application/atom+xml" href="https://akirapl.github.io/php2shell/feed-pl.xml"/>
 <link rel="alternate" type="text/html" hreflang="pl" href="https://akirapl.github.io/php2shell/?lang=pl"/>
 <author><name>Dawid Kulik (@Akirapl)</name><uri>https://github.com/Akirapl</uri></author>
@@ -855,6 +855,17 @@
 <category term="minor"/>
 <summary type="text">Według PCMag honeypoty VulnCheck w środę 21.10 widziały dwa adresy IP (Kanada, Holandia) często sondujące systemy oraz co najmniej jedną próbę wykorzystania CVE-2026-109618 z adresu w Chinach, która się nie powiodła: próbowała odczytać plik ścieżką, która nie istniała, i dostała 404. SecurityWeek (22.10) podaje za VulnCheck, że celem było wgranie webshella. Lokalizacja adresu IP nie wskazuje sprawcy.</summary>
 <content type="html">&lt;p&gt;Według PCMag honeypoty VulnCheck w środę 21.10 widziały dwa adresy IP (Kanada, Holandia) często sondujące systemy oraz co najmniej jedną próbę wykorzystania CVE-2026-109618 z adresu w Chinach, która się nie powiodła: próbowała odczytać plik ścieżką, która nie istniała, i dostała 404. SecurityWeek (22.10) podaje za VulnCheck, że celem było wgranie webshella. Lokalizacja adresu IP nie wskazuje sprawcy.&lt;/p&gt;&lt;p&gt;Źródło: &lt;a href="https://me.pcmag.com/en/security/38410/hackers-already-trying-to-exploit-serious-php-flaw"&gt;PCMag (Michael Kan)&lt;/a&gt; · doniesienie · minor&lt;/p&gt;</content>
+</entry>
+<entry>
+<title>CrowdStrike: w laboratorium zweryfikowane zdalne wykonanie kodu na Apache mod_php</title>
+<id>tag:php2shell-live.surge.sh,2026:crowdstrike-verified-rce-modphp</id>
+<link rel="alternate" type="text/html" href="https://akirapl.github.io/php2shell/?lang=pl#ev-crowdstrike-verified-rce-modphp"/>
+<link rel="related" href="https://www.crowdstrike.com/en-us/blog/crowdstrike-protects-customers-from-php-rce-zero-days/"/>
+<published>2026-10-21T00:00:00Z</published>
+<updated>2026-10-21T00:00:00Z</updated>
+<category term="major"/>
+<summary type="text">CrowdStrike (Amit Serper) pisze, że zweryfikował pełny łańcuch: jedno anonimowe żądanie POST sprawiło, że worker Apache mod_php uruchomił powłokę i wykonał polecenie, bez uwierzytelnienia i bez podatnego kodu aplikacji. Exploit nie został opublikowany. Według CrowdStrike domyślne ustawienia PHP (post_max_size 8M, memory_limit 128M) nie pozwalają dojść do błędu opisaną drogą; narażone są konfiguracje z memory_limit mniejszym niż ok. 4 × post_max_size. Ślad dla obrońców: błąd przekroczenia pamięci „in Unknown on line 0” w logu serwera WWW.</summary>
+<content type="html">&lt;p&gt;CrowdStrike (Amit Serper) pisze, że zweryfikował pełny łańcuch: jedno anonimowe żądanie POST sprawiło, że worker Apache mod_php uruchomił powłokę i wykonał polecenie, bez uwierzytelnienia i bez podatnego kodu aplikacji. Exploit nie został opublikowany. Według CrowdStrike domyślne ustawienia PHP (post_max_size 8M, memory_limit 128M) nie pozwalają dojść do błędu opisaną drogą; narażone są konfiguracje z memory_limit mniejszym niż ok. 4 × post_max_size. Ślad dla obrońców: błąd przekroczenia pamięci „in Unknown on line 0” w logu serwera WWW.&lt;/p&gt;&lt;p&gt;Źródło: &lt;a href="https://www.crowdstrike.com/en-us/blog/crowdstrike-protects-customers-from-php-rce-zero-days/"&gt;CrowdStrike blog (Amit Serper)&lt;/a&gt; · doniesienie · major&lt;/p&gt;</content>
 </entry>
 <entry>
 <title>Fedora: PHP2Shell zgłoszony jako bloker wydania Fedora 45</title>

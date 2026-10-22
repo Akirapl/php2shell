@@ -196,7 +196,7 @@ main,article{min-width:0;overflow-wrap:anywhere}
 <h1>PHP2Shell — die Fallstudie</h1>
 <p><strong>Tiefenanalyse der kritischen Schwachstellen CVE-2026-109618 und CVE-2026-109619 im PHP-Kern</strong></p>
 <ul>
-<li><strong>Dokumentversion:</strong> 1.1, Abschnitt 7.4 Stand 22.10.2026, 10:30 UTC (deutsche Adaptation der polnischen Masterfassung)</li>
+<li><strong>Dokumentversion:</strong> 1.2, Abschnitt 7.4 Stand 22.10.2026, 12:30 UTC (deutsche Adaptation der polnischen Masterfassung)</li>
 <li><strong>Stand:</strong> 21.10.2026, 14:05 UTC (16:05 CEST) — ca. 30 Minuten nach Veröffentlichung der Patches</li>
 <li><strong>Charakter:</strong> Defensive, historische Analyse — <strong>kein</strong> Exploit-Code, keine Payloads, keine PoCs, keine Angriffsanleitungen</li>
 <li><strong>Kennzeichnung:</strong> <strong>[P]</strong> Primärquelle · <strong>[D]</strong> Drittbericht · <strong>[?]</strong> offen / widersprüchlich · <strong>[A]</strong> Analyse der Autoren</li>
@@ -209,6 +209,7 @@ main,article{min-width:0;overflow-wrap:anywhere}
 <h2 id="änderungsprotokoll">Änderungsprotokoll</h2>
 <ul>
 <li><strong>1.1</strong> (2026-10-22 10:30 UTC) — Neuer Abschnitt 7.4: Ausnutzungslage seit der Offenlegung (AWS MadPot 17.10., Cloudflare, VulnCheck, watchTowr, Recorded Future), vorsorgliche Abschaltungen in Deutschland und Dänemark, Expositionsschätzungen (Censys, Unit 42), Backports für EOL-Zweige; Einträge in Anhang A; Ledger CLM-0090…CLM-0101. Der Rest des Dokuments bleibt unverändert (Stand 21.10.).</li>
+<li><strong>1.2</strong> (2026-10-22 12:30 UTC) — §7.4: Ergebnis von CrowdStrike (verifizierte RCE auf Apache <code>mod_php</code>, Konfigurationsbedingung, Logspur); Fazit ergänzt; Ledger CLM-0102.</li>
 <li><strong>1.0.1</strong> (2026-10-21 17:30 UTC) — Evidence Ledger (CLM-0001…) ergänzt. Korrekturen aus der Prüfung: Der Fix-Commit ändert 423 Dateien, nicht 300 (die Commit-API von GitHub listet nur die ersten 300); ursprünglicher Termin laut PHP Foundation (22.10., 14:00 UTC) als dritte, widersprüchliche Embargo-Angabe ergänzt; Quellen ergänzt für watchTowr Active Defense, Sansecs „15 Minuten“ (SecurityWeek), die Remi-Warnung (PHP Foundation auf X), NU.nl/BBC-Offline-Listen und Patchstack/Firsov; BSI-Zitat präzisiert; Huntress-Datum korrigiert; Log4Shell-Probes laut Cloudflare 8 (nicht 9) Tage vor der Disclosure; unbelegte Aikido-Angabe „seit Juni 2026“ entfernt, nicht mehr prüfbares Hadrian-„at scale“ abgeschwächt.</li>
 <li><strong>1.0</strong> (2026-10-21 14:05 UTC) — Erstveröffentlichung. Quellen: php.net, GHSA, Fix-Commit, Wiz, watchTowr, BSI, NCSC UK, NCSC-NL, CERT-EU, CERT.at, CERT Polska, CERT-FR, NOS, W3Techs, Modat, heise, SecurityWeek, Huntress, Tenable, Cloudflare, Docker-PR, Ubuntu-Tracker, HN, Mastodon; historische Vergleiche (Log4Shell, Heartbleed, CVE-2024-4577, OpenSSL 3.0.7).</li>
 </ul>
@@ -669,7 +670,7 @@ main,article{min-width:0;overflow-wrap:anywhere}
 </ul>
 <p><strong>Fazit [A]:</strong> Für „ist es ITW?“ braucht es IoCs großer Sensoren oder einen KEV-Eintrag — die Botschaften widersprechen sich noch.</p>
 <h3 id="74-nach-der-offenlegung-versuche-keine-bestätigten-einbrüche-stand-22102026-1030-utc">7.4 Nach der Offenlegung: Versuche, keine bestätigten Einbrüche (Stand 22.10.2026, 10:30 UTC)</h3>
-<p><em>Ergänzt in Version 1.1. Defensive Zusammenfassung, keine Exploit-Details. Ledger: CLM-0090…CLM-0101.</em></p>
+<p><em>Ergänzt in Version 1.1. Defensive Zusammenfassung, keine Exploit-Details. Ledger: CLM-0090…CLM-0102.</em></p>
 <p><strong>Vor dem Patch</strong></p>
 <ul>
 <li><strong>AWS (Amazon Threat Intelligence)</strong> meldet, dass seine MadPot-Honeypots bereits am <strong>17.10.</strong>, vier Tage vor der Offenlegung und während des Embargos, einen Ausnutzungsversuch von PHP2Shell aus einem kommerziellen Anonymisierungsnetz erfassten; woher der Akteur die Informationen hatte, ist unbekannt [D]<sup class="footnote-ref"><a href="#fn48" id="fnref48">[48]</a></sup>. Der Versuch vom 17.10. hat <strong>nur eine Quelle</strong>; heise merkt an, er könnte einer anderen Datei-Upload-Lücke gegolten haben [?]<sup class="footnote-ref"><a href="#fn49" id="fnref49">[49]</a></sup>.</li>
@@ -681,25 +682,26 @@ main,article{min-width:0;overflow-wrap:anywhere}
 <li>Nach dem Release spricht AWS von „breiter Ausnutzung“, schreibt aber, es sei unklar, ob ein Versuch auf echten Systemen erfolgreich gewesen wäre [D]<sup class="footnote-ref"><a href="#fn48" id="fnref48:2">[48:2]</a></sup>.</li>
 <li><strong>VulnCheck</strong> (laut PCMag): Mindestens ein Versuch gegen CVE-2026-109618 scheiterte mit 404; zwei weitere Adressen scannten häufig [D, eine Quelle]<sup class="footnote-ref"><a href="#fn51" id="fnref51">[51]</a></sup>.</li>
 <li><strong>watchTowr</strong> (Jake Knott, laut SecurityWeek): Die gestreuten Exploits „funktionieren gar nicht, testen auf Zeitunterschiede oder bringen das Ziel zum Absturz“ [D]<sup class="footnote-ref"><a href="#fn52" id="fnref52">[52]</a></sup>.</li>
-<li><strong>Recorded Future (Insikt Group)</strong>, Stand 21.10., 19:00 UTC: Die Berichte belegen weder das Ausmaß erfolgreicher Ausnutzung noch bestätigte Kompromittierungen [D]<sup class="footnote-ref"><a href="#fn53" id="fnref53">[53]</a></sup>.</li>
+<li><strong>CrowdStrike</strong> (Amit Serper, 21.10.) schreibt, die vollständige Kette im Labor verifiziert zu haben: Ein einziger anonymer POST-Request brachte einen Apache-<code>mod_php</code>-Worker dazu, eine Shell zu starten und einen Befehl auszuführen, ohne Authentifizierung und ohne verwundbaren Anwendungscode [D]<sup class="footnote-ref"><a href="#fn53" id="fnref53">[53]</a></sup>. Laut CrowdStrike lässt sich der Fehler mit den PHP-Standardwerten (<code>post_max_size</code> 8M, <code>memory_limit</code> 128M) auf dem gezeigten Weg nicht auslösen; gefährdet sind Konfigurationen, in denen <code>memory_limit</code> kleiner als etwa 4 × <code>post_max_size</code> ist, etwa bei für große Uploads angehobenen Limits [D]<sup class="footnote-ref"><a href="#fn53" id="fnref53:1">[53:1]</a></sup>. Die einzige serverseitige Spur sei ein Speicherfehler mit dem Zusatz „in Unknown on line 0“ im Webserver-Log [D]<sup class="footnote-ref"><a href="#fn53" id="fnref53:2">[53:2]</a></sup>. Das widerspricht watchTowr nicht: Die öffentlich kursierenden Exploits scheitern, und CrowdStrike hat seinen eigenen nicht veröffentlicht [A].</li>
+<li><strong>Recorded Future (Insikt Group)</strong>, Stand 21.10., 19:00 UTC: Die Berichte belegen weder das Ausmaß erfolgreicher Ausnutzung noch bestätigte Kompromittierungen [D]<sup class="footnote-ref"><a href="#fn54" id="fnref54">[54]</a></sup>.</li>
 <li><strong>heise</strong> (22.10., 07:23 UTC): Zum Meldungszeitpunkt keine Berichte über erfolgreiche Angriffe [D]<sup class="footnote-ref"><a href="#fn49" id="fnref49:1">[49:1]</a></sup>. <strong>CISA KEV</strong> weiterhin ohne Eintrag (Katalog 2026.10.21, geprüft 22.10., 10:27 UTC) [P]<sup class="footnote-ref"><a href="#fn47" id="fnref47:1">[47:1]</a></sup>.</li>
 </ul>
 <p><strong>Vorsorgliche Abschaltungen</strong></p>
 <ul>
 <li>Deutschland (heise unter Berufung auf dpa): Charité komplett offline, Teile von berlin.de abgeschaltet, Internetwache der Berliner Polizei nicht erreichbar, IT-Dienste der FU Berlin eingeschränkt; dazu Behörden- und Polizeiseiten in Bayern und Niedersachsen [D]<sup class="footnote-ref"><a href="#fn49" id="fnref49:2">[49:2]</a></sup>.</li>
-<li>Reuters (laut heise): Regierungsseiten offline in Dänemark, Finnland, Frankreich und den Niederlanden [D]<sup class="footnote-ref"><a href="#fn49" id="fnref49:3">[49:3]</a></sup>. Dänemark: Gemeinde Kopenhagen, Straßenbehörde, DMI und die Schulplattform Aula; die Ministerin sprach von einem „globalen Vorfall“, „keinem Cyberangriff“ [D]<sup class="footnote-ref"><a href="#fn54" id="fnref54">[54]</a></sup>.</li>
+<li>Reuters (laut heise): Regierungsseiten offline in Dänemark, Finnland, Frankreich und den Niederlanden [D]<sup class="footnote-ref"><a href="#fn49" id="fnref49:3">[49:3]</a></sup>. Dänemark: Gemeinde Kopenhagen, Straßenbehörde, DMI und die Schulplattform Aula; die Ministerin sprach von einem „globalen Vorfall“, „keinem Cyberangriff“ [D]<sup class="footnote-ref"><a href="#fn55" id="fnref55">[55]</a></sup>.</li>
 </ul>
 <p><strong>Exposition (Schätzungen, keine Zahl verwundbarer Systeme)</strong></p>
 <ul>
 <li><strong>Censys</strong> (laut SecurityWeek): Von 2,58 Mio. am 21.10. gesehenen, aus dem Internet erreichbaren Hosts zeigten rund 1,58 Mio. eine PHP-Version, rund <strong>1,57 Mio. waren ungepatcht</strong> [D, Schätzung]<sup class="footnote-ref"><a href="#fn52" id="fnref52:1">[52:1]</a></sup>.</li>
-<li><strong>Unit 42</strong> (laut Nextgov): mehr als <strong>22,6 Mio.</strong> aus dem Internet erreichbare, potenziell verwundbare Instanzen [D, Schätzung]<sup class="footnote-ref"><a href="#fn55" id="fnref55">[55]</a></sup>.</li>
+<li><strong>Unit 42</strong> (laut Nextgov): mehr als <strong>22,6 Mio.</strong> aus dem Internet erreichbare, potenziell verwundbare Instanzen [D, Schätzung]<sup class="footnote-ref"><a href="#fn56" id="fnref56">[56]</a></sup>.</li>
 <li>Die Zahlen unterscheiden sich in der Methode (Hosts versus Instanzen, Versions-Banner versus Fingerprints), und ein Versions-Banner kann einen Distributions-Backport verbergen [A].</li>
 </ul>
 <p><strong>Zweige ohne Support und Backports</strong></p>
 <ul>
-<li>PHP patchte nur 8.2–8.5 und veröffentlichte minimale Quell-Backports für 7.4, 8.0 und 8.1 [P]<sup class="footnote-ref"><a href="#fn56" id="fnref56">[56]</a></sup>. Anbieter gingen am 21.10. weiter: Ubuntu USN-8948-1 (php8.1 in 22.04 LTS) [P]<sup class="footnote-ref"><a href="#fn57" id="fnref57">[57]</a></sup>, Freexian ELTS (php7.0, 7.3, 7.4) [P]<sup class="footnote-ref"><a href="#fn58" id="fnref58">[58]</a></sup>, deb.sury.org (Pakete bis zurück zu 5.6) [P]<sup class="footnote-ref"><a href="#fn59" id="fnref59">[59]</a></sup>. Zweige ohne einen solchen Anbieter bleiben angreifbar [A].</li>
+<li>PHP patchte nur 8.2–8.5 und veröffentlichte minimale Quell-Backports für 7.4, 8.0 und 8.1 [P]<sup class="footnote-ref"><a href="#fn57" id="fnref57">[57]</a></sup>. Anbieter gingen am 21.10. weiter: Ubuntu USN-8948-1 (php8.1 in 22.04 LTS) [P]<sup class="footnote-ref"><a href="#fn58" id="fnref58">[58]</a></sup>, Freexian ELTS (php7.0, 7.3, 7.4) [P]<sup class="footnote-ref"><a href="#fn59" id="fnref59">[59]</a></sup>, deb.sury.org (Pakete bis zurück zu 5.6) [P]<sup class="footnote-ref"><a href="#fn60" id="fnref60">[60]</a></sup>. Zweige ohne einen solchen Anbieter bleiben angreifbar [A].</li>
 </ul>
-<p><strong>Fazit [A]:</strong> Stand 22.10. heißt das Bild „viele Versuche, keine bestätigte Kompromittierung“. Für Verteidiger: patchen oder vom Netz nehmen und mindestens ab dem 17.10. nach Spuren suchen, wie AWS rät [D]<sup class="footnote-ref"><a href="#fn48" id="fnref48:3">[48:3]</a></sup>.</p>
+<p><strong>Fazit [A]:</strong> Stand 22.10. heißt das Bild „viele Versuche, keine bestätigte Kompromittierung“. Für Verteidiger: patchen oder vom Netz nehmen und mindestens ab dem 17.10. nach Spuren suchen, wie AWS rät [D]<sup class="footnote-ref"><a href="#fn48" id="fnref48:3">[48:3]</a></sup>. Das Ergebnis von CrowdStrike zeigt jedoch, dass Remote Code Execution mit <code>mod_php</code> und manchen Limit-Konfigurationen praktisch erreichbar ist [D]<sup class="footnote-ref"><a href="#fn53" id="fnref53:3">[53:3]</a></sup>.</p>
 <hr />
 <h2 id="8-reaktion-der-verteidiger">8. Reaktion der Verteidiger</h2>
 <figure class="diagram" id="dg-actors">
@@ -752,31 +754,31 @@ main,article{min-width:0;overflow-wrap:anywhere}
 <li><strong>CERT-EU 2026-018</strong> — Sofort patchen oder isolieren; „all from PHP 5“; CVSS → unauth RCE [P]<sup class="footnote-ref"><a href="#fn15" id="fnref15:1">[15:1]</a></sup></li>
 <li><strong>BSI</strong> — BITS-H Orange/3 + Presse Caspers: „großflächige Ausnutzung innerhalb weniger Stunden“; KI beschleunigt Reverse [P]<sup class="footnote-ref"><a href="#fn32" id="fnref32:2">[32:2]</a></sup><sup class="footnote-ref"><a href="#fn19" id="fnref19:2">[19:2]</a></sup></li>
 <li><strong>CERT-Bund</strong> — WID-SEC-2026-4055 (Inhalt hinter Login — hier ungelesen) [P/?]</li>
-<li><strong>NCSC UK</strong> — PHP finden; patchen; härten; Offline erwägen; gebündeltes PHP inventarisieren [P]<sup class="footnote-ref"><a href="#fn60" id="fnref60">[60]</a></sup></li>
+<li><strong>NCSC UK</strong> — PHP finden; patchen; härten; Offline erwägen; gebündeltes PHP inventarisieren [P]<sup class="footnote-ref"><a href="#fn61" id="fnref61">[61]</a></sup></li>
 <li><strong>NCSC-NL</strong> — Mitteilung; ncsc.nl offline; Repo NCSC-NL/php2shell; kein aktiver Missbrauch [P]<sup class="footnote-ref"><a href="#fn16" id="fnref16:2">[16:2]</a></sup></li>
 <li><strong>CERT.at</strong> — Update #1: Exploit im Netz, Funktionalität unbestätigt [P]<sup class="footnote-ref"><a href="#fn39" id="fnref39:1">[39:1]</a></sup></li>
-<li><strong>CERT Polska 195/2026</strong> — Inventar; Internet-facing PHP ggf. abschalten [P]<sup class="footnote-ref"><a href="#fn61" id="fnref61">[61]</a></sup></li>
-<li><strong>CERT-FR ALE-014</strong> — Workarounds upload_progress/multipart <strong>nicht qualifiziert</strong> [P]<sup class="footnote-ref"><a href="#fn62" id="fnref62">[62]</a></sup></li>
-<li><strong>ACSC (ASD, Australien) / IPA (Japan)</strong> — Warnungen vor dem Release (21.10.): PHP inventarisieren und Update vorbereiten; dem ACSC war bei Veröffentlichung keine Ausnutzung bekannt [P]<sup class="footnote-ref"><a href="#fn63" id="fnref63">[63]</a></sup><sup class="footnote-ref"><a href="#fn64" id="fnref64">[64]</a></sup></li>
+<li><strong>CERT Polska 195/2026</strong> — Inventar; Internet-facing PHP ggf. abschalten [P]<sup class="footnote-ref"><a href="#fn62" id="fnref62">[62]</a></sup></li>
+<li><strong>CERT-FR ALE-014</strong> — Workarounds upload_progress/multipart <strong>nicht qualifiziert</strong> [P]<sup class="footnote-ref"><a href="#fn63" id="fnref63">[63]</a></sup></li>
+<li><strong>ACSC (ASD, Australien) / IPA (Japan)</strong> — Warnungen vor dem Release (21.10.): PHP inventarisieren und Update vorbereiten; dem ACSC war bei Veröffentlichung keine Ausnutzung bekannt [P]<sup class="footnote-ref"><a href="#fn64" id="fnref64">[64]</a></sup><sup class="footnote-ref"><a href="#fn65" id="fnref65">[65]</a></sup></li>
 <li><strong>CISA</strong> — Kein KEV zu PHP2Shell zum Research-Zeitpunkt [P]<sup class="footnote-ref"><a href="#fn47" id="fnref47:2">[47:2]</a></sup></li>
 </ul>
 <h3 id="82-wafs-hoster-cmse">8.2 WAFs, Hoster, CMSe</h3>
 <ul>
-<li><strong>Cloudflare:</strong> Emergency Managed Ruleset — sieben Regeln „Anomalous Execution“; auch Free; Knecht: nur Stopgap [P]<sup class="footnote-ref"><a href="#fn65" id="fnref65">[65]</a></sup><sup class="footnote-ref"><a href="#fn42" id="fnref42:1">[42:1]</a></sup>.</li>
-<li><strong>CloudLinux Imunify360:</strong> WAF-Ruleset 8.83 blockiert das kursierende Anfragemuster auf ModSecurity/Coraza (auf LiteSpeed nur Logging); laut Hersteller ein virtueller Patch, kein Fix [P]<sup class="footnote-ref"><a href="#fn66" id="fnref66">[66]</a></sup>. <strong>bunny.net:</strong> verwaltete WAF-Regeln in Bunny Shield, die nur im Blocking-Modus blockieren; ein Notbehelf – PHP muss gepatcht werden [P]<sup class="footnote-ref"><a href="#fn67" id="fnref67">[67]</a></sup>.</li>
+<li><strong>Cloudflare:</strong> Emergency Managed Ruleset — sieben Regeln „Anomalous Execution“; auch Free; Knecht: nur Stopgap [P]<sup class="footnote-ref"><a href="#fn66" id="fnref66">[66]</a></sup><sup class="footnote-ref"><a href="#fn42" id="fnref42:1">[42:1]</a></sup>.</li>
+<li><strong>CloudLinux Imunify360:</strong> WAF-Ruleset 8.83 blockiert das kursierende Anfragemuster auf ModSecurity/Coraza (auf LiteSpeed nur Logging); laut Hersteller ein virtueller Patch, kein Fix [P]<sup class="footnote-ref"><a href="#fn67" id="fnref67">[67]</a></sup>. <strong>bunny.net:</strong> verwaltete WAF-Regeln in Bunny Shield, die nur im Blocking-Modus blockieren; ein Notbehelf – PHP muss gepatcht werden [P]<sup class="footnote-ref"><a href="#fn68" id="fnref68">[68]</a></sup>.</li>
 <li><strong>Sansec (Magento):</strong> Mass Attacks in 15 Minuten (laut SecurityWeek); Fix auf Infrastruktur-Ebene, nicht im Shop [D]<sup class="footnote-ref"><a href="#fn40" id="fnref40:1">[40:1]</a></sup><sup class="footnote-ref"><a href="#fn33" id="fnref33:1">[33:1]</a></sup>.</li>
-<li><strong>Wordfence / Shared WP:</strong> Fix kommt nicht per WordPress-Auto-Update — hängt vom Hoster ab [D]<sup class="footnote-ref"><a href="#fn68" id="fnref68">[68]</a></sup>.</li>
+<li><strong>Wordfence / Shared WP:</strong> Fix kommt nicht per WordPress-Auto-Update — hängt vom Hoster ab [D]<sup class="footnote-ref"><a href="#fn69" id="fnref69">[69]</a></sup>.</li>
 </ul>
 <h3 id="83-die-niederländische-und-benachbarte-abschaltwelle">8.3 Die niederländische (und benachbarte) Abschaltwelle</h3>
-<p>NOS/NU und die NCSC-NL-Mitteilung dokumentieren vorsorgliches Offline u. a. für DigiD.nl (Site; DigiD-Login anderswo teils weiter), MijnOverheid, Tweede Kamer, RIVM, ANWB, RTL, Krankenhäuser, SURF, Parteien, UWV (gewählte Apps), NCSC.nl, NotuBiz, KNVB, Wohltätige [P]<sup class="footnote-ref"><a href="#fn7" id="fnref7:1">[7:1]</a></sup><sup class="footnote-ref"><a href="#fn44" id="fnref44:1">[44:1]</a></sup><sup class="footnote-ref"><a href="#fn69" id="fnref69">[69]</a></sup><sup class="footnote-ref"><a href="#fn16" id="fnref16:3">[16:3]</a></sup>. Belgien: flämische Regierungsseiten (Diependaele); Frankreich: Präfekturen; Finnland: Regierungsseiten [P]<sup class="footnote-ref"><a href="#fn7" id="fnref7:2">[7:2]</a></sup>.</p>
+<p>NOS/NU und die NCSC-NL-Mitteilung dokumentieren vorsorgliches Offline u. a. für DigiD.nl (Site; DigiD-Login anderswo teils weiter), MijnOverheid, Tweede Kamer, RIVM, ANWB, RTL, Krankenhäuser, SURF, Parteien, UWV (gewählte Apps), NCSC.nl, NotuBiz, KNVB, Wohltätige [P]<sup class="footnote-ref"><a href="#fn7" id="fnref7:1">[7:1]</a></sup><sup class="footnote-ref"><a href="#fn44" id="fnref44:1">[44:1]</a></sup><sup class="footnote-ref"><a href="#fn70" id="fnref70">[70]</a></sup><sup class="footnote-ref"><a href="#fn16" id="fnref16:3">[16:3]</a></sup>. Belgien: flämische Regierungsseiten (Diependaele); Frankreich: Präfekturen; Finnland: Regierungsseiten [P]<sup class="footnote-ref"><a href="#fn7" id="fnref7:2">[7:2]</a></sup>.</p>
 <p><strong>Kommunikationsanalyse [A]:</strong> Klassischer Trade-off Verfügbarkeit versus Vertraulichkeit/Integrität. Bei CVSS 9.2, ohne zuverlässigen Workaround und mit öffentlicher PoC-Erzählung wählten Behörden „lieber dunkle Site als übernommener Server“. Kosten: ausgefallene öffentliche Dienste an einem Werktag.</p>
 <hr />
 <h2 id="9-exposition-und-auswirkungen">9. Exposition und Auswirkungen</h2>
 <h3 id="91-was-wir-wissen">9.1 Was wir wissen</h3>
 <ul>
 <li><strong>W3Techs 21.10.2026:</strong> 69,3 % / Versionsverteilung wie oben [P]<sup class="footnote-ref"><a href="#fn10" id="fnref10:1">[10:1]</a></sup>.</li>
-<li><strong>Modat 20.10.:</strong> 4.384.302 Dienste / 1.886.612 Hosts; <strong>79 %</strong> der versionierten Dienste auf EOL (4/5/7/8.0/8.1); größte Gruppe <strong>7.4</strong> (878.761); USA/China/Japan/Deutschland führen bei Hosts [D]<sup class="footnote-ref"><a href="#fn70" id="fnref70">[70]</a></sup>.</li>
-<li><strong>Mallory/THN:</strong> ~884.000 Hosts mit PHP-≤8.1-Banner — Banner, nicht bestätigte Verwundbarkeit [D]<sup class="footnote-ref"><a href="#fn71" id="fnref71">[71]</a></sup>.</li>
+<li><strong>Modat 20.10.:</strong> 4.384.302 Dienste / 1.886.612 Hosts; <strong>79 %</strong> der versionierten Dienste auf EOL (4/5/7/8.0/8.1); größte Gruppe <strong>7.4</strong> (878.761); USA/China/Japan/Deutschland führen bei Hosts [D]<sup class="footnote-ref"><a href="#fn71" id="fnref71">[71]</a></sup>.</li>
+<li><strong>Mallory/THN:</strong> ~884.000 Hosts mit PHP-≤8.1-Banner — Banner, nicht bestätigte Verwundbarkeit [D]<sup class="footnote-ref"><a href="#fn72" id="fnref72">[72]</a></sup>.</li>
 <li><strong>Tenable/Cutler/Poley:</strong> Schätzungen 1,3–1,9 Mio. Hosts [D]<sup class="footnote-ref"><a href="#fn41" id="fnref41:1">[41:1]</a></sup>.</li>
 </ul>
 <h3 id="92-was-wir-nicht-wissen">9.2 Was wir nicht wissen</h3>
@@ -789,19 +791,19 @@ main,article{min-width:0;overflow-wrap:anywhere}
 <hr />
 <h2 id="10-historischer-vergleich">10. Historischer Vergleich</h2>
 <ul>
-<li><strong>Log4Shell</strong> (CVE-2021-44228), XII 2021 [P]<sup class="footnote-ref"><a href="#fn72" id="fnref72">[72]</a></sup><sup class="footnote-ref"><a href="#fn73" id="fnref73">[73]</a></sup>
+<li><strong>Log4Shell</strong> (CVE-2021-44228), XII 2021 [P]<sup class="footnote-ref"><a href="#fn73" id="fnref73">[73]</a></sup><sup class="footnote-ref"><a href="#fn74" id="fnref74">[74]</a></sup>
 <ul>
 <li><em>Ähnlichkeiten:</em> Massive Exposition einer „unsichtbaren“ Abhängigkeit; WAF-Stopgap; Mem-Name</li>
 <li><em>Tempo / Unterschiede:</em> Cloudflare: Probes 8 Tage vor Disclosure; Exploits <strong>9 Minuten</strong> danach; Check Point: <strong>&gt;800k</strong> Angriffe / 72 h</li>
 </ul>
 </li>
-<li><strong>Heartbleed</strong>, IV 2014 [P]<sup class="footnote-ref"><a href="#fn74" id="fnref74">[74]</a></sup>
+<li><strong>Heartbleed</strong>, IV 2014 [P]<sup class="footnote-ref"><a href="#fn75" id="fnref75">[75]</a></sup>
 <ul>
 <li><em>Ähnlichkeiten:</em> Kritischer Bug in Internet-Fundamenten; Early Notify Ausgewählter</li>
 <li><em>Tempo / Unterschiede:</em> Google/Cloudflare wussten vor Public; CRA Kanada: ~900 SIN</li>
 </ul>
 </li>
-<li><strong>PHP-CGI CVE-2024-4577</strong>, VI 2024 [P]<sup class="footnote-ref"><a href="#fn75" id="fnref75">[75]</a></sup><sup class="footnote-ref"><a href="#fn76" id="fnref76">[76]</a></sup>
+<li><strong>PHP-CGI CVE-2024-4577</strong>, VI 2024 [P]<sup class="footnote-ref"><a href="#fn76" id="fnref76">[76]</a></sup><sup class="footnote-ref"><a href="#fn77" id="fnref77">[77]</a></sup>
 <ul>
 <li><em>Ähnlichkeiten:</em> RCE in PHP; schnelle Bewaffnung</li>
 <li><em>Tempo / Unterschiede:</em> Akamai: Ausnutzung <strong>binnen 24 h</strong>; Imperva: TellYouThePass <strong>&lt;48 h</strong></li>
@@ -820,7 +822,7 @@ main,article{min-width:0;overflow-wrap:anywhere}
 <h3 id="für-anwendungsentwickler">Für Anwendungsentwickler</h3>
 <p>Nicht annehmen, „sicherer Anwendungscode“ schütze vor einem Runtime-Bug. Auf unterstütztem PHP bleiben; selten genutzte Pre-Init-Features (Upload Progress) nicht ohne Bedarf voraussetzen [A]<sup class="footnote-ref"><a href="#fn3" id="fnref3:12">[3:12]</a></sup>.</p>
 <h3 id="für-ops-sre">Für Ops / SRE</h3>
-<p>PHP inventarisieren <strong>einschließlich gebündelter</strong> Kopien (Appliances, Panels, Container). Patch-Fenster ≠ Pressemitteilung — <code>php -v</code> / Paket auf jedem Host prüfen. Plan B: Internet-facing Systeme isolieren, wenn kein Patch da ist [P]<sup class="footnote-ref"><a href="#fn60" id="fnref60:1">[60:1]</a></sup><sup class="footnote-ref"><a href="#fn15" id="fnref15:2">[15:2]</a></sup>.</p>
+<p>PHP inventarisieren <strong>einschließlich gebündelter</strong> Kopien (Appliances, Panels, Container). Patch-Fenster ≠ Pressemitteilung — <code>php -v</code> / Paket auf jedem Host prüfen. Plan B: Internet-facing Systeme isolieren, wenn kein Patch da ist [P]<sup class="footnote-ref"><a href="#fn61" id="fnref61:1">[61:1]</a></sup><sup class="footnote-ref"><a href="#fn15" id="fnref15:2">[15:2]</a></sup>.</p>
 <h3 id="für-open-source-maintainer">Für Open-Source-Maintainer</h3>
 <p>Große Memory-Safety-Fixes brauchen Zeit und Distro-Prenotification; Embargo-Leaks sind real — „release earlier“-Plan bereithalten (PHP hatte einen und nutzte ihn) [P]<sup class="footnote-ref"><a href="#fn24" id="fnref24:4">[24:4]</a></sup>.</p>
 <h3 id="für-regierungen-certs">Für Regierungen / CERTs</h3>
@@ -943,9 +945,9 @@ main,article{min-width:0;overflow-wrap:anywhere}
 <li><strong>Nach dem Update:</strong> <strong>alle</strong> Worker neu starten (FPM Reload/Restart, Apache Graceful/Restart); Version im echten SAPI prüfen, nicht nur CLI.</li>
 <li><strong>Container:</strong> sobald Hub-Tags existieren — <code>pull</code> + Redeploy; PR #1694 ist erst der Anfang der Kette [P]<sup class="footnote-ref"><a href="#fn36" id="fnref36:1">[36:1]</a></sup>.</li>
 <li><strong>Remi:</strong> nicht auf Remis „heute“-Update warten — Distro-Pakete oder Build aus Source [P]<sup class="footnote-ref"><a href="#fn37" id="fnref37:1">[37:1]</a></sup>.</li>
-<li><strong>Vorübergehend (nicht statt Patch):</strong> Maßnahmen aus den Advisories; Vendor-WAFs als Stopgap [P]<sup class="footnote-ref"><a href="#fn3" id="fnref3:14">[3:14]</a></sup><sup class="footnote-ref"><a href="#fn65" id="fnref65:1">[65:1]</a></sup>.</li>
+<li><strong>Vorübergehend (nicht statt Patch):</strong> Maßnahmen aus den Advisories; Vendor-WAFs als Stopgap [P]<sup class="footnote-ref"><a href="#fn3" id="fnref3:14">[3:14]</a></sup><sup class="footnote-ref"><a href="#fn66" id="fnref66:1">[66:1]</a></sup>.</li>
 <li><strong>Hunting danach:</strong> ungewöhnliche PHP-Child-Prozesse (Shell, curl, wget); Webshells; neue Docroot-Dateien; Worker-Churn; seltsames Multipart + 500 [D]<sup class="footnote-ref"><a href="#fn11" id="fnref11:3">[11:3]</a></sup><sup class="footnote-ref"><a href="#fn4" id="fnref4:19">[4:19]</a></sup>.</li>
-<li><strong>Internet-facing EOL:</strong> Upgrade, VPN oder Offline [P]<sup class="footnote-ref"><a href="#fn60" id="fnref60:2">[60:2]</a></sup><sup class="footnote-ref"><a href="#fn15" id="fnref15:3">[15:3]</a></sup>.</li>
+<li><strong>Internet-facing EOL:</strong> Upgrade, VPN oder Offline [P]<sup class="footnote-ref"><a href="#fn61" id="fnref61:2">[61:2]</a></sup><sup class="footnote-ref"><a href="#fn15" id="fnref15:3">[15:3]</a></sup>.</li>
 </ol>
 <hr />
 <h2 id="anhang-d-quellen">Anhang D: Quellen</h2>
@@ -1063,53 +1065,55 @@ main,article{min-width:0;overflow-wrap:anywhere}
 </li>
 <li id="fn52" class="footnote-item"><p>https://www.securityweek.com/php2shell-exploitation-started-days-before-patches/ <a href="#fnref52" class="footnote-backref">↩︎</a> <a href="#fnref52:1" class="footnote-backref">↩︎</a></p>
 </li>
-<li id="fn53" class="footnote-item"><p>https://www.recordedfuture.com/blog/php2shell-vulnerability-exploitation <a href="#fnref53" class="footnote-backref">↩︎</a></p>
+<li id="fn53" class="footnote-item"><p>https://www.crowdstrike.com/en-us/blog/crowdstrike-protects-customers-from-php-rce-zero-days/ <a href="#fnref53" class="footnote-backref">↩︎</a> <a href="#fnref53:1" class="footnote-backref">↩︎</a> <a href="#fnref53:2" class="footnote-backref">↩︎</a> <a href="#fnref53:3" class="footnote-backref">↩︎</a></p>
 </li>
-<li id="fn54" class="footnote-item"><p>https://cphpost.dk/2026-10-22/news/round-up/security-flaw-in-widely-used-software-forces-danish-websites-offline/ <a href="#fnref54" class="footnote-backref">↩︎</a></p>
+<li id="fn54" class="footnote-item"><p>https://www.recordedfuture.com/blog/php2shell-vulnerability-exploitation <a href="#fnref54" class="footnote-backref">↩︎</a></p>
 </li>
-<li id="fn55" class="footnote-item"><p>https://www.nextgov.com/cybersecurity/2026/10/us-agencies-urge-fixes-programming-language-flaws-putting-millions-web-systems-risk/416726/ <a href="#fnref55" class="footnote-backref">↩︎</a></p>
+<li id="fn55" class="footnote-item"><p>https://cphpost.dk/2026-10-22/news/round-up/security-flaw-in-widely-used-software-forces-danish-websites-offline/ <a href="#fnref55" class="footnote-backref">↩︎</a></p>
 </li>
-<li id="fn56" class="footnote-item"><p>https://www.php.net/archive/2026.php <a href="#fnref56" class="footnote-backref">↩︎</a></p>
+<li id="fn56" class="footnote-item"><p>https://www.nextgov.com/cybersecurity/2026/10/us-agencies-urge-fixes-programming-language-flaws-putting-millions-web-systems-risk/416726/ <a href="#fnref56" class="footnote-backref">↩︎</a></p>
 </li>
-<li id="fn57" class="footnote-item"><p>https://ubuntu.com/security/notices/USN-8948-1 <a href="#fnref57" class="footnote-backref">↩︎</a></p>
+<li id="fn57" class="footnote-item"><p>https://www.php.net/archive/2026.php <a href="#fnref57" class="footnote-backref">↩︎</a></p>
 </li>
-<li id="fn58" class="footnote-item"><p>https://deb.freexian.com/extended-lts/tracker/CVE-2026-109618 <a href="#fnref58" class="footnote-backref">↩︎</a></p>
+<li id="fn58" class="footnote-item"><p>https://ubuntu.com/security/notices/USN-8948-1 <a href="#fnref58" class="footnote-backref">↩︎</a></p>
 </li>
-<li id="fn59" class="footnote-item"><p>https://packages.sury.org/php/ <a href="#fnref59" class="footnote-backref">↩︎</a></p>
+<li id="fn59" class="footnote-item"><p>https://deb.freexian.com/extended-lts/tracker/CVE-2026-109618 <a href="#fnref59" class="footnote-backref">↩︎</a></p>
 </li>
-<li id="fn60" class="footnote-item"><p>https://www.ncsc.gov.uk/news/critical-security-issue-affecting-php <a href="#fnref60" class="footnote-backref">↩︎</a> <a href="#fnref60:1" class="footnote-backref">↩︎</a> <a href="#fnref60:2" class="footnote-backref">↩︎</a></p>
+<li id="fn60" class="footnote-item"><p>https://packages.sury.org/php/ <a href="#fnref60" class="footnote-backref">↩︎</a></p>
 </li>
-<li id="fn61" class="footnote-item"><p>https://moje.cert.pl/komunikaty/2026/195/krytyczne-podatnosci-w-php-umozliwiajace-zdalne-wykonanie-kodu/ <a href="#fnref61" class="footnote-backref">↩︎</a></p>
+<li id="fn61" class="footnote-item"><p>https://www.ncsc.gov.uk/news/critical-security-issue-affecting-php <a href="#fnref61" class="footnote-backref">↩︎</a> <a href="#fnref61:1" class="footnote-backref">↩︎</a> <a href="#fnref61:2" class="footnote-backref">↩︎</a></p>
 </li>
-<li id="fn62" class="footnote-item"><p>https://cert.cyber.gouv.fr/alerte/CERTFR-2026-ALE-014/ <a href="#fnref62" class="footnote-backref">↩︎</a></p>
+<li id="fn62" class="footnote-item"><p>https://moje.cert.pl/komunikaty/2026/195/krytyczne-podatnosci-w-php-umozliwiajace-zdalne-wykonanie-kodu/ <a href="#fnref62" class="footnote-backref">↩︎</a></p>
 </li>
-<li id="fn63" class="footnote-item"><p>https://www.cyber.gov.au/alert/critical-vulnerabilities-in-php <a href="#fnref63" class="footnote-backref">↩︎</a></p>
+<li id="fn63" class="footnote-item"><p>https://cert.cyber.gouv.fr/alerte/CERTFR-2026-ALE-014/ <a href="#fnref63" class="footnote-backref">↩︎</a></p>
 </li>
-<li id="fn64" class="footnote-item"><p>https://www.ipa.go.jp/security/security-alert/2026/pre-alert20261021.html <a href="#fnref64" class="footnote-backref">↩︎</a></p>
+<li id="fn64" class="footnote-item"><p>https://www.cyber.gov.au/alert/critical-vulnerabilities-in-php <a href="#fnref64" class="footnote-backref">↩︎</a></p>
 </li>
-<li id="fn65" class="footnote-item"><p>https://developers.cloudflare.com/changelog/post/2026-10-21-emergency-waf-release-cfmr/ <a href="#fnref65" class="footnote-backref">↩︎</a> <a href="#fnref65:1" class="footnote-backref">↩︎</a></p>
+<li id="fn65" class="footnote-item"><p>https://www.ipa.go.jp/security/security-alert/2026/pre-alert20261021.html <a href="#fnref65" class="footnote-backref">↩︎</a></p>
 </li>
-<li id="fn66" class="footnote-item"><p>https://blog.imunify360.com/php-cve-2026-109618-cve-2026-109619/ <a href="#fnref66" class="footnote-backref">↩︎</a></p>
+<li id="fn66" class="footnote-item"><p>https://developers.cloudflare.com/changelog/post/2026-10-21-emergency-waf-release-cfmr/ <a href="#fnref66" class="footnote-backref">↩︎</a> <a href="#fnref66:1" class="footnote-backref">↩︎</a></p>
 </li>
-<li id="fn67" class="footnote-item"><p>https://bunny.net/blog/cve-2026-109618-and-cve-2026-109619/ <a href="#fnref67" class="footnote-backref">↩︎</a></p>
+<li id="fn67" class="footnote-item"><p>https://blog.imunify360.com/php-cve-2026-109618-cve-2026-109619/ <a href="#fnref67" class="footnote-backref">↩︎</a></p>
 </li>
-<li id="fn68" class="footnote-item"><p>https://www.theverge.com/tech/1015257/php-vulnerability-patch-website-security-wordpress <a href="#fnref68" class="footnote-backref">↩︎</a></p>
+<li id="fn68" class="footnote-item"><p>https://bunny.net/blog/cve-2026-109618-and-cve-2026-109619/ <a href="#fnref68" class="footnote-backref">↩︎</a></p>
 </li>
-<li id="fn69" class="footnote-item"><p>https://www.bbc.com/news/articles/cmly0lg3w5x2o <a href="#fnref69" class="footnote-backref">↩︎</a></p>
+<li id="fn69" class="footnote-item"><p>https://www.theverge.com/tech/1015257/php-vulnerability-patch-website-security-wordpress <a href="#fnref69" class="footnote-backref">↩︎</a></p>
 </li>
-<li id="fn70" class="footnote-item"><p>https://modat.io/blog/php-exposure-before-the-21-oct-2026-security-release/ <a href="#fnref70" class="footnote-backref">↩︎</a></p>
+<li id="fn70" class="footnote-item"><p>https://www.bbc.com/news/articles/cmly0lg3w5x2o <a href="#fnref70" class="footnote-backref">↩︎</a></p>
 </li>
-<li id="fn71" class="footnote-item"><p>https://thehackernews.com/2026/10/php2shell-two-unpatched-critical-php.html <a href="#fnref71" class="footnote-backref">↩︎</a></p>
+<li id="fn71" class="footnote-item"><p>https://modat.io/blog/php-exposure-before-the-21-oct-2026-security-release/ <a href="#fnref71" class="footnote-backref">↩︎</a></p>
 </li>
-<li id="fn72" class="footnote-item"><p>https://blog.cloudflare.com/exploitation-of-cve-2021-44228-before-public-disclosure-and-evolution-of-waf-evasion-patterns/ <a href="#fnref72" class="footnote-backref">↩︎</a></p>
+<li id="fn72" class="footnote-item"><p>https://thehackernews.com/2026/10/php2shell-two-unpatched-critical-php.html <a href="#fnref72" class="footnote-backref">↩︎</a></p>
 </li>
-<li id="fn73" class="footnote-item"><p>https://blog.checkpoint.com/security/the-numbers-behind-a-cyber-pandemic-detailed-dive/ <a href="#fnref73" class="footnote-backref">↩︎</a></p>
+<li id="fn73" class="footnote-item"><p>https://blog.cloudflare.com/exploitation-of-cve-2021-44228-before-public-disclosure-and-evolution-of-waf-evasion-patterns/ <a href="#fnref73" class="footnote-backref">↩︎</a></p>
 </li>
-<li id="fn74" class="footnote-item"><p>https://www.smh.com.au/technology/heartbleed-disclosure-timeline-who-knew-what-and-when-20140414-zqurk.html <a href="#fnref74" class="footnote-backref">↩︎</a></p>
+<li id="fn74" class="footnote-item"><p>https://blog.checkpoint.com/security/the-numbers-behind-a-cyber-pandemic-detailed-dive/ <a href="#fnref74" class="footnote-backref">↩︎</a></p>
 </li>
-<li id="fn75" class="footnote-item"><p>https://www.akamai.com/blog/security-research/2024-php-exploit-cve-one-day-after-disclosure <a href="#fnref75" class="footnote-backref">↩︎</a></p>
+<li id="fn75" class="footnote-item"><p>https://www.smh.com.au/technology/heartbleed-disclosure-timeline-who-knew-what-and-when-20140414-zqurk.html <a href="#fnref75" class="footnote-backref">↩︎</a></p>
 </li>
-<li id="fn76" class="footnote-item"><p>https://www.imperva.com/blog/update-cve-2024-4577-quickly-weaponized-to-distribute-tellyouthepass-ransomware/ <a href="#fnref76" class="footnote-backref">↩︎</a></p>
+<li id="fn76" class="footnote-item"><p>https://www.akamai.com/blog/security-research/2024-php-exploit-cve-one-day-after-disclosure <a href="#fnref76" class="footnote-backref">↩︎</a></p>
+</li>
+<li id="fn77" class="footnote-item"><p>https://www.imperva.com/blog/update-cve-2024-4577-quickly-weaponized-to-distribute-tellyouthepass-ransomware/ <a href="#fnref77" class="footnote-backref">↩︎</a></p>
 </li>
 </ol>
 </section>
