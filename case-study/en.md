@@ -10,7 +10,7 @@ asof: "2026-10-21 14:05 UTC (16:05 CEST)"
 
 **A deep case study of the critical core-PHP vulnerabilities CVE-2026-109618 and CVE-2026-109619**
 
-- **Document version:** 1.2, subsection 7.4 as of 22 Oct 2026, 12:30 UTC (English adaptation of the Polish master)
+- **Document version:** 1.3, subsection 7.4 as of 22 Oct 2026, 12:30 UTC, subsection 7.5 as of 22 Oct 2026, 18:30 UTC (English adaptation of the Polish master)
 - **As of:** 21 Oct 2026, 14:05 UTC (16:05 CEST) — about 30 minutes after the patches went public
 - **Nature:** Defensive, historical analysis — **no** exploit code, payloads, PoCs, or attack instructions
 - **Labels:** **[P]** primary source · **[D]** third-party report · **[?]** open / conflicting · **[A]** this document’s analysis
@@ -21,6 +21,7 @@ asof: "2026-10-21 14:05 UTC (16:05 CEST)"
 
 ## Changelog
 
+- **1.3** (2026-10-22 18:30 UTC) — New subsection 7.5: social and media reception (X, Hacker News, Mastodon; hashtags with API counts; international, German and Polish press review; contradictions between sources); new label [O] = observation; Appendix A entry; ledger CLM-0103…CLM-0112.
 - **1.1** (2026-10-22 10:30 UTC) — New subsection 7.4: exploitation picture since disclosure (AWS MadPot 17 Oct, Cloudflare, VulnCheck, watchTowr, Recorded Future), precautionary takedowns in Germany and Denmark, exposure estimates (Censys, Unit 42), backports for EOL branches; Appendix A entries; ledger CLM-0090…CLM-0101. The rest of the document is unchanged (as of 21 Oct).
 - **1.2** (2026-10-22 12:30 UTC) — §7.4: CrowdStrike finding (verified RCE on Apache `mod_php`, configuration condition, log trace); conclusion extended; ledger CLM-0102.
 - **1.0.1** (2026-10-21 17:30 UTC) — Evidence ledger (CLM-0001…) added. Corrections from the ledger check: fix commit touches 423 files, not 300 (GitHub’s commit API lists only the first 300); PHP Foundation’s original release time (22 Oct 14:00 UTC) added as a third, conflicting embargo time; sources added for watchTowr Active Defense, Sansec’s “15 minutes” (SecurityWeek), the Remi warning (PHP Foundation on X), NU.nl/BBC offline lists and Patchstack/Firsov; BSI quote made precise; Huntress date corrected; Log4Shell probes were 8 days (not 9) before disclosure per Cloudflare; an unsourced Aikido “since June 2026” remark and an unverifiable Hadrian “at scale” claim removed/softened.
@@ -470,6 +471,44 @@ Without recipes [A]: given a large public diff (here: hundreds of files around O
 
 **Takeaway [A]:** as of 22 Oct the picture is “many attempts, no confirmed compromise”. For defenders: patch or take offline, and hunt back to at least 17 Oct, as AWS advises [D][^awsmadpot]. CrowdStrike’s result shows, however, that remote code execution is practically achievable on `mod_php` with some limit configurations [D][^crowdstrike].
 
+### 7.5 Social and media reception (as of 22 Oct 2026, 18:30 UTC)
+
+*Added in version 1.3: the first of the twice-daily mood and media reviews; the live site keeps the current state (sections “Social mood”, “Hashtags and keywords”, “Press review”). Label **[O]** = our observation of public posts: qualitative, not a verified fact about the incident. Counts are API counts (reposts included, 22 Oct is a partial day), not a measure of risk. Reddit could not be read from our environment (blocked), so it is not covered. Ledger: CLM-0103…CLM-0112.*
+
+**Volume and hashtags**
+
+- On X, “php2shell” appeared in 27,345 posts on 21 Oct and 27,913 on 22 Oct up to about 18:30 UTC; the hashtag #PHP2Shell more than doubled, from 2,971 to 6,811 [O][^smxapi].
+- About 40% of the “php2shell” posts were in Japanese (21,919 of 55,521 over 20–22 Oct), more than any other language; German-language posts numbered 1,431 and Polish 352 [O][^smxapi]. The Japanese prime minister’s public appeal to check PHP sites is a plausible driver [A][^smcnn].
+- Mentions of the CVE numbers fell from 13,567 to 9,189 on day 2 while the name grew: the brand “PHP2Shell” displaced the CVE IDs [O][^smxapi].
+- On Mastodon, infosec.exchange recorded 508 uses of #php2shell by 372 accounts on 21 Oct and 234 by 188 accounts on 22 Oct up to the evening [O][^smmast].
+- Hacker News carried more than 20 stories in three days; the most discussed is “There isn't an easy exploit for this PHP vulnerability” (597 points, 392 comments) [O][^smhn1].
+
+**Dominant moods**
+
+- **PoC skepticism.** The loudest technical thread is whether the circulating PoCs work at all: one commenter found that one GitHub PoC needed a pre-existing file-inclusion bug and another did not run [O][^smkgeist], and Hunt.io wrote that “everyone is staging the leaked PHP RCE, no one has landed it” [O][^smhuntio]. Others push back: “Everything is harder to exploit than Log4Shell” [O][^smtptacek].
+- **Alarm and “patch now”** dominate Polish- and German-language X, e.g. “an internet-wide security incident … it will be exploited immediately” [O][^smprywatnik] and “Massen-Exploitation steht bevor” [O][^smwilehalm].
+- **Humour and Log4j comparisons:** “At least the Php2Shell was on a Wednesday … Log4j was on a Friday” [O][^smbandito]; on Mastodon, “#Windows is more than 40 years old” in reply to complaints about PHP’s age [O][^smpertsch].
+- **Embargo and process:** the author of “I unknowingly broke the PHP RCE embargo” mostly drew support [O][^smembargo], e.g. “you can't possibly be responsible for breaking an embargo you weren't subject to” [O][^smcwillu]. Linux-Magazin calls the PHP Foundation’s admission that the OOM problem was known since the 2024 audit a “governance debacle” [D][^smlinuxmag].
+- **EOL frustration:** admins of PHP 8.0/8.1 and end-of-life Ubuntu releases complain that official fixes skip them and distributions lag [O][^smeol].
+- **Parasites:** warnings about backdoored “PoC” repositories (“php0shell”) and about requests to hand over working PoCs [O][^smyoungstd][^smh4x0r]; memecoin spam rides on the name [O][^smxapi]. This document links no PoC repositories.
+- **Poland:** the BIP shutdown turned political on X, next to reflections on “the fragility of the internet” [O][^sminfoworld].
+
+**Recurring questions [O]:** Does PHP-FPM affect me, or only `mod_php`? Will 7.4/8.0/8.1 get a fix? Is any PoC real? How do I verify the fix? Does SELinux limit the damage? Why did two months pass between report and disclosure? [^smhn2][^smhn1]
+
+**Press angles since 21 Oct**
+
+- International: CNN frames an “AI inflection point” and adds that nearly three dozen UK government services were unavailable [D][^smcnn]; CNBC centres on Google, OpenAI and Amazon and notes that not every PHP site is necessarily vulnerable [D][^smcnbc]; Dark Reading reports that watchTowr saw attempts but no successful one yet [D][^smdarkreading]; Bloomberg leads with targeting before the public release [D][^smbloomberg].
+- German-speaking: ZDFheute quotes heise’s Christopher Kunz that attempts mostly use incorrectly written code and fail for now [D][^smzdf]; the tagesschau explainer cites BSI warning level 3/orange and the digital minister’s statement that federal IT was not damaged [D][^smtagesschau]; SPIEGEL headlines that the attacks have begun [D][^smspiegel]; Linux-Magazin frames a governance debacle [D][^smlinuxmag].
+- Polish: Onet (after the WSJ) leads with AI and the BIP shutdown [D][^smonet]; TVN24 Biznes covers COI switching off ssdip.bip.gov.pl and the restore plan [D][^smtvn24].
+
+**Contradictions between sources**
+
+- **Exploitability [?]:** CrowdStrike reports lab-verified RCE on `mod_php` [D][^crowdstrike], while watchTowr (via Dark Reading) and heise (via ZDF) say the circulating exploits fail [D][^smdarkreading][^smzdf]. Both can be true: RCE is achievable under research conditions, and most public scripts are not working exploits [A].
+- **“70% of the internet” [A]:** the figure (CNN, Onet) is PHP’s share of websites with a known server-side language, not a count of vulnerable servers; CNBC says so explicitly [D][^smcnn][^smcnbc].
+- **“Attacks have begun” [?]:** SPIEGEL’s headline versus no confirmed compromise (Recorded Future) and no CISA KEV entry; attempts are not successful breaches [D][^smspiegel][^rfinsikt].
+
+**Takeaway [A]:** public attention was still growing on day 2 and is strongest in Japan; the conversation has moved from alarm to a quarrel about exploitability. The press amplifies the alarm, technical communities question it. Neither changes the defensive advice: patch, restart workers, hunt back to 17 Oct.
+
 ---
 
 ## 8. Defenders’ response
@@ -651,6 +690,7 @@ Separate official CVSS 9.2 from “CVSS 10” rumors; CDN “early attacks” fr
 - **2026-10-21 19:00** (21:00) — Recorded Future: no established scale of successful exploitation [D]
 - **2026-10-22 01:25** (03:25) — Cloudflare (Prince): “millions” of attempts [D]
 - **2026-10-22 07:23** (09:23) — heise: takedowns in Germany, distro packages, no successful attacks [D]
+- **2026-10-22 18:30** (20:30) — Mood and media review #1: #PHP2Shell on X 2,971 → 6,811 posts/day, about 40% of mentions in Japanese, PoC skepticism dominates [O]
 
 ---
 
@@ -778,6 +818,35 @@ Separate official CVSS 9.2 from “CVSS 10” rumors; CDN “early attacks” fr
 [^freexian]: https://deb.freexian.com/extended-lts/tracker/CVE-2026-109618
 [^sury]: https://packages.sury.org/php/
 
+### Update 22 Oct 2026 evening (§7.5)
+[^smxapi]: X API v2, recent post counts per day, retrieved 22 Oct 2026, 18:30 UTC; public search: https://x.com/search?q=php2shell&src=typed_query&f=live
+[^smmast]: https://infosec.exchange/tags/php2shell (hashtag history via the Mastodon API, retrieved 22 Oct 2026, 18:30 UTC)
+[^smhn1]: https://news.ycombinator.com/item?id=50188948
+[^smhn2]: https://news.ycombinator.com/item?id=50180836
+[^smkgeist]: https://news.ycombinator.com/item?id=50189528
+[^smhuntio]: https://x.com/Huntio/status/2113283896225743058
+[^smtptacek]: https://news.ycombinator.com/item?id=50198093
+[^smprywatnik]: https://x.com/prywatnik/status/2112872533389394350
+[^smwilehalm]: https://x.com/Wilehalm/status/2112812111722070414
+[^smbandito]: https://x.com/B4nd1t0_/status/2113331780371558423
+[^smpertsch]: https://Pertsch.social/@Sebastian/117485538076784447
+[^smembargo]: https://news.ycombinator.com/item?id=50193416
+[^smcwillu]: https://news.ycombinator.com/item?id=50193835
+[^smlinuxmag]: https://www.linux-magazin.de/news/kritische-php-schwachstellen-waren-seit-jahren-bekannt/
+[^smeol]: https://x.com/averyjparker/status/2112906550410973670
+[^smyoungstd]: https://x.com/YoungSTD/status/2113059003689472475
+[^smh4x0r]: https://x.com/h4x0r_dz/status/2112999525262528579
+[^sminfoworld]: https://x.com/Informacjeworld/status/2112952602811871548
+[^smcnn]: https://www.cnn.com/2026/10/21/tech/php2shell-vulnerability-ai
+[^smcnbc]: https://www.cnbc.com/2026/10/22/php-google-openai-and-amazon-cyber.html
+[^smdarkreading]: https://www.darkreading.com/application-security/php2shell-bugs-red-alert-security-industry
+[^smbloomberg]: https://www.bloomberg.com/news/articles/2026-10-22/researchers-say-hackers-targeted-php-before-flaws-were-known
+[^smzdf]: https://www.zdfheute.de/politik/php-luecke-cybersicherheit-experten-bedrohung-100.html
+[^smtagesschau]: https://www.tagesschau.de/wirtschaft/digitales/php-panne-100.html
+[^smspiegel]: https://www.spiegel.de/netzwelt/netzpolitik/php2shell-wie-eine-server-schwachstelle-behoerden-aus-dem-netz-kegelte-a-1d993c5a-2f97-4190-86b1-64bc2bf5070b
+[^smonet]: https://wiadomosci.onet.pl/swiat/ai-odkryla-luke-ktora-moze-zagrozic-milionom-stron-eksperci-bija-na-alarm/6dsce33
+[^smtvn24]: https://tvn24.pl/biznes/z-kraju/strony-biuletynu-informacji-publicznej-wylaczone-krzysztof-gawkowski-wykryto-powazne-luki-st9299779
+
 ---
 
-*End of version 1.1 (EN). Update as distro packages, IoCs and Calif/OpenAI write-ups appear.*
+*End of version 1.3 (EN). Update as distro packages, IoCs and Calif/OpenAI write-ups appear.*

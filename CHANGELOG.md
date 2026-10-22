@@ -1,5 +1,13 @@
 # Changelog
 
+## v1.6 (22.10.2026)
+
+Case study 1.3: new subsection 7.5 (PL/EN/DE), the first twice-daily social and media review (as of 22 Oct, 18:30 UTC): X post counts and hashtags (#PHP2Shell 2,971 → 6,811 posts/day; about 40% of mentions in Japanese), Mastodon and Hacker News; dominant moods (PoC skepticism, alarm in PL/DE, humour, embargo and EOL frustration, scam warnings); international, German and Polish press angles; three contradictions between sources (exploitability, “70% of the internet”, “attacks have begun”). New label [O] = observation. Ledger CLM-0103…CLM-0112. The live site gained the sections “Social mood”, “Hashtags and keywords” and “Press review” (data: `social_mood`, `hashtags`, `press_review`, `media_contradictions` in `data/facts.json`).
+
+Studium 1.3: nowy podrozdział 7.5 (PL/EN/DE), pierwszy przegląd nastrojów i mediów (dwa razy dziennie, stan na 22.10, 18:30 UTC): liczby wpisów i hashtagi na X (#PHP2Shell 2971 → 6811 wpisów dziennie; ok. 40% wzmianek po japońsku), Mastodon i Hacker News; dominujące nastroje (sceptycyzm wobec PoC, alarm w PL/DE, humor, frustracja embargiem i EOL, ostrzeżenia przed oszustwami); kąty prasy międzynarodowej, niemieckiej i polskiej; trzy sprzeczności między źródłami (wykonalność ataku, „70% internetu”, „ataki się zaczęły”). Nowa etykieta [O] = obserwacja. Rejestr CLM-0103…CLM-0112. Strona na żywo ma nowe sekcje „Nastroje w sieci”, „Hashtagi i słowa kluczowe” i „Przegląd prasy”.
+
+Fallstudie 1.3: neuer Abschnitt 7.5 (PL/EN/DE), die erste der zweimal täglichen Stimmungs- und Medienschauen (Stand 22.10., 18:30 UTC): Beitragszahlen und Hashtags auf X (#PHP2Shell 2.971 → 6.811 Beiträge pro Tag; rund 40 % der Erwähnungen japanisch), Mastodon und Hacker News; vorherrschende Stimmungen (PoC-Skepsis, Alarm in PL/DE, Humor, Frust über Embargo und EOL, Warnungen vor Betrug); Blickwinkel der internationalen, deutschen und polnischen Presse; drei Widersprüche zwischen Quellen (Ausnutzbarkeit, „70 % des Internets“, „die Attacken haben begonnen“). Neue Kennzeichnung [O] = Beobachtung. Ledger CLM-0103…CLM-0112. Die Live-Seite hat neue Abschnitte „Stimmung im Netz“, „Hashtags und Stichwörter“ und „Presseschau“.
+
 ## v1.5 (22.10.2026)
 
 Case study 1.1: new subsection 7.4 (PL/EN/DE) on the exploitation picture since disclosure: AWS MadPot attempt on 17 Oct during the embargo (single source), pre-patch attempts reported independently by AWS and Cloudflare, attempts versus breaches (VulnCheck, watchTowr, Recorded Future, heise: no confirmed compromise; not in CISA KEV), precautionary takedowns in Germany and Denmark, exposure estimates (Censys, Unit 42), vendor backports for end-of-life branches. Evidence ledger CLM-0090…CLM-0101.
