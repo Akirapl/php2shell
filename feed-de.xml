@@ -3,12 +3,23 @@
 <title>PHP2Shell — Chronik (DE)</title>
 <subtitle>Live-Chronik zu PHP2Shell (CVE-2026-109618/109619), kritische RCE im PHP-Kern (CVSS 9.2). Behoben in 8.5.12, 8.4.27, 8.3.36, 8.2.35. Jede Angabe mit Quelle.</subtitle>
 <id>https://akirapl.github.io/php2shell/feed-de.xml</id>
-<updated>2026-10-22T12:25:00Z</updated>
+<updated>2026-10-22T14:25:00Z</updated>
 <link rel="self" type="application/atom+xml" href="https://akirapl.github.io/php2shell/feed-de.xml"/>
 <link rel="alternate" type="text/html" hreflang="de" href="https://akirapl.github.io/php2shell/?lang=de"/>
 <author><name>Dawid Kulik (@Akirapl)</name><uri>https://github.com/Akirapl</uri></author>
 <icon>https://akirapl.github.io/php2shell/assets/og-image.png</icon>
 <rights>CC BY 4.0</rights>
+<entry>
+<title>SecurityWeek: Überblick über Herstellerreaktionen; Sophos nahm eigenes MyUTM-Portal vom Netz</title>
+<id>tag:php2shell-live.surge.sh,2026:securityweek-vendor-roundup-sophos</id>
+<link rel="alternate" type="text/html" href="https://akirapl.github.io/php2shell/?lang=de#ev-securityweek-vendor-roundup-sophos"/>
+<link rel="related" href="https://www.securityweek.com/tech-and-security-companies-respond-to-php2shell-vulnerabilities/"/>
+<published>2026-10-22T12:20:00Z</published>
+<updated>2026-10-22T12:20:00Z</updated>
+<category term="minor"/>
+<summary type="text">Laut SecurityWeek stellte Sophos fest, dass sein MyUTM-Portal (ein Lizenzdienst für das abgekündigte SG UTM) eine verwundbare PHP-Version nutzte, und nahm es am 21.10. bis zum Update vom Netz. Derselbe Überblick berichtet, dass Fortinet rund zwei Dutzend Produkte als nicht betroffen bestätigte und SolarWinds für Pingdom kompensierende Maßnahmen umsetzte.</summary>
+<content type="html">&lt;p&gt;Laut SecurityWeek stellte Sophos fest, dass sein MyUTM-Portal (ein Lizenzdienst für das abgekündigte SG UTM) eine verwundbare PHP-Version nutzte, und nahm es am 21.10. bis zum Update vom Netz. Derselbe Überblick berichtet, dass Fortinet rund zwei Dutzend Produkte als nicht betroffen bestätigte und SolarWinds für Pingdom kompensierende Maßnahmen umsetzte.&lt;/p&gt;&lt;p&gt;Quelle: &lt;a href="https://www.securityweek.com/tech-and-security-companies-respond-to-php2shell-vulnerabilities/"&gt;SecurityWeek (Eduard Kovacs)&lt;/a&gt; · gemeldet · minor&lt;/p&gt;</content>
+</entry>
 <entry>
 <title>Ausmaß der Versuche: Cloudflare meldet Millionen, Censys rund 1,57 Mio. ungepatchte Hosts; laut watchTowr erreichen kursierende PoCs keine RCE</title>
 <id>tag:php2shell-live.surge.sh,2026:securityweek-scale-telemetry-1022</id>
@@ -866,6 +877,17 @@
 <category term="major"/>
 <summary type="text">CrowdStrike (Amit Serper) schreibt, die vollständige Kette verifiziert zu haben: Ein einziger anonymer POST-Request brachte einen Apache-mod_php-Worker dazu, eine Shell zu starten und einen Befehl auszuführen, ohne Authentifizierung und ohne verwundbaren Anwendungscode. Der Exploit wurde nicht veröffentlicht. Laut CrowdStrike lässt sich der Fehler mit den PHP-Standardwerten (post_max_size 8M, memory_limit 128M) auf dem gezeigten Weg nicht auslösen; gefährdet sind Konfigurationen mit memory_limit unter etwa 4 × post_max_size. Spur für Verteidiger: ein Speicherfehler „in Unknown on line 0“ im Webserver-Log.</summary>
 <content type="html">&lt;p&gt;CrowdStrike (Amit Serper) schreibt, die vollständige Kette verifiziert zu haben: Ein einziger anonymer POST-Request brachte einen Apache-mod_php-Worker dazu, eine Shell zu starten und einen Befehl auszuführen, ohne Authentifizierung und ohne verwundbaren Anwendungscode. Der Exploit wurde nicht veröffentlicht. Laut CrowdStrike lässt sich der Fehler mit den PHP-Standardwerten (post_max_size 8M, memory_limit 128M) auf dem gezeigten Weg nicht auslösen; gefährdet sind Konfigurationen mit memory_limit unter etwa 4 × post_max_size. Spur für Verteidiger: ein Speicherfehler „in Unknown on line 0“ im Webserver-Log.&lt;/p&gt;&lt;p&gt;Quelle: &lt;a href="https://www.crowdstrike.com/en-us/blog/crowdstrike-protects-customers-from-php-rce-zero-days/"&gt;CrowdStrike blog (Amit Serper)&lt;/a&gt; · gemeldet · major&lt;/p&gt;</content>
+</entry>
+<entry>
+<title>Palo Alto Networks: PAN-OS und Panorama in allen Versionen betroffen, noch kein Fix</title>
+<id>tag:php2shell-live.surge.sh,2026:paloalto-panos-mgmt-affected</id>
+<link rel="alternate" type="text/html" href="https://akirapl.github.io/php2shell/?lang=de#ev-paloalto-panos-mgmt-affected"/>
+<link rel="related" href="https://security.paloaltonetworks.com/CVE-2026-109618"/>
+<published>2026-10-21T00:00:00Z</published>
+<updated>2026-10-21T00:00:00Z</updated>
+<category term="major"/>
+<summary type="text">Das Advisory von Palo Alto Networks führt alle Versionen von PAN-OS 12.2, 12.1, 11.2, 11.1 und 10.2 sowie Panorama als betroffen, ohne gefixte Version (ETA „TBD“). Das Unternehmen bewertet die Auswirkung auf seine Produkte mit CVSS-B 8,7 (HIGH); das Risiko ist am höchsten, wenn die Management-Oberfläche aus dem Internet erreichbar ist. Es empfiehlt, den Zugriff darauf einzuschränken, und weiß nach eigenen Angaben von keiner bösartigen Ausnutzung gegen seine Produkte. Das zeigt: In Netzwerkgeräten verstecktes PHP hängt von Herstellerpatches ab, nicht vom Administrator.</summary>
+<content type="html">&lt;p&gt;Das Advisory von Palo Alto Networks führt alle Versionen von PAN-OS 12.2, 12.1, 11.2, 11.1 und 10.2 sowie Panorama als betroffen, ohne gefixte Version (ETA „TBD“). Das Unternehmen bewertet die Auswirkung auf seine Produkte mit CVSS-B 8,7 (HIGH); das Risiko ist am höchsten, wenn die Management-Oberfläche aus dem Internet erreichbar ist. Es empfiehlt, den Zugriff darauf einzuschränken, und weiß nach eigenen Angaben von keiner bösartigen Ausnutzung gegen seine Produkte. Das zeigt: In Netzwerkgeräten verstecktes PHP hängt von Herstellerpatches ab, nicht vom Administrator.&lt;/p&gt;&lt;p&gt;Quelle: &lt;a href="https://security.paloaltonetworks.com/CVE-2026-109618"&gt;Palo Alto Networks Security Advisory CVE-2026-109618&lt;/a&gt; · bestätigt · major&lt;/p&gt;</content>
 </entry>
 <entry>
 <title>Fedora: PHP2Shell als Blocker für Fedora 45 vorgeschlagen</title>

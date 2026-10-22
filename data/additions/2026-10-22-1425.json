@@ -1,0 +1,66 @@
+{
+ "added": [
+  {
+   "id": "paloalto-panos-mgmt-affected",
+   "time_utc": "2026-10-21",
+   "importance": "major",
+   "title": {
+    "pl": "Palo Alto Networks: PAN-OS i Panorama podatne we wszystkich wydaniach, poprawki jeszcze brak",
+    "en": "Palo Alto Networks: PAN-OS and Panorama affected in every release, no fix yet",
+    "de": "Palo Alto Networks: PAN-OS und Panorama in allen Versionen betroffen, noch kein Fix"
+   },
+   "description": {
+    "pl": "Biuletyn Palo Alto Networks wymienia jako podatne wszystkie wydania PAN-OS 12.2, 12.1, 11.2, 11.1 i 10.2 oraz Panoramę, bez wersji z poprawką (termin: „TBD”). Firma ocenia wpływ na swoje produkty na CVSS-B 8,7 (HIGH); ryzyko jest największe, gdy interfejs zarządzania jest dostępny z internetu. Zaleca ograniczenie dostępu do tego interfejsu i nie wie o złośliwym wykorzystaniu wobec swoich produktów. Pokazuje to, że PHP ukryty w urządzeniach sieciowych wymaga łatek od producenta, a nie od administratora.",
+    "en": "Palo Alto Networks' advisory lists every release of PAN-OS 12.2, 12.1, 11.2, 11.1 and 10.2, plus Panorama, as affected, with no fixed version yet (ETA “TBD”). The company scores the impact on its products at CVSS-B 8.7 (HIGH); risk is highest when the management interface is reachable from the internet. It recommends restricting access to that interface and says it is not aware of malicious exploitation against its products. This shows that PHP hidden inside network appliances depends on vendor patches, not on the administrator.",
+    "de": "Das Advisory von Palo Alto Networks führt alle Versionen von PAN-OS 12.2, 12.1, 11.2, 11.1 und 10.2 sowie Panorama als betroffen, ohne gefixte Version (ETA „TBD“). Das Unternehmen bewertet die Auswirkung auf seine Produkte mit CVSS-B 8,7 (HIGH); das Risiko ist am höchsten, wenn die Management-Oberfläche aus dem Internet erreichbar ist. Es empfiehlt, den Zugriff darauf einzuschränken, und weiß nach eigenen Angaben von keiner bösartigen Ausnutzung gegen seine Produkte. Das zeigt: In Netzwerkgeräten verstecktes PHP hängt von Herstellerpatches ab, nicht vom Administrator."
+   },
+   "actors": [
+    "Palo Alto Networks"
+   ],
+   "source_url": "https://security.paloaltonetworks.com/CVE-2026-109618",
+   "source_name": "Palo Alto Networks Security Advisory CVE-2026-109618",
+   "confidence": "confirmed",
+   "source_reliability": "A",
+   "info_credibility": 1,
+   "time_kind": "published",
+   "time_precision": "day",
+   "rating_note": {
+    "pl": "Biuletyn producenta o własnych produktach (źródło pierwotne); stan na 22.10, 14:15 UTC.",
+    "en": "Vendor advisory about its own products (primary source); as checked 22 Oct, 14:15 UTC.",
+    "de": "Hersteller-Advisory zu eigenen Produkten (Primärquelle); Stand 22.10., 14:15 UTC."
+   }
+  },
+  {
+   "id": "securityweek-vendor-roundup-sophos",
+   "time_utc": "2026-10-22T12:20:00Z",
+   "importance": "minor",
+   "title": {
+    "pl": "SecurityWeek: przegląd reakcji dostawców; Sophos wyłączył własny portal MyUTM",
+    "en": "SecurityWeek: vendor response roundup; Sophos took its own MyUTM portal offline",
+    "de": "SecurityWeek: Überblick über Herstellerreaktionen; Sophos nahm eigenes MyUTM-Portal vom Netz"
+   },
+   "description": {
+    "pl": "Według SecurityWeek Sophos ustalił, że jego portal MyUTM (starsza usługa licencyjna dla wycofanego SG UTM) działał na podatnej wersji PHP, i 21.10 wyłączył go do czasu aktualizacji. Ten sam przegląd podaje m.in., że Fortinet potwierdził brak wpływu na ok. dwadzieścia produktów, a SolarWinds zastosował środki kompensujące w Pingdom.",
+    "en": "According to SecurityWeek, Sophos found that its MyUTM portal (a legacy licensing service for the end-of-life SG UTM) was running a vulnerable PHP version and took it offline on 21 Oct until it is updated. The same roundup reports that Fortinet confirmed about two dozen products are not impacted and that SolarWinds applied compensating controls to Pingdom.",
+    "de": "Laut SecurityWeek stellte Sophos fest, dass sein MyUTM-Portal (ein Lizenzdienst für das abgekündigte SG UTM) eine verwundbare PHP-Version nutzte, und nahm es am 21.10. bis zum Update vom Netz. Derselbe Überblick berichtet, dass Fortinet rund zwei Dutzend Produkte als nicht betroffen bestätigte und SolarWinds für Pingdom kompensierende Maßnahmen umsetzte."
+   },
+   "actors": [
+    "Sophos",
+    "Fortinet",
+    "SolarWinds"
+   ],
+   "source_url": "https://www.securityweek.com/tech-and-security-companies-respond-to-php2shell-vulnerabilities/",
+   "source_name": "SecurityWeek (Eduard Kovacs)",
+   "confidence": "reported",
+   "source_reliability": "B",
+   "info_credibility": 2,
+   "time_kind": "published",
+   "time_precision": "minute",
+   "rating_note": {
+    "pl": "Relacja branżowego serwisu oparta na komunikatach dostawców; komunikatu Sophos nie sprawdzano bezpośrednio.",
+    "en": "Trade-press report based on vendor statements; the Sophos notice itself was not checked directly.",
+    "de": "Fachpresse-Bericht auf Basis von Herstellerangaben; die Sophos-Mitteilung selbst wurde nicht direkt geprüft."
+   }
+  }
+ ]
+}

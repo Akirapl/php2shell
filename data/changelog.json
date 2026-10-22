@@ -1,5 +1,11 @@
 [
  {
+  "time_utc": "2026-10-22T14:17:14Z",
+  "message": "+2 events: Palo Alto PAN-OS/Panorama affected (no fix), SecurityWeek vendor roundup/Sophos MyUTM",
+  "events": 100,
+  "facts_last_updated": "2026-10-22T14:25:00Z"
+ },
+ {
   "time_utc": "2026-10-22T12:19:08Z",
   "message": "CrowdStrike: verified RCE on mod_php (lab), case study 1.2 §7.4",
   "events": 98,

@@ -3,12 +3,23 @@
 <title>PHP2Shell — oś czasu (PL)</title>
 <subtitle>Relacja na żywo: PHP2Shell (CVE-2026-109618/109619), krytyczne RCE w rdzeniu PHP (CVSS 9.2). Poprawki: 8.5.12, 8.4.27, 8.3.36, 8.2.35. Każdy fakt ze źródłem.</subtitle>
 <id>https://akirapl.github.io/php2shell/feed-pl.xml</id>
-<updated>2026-10-22T12:25:00Z</updated>
+<updated>2026-10-22T14:25:00Z</updated>
 <link rel="self" type="application/atom+xml" href="https://akirapl.github.io/php2shell/feed-pl.xml"/>
 <link rel="alternate" type="text/html" hreflang="pl" href="https://akirapl.github.io/php2shell/?lang=pl"/>
 <author><name>Dawid Kulik (@Akirapl)</name><uri>https://github.com/Akirapl</uri></author>
 <icon>https://akirapl.github.io/php2shell/assets/og-image.png</icon>
 <rights>CC BY 4.0</rights>
+<entry>
+<title>SecurityWeek: przegląd reakcji dostawców; Sophos wyłączył własny portal MyUTM</title>
+<id>tag:php2shell-live.surge.sh,2026:securityweek-vendor-roundup-sophos</id>
+<link rel="alternate" type="text/html" href="https://akirapl.github.io/php2shell/?lang=pl#ev-securityweek-vendor-roundup-sophos"/>
+<link rel="related" href="https://www.securityweek.com/tech-and-security-companies-respond-to-php2shell-vulnerabilities/"/>
+<published>2026-10-22T12:20:00Z</published>
+<updated>2026-10-22T12:20:00Z</updated>
+<category term="minor"/>
+<summary type="text">Według SecurityWeek Sophos ustalił, że jego portal MyUTM (starsza usługa licencyjna dla wycofanego SG UTM) działał na podatnej wersji PHP, i 21.10 wyłączył go do czasu aktualizacji. Ten sam przegląd podaje m.in., że Fortinet potwierdził brak wpływu na ok. dwadzieścia produktów, a SolarWinds zastosował środki kompensujące w Pingdom.</summary>
+<content type="html">&lt;p&gt;Według SecurityWeek Sophos ustalił, że jego portal MyUTM (starsza usługa licencyjna dla wycofanego SG UTM) działał na podatnej wersji PHP, i 21.10 wyłączył go do czasu aktualizacji. Ten sam przegląd podaje m.in., że Fortinet potwierdził brak wpływu na ok. dwadzieścia produktów, a SolarWinds zastosował środki kompensujące w Pingdom.&lt;/p&gt;&lt;p&gt;Źródło: &lt;a href="https://www.securityweek.com/tech-and-security-companies-respond-to-php2shell-vulnerabilities/"&gt;SecurityWeek (Eduard Kovacs)&lt;/a&gt; · doniesienie · minor&lt;/p&gt;</content>
+</entry>
 <entry>
 <title>Skala prób: Cloudflare mówi o milionach, Censys – ok. 1,57 mln niezałatanych hostów; watchTowr: krążące PoC nie dają RCE</title>
 <id>tag:php2shell-live.surge.sh,2026:securityweek-scale-telemetry-1022</id>
@@ -866,6 +877,17 @@
 <category term="major"/>
 <summary type="text">CrowdStrike (Amit Serper) pisze, że zweryfikował pełny łańcuch: jedno anonimowe żądanie POST sprawiło, że worker Apache mod_php uruchomił powłokę i wykonał polecenie, bez uwierzytelnienia i bez podatnego kodu aplikacji. Exploit nie został opublikowany. Według CrowdStrike domyślne ustawienia PHP (post_max_size 8M, memory_limit 128M) nie pozwalają dojść do błędu opisaną drogą; narażone są konfiguracje z memory_limit mniejszym niż ok. 4 × post_max_size. Ślad dla obrońców: błąd przekroczenia pamięci „in Unknown on line 0” w logu serwera WWW.</summary>
 <content type="html">&lt;p&gt;CrowdStrike (Amit Serper) pisze, że zweryfikował pełny łańcuch: jedno anonimowe żądanie POST sprawiło, że worker Apache mod_php uruchomił powłokę i wykonał polecenie, bez uwierzytelnienia i bez podatnego kodu aplikacji. Exploit nie został opublikowany. Według CrowdStrike domyślne ustawienia PHP (post_max_size 8M, memory_limit 128M) nie pozwalają dojść do błędu opisaną drogą; narażone są konfiguracje z memory_limit mniejszym niż ok. 4 × post_max_size. Ślad dla obrońców: błąd przekroczenia pamięci „in Unknown on line 0” w logu serwera WWW.&lt;/p&gt;&lt;p&gt;Źródło: &lt;a href="https://www.crowdstrike.com/en-us/blog/crowdstrike-protects-customers-from-php-rce-zero-days/"&gt;CrowdStrike blog (Amit Serper)&lt;/a&gt; · doniesienie · major&lt;/p&gt;</content>
+</entry>
+<entry>
+<title>Palo Alto Networks: PAN-OS i Panorama podatne we wszystkich wydaniach, poprawki jeszcze brak</title>
+<id>tag:php2shell-live.surge.sh,2026:paloalto-panos-mgmt-affected</id>
+<link rel="alternate" type="text/html" href="https://akirapl.github.io/php2shell/?lang=pl#ev-paloalto-panos-mgmt-affected"/>
+<link rel="related" href="https://security.paloaltonetworks.com/CVE-2026-109618"/>
+<published>2026-10-21T00:00:00Z</published>
+<updated>2026-10-21T00:00:00Z</updated>
+<category term="major"/>
+<summary type="text">Biuletyn Palo Alto Networks wymienia jako podatne wszystkie wydania PAN-OS 12.2, 12.1, 11.2, 11.1 i 10.2 oraz Panoramę, bez wersji z poprawką (termin: „TBD”). Firma ocenia wpływ na swoje produkty na CVSS-B 8,7 (HIGH); ryzyko jest największe, gdy interfejs zarządzania jest dostępny z internetu. Zaleca ograniczenie dostępu do tego interfejsu i nie wie o złośliwym wykorzystaniu wobec swoich produktów. Pokazuje to, że PHP ukryty w urządzeniach sieciowych wymaga łatek od producenta, a nie od administratora.</summary>
+<content type="html">&lt;p&gt;Biuletyn Palo Alto Networks wymienia jako podatne wszystkie wydania PAN-OS 12.2, 12.1, 11.2, 11.1 i 10.2 oraz Panoramę, bez wersji z poprawką (termin: „TBD”). Firma ocenia wpływ na swoje produkty na CVSS-B 8,7 (HIGH); ryzyko jest największe, gdy interfejs zarządzania jest dostępny z internetu. Zaleca ograniczenie dostępu do tego interfejsu i nie wie o złośliwym wykorzystaniu wobec swoich produktów. Pokazuje to, że PHP ukryty w urządzeniach sieciowych wymaga łatek od producenta, a nie od administratora.&lt;/p&gt;&lt;p&gt;Źródło: &lt;a href="https://security.paloaltonetworks.com/CVE-2026-109618"&gt;Palo Alto Networks Security Advisory CVE-2026-109618&lt;/a&gt; · potwierdzone · major&lt;/p&gt;</content>
 </entry>
 <entry>
 <title>Fedora: PHP2Shell zgłoszony jako bloker wydania Fedora 45</title>
