@@ -10,7 +10,7 @@ asof: "2026-10-21 14:05 UTC (16:05 CEST)"
 
 **A deep case study of the critical core-PHP vulnerabilities CVE-2026-109618 and CVE-2026-109619**
 
-- **Document version:** 1.1, subsection 7.4 as of 22 Oct 2026, 10:30 UTC (English adaptation of the Polish master)
+- **Document version:** 1.2, subsection 7.4 as of 22 Oct 2026, 12:30 UTC (English adaptation of the Polish master)
 - **As of:** 21 Oct 2026, 14:05 UTC (16:05 CEST) — about 30 minutes after the patches went public
 - **Nature:** Defensive, historical analysis — **no** exploit code, payloads, PoCs, or attack instructions
 - **Labels:** **[P]** primary source · **[D]** third-party report · **[?]** open / conflicting · **[A]** this document’s analysis
@@ -22,6 +22,7 @@ asof: "2026-10-21 14:05 UTC (16:05 CEST)"
 ## Changelog
 
 - **1.1** (2026-10-22 10:30 UTC) — New subsection 7.4: exploitation picture since disclosure (AWS MadPot 17 Oct, Cloudflare, VulnCheck, watchTowr, Recorded Future), precautionary takedowns in Germany and Denmark, exposure estimates (Censys, Unit 42), backports for EOL branches; Appendix A entries; ledger CLM-0090…CLM-0101. The rest of the document is unchanged (as of 21 Oct).
+- **1.2** (2026-10-22 12:30 UTC) — §7.4: CrowdStrike finding (verified RCE on Apache `mod_php`, configuration condition, log trace); conclusion extended; ledger CLM-0102.
 - **1.0.1** (2026-10-21 17:30 UTC) — Evidence ledger (CLM-0001…) added. Corrections from the ledger check: fix commit touches 423 files, not 300 (GitHub’s commit API lists only the first 300); PHP Foundation’s original release time (22 Oct 14:00 UTC) added as a third, conflicting embargo time; sources added for watchTowr Active Defense, Sansec’s “15 minutes” (SecurityWeek), the Remi warning (PHP Foundation on X), NU.nl/BBC offline lists and Patchstack/Firsov; BSI quote made precise; Huntress date corrected; Log4Shell probes were 8 days (not 9) before disclosure per Cloudflare; an unsourced Aikido “since June 2026” remark and an unverifiable Hadrian “at scale” claim removed/softened.
 - **1.0** (2026-10-21 14:05 UTC) — First release. Sources: php.net, GHSA, the fix commit, Wiz, watchTowr, BSI, NCSC UK, NCSC-NL, CERT-EU, CERT.at, CERT Polska, CERT-FR, NOS, W3Techs, Modat, heise, SecurityWeek, Huntress, Tenable, Cloudflare, Docker PR, Ubuntu tracker, HN, Mastodon; historical comparisons (Log4Shell, Heartbleed, CVE-2024-4577, OpenSSL 3.0.7).
 
@@ -71,10 +72,19 @@ asof: "2026-10-21 14:05 UTC (16:05 CEST)"
 
 **What is new here** [A]: (1) a bug in the *runtime*, not the app; (2) AI in discovery and — researchers say — in making exploitation practical; (3) an embargo leak that became a ~22-hour race; (4) precautionary public-site takedowns in several EU countries before a patch existed.
 
-*Timeline*
-
-```mermaid
-flowchart TB
+<figure class="diagram" id="dg-timeline">
+<img src="diagrams/timeline.png" alt="PHP2Shell timeline: 15 events in one chronological chain, split into four phases — discovery (August 2026), remediation, leak (20 October) and patch day (21 October).">
+<figcaption>Timeline</figcaption>
+<details class="dgtx"><summary>Text description of the diagram</summary>
+<p>PHP2Shell timeline: 15 events in one chronological chain, split into four phases — discovery (August 2026), remediation, leak (20 October) and patch day (21 October).</p>
+<p>Flow diagram (top to bottom): 15 events linked by arrows into one chain; the last event of each phase leads to the first event of the next. The diagram labels are in English.</p>
+<ul>
+<li><b>Discovery (August 2026):</b> 19 Aug — Wiz finds the first bug → 20–21 Aug — RCE on Drupal and WordPress → 24 Aug — report to PHP.</li>
+<li><b>Remediation:</b> 21 Sep — PHP confirms → 14 Oct — Daybreak triage blog post → 18 Oct — bailout fix commit → 19 Oct — annotated tags 8.2.35 to 8.5.12.</li>
+<li><b>Leak (20 Oct):</b> 15:20 UTC — “Tell HN” post with the CVE numbers → 18:26 — watchTowr confirms the embargo → 19:33 — PHP announces a release for Wednesday 14:00 UTC → 20:27 — php2shell video.</li>
+<li><b>Patch day (21 Oct):</b> morning — mass offline in NL, BE, FR, FI → 07:43 — Cloudflare: early attacks → 13:34 — GHSA and tarballs → 13:43 — Wiz blog post.</li>
+</ul>
+<details class="dgsrc"><summary>Mermaid source</summary><pre><code class="language-mermaid">flowchart TB
   subgraph D[Discovery Aug 2026]
     d1[19 Aug: Wiz first bug]
     d2[20-21 Aug: RCE Drupal and WordPress]
@@ -98,22 +108,9 @@ flowchart TB
     p3[13:34: GHSA and tarballs]
     p4[13:43: Wiz blog]
   end
-  d1 --> d2 --> d3 --> r1 --> r2 --> r3 --> r4 --> l1 --> l2 --> l3 --> l4 --> p1 --> p2 --> p3 --> p4
-```
-
-<details>
-<summary>Text description of the diagram</summary>
-
-<p>PHP2Shell timeline: 15 events in one chronological chain, split into four phases — discovery (August 2026), remediation, leak (20 October) and patch day (21 October).</p>
-<p>Flow diagram (top to bottom): 15 events linked by arrows into one chain; the last event of each phase leads to the first event of the next. The diagram labels are in English.</p>
-<ul>
-<li><b>Discovery (August 2026):</b> 19 Aug — Wiz finds the first bug → 20–21 Aug — RCE on Drupal and WordPress → 24 Aug — report to PHP.</li>
-<li><b>Remediation:</b> 21 Sep — PHP confirms → 14 Oct — Daybreak triage blog post → 18 Oct — bailout fix commit → 19 Oct — annotated tags 8.2.35 to 8.5.12.</li>
-<li><b>Leak (20 Oct):</b> 15:20 UTC — “Tell HN” post with the CVE numbers → 18:26 — watchTowr confirms the embargo → 19:33 — PHP announces a release for Wednesday 14:00 UTC → 20:27 — php2shell video.</li>
-<li><b>Patch day (21 Oct):</b> morning — mass offline in NL, BE, FR, FI → 07:43 — Cloudflare: early attacks → 13:34 — GHSA and tarballs → 13:43 — Wiz blog post.</li>
-</ul>
-
+  d1 --&gt; d2 --&gt; d3 --&gt; r1 --&gt; r2 --&gt; r3 --&gt; r4 --&gt; l1 --&gt; l2 --&gt; l3 --&gt; l4 --&gt; p1 --&gt; p2 --&gt; p3 --&gt; p4</code></pre></details>
 </details>
+</figure>
 
 ---
 
@@ -147,10 +144,22 @@ PHP is usually embedded in a web server or run as a pool of workers. The glue is
 
 **Analogy** [A]: a PHP worker is a clerk’s desk. Each request is a case file. After the case, every folder must be put away. If the lights go out in a panic (OOM / fatal), a sticky note with a folder address may remain for a folder that was already shredded. The next visitor — same desk — treats that address as live. That is “stale global state” and “OOM corruption”.
 
-*Request lifecycle*
-
-```mermaid
-flowchart TB
+<figure class="diagram" id="dg-lifecycle">
+<img src="diagrams/lifecycle.png" alt="PHP HTTP request lifecycle: client → web server → one of three SAPIs → four stages inside one PHP worker, with the shared worker-global state marked as the risk.">
+<figcaption>Request lifecycle</figcaption>
+<details class="dgtx"><summary>Text description of the diagram</summary>
+<p>PHP HTTP request lifecycle: client → web server → one of three SAPIs → four stages inside one PHP worker, with the shared worker-global state marked as the risk.</p>
+<p>Block diagram (top to bottom) in four layers: client, web server, SAPI (the connecting layer) and PHP engine (one worker). The diagram labels are in Polish.</p>
+<ul>
+<li><b>Client → web server:</b> a browser / HTTP client sends an HTTP request to the web server (Apache / nginx / LiteSpeed).</li>
+<li><b>Web server → SAPI:</b> the server hands the request to one of three SAPIs: mod_php inside the Apache process, PHP-FPM (worker pool) or php-cgi / CGI.</li>
+<li><b>SAPI → engine:</b> each of the three SAPIs leads to stage 1 in the PHP engine.</li>
+<li><b>Stages inside the worker, in order:</b> 1. request startup (multipart body parsing) → 2. module / executor initialisation → 3. application code → 4. request shutdown (memory release).</li>
+<li><b>Worker-global state</b> (error / session / object): a dashed line from stage 1 labelled “may write state before init” and a dashed line from stage 4 labelled “must clean up”.</li>
+<li><b>Loop:</b> an arrow from stage 4 returns to stage 1 — “next request of the same worker”.</li>
+<li><b>Highlighted in red (risk):</b> request startup, worker-global state and request shutdown.</li>
+</ul>
+<details class="dgsrc"><summary>Mermaid source</summary><pre><code class="language-mermaid">flowchart TB
   subgraph Client
     B[Przeglądarka / klient HTTP]
   end
@@ -163,43 +172,27 @@ flowchart TB
     CGI[php-cgi / CGI]
   end
   subgraph Engine[Silnik PHP — jeden worker]
-    ST[1. Start żądania<br/>parsowanie ciała multipart]
+    ST[1. Start żądania&lt;br/&gt;parsowanie ciała multipart]
     IN[2. Inicjalizacja modułów / executor]
     APP[3. Kod aplikacji]
-    SH[4. Shutdown żądania<br/>zwalnianie pamięci]
-    GL[(Stan globalny workera<br/>error / session / object)]
+    SH[4. Shutdown żądania&lt;br/&gt;zwalnianie pamięci]
+    GL[(Stan globalny workera&lt;br/&gt;error / session / object)]
   end
-  B -->|HTTP| WS
-  WS --> MP
-  WS --> FPM
-  WS --> CGI
-  MP --> ST
-  FPM --> ST
-  CGI --> ST
-  ST --> IN --> APP --> SH
-  ST -.->|może zapisać stan przed init| GL
-  SH -.->|musi wyczyścić| GL
-  SH -->|kolejne żądanie tego samego workera| ST
+  B --&gt;|HTTP| WS
+  WS --&gt; MP
+  WS --&gt; FPM
+  WS --&gt; CGI
+  MP --&gt; ST
+  FPM --&gt; ST
+  CGI --&gt; ST
+  ST --&gt; IN --&gt; APP --&gt; SH
+  ST -.-&gt;|może zapisać stan przed init| GL
+  SH -.-&gt;|musi wyczyścić| GL
+  SH --&gt;|kolejne żądanie tego samego workera| ST
   classDef risk fill:#3d1f1f,stroke:#f85149,color:#fff
-  class ST,GL,SH risk
-```
-
-<details>
-<summary>Text description of the diagram</summary>
-
-<p>PHP HTTP request lifecycle: client → web server → one of three SAPIs → four stages inside one PHP worker, with the shared worker-global state marked as the risk.</p>
-<p>Block diagram (top to bottom) in four layers: client, web server, SAPI (the connecting layer) and PHP engine (one worker). The diagram labels are in Polish.</p>
-<ul>
-<li><b>Client → web server:</b> a browser / HTTP client sends an HTTP request to the web server (Apache / nginx / LiteSpeed).</li>
-<li><b>Web server → SAPI:</b> the server hands the request to one of three SAPIs: mod_php inside the Apache process, PHP-FPM (worker pool) or php-cgi / CGI.</li>
-<li><b>SAPI → engine:</b> each of the three SAPIs leads to stage 1 in the PHP engine.</li>
-<li><b>Stages inside the worker, in order:</b> 1. request startup (multipart body parsing) → 2. module / executor initialisation → 3. application code → 4. request shutdown (memory release).</li>
-<li><b>Worker-global state</b> (error / session / object): a dashed line from stage 1 labelled “may write state before init” and a dashed line from stage 4 labelled “must clean up”.</li>
-<li><b>Loop:</b> an arrow from stage 4 returns to stage 1 — “next request of the same worker”.</li>
-<li><b>Highlighted in red (risk):</b> request startup, worker-global state and request shutdown.</li>
-</ul>
-
+  class ST,GL,SH risk</code></pre></details>
 </details>
+</figure>
 
 ### 1.3 Why this matters
 
@@ -316,36 +309,10 @@ Typical flow [A]: (1) private report; (2) confirm and fix; (3) embargoed notice 
 
 ### 4.2 How it went here
 
-*Disclosure flow*
-
-```mermaid
-flowchart LR
-  subgraph Private[Faza prywatna]
-    D[Odkrycie<br/>Wiz / Calif / OpenAI<br/>VIII 2026]
-    R[Zgłoszenie do PHP<br/>24.08.2026]
-    F[Potwierdzenie i poprawka<br/>od 21.09.2026]
-    EA[Early access<br/>dystrybucje LTS + partnerzy]
-  end
-  subgraph Break[Zerwanie embarga]
-    L[Wyciek HN<br/>20.10 15:20 UTC]
-    V[Wideo PHP2Shell<br/>20.10 20:27 UTC]
-  end
-  subgraph Public[Faza publiczna]
-    A[Zapowiedź PHP<br/>20.10 19:33 UTC<br/>przesunięcie na 21.10 14:00]
-    P[Release + GHSA<br/>21.10 ~13:34 UTC]
-    W[WAF / agencje / hosty]
-  end
-  D --> R --> F --> EA
-  EA -.->|plan: 22.10| A
-  L --> A
-  V --> A
-  A --> P --> W
-  F --> P
-```
-
-<details>
-<summary>Text description of the diagram</summary>
-
+<figure class="diagram" id="dg-disclosure">
+<img src="diagrams/disclosure.png" alt="Disclosure flow: private phase (discovery, report, fix, early access), embargo break (HN leak, video) and public phase (PHP announcement, release with GHSA, WAF / agencies / hosts).">
+<figcaption>Disclosure flow</figcaption>
+<details class="dgtx"><summary>Text description of the diagram</summary>
 <p>Disclosure flow: private phase (discovery, report, fix, early access), embargo break (HN leak, video) and public phase (PHP announcement, release with GHSA, WAF / agencies / hosts).</p>
 <p>Flow diagram (left to right) in three groups. The diagram labels are in Polish.</p>
 <ul>
@@ -355,8 +322,30 @@ flowchart LR
 <li><b>Public phase:</b> PHP announcement (20 Oct, 19:33 UTC; moved to 21 Oct, 14:00) → release + GHSA (21 Oct, ~13:34 UTC) → WAF / agencies / hosts.</li>
 <li><b>Shortcut:</b> confirmation and fix also lead directly to release + GHSA.</li>
 </ul>
-
+<details class="dgsrc"><summary>Mermaid source</summary><pre><code class="language-mermaid">flowchart LR
+  subgraph Private[Faza prywatna]
+    D[Odkrycie&lt;br/&gt;Wiz / Calif / OpenAI&lt;br/&gt;VIII 2026]
+    R[Zgłoszenie do PHP&lt;br/&gt;24.08.2026]
+    F[Potwierdzenie i poprawka&lt;br/&gt;od 21.09.2026]
+    EA[Early access&lt;br/&gt;dystrybucje LTS + partnerzy]
+  end
+  subgraph Break[Zerwanie embarga]
+    L[Wyciek HN&lt;br/&gt;20.10 15:20 UTC]
+    V[Wideo PHP2Shell&lt;br/&gt;20.10 20:27 UTC]
+  end
+  subgraph Public[Faza publiczna]
+    A[Zapowiedź PHP&lt;br/&gt;20.10 19:33 UTC&lt;br/&gt;przesunięcie na 21.10 14:00]
+    P[Release + GHSA&lt;br/&gt;21.10 ~13:34 UTC]
+    W[WAF / agencje / hosty]
+  end
+  D --&gt; R --&gt; F --&gt; EA
+  EA -.-&gt;|plan: 22.10| A
+  L --&gt; A
+  V --&gt; A
+  A --&gt; P --&gt; W
+  F --&gt; P</code></pre></details>
 </details>
+</figure>
 
 1. **Report and remediation** (Aug–Oct 2026) — per Wiz [D][^wiz]. Commit “Avoid state corruption via bailout” on 18 Oct 2026; annotated tags on 19 Oct [P][^commit][^tags].
 2. **Early access.** php.net: “Linux distributions and LTS vendors received the patches in advance” [P][^phpadv]. Wiz lists Automattic, Akamai, AWS, Cloudflare, Fastly, Google, Imperva, Microsoft, Vercel and others for pre-day-zero mitigations [D][^wiz]. watchTowr pushed Active Defense mitigations to watchTowr Platform clients before the patch [P][^wtxad].
@@ -447,7 +436,7 @@ Without recipes [A]: given a large public diff (here: hundreds of files around O
 
 ### 7.4 After disclosure: attempts, no confirmed breaches (as of 22 Oct 2026, 10:30 UTC)
 
-*Added in version 1.1. Defensive summary, no exploit details. Ledger: CLM-0090…CLM-0101.*
+*Added in version 1.1. Defensive summary, no exploit details. Ledger: CLM-0090…CLM-0102.*
 
 **Before the patch**
 
@@ -460,6 +449,7 @@ Without recipes [A]: given a large public diff (here: hundreds of files around O
 - After the release AWS calls PHP2Shell “broadly exploited in the wild”, but says it is unclear whether any attempt would have succeeded on real systems [D][^awsmadpot].
 - **VulnCheck** (via PCMag): at least one attempt against CVE-2026-109618 failed with a 404; two other addresses probed frequently [D, single source][^pcmagvc].
 - **watchTowr** (Jake Knott, via SecurityWeek): the exploits being sprayed “either don’t work at all, test for timing-based differences, or crash the target” [D][^secweek22].
+- **CrowdStrike** (Amit Serper, 21 Oct) says it verified the full chain in the lab: a single anonymous POST request made an Apache `mod_php` worker launch a shell and run a command, with no authentication and no vulnerable application code [D][^crowdstrike]. According to CrowdStrike, PHP’s shipped defaults (`post_max_size` 8M, `memory_limit` 128M) cannot be driven into the bug along the path it demonstrated; exposed are configurations where `memory_limit` is below roughly 4 × `post_max_size`, for example limits raised for large uploads [D][^crowdstrike]. The only server-side trace is said to be a memory-exhaustion fatal error ending in “in Unknown on line 0” in the web server log [D][^crowdstrike]. This does not contradict watchTowr: the exploits circulating publicly fail, and CrowdStrike has not published its own [A].
 - **Recorded Future (Insikt Group)**, as of 21 Oct 19:00 UTC: the reporting does not establish the extent of successful exploitation or confirmed compromises [D][^rfinsikt].
 - **heise** (22 Oct, 07:23 UTC): no reports of successful attacks at the time of writing [D][^heise22]. **CISA KEV** still has no entry (catalog 2026.10.21, checked 22 Oct 10:27 UTC) [P][^kev].
 
@@ -478,16 +468,26 @@ Without recipes [A]: given a large public diff (here: hundreds of files around O
 
 - PHP fixed only 8.2–8.5 and published minimal source backports for 7.4, 8.0 and 8.1 [P][^phparch]. Vendors went further on 21 Oct: Ubuntu USN-8948-1 (php8.1 on 22.04 LTS) [P][^usn8948], Freexian ELTS (php7.0, 7.3, 7.4) [P][^freexian], deb.sury.org (packages back to 5.6) [P][^sury]. Branches without such a vendor stay exposed [A].
 
-**Takeaway [A]:** as of 22 Oct the picture is “many attempts, no confirmed compromise”. For defenders: patch or take offline, and hunt back to at least 17 Oct, as AWS advises [D][^awsmadpot].
+**Takeaway [A]:** as of 22 Oct the picture is “many attempts, no confirmed compromise”. For defenders: patch or take offline, and hunt back to at least 17 Oct, as AWS advises [D][^awsmadpot]. CrowdStrike’s result shows, however, that remote code execution is practically achievable on `mod_php` with some limit configurations [D][^crowdstrike].
 
 ---
 
 ## 8. Defenders’ response
 
-*Actors map*
-
-```mermaid
-flowchart TB
+<figure class="diagram" id="dg-actors">
+<img src="diagrams/actors.png" alt="Actors map in four groups (discovery, PHP team, leak and amplification, defenders): arrows from the discoverers to the PHP team, from the PHP team to the defenders, and from the leak group to the defenders and to the PHP team.">
+<figcaption>Actors map</figcaption>
+<details class="dgtx"><summary>Text description of the diagram</summary>
+<p>Actors map in four groups (discovery, PHP team, leak and amplification, defenders): arrows from the discoverers to the PHP team, from the PHP team to the defenders, and from the leak group to the defenders and to the PHP team.</p>
+<p>Block diagram (top to bottom): four groups of actors and the arrows between them. The diagram labels are in Polish.</p>
+<ul>
+<li><b>Discovery:</b> Wiz Research; Calif / lcfr-hax / tomash-areion; OpenAI / amyb-oai.</li>
+<li><b>PHP team:</b> Jakub Zelenka (GHSA publisher); Arnaud Le Blanc (fix author); Tovilo / Dossche / Grekas; tag release managers.</li>
+<li><b>Leak and amplification:</b> petecooper (Tell HN); watchTowr; Kevin Beaumont; Kirill Firsov (video).</li>
+<li><b>Defenders:</b> CERT-EU / BSI / NCSC / CERT.at / CERT.pl / CERT-FR; Cloudflare WAF; hosts / CMS / distributions.</li>
+<li><b>Links:</b> Wiz Research, Calif and OpenAI → PHP team; PHP team → defenders; petecooper (Tell HN) → leak and amplification group; leak and amplification → defenders; leak and amplification → PHP team.</li>
+</ul>
+<details class="dgsrc"><summary>Mermaid source</summary><pre><code class="language-mermaid">flowchart TB
   subgraph Discovery[Odkrycie]
     Wiz[Wiz Research]
     Calif[Calif / lcfr-hax / tomash-areion]
@@ -510,29 +510,15 @@ flowchart TB
     CF[Cloudflare WAF]
     Host[Hosty / CMS / dystrybucje]
   end
-  Wiz --> PHPTeam
-  Calif --> PHPTeam
-  OAI --> PHPTeam
-  PHPTeam --> Defenders
-  HN --> Amplify
-  Amplify --> Defenders
-  Amplify --> PHPTeam
-```
-
-<details>
-<summary>Text description of the diagram</summary>
-
-<p>Actors map in four groups (discovery, PHP team, leak and amplification, defenders): arrows from the discoverers to the PHP team, from the PHP team to the defenders, and from the leak group to the defenders and to the PHP team.</p>
-<p>Block diagram (top to bottom): four groups of actors and the arrows between them. The diagram labels are in Polish.</p>
-<ul>
-<li><b>Discovery:</b> Wiz Research; Calif / lcfr-hax / tomash-areion; OpenAI / amyb-oai.</li>
-<li><b>PHP team:</b> Jakub Zelenka (GHSA publisher); Arnaud Le Blanc (fix author); Tovilo / Dossche / Grekas; tag release managers.</li>
-<li><b>Leak and amplification:</b> petecooper (Tell HN); watchTowr; Kevin Beaumont; Kirill Firsov (video).</li>
-<li><b>Defenders:</b> CERT-EU / BSI / NCSC / CERT.at / CERT.pl / CERT-FR; Cloudflare WAF; hosts / CMS / distributions.</li>
-<li><b>Links:</b> Wiz Research, Calif and OpenAI → PHP team; PHP team → defenders; petecooper (Tell HN) → leak and amplification group; leak and amplification → defenders; leak and amplification → PHP team.</li>
-</ul>
-
+  Wiz --&gt; PHPTeam
+  Calif --&gt; PHPTeam
+  OAI --&gt; PHPTeam
+  PHPTeam --&gt; Defenders
+  HN --&gt; Amplify
+  Amplify --&gt; Defenders
+  Amplify --&gt; PHPTeam</code></pre></details>
 </details>
+</figure>
 
 ### 8.1 Agencies
 
@@ -781,6 +767,7 @@ Separate official CVSS 9.2 from “CVSS 10” rumors; CDN “early attacks” fr
 [^awsmadpot]: https://aws.amazon.com/blogs/security/amazon-threat-intelligence-identifies-php2shell-exploitation-prior-to-public-disclosure-in-madpot/
 [^cfprince]: https://x.com/eastdakota/status/2113079352682570051
 [^secweek22]: https://www.securityweek.com/php2shell-exploitation-started-days-before-patches/
+[^crowdstrike]: https://www.crowdstrike.com/en-us/blog/crowdstrike-protects-customers-from-php-rce-zero-days/
 [^pcmagvc]: https://me.pcmag.com/en/security/38410/hackers-already-trying-to-exploit-serious-php-flaw
 [^rfinsikt]: https://www.recordedfuture.com/blog/php2shell-vulnerability-exploitation
 [^heise22]: https://www.heise.de/news/php2shell-Updates-trudeln-ein-viele-Webseiten-offline-Angriffe-laufen-11496366.html
