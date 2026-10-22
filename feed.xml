@@ -3,7 +3,7 @@
 <title>PHP2Shell — timeline (EN)</title>
 <subtitle>Live timeline of PHP2Shell (CVE-2026-109618/109619), a critical PHP core RCE (CVSS 9.2). Fixed in 8.5.12, 8.4.27, 8.3.36, 8.2.35. Every fact sourced.</subtitle>
 <id>https://akirapl.github.io/php2shell/feed.xml</id>
-<updated>2026-10-22T10:25:00Z</updated>
+<updated>2026-10-22T10:34:00Z</updated>
 <link rel="self" type="application/atom+xml" href="https://akirapl.github.io/php2shell/feed.xml"/>
 <link rel="alternate" type="text/html" hreflang="en" href="https://akirapl.github.io/php2shell/?lang=en"/>
 <author><name>Dawid Kulik (@Akirapl)</name><uri>https://github.com/Akirapl</uri></author>
@@ -21,6 +21,28 @@
 <content type="html">&lt;p&gt;SecurityWeek (22 Oct) rounds up telemetry: Cloudflare CEO Matthew Prince said thousands of attempts in the 10 hours before the announcement, tens of thousands in the 45 minutes after, hundreds of thousands within 2 hours and &amp;quot;millions now&amp;quot;. Censys: of 2.58M hosts seen on 21 Oct, about 1.58M exposed a PHP version and about 1.57M were unpatched. watchTowr: broad attempts, but circulating exploits don&amp;#x27;t work, only test timing differences, or crash the target. Figures are company statements; no confirmed compromises.&lt;/p&gt;&lt;p&gt;Source: &lt;a href="https://www.securityweek.com/php2shell-exploitation-started-days-before-patches/"&gt;SecurityWeek&lt;/a&gt; · reported · major&lt;/p&gt;</content>
 </entry>
 <entry>
+<title>heise: precautionary takedowns in Germany too (Charité, parts of berlin.de, Berlin police online station); most distros ship packages; no successful attacks reported</title>
+<id>tag:php2shell-live.surge.sh,2026:heise-de-takedowns-distros-1022</id>
+<link rel="alternate" type="text/html" href="https://akirapl.github.io/php2shell/?lang=en#ev-heise-de-takedowns-distros-1022"/>
+<link rel="related" href="https://www.heise.de/news/php2shell-Updates-trudeln-ein-viele-Webseiten-offline-Angriffe-laufen-11496366.html"/>
+<published>2026-10-22T07:23:00Z</published>
+<updated>2026-10-22T07:23:00Z</updated>
+<category term="major"/>
+<summary type="text">heise (Dirk Knop), citing dpa: Charité took its websites fully offline, parts of the berlin.de portal were switched off, the Berlin police online station was unreachable and Freie Universität Berlin restricted IT services; authority and police sites in Bavaria and Lower Saxony, among others, were also down, and the first sites in the north are back (NDR). Per Reuters, government sites went offline in Denmark, Finland, France and the Netherlands. Updated packages: Debian, Fedora, Gentoo, Ubuntu, Red Hat, Slackware, SUSE. heise: many exploit attempts, but at the time of writing no reports of successful attacks. The shutdowns are described as precautionary.</summary>
+<content type="html">&lt;p&gt;heise (Dirk Knop), citing dpa: Charité took its websites fully offline, parts of the berlin.de portal were switched off, the Berlin police online station was unreachable and Freie Universität Berlin restricted IT services; authority and police sites in Bavaria and Lower Saxony, among others, were also down, and the first sites in the north are back (NDR). Per Reuters, government sites went offline in Denmark, Finland, France and the Netherlands. Updated packages: Debian, Fedora, Gentoo, Ubuntu, Red Hat, Slackware, SUSE. heise: many exploit attempts, but at the time of writing no reports of successful attacks. The shutdowns are described as precautionary.&lt;/p&gt;&lt;p&gt;Source: &lt;a href="https://www.heise.de/news/php2shell-Updates-trudeln-ein-viele-Webseiten-offline-Angriffe-laufen-11496366.html"&gt;heise online (Dirk Knop)&lt;/a&gt; · reported · major&lt;/p&gt;</content>
+</entry>
+<entry>
+<title>Cloudflare (Matthew Prince): thousands of attempts before the announcement, “millions now”</title>
+<id>tag:php2shell-live.surge.sh,2026:cloudflare-prince-attempt-volume</id>
+<link rel="alternate" type="text/html" href="https://akirapl.github.io/php2shell/?lang=en#ev-cloudflare-prince-attempt-volume"/>
+<link rel="related" href="https://x.com/eastdakota/status/2113079352682570051"/>
+<published>2026-10-22T01:25:51Z</published>
+<updated>2026-10-22T01:25:51Z</updated>
+<category term="major"/>
+<summary type="text">Cloudflare CEO Matthew Prince posted that in the 10 hours before PHP2Shell was publicly announced the Cloudflare network saw thousands of exploitation attempts, tens of thousands in the 45 minutes after, hundreds of thousands within 2 hours and “millions now”. It is a second sensor network, independent of AWS, that saw attempts before the patch release (AWS MadPot: from about 02:00 UTC on 21 Oct), though after the 20 Oct leak. The figures count attempts, not successful break-ins; Cloudflare published no breakdown.</summary>
+<content type="html">&lt;p&gt;Cloudflare CEO Matthew Prince posted that in the 10 hours before PHP2Shell was publicly announced the Cloudflare network saw thousands of exploitation attempts, tens of thousands in the 45 minutes after, hundreds of thousands within 2 hours and “millions now”. It is a second sensor network, independent of AWS, that saw attempts before the patch release (AWS MadPot: from about 02:00 UTC on 21 Oct), though after the 20 Oct leak. The figures count attempts, not successful break-ins; Cloudflare published no breakdown.&lt;/p&gt;&lt;p&gt;Source: &lt;a href="https://x.com/eastdakota/status/2113079352682570051"&gt;Matthew Prince (@eastdakota) on X&lt;/a&gt; · reported · major&lt;/p&gt;</content>
+</entry>
+<entry>
 <title>Cisco investigates more than 30 products for PHP2Shell</title>
 <id>tag:php2shell-live.surge.sh,2026:cisco-psirt-advisory</id>
 <link rel="alternate" type="text/html" href="https://akirapl.github.io/php2shell/?lang=en#ev-cisco-psirt-advisory"/>
@@ -30,6 +52,17 @@
 <category term="minor"/>
 <summary type="text">Advisory cisco-sa-php-october26-Jj384Daq (version 1.0, “Interim”): products under investigation include ISE, Catalyst Center, Catalyst SD-WAN Manager, Expressway, StarOS, AppDynamics PHP Agent, Umbrella, Webex and Slido. No product is confirmed vulnerable yet; no workarounds; Cisco PSIRT is not aware of malicious use. Snort rules 67359/67360.</summary>
 <content type="html">&lt;p&gt;Advisory cisco-sa-php-october26-Jj384Daq (version 1.0, “Interim”): products under investigation include ISE, Catalyst Center, Catalyst SD-WAN Manager, Expressway, StarOS, AppDynamics PHP Agent, Umbrella, Webex and Slido. No product is confirmed vulnerable yet; no workarounds; Cisco PSIRT is not aware of malicious use. Snort rules 67359/67360.&lt;/p&gt;&lt;p&gt;Source: &lt;a href="https://sec.cloudapps.cisco.com/security/center/content/CiscoSecurityAdvisory/cisco-sa-php-october26-Jj384Daq"&gt;Cisco Security Advisory cisco-sa-php-october26-Jj384Daq&lt;/a&gt; · confirmed · minor&lt;/p&gt;</content>
+</entry>
+<entry>
+<title>Recorded Future (Insikt Group): attempts reported, but no established scale of successful exploitation</title>
+<id>tag:php2shell-live.surge.sh,2026:recordedfuture-no-confirmed-compromise</id>
+<link rel="alternate" type="text/html" href="https://akirapl.github.io/php2shell/?lang=en#ev-recordedfuture-no-confirmed-compromise"/>
+<link rel="related" href="https://www.recordedfuture.com/blog/php2shell-vulnerability-exploitation"/>
+<published>2026-10-21T19:00:00Z</published>
+<updated>2026-10-21T19:00:00Z</updated>
+<category term="major"/>
+<summary type="text">As of 19:00 UTC on 21 Oct, Insikt Group writes that reports of exploitation attempts do not establish the extent of successful exploitation or confirmed compromises, and confirmed indicators of compromise (IoCs) remain limited. Insikt has not tested the public PoCs; some rely on a theory their own author withdrew. It advises hunting back to before disclosure (from 20 Oct).</summary>
+<content type="html">&lt;p&gt;As of 19:00 UTC on 21 Oct, Insikt Group writes that reports of exploitation attempts do not establish the extent of successful exploitation or confirmed compromises, and confirmed indicators of compromise (IoCs) remain limited. Insikt has not tested the public PoCs; some rely on a theory their own author withdrew. It advises hunting back to before disclosure (from 20 Oct).&lt;/p&gt;&lt;p&gt;Source: &lt;a href="https://www.recordedfuture.com/blog/php2shell-vulnerability-exploitation"&gt;Recorded Future blog (Insikt Group)&lt;/a&gt; · reported · major&lt;/p&gt;</content>
 </entry>
 <entry>
 <title>Defused (honeypots): no major exploit activity, attempts mostly from non-working public PoCs</title>
@@ -800,6 +833,28 @@
 <category term="major"/>
 <summary type="text">cPanel's release notes of 21 Oct say it updated cPanel &amp; WHM's internal PHP (including the one behind Roundcube webmail): versions 138.0.18, 136.0.50 and 134.0.66 ship PHP 8.4.27, and 110.0.153 gets backported fixes for PHP 8.1.34. EasyApache 4 25.91 delivers the patched customer PHP packages. A key link for small businesses on shared hosting: the fix only works once the provider installs it.</summary>
 <content type="html">&lt;p&gt;cPanel&amp;#x27;s release notes of 21 Oct say it updated cPanel &amp;amp; WHM&amp;#x27;s internal PHP (including the one behind Roundcube webmail): versions 138.0.18, 136.0.50 and 134.0.66 ship PHP 8.4.27, and 110.0.153 gets backported fixes for PHP 8.1.34. EasyApache 4 25.91 delivers the patched customer PHP packages. A key link for small businesses on shared hosting: the fix only works once the provider installs it.&lt;/p&gt;&lt;p&gt;Source: &lt;a href="https://docs.cpanel.net/release-notes/release-notes/"&gt;cPanel &amp;amp; WHM Documentation — Release Notes&lt;/a&gt; · confirmed · major&lt;/p&gt;</content>
+</entry>
+<entry>
+<title>Vendor backports for end-of-life branches: Ubuntu (8.1), Freexian ELTS (7.0/7.3/7.4), deb.sury.org (5.6–8.1)</title>
+<id>tag:php2shell-live.surge.sh,2026:eol-vendor-backports</id>
+<link rel="alternate" type="text/html" href="https://akirapl.github.io/php2shell/?lang=en#ev-eol-vendor-backports"/>
+<link rel="related" href="https://deb.freexian.com/extended-lts/tracker/CVE-2026-109618"/>
+<published>2026-10-21T00:00:00Z</published>
+<updated>2026-10-21T00:00:00Z</updated>
+<category term="major"/>
+<summary type="text">The PHP project released only 8.2–8.5; for 7.4/8.0/8.1 it published minimal source backports, and older branches get no upstream fix. Vendors filled part of the gap (21 Oct): Ubuntu USN-8948-1 patches php8.1 on 22.04 LTS; Freexian Extended LTS lists fixed php7.0, php7.3 and php7.4 packages (ELA-1855-1, ELA-1854-1, ELA-1853-1); deb.sury.org built php8.1 8.1.34-9 plus backports for 8.0, 7.4 and 5.6 (see corr-010); cPanel ships 8.1.34 with a backport. Installations on old PHP without such a vendor remain exposed.</summary>
+<content type="html">&lt;p&gt;The PHP project released only 8.2–8.5; for 7.4/8.0/8.1 it published minimal source backports, and older branches get no upstream fix. Vendors filled part of the gap (21 Oct): Ubuntu USN-8948-1 patches php8.1 on 22.04 LTS; Freexian Extended LTS lists fixed php7.0, php7.3 and php7.4 packages (ELA-1855-1, ELA-1854-1, ELA-1853-1); deb.sury.org built php8.1 8.1.34-9 plus backports for 8.0, 7.4 and 5.6 (see corr-010); cPanel ships 8.1.34 with a backport. Installations on old PHP without such a vendor remain exposed.&lt;/p&gt;&lt;p&gt;Source: &lt;a href="https://deb.freexian.com/extended-lts/tracker/CVE-2026-109618"&gt;Freexian ELTS tracker: CVE-2026-109618&lt;/a&gt; · confirmed · major&lt;/p&gt;</content>
+</entry>
+<entry>
+<title>VulnCheck honeypots: one failed exploitation attempt (404) and frequent probing</title>
+<id>tag:php2shell-live.surge.sh,2026:vulncheck-failed-attempt</id>
+<link rel="alternate" type="text/html" href="https://akirapl.github.io/php2shell/?lang=en#ev-vulncheck-failed-attempt"/>
+<link rel="related" href="https://me.pcmag.com/en/security/38410/hackers-already-trying-to-exploit-serious-php-flaw"/>
+<published>2026-10-21T00:00:00Z</published>
+<updated>2026-10-21T00:00:00Z</updated>
+<category term="minor"/>
+<summary type="text">According to PCMag, VulnCheck's honeypots on Wednesday, 21 Oct saw two IP addresses (Canada, Netherlands) frequently probing and at least one attempt to exploit CVE-2026-109618 from an address in China, which failed: it tried to read a file back through a path that did not exist and got a 404. SecurityWeek (22 Oct), citing VulnCheck, says the aim was to deploy a webshell. An IP address's location does not identify the actor.</summary>
+<content type="html">&lt;p&gt;According to PCMag, VulnCheck&amp;#x27;s honeypots on Wednesday, 21 Oct saw two IP addresses (Canada, Netherlands) frequently probing and at least one attempt to exploit CVE-2026-109618 from an address in China, which failed: it tried to read a file back through a path that did not exist and got a 404. SecurityWeek (22 Oct), citing VulnCheck, says the aim was to deploy a webshell. An IP address&amp;#x27;s location does not identify the actor.&lt;/p&gt;&lt;p&gt;Source: &lt;a href="https://me.pcmag.com/en/security/38410/hackers-already-trying-to-exploit-serious-php-flaw"&gt;PCMag (Michael Kan)&lt;/a&gt; · reported · minor&lt;/p&gt;</content>
 </entry>
 <entry>
 <title>Fedora: PHP2Shell proposed as a Fedora 45 release blocker</title>

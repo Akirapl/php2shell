@@ -1,5 +1,11 @@
 [
  {
+  "time_utc": "2026-10-22T10:34:06Z",
+  "message": "General update 22.10: +5 events (Cloudflare/Prince attempt volume, heise DE takedowns + distro packages, EOL vendor backports, VulnCheck failed attempt, Recorded Future no confirmed compromise), sites offline DE/DK, key numbers, status/KEV re-check 10:27Z; case study §7.4 (PL/EN/DE)",
+  "events": 97,
+  "facts_last_updated": "2026-10-22T10:34:00Z"
+ },
+ {
   "time_utc": "2026-10-22T10:18:31Z",
   "message": "update",
   "events": 92,
