@@ -3,7 +3,7 @@
 <title>PHP2Shell — timeline (EN)</title>
 <subtitle>Live timeline of PHP2Shell (CVE-2026-109618/109619), a critical PHP core RCE (CVSS 9.2). Fixed in 8.5.12, 8.4.27, 8.3.36, 8.2.35. Every fact sourced.</subtitle>
 <id>https://akirapl.github.io/php2shell/feed.xml</id>
-<updated>2026-10-21T22:59:00Z</updated>
+<updated>2026-10-22T06:20:00Z</updated>
 <link rel="self" type="application/atom+xml" href="https://akirapl.github.io/php2shell/feed.xml"/>
 <link rel="alternate" type="text/html" hreflang="en" href="https://akirapl.github.io/php2shell/?lang=en"/>
 <author><name>Dawid Kulik (@Akirapl)</name><uri>https://github.com/Akirapl</uri></author>
@@ -954,6 +954,17 @@
 <category term="major"/>
 <summary type="text">Commit “Avoid state corruption via bailout” (author: Arnaud Le Blanc; co-authors: Ilija Tovilo, Jakub Zelenka, Nora Dossche, Nicolas Grekas). +11,556 / −1,017 lines on the 8.5 branch. Authored 15:46:02 UTC (8.2 branch: 15:26:39 UTC); committer date 17:23:46 UTC. Publicly available only on 21 Oct with the release.</summary>
 <content type="html">&lt;p&gt;Commit “Avoid state corruption via bailout” (author: Arnaud Le Blanc; co-authors: Ilija Tovilo, Jakub Zelenka, Nora Dossche, Nicolas Grekas). +11,556 / −1,017 lines on the 8.5 branch. Authored 15:46:02 UTC (8.2 branch: 15:26:39 UTC); committer date 17:23:46 UTC. Publicly available only on 21 Oct with the release.&lt;/p&gt;&lt;p&gt;Source: &lt;a href="https://github.com/php/php-src/commit/31c0ea7d7ff1d1fccb6492e52dab544011628065"&gt;php-src commit 31c0ea7&lt;/a&gt; · confirmed · major&lt;/p&gt;</content>
+</entry>
+<entry>
+<title>AWS: PHP2Shell exploitation attempt seen in MadPot honeypots on 17 Oct, four days before disclosure</title>
+<id>tag:php2shell-live.surge.sh,2026:aws-madpot-pre-disclosure</id>
+<link rel="alternate" type="text/html" href="https://akirapl.github.io/php2shell/?lang=en#ev-aws-madpot-pre-disclosure"/>
+<link rel="related" href="https://aws.amazon.com/blogs/security/amazon-threat-intelligence-identifies-php2shell-exploitation-prior-to-public-disclosure-in-madpot/"/>
+<published>2026-10-17T00:00:00Z</published>
+<updated>2026-10-17T00:00:00Z</updated>
+<category term="major"/>
+<summary type="text">Amazon Threat Intelligence (post by CJ Moses, 21 Oct) says MadPot telemetry recorded an exploitation attempt on 17 Oct from a commercial anonymisation network, while the embargo was in force; how the actor obtained the information is unknown. On 21 Oct from about 02:00 to 08:00 UTC further attempts came from varied infrastructure (likely multiple actors); after 14:00 UTC AWS describes broad exploitation, but it is unclear whether any attempt would have succeeded on real systems. Advice: start investigations from at least 17 Oct.</summary>
+<content type="html">&lt;p&gt;Amazon Threat Intelligence (post by CJ Moses, 21 Oct) says MadPot telemetry recorded an exploitation attempt on 17 Oct from a commercial anonymisation network, while the embargo was in force; how the actor obtained the information is unknown. On 21 Oct from about 02:00 to 08:00 UTC further attempts came from varied infrastructure (likely multiple actors); after 14:00 UTC AWS describes broad exploitation, but it is unclear whether any attempt would have succeeded on real systems. Advice: start investigations from at least 17 Oct.&lt;/p&gt;&lt;p&gt;Source: &lt;a href="https://aws.amazon.com/blogs/security/amazon-threat-intelligence-identifies-php2shell-exploitation-prior-to-public-disclosure-in-madpot/"&gt;AWS Security Blog&lt;/a&gt; · reported · major&lt;/p&gt;</content>
 </entry>
 <entry>
 <title>PHP Foundation on handling security reports</title>

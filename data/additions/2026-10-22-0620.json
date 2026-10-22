@@ -1,0 +1,43 @@
+{
+ "added": [
+  {
+   "id": "aws-madpot-pre-disclosure",
+   "time_utc": "2026-10-17T00:00:00Z",
+   "importance": "major",
+   "title": {
+    "pl": "AWS: próba wykorzystania PHP2Shell w honeypotach MadPot już 17.10 — 4 dni przed ujawnieniem",
+    "en": "AWS: PHP2Shell exploitation attempt seen in MadPot honeypots on 17 Oct, four days before disclosure",
+    "de": "AWS: Ausnutzungsversuch von PHP2Shell in MadPot-Honeypots bereits am 17.10., vier Tage vor der Offenlegung"
+   },
+   "description": {
+    "pl": "Amazon Threat Intelligence (wpis CJ Mosesa, 21.10) podaje, że telemetria MadPot zarejestrowała próbę wykorzystania 17.10 z adresu sieci anonimizującej, w czasie embarga; nie wiadomo, skąd sprawca miał informacje. 21.10 od ok. 02:00 do 08:00 UTC kolejne próby z różnej infrastruktury (prawdopodobnie wielu aktorów); po 14:00 UTC AWS mówi o szerokim wykorzystywaniu, ale nie wiadomo, czy próby skutkowały włamaniami. Zalecenie: dochodzenia zaczynać co najmniej od 17.10.",
+    "en": "Amazon Threat Intelligence (post by CJ Moses, 21 Oct) says MadPot telemetry recorded an exploitation attempt on 17 Oct from a commercial anonymisation network, while the embargo was in force; how the actor obtained the information is unknown. On 21 Oct from about 02:00 to 08:00 UTC further attempts came from varied infrastructure (likely multiple actors); after 14:00 UTC AWS describes broad exploitation, but it is unclear whether any attempt would have succeeded on real systems. Advice: start investigations from at least 17 Oct.",
+    "de": "Amazon Threat Intelligence (Beitrag von CJ Moses, 21.10.) meldet, dass die MadPot-Telemetrie am 17.10. während des Embargos einen Ausnutzungsversuch aus einem kommerziellen Anonymisierungsnetz erfasste; woher der Akteur die Informationen hatte, ist unbekannt. Am 21.10. zwischen etwa 02:00 und 08:00 UTC folgten weitere Versuche aus unterschiedlicher Infrastruktur (vermutlich mehrere Akteure); nach 14:00 UTC spricht AWS von breiter Ausnutzung, ob Versuche auf echten Systemen erfolgreich gewesen wären, ist aber unklar. Empfehlung: Untersuchungen mindestens ab dem 17.10. beginnen."
+   },
+   "actors": [
+    "Amazon Threat Intelligence"
+   ],
+   "source_url": "https://aws.amazon.com/blogs/security/amazon-threat-intelligence-identifies-php2shell-exploitation-prior-to-public-disclosure-in-madpot/",
+   "source_name": "AWS Security Blog",
+   "confidence": "reported",
+   "source_reliability": "B",
+   "info_credibility": 3,
+   "time_kind": "event",
+   "time_precision": "day",
+   "time_note": {
+    "pl": "Data zdarzenia wg AWS (tylko dzień); wpis opublikowany 21.10.",
+    "en": "Event date per AWS (day only); post published 21 Oct.",
+    "de": "Ereignisdatum laut AWS (nur Tag); Beitrag am 21.10. veröffentlicht."
+   },
+   "flags": [
+    "needs_second_source"
+   ],
+   "flag_note": {
+    "pl": "Twierdzenie o wykorzystaniu z jednego źródła (honeypot AWS); brak niezależnego potwierdzenia próby z 17.10.",
+    "en": "Exploitation claim from a single source (AWS honeypot); no independent confirmation of the 17 Oct attempt.",
+    "de": "Ausnutzungsbehauptung aus einer Quelle (AWS-Honeypot); keine unabhängige Bestätigung des Versuchs vom 17.10."
+   }
+  }
+ ],
+ "kev_checked_utc": "2026-10-22T06:16:00Z"
+}

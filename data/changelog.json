@@ -1,5 +1,11 @@
 [
  {
+  "time_utc": "2026-10-22T06:16:30Z",
+  "message": "AWS MadPot: pre-disclosure attempt 17 Oct; KEV re-check",
+  "events": 91,
+  "facts_last_updated": "2026-10-22T06:20:00Z"
+ },
+ {
   "time_utc": "2026-10-21T23:47:02Z",
   "message": "a11y: text descriptions for all diagrams (case-study figures with alt + details; live-center diagram cards with aria-label + details), PL/EN/DE",
   "events": 90,
