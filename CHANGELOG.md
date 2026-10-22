@@ -1,5 +1,13 @@
 # Changelog
 
+## v1.5 (22.10.2026)
+
+Case study 1.1: new subsection 7.4 (PL/EN/DE) on the exploitation picture since disclosure: AWS MadPot attempt on 17 Oct during the embargo (single source), pre-patch attempts reported independently by AWS and Cloudflare, attempts versus breaches (VulnCheck, watchTowr, Recorded Future, heise: no confirmed compromise; not in CISA KEV), precautionary takedowns in Germany and Denmark, exposure estimates (Censys, Unit 42), vendor backports for end-of-life branches. Evidence ledger CLM-0090…CLM-0101.
+
+Studium 1.1: nowy podrozdział 7.4 (PL/EN/DE) o obrazie eksploatacji po ujawnieniu: próba w MadPot (AWS) 17.10 w czasie embarga (jedno źródło), próby przed łatką potwierdzone niezależnie przez AWS i Cloudflare, próby a włamania (VulnCheck, watchTowr, Recorded Future, heise: brak potwierdzonych włamań; brak w CISA KEV), wyłączenia prewencyjne w Niemczech i Danii, szacunki ekspozycji (Censys, Unit 42), backporty dostawców dla gałęzi EOL. Rejestr CLM-0090…CLM-0101.
+
+Fallstudie 1.1: neuer Abschnitt 7.4 (PL/EN/DE) zur Ausnutzungslage seit der Offenlegung: AWS-MadPot-Versuch am 17.10. während des Embargos (eine Quelle), Versuche vor dem Patch unabhängig von AWS und Cloudflare gemeldet, Versuche versus Einbrüche (VulnCheck, watchTowr, Recorded Future, heise: keine bestätigte Kompromittierung; nicht in CISA KEV), vorsorgliche Abschaltungen in Deutschland und Dänemark, Expositionsschätzungen (Censys, Unit 42), Hersteller-Backports für EOL-Zweige. Evidence Ledger CLM-0090…CLM-0101.
+
 ## v1.4 (21.10.2026)
 
 Review fixes. Case study: a footnote that pointed to a local working draft is replaced with public sources (Kevin Beaumont's post; Imunify360 and bunny.net vendor posts). Other unsourced or internal notes are replaced with public sources: ACSC, IPA, php.net "History of PHP", and the GitHub tag API. The leak and embargo times are now stated with time zones. The release lead is corrected to ~26 min. "Attack bible" is renamed to "case study". Live-center links point to the canonical <https://akirapl.github.io/php2shell/>. Checker: ownership notice, a friendly "busy" 429 and a higher global cap (the per-client limit is unchanged). New `CITATION.cff` and a "How to cite" section.

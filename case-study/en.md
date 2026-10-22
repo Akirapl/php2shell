@@ -10,7 +10,7 @@ asof: "2026-10-21 14:05 UTC (16:05 CEST)"
 
 **A deep case study of the critical core-PHP vulnerabilities CVE-2026-109618 and CVE-2026-109619**
 
-- **Document version:** 1.0 (English adaptation of the Polish master)
+- **Document version:** 1.1, subsection 7.4 as of 22 Oct 2026, 10:30 UTC (English adaptation of the Polish master)
 - **As of:** 21 Oct 2026, 14:05 UTC (16:05 CEST) — about 30 minutes after the patches went public
 - **Nature:** Defensive, historical analysis — **no** exploit code, payloads, PoCs, or attack instructions
 - **Labels:** **[P]** primary source · **[D]** third-party report · **[?]** open / conflicting · **[A]** this document’s analysis
@@ -21,6 +21,7 @@ asof: "2026-10-21 14:05 UTC (16:05 CEST)"
 
 ## Changelog
 
+- **1.1** (2026-10-22 10:30 UTC) — New subsection 7.4: exploitation picture since disclosure (AWS MadPot 17 Oct, Cloudflare, VulnCheck, watchTowr, Recorded Future), precautionary takedowns in Germany and Denmark, exposure estimates (Censys, Unit 42), backports for EOL branches; Appendix A entries; ledger CLM-0090…CLM-0101. The rest of the document is unchanged (as of 21 Oct).
 - **1.0.1** (2026-10-21 17:30 UTC) — Evidence ledger (CLM-0001…) added. Corrections from the ledger check: fix commit touches 423 files, not 300 (GitHub’s commit API lists only the first 300); PHP Foundation’s original release time (22 Oct 14:00 UTC) added as a third, conflicting embargo time; sources added for watchTowr Active Defense, Sansec’s “15 minutes” (SecurityWeek), the Remi warning (PHP Foundation on X), NU.nl/BBC offline lists and Patchstack/Firsov; BSI quote made precise; Huntress date corrected; Log4Shell probes were 8 days (not 9) before disclosure per Cloudflare; an unsourced Aikido “since June 2026” remark and an unverifiable Hadrian “at scale” claim removed/softened.
 - **1.0** (2026-10-21 14:05 UTC) — First release. Sources: php.net, GHSA, the fix commit, Wiz, watchTowr, BSI, NCSC UK, NCSC-NL, CERT-EU, CERT.at, CERT Polska, CERT-FR, NOS, W3Techs, Modat, heise, SecurityWeek, Huntress, Tenable, Cloudflare, Docker PR, Ubuntu tracker, HN, Mastodon; historical comparisons (Log4Shell, Heartbleed, CVE-2024-4577, OpenSSL 3.0.7).
 
@@ -444,6 +445,41 @@ Without recipes [A]: given a large public diff (here: hundreds of files around O
 
 **Takeaway [A]:** settling “is it ITW?” needs IoCs from large sensors or a KEV listing — messaging still conflicts.
 
+### 7.4 After disclosure: attempts, no confirmed breaches (as of 22 Oct 2026, 10:30 UTC)
+
+*Added in version 1.1. Defensive summary, no exploit details. Ledger: CLM-0090…CLM-0101.*
+
+**Before the patch**
+
+- **AWS (Amazon Threat Intelligence)** says its MadPot honeypots recorded a PHP2Shell exploitation attempt on **17 Oct**, four days before disclosure and during the embargo, from a commercial anonymisation network; how the actor got the information is unknown [D][^awsmadpot]. The 17 Oct attempt has **one source**; heise notes it may have targeted a different file-upload flaw [?][^heise22].
+- AWS also saw several PoCs and attempts between about **02:00 and 08:00 UTC on 21 Oct**, before the 14:00 UTC release, from varied infrastructure that suggests multiple actors [D][^awsmadpot].
+- **Cloudflare** CEO Matthew Prince separately reported “thousands of attempts” in the 10 hours before the announcement, rising to “millions” by early 22 Oct [D][^cfprince]. Attempts **before the patch** therefore have two independent sources (AWS, Cloudflare). Both cover the period after the 20 Oct leak; only the 17 Oct attempt falls inside the embargo, and it is single-source [A].
+
+**Attempts versus breaches**
+
+- After the release AWS calls PHP2Shell “broadly exploited in the wild”, but says it is unclear whether any attempt would have succeeded on real systems [D][^awsmadpot].
+- **VulnCheck** (via PCMag): at least one attempt against CVE-2026-109618 failed with a 404; two other addresses probed frequently [D, single source][^pcmagvc].
+- **watchTowr** (Jake Knott, via SecurityWeek): the exploits being sprayed “either don’t work at all, test for timing-based differences, or crash the target” [D][^secweek22].
+- **Recorded Future (Insikt Group)**, as of 21 Oct 19:00 UTC: the reporting does not establish the extent of successful exploitation or confirmed compromises [D][^rfinsikt].
+- **heise** (22 Oct, 07:23 UTC): no reports of successful attacks at the time of writing [D][^heise22]. **CISA KEV** still has no entry (catalog 2026.10.21, checked 22 Oct 10:27 UTC) [P][^kev].
+
+**Precautionary takedowns**
+
+- Germany (heise, citing dpa): Charité fully offline, parts of berlin.de switched off, the Berlin police online station unreachable, FU Berlin IT restricted; authority and police sites in Bavaria and Lower Saxony as well [D][^heise22].
+- Reuters (via heise): government sites offline in Denmark, Finland, France and the Netherlands [D][^heise22]. Denmark: Copenhagen Municipality, the Road Directorate, DMI and the school platform Aula; the minister called it a “global incident”, “not a cyberattack” [D][^cphpost].
+
+**Exposure (estimates, not counts of vulnerable systems)**
+
+- **Censys** (via SecurityWeek): of 2.58 million internet-facing hosts seen on 21 Oct, about 1.58 million showed a PHP version and about **1.57 million were unpatched** [D, estimate][^secweek22].
+- **Unit 42** (via Nextgov): more than **22.6 million** internet-exposed instances potentially vulnerable [D, estimate][^nextgov].
+- The numbers differ by method (hosts versus instances, version banners versus fingerprints), and a version banner can hide a distro backport [A].
+
+**End-of-life branches and backports**
+
+- PHP fixed only 8.2–8.5 and published minimal source backports for 7.4, 8.0 and 8.1 [P][^phparch]. Vendors went further on 21 Oct: Ubuntu USN-8948-1 (php8.1 on 22.04 LTS) [P][^usn8948], Freexian ELTS (php7.0, 7.3, 7.4) [P][^freexian], deb.sury.org (packages back to 5.6) [P][^sury]. Branches without such a vendor stay exposed [A].
+
+**Takeaway [A]:** as of 22 Oct the picture is “many attempts, no confirmed compromise”. For defenders: patch or take offline, and hunt back to at least 17 Oct, as AWS advises [D][^awsmadpot].
+
 ---
 
 ## 8. Defenders’ response
@@ -605,6 +641,7 @@ Separate official CVSS 9.2 from “CVSS 10” rumors; CDN “early attacks” fr
 - **2026-08-19…24** — Wiz: discover → RCE Drupal/WP → report [D]
 - **2026-09-21** — PHP starts coordinated fix [D]
 - **2026-10-14** — PHP Foundation blog (Daybreak Red) [P]
+- **2026-10-17** — AWS MadPot: first exploitation attempt during the embargo (single source) [D/?]
 - **2026-10-18 15:46** (17:46) — Bailout-fix commit [P]
 - **2026-10-19 07:30–17:04** (09:30–19:04) — Annotated release tags [P]
 - **2026-10-20 15:20** (17:20) — Tell HN — CVE leak [P]
@@ -624,6 +661,10 @@ Separate official CVSS 9.2 from “CVSS 10” rumors; CDN “early attacks” fr
 - **2026-10-21 ~13:35** (~15:35) — php.net advisory [P]
 - **2026-10-21 13:43** (15:43) — Wiz blog [P]
 - **2026-10-21 13:44** (15:44) — Docker PR #1694 [P]
+- **2026-10-21 02:00–08:00** (04:00–10:00) — AWS: PoCs and attempts before the release [D]
+- **2026-10-21 19:00** (21:00) — Recorded Future: no established scale of successful exploitation [D]
+- **2026-10-22 01:25** (03:25) — Cloudflare (Prince): “millions” of attempts [D]
+- **2026-10-22 07:23** (09:23) — heise: takedowns in Germany, distro packages, no successful attacks [D]
 
 ---
 
@@ -735,6 +776,21 @@ Separate official CVSS 9.2 from “CVSS 10” rumors; CDN “early attacks” fr
 [^heartbleed]: https://www.smh.com.au/technology/heartbleed-disclosure-timeline-who-knew-what-and-when-20140414-zqurk.html
 [^openssl307]: https://openssl-library.org/post/2022-11-01-email-address-overflows/
 
+
+### Update 22 Oct 2026 (§7.4)
+[^awsmadpot]: https://aws.amazon.com/blogs/security/amazon-threat-intelligence-identifies-php2shell-exploitation-prior-to-public-disclosure-in-madpot/
+[^cfprince]: https://x.com/eastdakota/status/2113079352682570051
+[^secweek22]: https://www.securityweek.com/php2shell-exploitation-started-days-before-patches/
+[^pcmagvc]: https://me.pcmag.com/en/security/38410/hackers-already-trying-to-exploit-serious-php-flaw
+[^rfinsikt]: https://www.recordedfuture.com/blog/php2shell-vulnerability-exploitation
+[^heise22]: https://www.heise.de/news/php2shell-Updates-trudeln-ein-viele-Webseiten-offline-Angriffe-laufen-11496366.html
+[^cphpost]: https://cphpost.dk/2026-10-22/news/round-up/security-flaw-in-widely-used-software-forces-danish-websites-offline/
+[^nextgov]: https://www.nextgov.com/cybersecurity/2026/10/us-agencies-urge-fixes-programming-language-flaws-putting-millions-web-systems-risk/416726/
+[^phparch]: https://www.php.net/archive/2026.php
+[^usn8948]: https://ubuntu.com/security/notices/USN-8948-1
+[^freexian]: https://deb.freexian.com/extended-lts/tracker/CVE-2026-109618
+[^sury]: https://packages.sury.org/php/
+
 ---
 
-*End of version 1.0 (EN). Update as distro packages, IoCs and Calif/OpenAI write-ups appear.*
+*End of version 1.1 (EN). Update as distro packages, IoCs and Calif/OpenAI write-ups appear.*
