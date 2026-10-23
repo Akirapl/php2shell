@@ -1,5 +1,13 @@
 # Changelog
 
+## v1.7 (23.10.2026)
+
+Case study 1.4: new subsection 7.6 (PL/EN/DE) as of 23 Oct, 18:20 UTC: PHP's informational advisory on the unpatched CVE-2026-115560 (mitigation `session.upload_progress.enabled=0`), Mirai/Potassium botnet attempts (blocked), VulnCheck's ASLR-bypass claim (vendor claim), still no confirmed compromise, Censys exposure (41 million services, different unit from hosts), mood and media review #2 (X counts peaked on 22 Oct; alarm reflex vs technical cooling). Ledger CLM-0113…CLM-0119.
+
+Studium 1.4: nowy podrozdział 7.6 (PL/EN/DE), stan na 23.10, 18:20 UTC: komunikat PHP o niezałatanej CVE-2026-115560 (łagodzenie `session.upload_progress.enabled=0`), próby botnetu Mirai/Potassium (zatrzymane), deklaracja obejścia ASLR przez VulnCheck, nadal brak potwierdzonych włamań, ekspozycja wg Censys (41 mln usług), przegląd nastrojów i mediów #2. Rejestr CLM-0113…CLM-0119.
+
+Fallstudie 1.4: neuer Abschnitt 7.6 (PL/EN/DE), Stand 23.10., 18:20 UTC: PHP-Hinweis zur ungepatchten CVE-2026-115560 (Mitigation `session.upload_progress.enabled=0`), Mirai/Potassium-Botnetzversuche (abgewehrt), VulnCheck-Behauptung einer ASLR-Umgehung, weiterhin keine bestätigte Kompromittierung, Censys-Exposition (41 Mio. Dienste), Stimmungs- und Medienschau Nr. 2. Ledger CLM-0113…CLM-0119.
+
 ## v1.6 (22.10.2026)
 
 Case study 1.3: new subsection 7.5 (PL/EN/DE), the first twice-daily social and media review (as of 22 Oct, 18:30 UTC): X post counts and hashtags (#PHP2Shell 2,971 → 6,811 posts/day; about 40% of mentions in Japanese), Mastodon and Hacker News; dominant moods (PoC skepticism, alarm in PL/DE, humour, embargo and EOL frustration, scam warnings); international, German and Polish press angles; three contradictions between sources (exploitability, “70% of the internet”, “attacks have begun”). New label [O] = observation. Ledger CLM-0103…CLM-0112. The live site gained the sections “Social mood”, “Hashtags and keywords” and “Press review” (data: `social_mood`, `hashtags`, `press_review`, `media_contradictions` in `data/facts.json`).

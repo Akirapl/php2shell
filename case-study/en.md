@@ -10,7 +10,7 @@ asof: "2026-10-21 14:05 UTC (16:05 CEST)"
 
 **A deep case study of the critical core-PHP vulnerabilities CVE-2026-109618 and CVE-2026-109619**
 
-- **Document version:** 1.3, subsection 7.4 as of 22 Oct 2026, 12:30 UTC, subsection 7.5 as of 22 Oct 2026, 18:30 UTC (English adaptation of the Polish master)
+- **Document version:** 1.4, subsection 7.4 as of 22 Oct 2026, 12:30 UTC, subsection 7.5 as of 22 Oct 2026, 18:30 UTC, subsection 7.6 as of 23 Oct 2026, 18:20 UTC (English adaptation of the Polish master)
 - **As of:** 21 Oct 2026, 14:05 UTC (16:05 CEST) — about 30 minutes after the patches went public
 - **Nature:** Defensive, historical analysis — **no** exploit code, payloads, PoCs, or attack instructions
 - **Labels:** **[P]** primary source · **[D]** third-party report · **[?]** open / conflicting · **[A]** this document’s analysis
@@ -21,6 +21,7 @@ asof: "2026-10-21 14:05 UTC (16:05 CEST)"
 
 ## Changelog
 
+- **1.4** (2026-10-23 18:20 UTC) — New subsection 7.6: CVE-2026-115560 (PHP advisory of 23 Oct), Mirai/Potassium botnets, ASLR-bypass claim (VulnCheck), Censys exposure, mood review #2; Appendix A entry; ledger CLM-0113…CLM-0119.
 - **1.3** (2026-10-22 18:30 UTC) — New subsection 7.5: social and media reception (X, Hacker News, Mastodon; hashtags with API counts; international, German and Polish press review; contradictions between sources); new label [O] = observation; Appendix A entry; ledger CLM-0103…CLM-0112.
 - **1.1** (2026-10-22 10:30 UTC) — New subsection 7.4: exploitation picture since disclosure (AWS MadPot 17 Oct, Cloudflare, VulnCheck, watchTowr, Recorded Future), precautionary takedowns in Germany and Denmark, exposure estimates (Censys, Unit 42), backports for EOL branches; Appendix A entries; ledger CLM-0090…CLM-0101. The rest of the document is unchanged (as of 21 Oct).
 - **1.2** (2026-10-22 12:30 UTC) — §7.4: CrowdStrike finding (verified RCE on Apache `mod_php`, configuration condition, log trace); conclusion extended; ledger CLM-0102.
@@ -511,6 +512,32 @@ Without recipes [A]: given a large public diff (here: hundreds of files around O
 
 ---
 
+### 7.6 Day three: a new flaw, botnets, mood review #2 (as of 23 Oct 2026, 18:20 UTC)
+
+*Added in version 1.4. Labels as in 7.5: [O] = observation, [D] = reported, [P] = primary source, [A] = analysis. Ledger: CLM-0113…CLM-0119.*
+
+**New facts**
+
+- **CVE-2026-115560 [P]:** on 23 Oct the PHP team recommended `session.upload_progress.enabled=0` until the next regular bugfix release to close an “unlikely RCE vector”. Condition: the application sets `session.serialize_handler` to `php_binary` or `php_serialize` and switches it to `php` at runtime with `ini_set()` before `session_start()`, with upload progress enabled. The same setting was a mitigation in GHSA-6wmf-4rv5-p3rp on 21 Oct; whoever applied it then needs to do nothing. The 21 Oct releases do not remove this flaw; a full advisory will come with the next release[^s2php][^s2bc].
+- **Botnets [D]:** per SecurityWeek, Sophos stopped an attempt to install Potassium (a Mirai variant with DDoS capability) and corrected an earlier update that reported a successful exploitation; Arctic Wolf links Potassium binaries to servers hosting PHP2Shell payloads, and Hunt.io attributes the traffic to a botnet active since May 2026[^s2sw]. The Record adds Mirai-linked attempts seen by Cobalt[^s2tr].
+- **ASLR bypass [D]:** VulnCheck says its commercial exploit for CVE-2026-109618 achieves RCE on x86-64 with ASLR and error display off; it knows of no other exploit that does this[^s2sw][^s2tr]. A vendor claim, not independently verified.
+- **Still no confirmed compromise [D]:** SecurityWeek, The Record (Google/Hultquist: no validated exploitation, though it may have begun in a limited fashion) and BleepingComputer (Dataminr: only scanning and non-working exploits)[^s2sw][^s2tr][^s2bc]. Sansec walked back its forecast of mass exploitation “within 15 minutes”[^s2sw].
+- **Exposure [D]:** heise, citing the Censys dashboard: over 41 million PHP services with vulnerable versions, 33.5 million after updates, about 4.2 million in Germany; Censys cautions that it counts services, not servers, and about 54% hide their version[^s2heise].
+
+**Counts and hashtags [O]**
+
+- “php2shell” on X: 32,333 posts on 22 Oct (peak), 11,537 by 18:20 UTC on 23 Oct; #PHP2Shell 7,773, then 1,603; the new ID CVE-2026-115560 drew 1,385 posts within hours (API counts, reposts included)[^s2xapi].
+- Mastodon (infosec.exchange): #php2shell 508 uses on 21 Oct, 276 on 22 Oct, 119 on 23 Oct — the technical community’s attention fades faster than on X[^s2mast].
+
+**Moods [O]**
+
+- **Alarm reflex:** PHP’s advisory set off a wave of “BREAKING” posts (“PHP warns of another UNPATCHED … vulnerability”)[^s2thn], amplified by crypto accounts[^s2coin]; the headlines omit how rare the configuration is. Unverified claims of exploits for the new flaw also circulate — we do not link them.
+- **Technical cooling:** “Don't let the BREAKING get you on this one”[^s2breach]; “It only bites if your app switches session.serialize_handler to php at runtime”[^s2azmy].
+
+**Contradiction [A]:** exposure scale — about 1.57 million hosts (Censys, 22 Oct), 22.6 million instances (Unit 42) and 41 million services (Censys, 23 Oct) are different units of counting, not a contradiction of one another[^s2heise].
+
+**Takeaway [A]:** day three moved the conversation from “does the PoC work” to “is the patch enough”. The defensive advice is unchanged: update, restart workers, set `session.upload_progress.enabled=0`, hunt back to 17 Oct.
+
 ## 8. Defenders’ response
 
 <figure class="diagram" id="dg-actors">
@@ -691,6 +718,9 @@ Separate official CVSS 9.2 from “CVSS 10” rumors; CDN “early attacks” fr
 - **2026-10-22 01:25** (03:25) — Cloudflare (Prince): “millions” of attempts [D]
 - **2026-10-22 07:23** (09:23) — heise: takedowns in Germany, distro packages, no successful attacks [D]
 - **2026-10-22 18:30** (20:30) — Mood and media review #1: #PHP2Shell on X 2,971 → 6,811 posts/day, about 40% of mentions in Japanese, PoC skepticism dominates [O]
+- **2026-10-23** — PHP: advisory on unpatched CVE-2026-115560, mitigation session.upload_progress.enabled=0 [P]
+- **2026-10-23 12:45** (14:45) — SecurityWeek: Mirai/Potassium botnet attempts, VulnCheck claims ASLR bypass, no confirmed compromises [D]
+- **2026-10-23 18:20** (20:20) — Mood and media review #2: “php2shell” on X peaked on 22 Oct (32,333), CVE-2026-115560 at 1,385 posts [O]
 
 ---
 
@@ -847,6 +877,20 @@ Separate official CVSS 9.2 from “CVSS 10” rumors; CDN “early attacks” fr
 [^smonet]: https://wiadomosci.onet.pl/swiat/ai-odkryla-luke-ktora-moze-zagrozic-milionom-stron-eksperci-bija-na-alarm/6dsce33
 [^smtvn24]: https://tvn24.pl/biznes/z-kraju/strony-biuletynu-informacji-publicznej-wylaczone-krzysztof-gawkowski-wykryto-powazne-luki-st9299779
 
+
+### Update 23 Oct 2026 evening (§7.6)
+
+[^s2php]: https://www.php.net/archive/2026.php (Informational advisory: Session upload progress, 23 Oct 2026)
+[^s2bc]: https://www.bleepingcomputer.com/news/security/php-shares-mitigation-for-new-and-unpatched-rce-vulnerability/
+[^s2sw]: https://www.securityweek.com/mirai-botnet-operators-join-php2shell-attacks-as-aslr-bypass-exploits-emerge/
+[^s2tr]: https://therecord.media/php-php2shell-exploitation-attempts-pocs
+[^s2heise]: https://www.heise.de/news/php2shell-Millionen-PHP-Dienste-in-Deutschland-verwundbar-11498464.html
+[^s2xapi]: X API v2, recent post counts per day, retrieved 23 Oct 2026, 18:20 UTC; public search: https://x.com/search?q=CVE-2026-115560&src=typed_query&f=live
+[^s2mast]: https://infosec.exchange/tags/php2shell (hashtag history via the Mastodon API, retrieved 23 Oct 2026, 18:20 UTC)
+[^s2thn]: https://x.com/TheHackersNews/status/2113592819730546935
+[^s2coin]: https://x.com/coinbureau/status/2113675779049722297
+[^s2breach]: https://x.com/BreachByteSec/status/2113679683359490462
+[^s2azmy]: https://x.com/AzmyBlog/status/2113672344472285208
 ---
 
-*End of version 1.3 (EN). Update as distro packages, IoCs and Calif/OpenAI write-ups appear.*
+*End of version 1.4 (EN). Update as distro packages, IoCs and Calif/OpenAI write-ups appear.*
