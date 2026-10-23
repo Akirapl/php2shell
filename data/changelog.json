@@ -1,5 +1,11 @@
 [
  {
+  "time_utc": "2026-10-23T23:18:21Z",
+  "message": "rebuild from main@6b210b2, no new proposals (includes Akirapl/php2shell#1)",
+  "events": 111,
+  "facts_last_updated": "2026-10-23T23:18:08Z"
+ },
+ {
   "time_utc": "2026-10-23T21:09:03Z",
   "message": "+5 events, sources 167→183 — reviewed proposals (20261023-1932, 20261023-1948)",
   "events": 111,

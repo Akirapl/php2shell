@@ -10,7 +10,7 @@
    "en": "CVE-2026-109618 and CVE-2026-109619: critical RCE flaws in the PHP core",
    "de": "CVE-2026-109618 und CVE-2026-109619: kritische RCE-Lücken im PHP-Kern"
   },
-  "last_updated": "2026-10-23T21:09:03Z",
+  "last_updated": "2026-10-23T23:18:08Z",
   "maintainer_note": "Single source of truth. Every fact needs source_url, source_name, confidence; texts as {pl,en,de}. Run ./update_and_build.sh \"message\".",
   "timezone_note": {
    "pl": "Wszystkie czasy w UTC. Czasy z NOS (CEST) przeliczone na UTC (−2 h).",
@@ -71,9 +71,9 @@
    "de": "Stand 23.10., 18:20 UTC (20:20 MESZ): PHP2Shell-Patches sind verfügbar (8.5.12 / 8.4.27 / 8.3.36 / 8.2.35). PHP warnt vor einer neuen, ungepatchten Lücke CVE-2026-115560 in seltener Konfiguration — Mitigation: session.upload_progress.enabled=0. Angriffsversuche (auch Mirai-Botnetze) laufen; bestätigte Kompromittierungen gibt es nicht."
   },
   "exploitation_note": {
-   "pl": "Próby: AWS (MadPot) widział pierwszą już 17.10, w czasie embarga, kolejne od 21.10 02:00 UTC; Cloudflare — tysiące przed ogłoszeniem, „miliony teraz”. Skutki: brak potwierdzonych włamań (Recorded Future, heise 22.10); watchTowr i Defused: krążące exploity w większości nie działają. Brak w CISA KEV (sprawdzone 22.10, 10:27 UTC).",
-   "en": "Attempts: AWS (MadPot) saw the first on 17 Oct, during the embargo, more from 21 Oct 02:00 UTC; Cloudflare: thousands before the announcement, “millions now”. Outcomes: no confirmed compromises (Recorded Future, heise 22 Oct); watchTowr and Defused say circulating exploits mostly do not work. Not in CISA KEV (checked 22 Oct, 10:27 UTC).",
-   "de": "Versuche: AWS (MadPot) sah den ersten schon am 17.10. während des Embargos, weitere ab 21.10. 02:00 UTC; Cloudflare: Tausende vor der Bekanntgabe, „jetzt Millionen“. Folgen: keine bestätigten Kompromittierungen (Recorded Future, heise 22.10.); laut watchTowr und Defused funktionieren kursierende Exploits meist nicht. Nicht in CISA KEV (geprüft 22.10., 10:27 UTC)."
+   "pl": "Próby: AWS (MadPot) widział pierwszą już 17.10, w czasie embarga, kolejne od 21.10 02:00 UTC; Cloudflare: tysiące przed ogłoszeniem, „miliony teraz”; według SecurityWeek (23.10) także próby botnetu z rodziny Mirai (Potassium), zatrzymane. Skutki: nadal brak potwierdzonych włamań (SecurityWeek, The Record, 23.10); Sophos wycofał raport o udanym ataku; watchTowr i Defused: krążące exploity w większości nie działają. Brak w CISA KEV (sprawdzone 23.10, 21:04 UTC, katalog 2026.10.23).",
+   "en": "Attempts: AWS (MadPot) saw the first on 17 Oct, during the embargo, more from 21 Oct 02:00 UTC; Cloudflare: thousands before the announcement, “millions now”; per SecurityWeek (23 Oct) also Mirai-family botnet (Potassium) attempts, blocked. Outcomes: still no confirmed compromises (SecurityWeek, The Record, 23 Oct); Sophos retracted a report of success; watchTowr and Defused say circulating exploits mostly do not work. Not in CISA KEV (checked 23 Oct, 21:04 UTC, catalog 2026.10.23).",
+   "de": "Versuche: AWS (MadPot) sah den ersten schon am 17.10. während des Embargos, weitere ab 21.10. 02:00 UTC; Cloudflare: Tausende vor der Bekanntgabe, „jetzt Millionen“; laut SecurityWeek (23.10.) auch Versuche eines Mirai-Botnetzes (Potassium), abgewehrt. Folgen: weiterhin keine bestätigten Kompromittierungen (SecurityWeek, The Record, 23.10.); Sophos zog eine Erfolgsmeldung zurück; laut watchTowr und Defused funktionieren kursierende Exploits meist nicht. Nicht in CISA KEV (geprüft 23.10., 21:04 UTC, Katalog 2026.10.23)."
   },
   "sources": [
    {
@@ -136,12 +136,12 @@
   "exploitation_threshold": {
    "rule": "confirmed only if CISA KEV lists a CVE or a national CERT publishes credible in-the-wild evidence",
    "kev_listed": false,
-   "kev_checked_utc": "2026-10-23T18:18:00Z",
-   "kev_catalog_version": "2026.10.21",
+   "kev_checked_utc": "2026-10-23T21:04:00Z",
+   "kev_catalog_version": "2026.10.23",
    "kev_url": "https://www.cisa.gov/known-exploited-vulnerabilities-catalog",
    "national_cert_itw": []
   },
-  "kev_checked_utc": "2026-10-23T18:18:00Z"
+  "kev_checked_utc": "2026-10-23T21:04:00Z"
  },
  "key_numbers": [
   {
@@ -3592,7 +3592,7 @@
   },
   {
    "id": "aws-advisory",
-   "time_utc": "2026-10-21T21:12:00Z",
+   "time_utc": "2026-10-21T21:30:00Z",
    "importance": "major",
    "title": {
     "pl": "AWS publikuje biuletyn bezpieczeństwa dotyczący PHP2Shell",
@@ -3600,9 +3600,9 @@
     "de": "AWS veröffentlicht Sicherheitsbulletin zu PHP2Shell"
    },
    "description": {
-    "pl": "Amazon Web Services wydało oficjalny biuletyn informujący o wpływie podatności CVE-2026-109618 i CVE-2026-109619 na swoje usługi. Dostawca zidentyfikował listę dotkniętych produktów i przedstawił harmonogram wdrażania poprawek w zarządzanych środowiskach uruchomieniowych PHP. Użytkownikom zalecono weryfikację własnych instancji EC2 oraz funkcji Lambda pod kątem wersji używanego interpretera.",
-    "en": "Amazon Web Services issued an official bulletin regarding the impact of CVE-2026-109618 and CVE-2026-109619 on its services. The provider identified a list of affected products and provided a schedule for deploying patches in managed PHP runtimes. Users were advised to verify their own EC2 instances and Lambda functions for the version of the interpreter used.",
-    "de": "Amazon Web Services hat ein offizielles Bulletin zu den Auswirkungen von CVE-2026-109618 und CVE-2026-109619 auf seine Dienste herausgegeben. Der Anbieter identifizierte eine Liste der betroffenen Produkte und stellte einen Zeitplan für die Bereitstellung von Patches in verwalteten PHP-Runtimes bereit. Benutzern wurde empfohlen, ihre eigenen EC2-Instanzen und Lambda-Funktionen auf die Version des verwendeten Interpreters zu überprüfen."
+    "pl": "Biuletyn AWS 2026-143-AWS: usługi AWS nie są dotknięte CVE-2026-109618 i CVE-2026-109619, ale klienci z podatnym PHP w wymienionych usługach mogą być narażeni. Podatne są wersje PHP 8.2–8.5 sprzed 8.2.35, 8.3.36, 8.4.27 i 8.5.12, a dla wycofanych gałęzi 5.4–8.1 poprawki nie ma. WorkMail załatała AWS; Elastic Beanstalk, Amazon Linux i Lightsail mają zaktualizowane platformy, pakiety lub blueprinty; Amazon EMR na EC2 z Ganglią (wydania do 6.15.0) jest dotknięty; Lambda nie ma zarządzanego środowiska PHP, więc klienci z własnym runtime aktualizują je sami.",
+    "en": "AWS bulletin 2026-143-AWS: AWS services themselves are not impacted by CVE-2026-109618 and CVE-2026-109619, but customers running vulnerable PHP in the listed services may be. Affected are PHP 8.2–8.5 releases before 8.2.35, 8.3.36, 8.4.27 and 8.5.12; the end-of-life branches 5.4–8.1 have no fix. WorkMail was patched by AWS; Elastic Beanstalk, Amazon Linux and Lightsail have updated platforms, packages or blueprints; Amazon EMR on EC2 with Ganglia (releases up to 6.15.0) is affected; Lambda has no managed PHP runtime, so customers with custom runtimes update PHP themselves.",
+    "de": "AWS-Bulletin 2026-143-AWS: AWS-Dienste selbst sind von CVE-2026-109618 und CVE-2026-109619 nicht betroffen, Kunden mit anfälligem PHP in den aufgeführten Diensten können es aber sein. Betroffen sind PHP-Versionen 8.2–8.5 vor 8.2.35, 8.3.36, 8.4.27 und 8.5.12; für die ausgelaufenen Zweige 5.4–8.1 gibt es keinen Fix. WorkMail wurde von AWS gepatcht; Elastic Beanstalk, Amazon Linux und Lightsail haben aktualisierte Plattformen, Pakete oder Blueprints; Amazon EMR auf EC2 mit Ganglia (Versionen bis 6.15.0) ist betroffen; für Lambda gibt es keine verwaltete PHP-Laufzeit, Kunden mit eigener Laufzeit aktualisieren selbst."
    },
    "confidence": "confirmed",
    "source_name": "AWS — Security Bulletin 2026-143",
@@ -3610,7 +3610,38 @@
    "source_reliability": "A",
    "info_credibility": 1,
    "time_kind": "published",
-   "time_precision": "minute"
+   "time_precision": "minute",
+   "time_note": {
+    "pl": "Czas z biuletynu: 21.10.2026 14:30 PDT (21:30 UTC). Biuletyn był ostatnio aktualizowany 23.10.2026 13:30 PDT (20:30 UTC), a opis odpowiada tej wersji.",
+    "en": "Time from the bulletin: 21 Oct 2026 14:30 PDT (21:30 UTC). The bulletin was last updated on 23 Oct 2026 13:30 PDT (20:30 UTC); the description matches that version.",
+    "de": "Zeit laut Bulletin: 21.10.2026 14:30 PDT (21:30 UTC). Das Bulletin wurde zuletzt am 23.10.2026 13:30 PDT (20:30 UTC) aktualisiert; die Beschreibung entspricht dieser Version."
+   },
+   "corrections": [
+    {
+     "id": "corr-013",
+     "time": "2026-10-23T23:18:08Z",
+     "field": "description",
+     "previous": "Amazon Web Services wydało oficjalny biuletyn informujący o wpływie podatności CVE-2026-109618 i CVE-2026-109619 na swoje usługi. Dostawca zidentyfikował listę dotkniętych produktów i przedstawił harmonogram wdrażania poprawek w zarządzanych środowiskach uruchomieniowych PHP. Użytkownikom zalecono weryfikację własnych instancji EC2 oraz funkcji Lambda pod kątem wersji używanego interpretera.",
+     "reason": {
+      "pl": "Opis zawierał szczegóły, których biuletyn nie podaje (zalecenie sprawdzenia instancji EC2, „harmonogram wdrażania poprawek”), a pomijał sedno: wersje podatne i naprawione, status według usług i to, że usługi AWS nie są dotknięte. Przepisany na podstawie pełnej treści biuletynu 2026-143-AWS (wersja z 23.10.2026, 13:30 PDT). Pewność bez zmian: źródło pierwotne.",
+      "en": "The description contained details the bulletin does not state (advice to check EC2 instances, a “patch rollout schedule”) and left out the substance: affected and fixed versions, per-service status, and that AWS services themselves are not impacted. Rewritten from the full text of bulletin 2026-143-AWS (version of 23 Oct 2026, 13:30 PDT). Confidence unchanged: primary source.",
+      "de": "Die Beschreibung enthielt Angaben, die das Bulletin nicht macht (Hinweis, EC2-Instanzen zu prüfen, ein „Patch-Zeitplan“), und ließ den Kern aus: betroffene und behobene Versionen, Status je Dienst und dass AWS-Dienste selbst nicht betroffen sind. Neu verfasst nach dem vollständigen Text des Bulletins 2026-143-AWS (Stand 23.10.2026, 13:30 PDT). Konfidenz unverändert: Primärquelle."
+     },
+     "reported_by": "internal"
+    },
+    {
+     "id": "corr-014",
+     "time": "2026-10-23T23:18:08Z",
+     "field": "time_utc",
+     "previous": "2026-10-21T21:12:00Z",
+     "reason": {
+      "pl": "Godzina 21:12 nie wynika ze źródła. Biuletyn podaje czas publikacji 21.10.2026 14:30 PDT, czyli 21:30 UTC (strona zapisuje to jako „14:30 PM”, więc przyjęto czas 24-godzinny).",
+      "en": "The time 21:12 does not come from the source. The bulletin gives its publication time as 21 Oct 2026 14:30 PDT, i.e. 21:30 UTC (the page writes “14:30 PM”, so the 24-hour reading was used).",
+      "de": "Die Uhrzeit 21:12 stammt nicht aus der Quelle. Das Bulletin nennt als Veröffentlichungszeit den 21.10.2026 14:30 PDT, also 21:30 UTC (die Seite schreibt „14:30 PM“, daher wurde die 24-Stunden-Lesart verwendet)."
+     },
+     "reported_by": "internal"
+    }
+   ]
   }
  ],
  "actors": [
@@ -7056,7 +7087,20 @@
    "info_credibility": "2",
    "time_kind": "retrieved",
    "time_precision": "hour",
-   "as_of": "2026-10-23T18:20:00Z"
+   "as_of": "2026-10-23T18:20:00Z",
+   "corrections": [
+    {
+     "id": "corr-011",
+     "time": "2026-10-23T21:10:00Z",
+     "field": "counts.2026-10-21",
+     "previous": "2026-10-21: 27345",
+     "reason": {
+      "pl": "Ponowne pobranie liczników X API (23.10, 18:20 UTC) dało inną wartość dla zamkniętego dnia 21.10 niż pobranie z 22.10, 18:30 UTC. Liczniki API są przeliczane na bieżąco (np. usunięte wpisy wypadają); obowiązuje nowsza wartość.",
+      "en": "A fresh X API count (23 Oct, 18:20 UTC) returned a different value for the closed day 21 Oct than the 22 Oct, 18:30 UTC retrieval. API counts are recomputed over time (e.g. deleted posts drop out); the newer value applies.",
+      "de": "Ein erneuter Abruf der X-API-Zähler (23.10., 18:20 UTC) ergab für den abgeschlossenen Tag 21.10. einen anderen Wert als der Abruf vom 22.10., 18:30 UTC. API-Zähler werden laufend neu berechnet (z. B. fallen gelöschte Beiträge heraus); es gilt der neuere Wert."
+     }
+    }
+   ]
   },
   {
    "tag": "CVE-2026-109618 / CVE-2026-109619",
@@ -7131,7 +7175,20 @@
    "info_credibility": "2",
    "time_kind": "retrieved",
    "time_precision": "hour",
-   "as_of": "2026-10-23T18:20:00Z"
+   "as_of": "2026-10-23T18:20:00Z",
+   "corrections": [
+    {
+     "id": "corr-012",
+     "time": "2026-10-23T21:10:00Z",
+     "field": "counts.2026-10-21",
+     "previous": "2026-10-21: 2971",
+     "reason": {
+      "pl": "Ponowne pobranie liczników X API (23.10, 18:20 UTC) dało inną wartość dla zamkniętego dnia 21.10 niż pobranie z 22.10, 18:30 UTC. Liczniki API są przeliczane na bieżąco (np. usunięte wpisy wypadają); obowiązuje nowsza wartość.",
+      "en": "A fresh X API count (23 Oct, 18:20 UTC) returned a different value for the closed day 21 Oct than the 22 Oct, 18:30 UTC retrieval. API counts are recomputed over time (e.g. deleted posts drop out); the newer value applies.",
+      "de": "Ein erneuter Abruf der X-API-Zähler (23.10., 18:20 UTC) ergab für den abgeschlossenen Tag 21.10. einen anderen Wert als der Abruf vom 22.10., 18:30 UTC. API-Zähler werden laufend neu berechnet (z. B. fallen gelöschte Beiträge heraus); es gilt der neuere Wert."
+     }
+    }
+   ]
   },
   {
    "tag": "DE: php2shell / CVE / „PHP-Lücke“ (lang:de)",

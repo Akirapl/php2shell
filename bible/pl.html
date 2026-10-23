@@ -763,7 +763,7 @@ main,article{min-width:0;overflow-wrap:anywhere}
 <li><strong>Odruch alarmu:</strong> komunikat PHP wywołał falę wpisów „BREAKING” („PHP warns of another UNPATCHED … vulnerability”)<sup class="footnote-ref"><a href="#fn95" id="fnref95">[95]</a></sup>, wzmacnianą przez konta kryptowalutowe<sup class="footnote-ref"><a href="#fn96" id="fnref96">[96]</a></sup>; nagłówki pomijają rzadkość konfiguracji. Krążą też niezweryfikowane deklaracje exploitów na nową lukę — ich nie linkujemy.</li>
 <li><strong>Techniczne studzenie:</strong> „Don't let the BREAKING get you on this one”<sup class="footnote-ref"><a href="#fn97" id="fnref97">[97]</a></sup>; „It only bites if your app switches session.serialize_handler to php at runtime”<sup class="footnote-ref"><a href="#fn98" id="fnref98">[98]</a></sup>.</li>
 </ul>
-<p><strong>Sprzeczność [A]:</strong> skala ekspozycji — ok. 1,57 mln hostów (Censys, 22.10), 22,6 mln instancji (Unit 42) i 41 mln usług (Censys, 23.10) to różne jednostki liczenia, a nie wzajemne zaprzeczenie<sup class="footnote-ref"><a href="#fn92" id="fnref92:1">[92:1]</a></sup>.</p>
+<p><strong>Sprzeczność [A]:</strong> skala ekspozycji — ok. 1,57 mln hostów (Censys, 22.10)<sup class="footnote-ref"><a href="#fn52" id="fnref52:2">[52:2]</a></sup>, 22,6 mln instancji (Unit 42)<sup class="footnote-ref"><a href="#fn56" id="fnref56:1">[56:1]</a></sup> i 41 mln usług (Censys, 23.10) to różne jednostki liczenia, a nie wzajemne zaprzeczenie<sup class="footnote-ref"><a href="#fn92" id="fnref92:1">[92:1]</a></sup>.</p>
 <p><strong>Wniosek [A]:</strong> trzeci dzień przyniósł zmianę wektora rozmowy z „czy PoC działa” na „czy łatka wystarczy”. Rada obronna się nie zmienia: aktualizacja, restart workerów, <code>session.upload_progress.enabled=0</code>, polowanie wstecz do 17.10.</p>
 <h2 id="8-reakcja-obrońców">8. Reakcja obrońców</h2>
 <figure class="diagram" id="dg-actors">
@@ -1131,7 +1131,7 @@ main,article{min-width:0;overflow-wrap:anywhere}
 </li>
 <li id="fn51" class="footnote-item"><p>https://me.pcmag.com/en/security/38410/hackers-already-trying-to-exploit-serious-php-flaw <a href="#fnref51" class="footnote-backref">↩︎</a></p>
 </li>
-<li id="fn52" class="footnote-item"><p>https://www.securityweek.com/php2shell-exploitation-started-days-before-patches/ <a href="#fnref52" class="footnote-backref">↩︎</a> <a href="#fnref52:1" class="footnote-backref">↩︎</a></p>
+<li id="fn52" class="footnote-item"><p>https://www.securityweek.com/php2shell-exploitation-started-days-before-patches/ <a href="#fnref52" class="footnote-backref">↩︎</a> <a href="#fnref52:1" class="footnote-backref">↩︎</a> <a href="#fnref52:2" class="footnote-backref">↩︎</a></p>
 </li>
 <li id="fn53" class="footnote-item"><p>https://www.crowdstrike.com/en-us/blog/crowdstrike-protects-customers-from-php-rce-zero-days/ <a href="#fnref53" class="footnote-backref">↩︎</a> <a href="#fnref53:1" class="footnote-backref">↩︎</a> <a href="#fnref53:2" class="footnote-backref">↩︎</a> <a href="#fnref53:3" class="footnote-backref">↩︎</a> <a href="#fnref53:4" class="footnote-backref">↩︎</a></p>
 </li>
@@ -1139,7 +1139,7 @@ main,article{min-width:0;overflow-wrap:anywhere}
 </li>
 <li id="fn55" class="footnote-item"><p>https://cphpost.dk/2026-10-22/news/round-up/security-flaw-in-widely-used-software-forces-danish-websites-offline/ <a href="#fnref55" class="footnote-backref">↩︎</a></p>
 </li>
-<li id="fn56" class="footnote-item"><p>https://www.nextgov.com/cybersecurity/2026/10/us-agencies-urge-fixes-programming-language-flaws-putting-millions-web-systems-risk/416726/ <a href="#fnref56" class="footnote-backref">↩︎</a></p>
+<li id="fn56" class="footnote-item"><p>https://www.nextgov.com/cybersecurity/2026/10/us-agencies-urge-fixes-programming-language-flaws-putting-millions-web-systems-risk/416726/ <a href="#fnref56" class="footnote-backref">↩︎</a> <a href="#fnref56:1" class="footnote-backref">↩︎</a></p>
 </li>
 <li id="fn57" class="footnote-item"><p>https://www.php.net/archive/2026.php <a href="#fnref57" class="footnote-backref">↩︎</a></p>
 </li>
