@@ -3,12 +3,67 @@
 <title>PHP2Shell — oś czasu (PL)</title>
 <subtitle>Relacja na żywo: PHP2Shell (CVE-2026-109618/109619), krytyczne RCE w rdzeniu PHP (CVSS 9.2). Poprawki: 8.5.12, 8.4.27, 8.3.36, 8.2.35. Każdy fakt ze źródłem.</subtitle>
 <id>https://akirapl.github.io/php2shell/feed-pl.xml</id>
-<updated>2026-10-22T18:38:41Z</updated>
+<updated>2026-10-23T18:21:32Z</updated>
 <link rel="self" type="application/atom+xml" href="https://akirapl.github.io/php2shell/feed-pl.xml"/>
 <link rel="alternate" type="text/html" hreflang="pl" href="https://akirapl.github.io/php2shell/?lang=pl"/>
 <author><name>Dawid Kulik (@Akirapl)</name><uri>https://github.com/Akirapl</uri></author>
 <icon>https://akirapl.github.io/php2shell/assets/og-image.png</icon>
 <rights>CC BY 4.0</rights>
+<entry>
+<title>Przegląd nastrojów i mediów (23.10 wieczór)</title>
+<id>tag:php2shell-live.surge.sh,2026:social-media-review-1023-pm</id>
+<link rel="alternate" type="text/html" href="https://akirapl.github.io/php2shell/?lang=pl#ev-social-media-review-1023-pm"/>
+<link rel="related" href="https://x.com/search?q=CVE-2026-115560&amp;src=typed_query&amp;f=live"/>
+<published>2026-10-23T18:20:00Z</published>
+<updated>2026-10-23T18:20:00Z</updated>
+<category term="minor"/>
+<summary type="text">Drugi przegląd: „php2shell” na X 32 333 wpisy 22.10 (szczyt) i 11 537 do 18:20 UTC 23.10; nowy numer CVE-2026-115560 — 1 385 wpisów w kilka godzin. Dominuje odruch alarmu po komunikacie PHP („KOLEJNA niezałatana luka”), wzmacniany przez konta newsowe i kryptowalutowe; odpowiedzi techniczne studzą: dotyczy rzadkiej konfiguracji. Mastodon wyraźnie słabnie. Prasa: Mirai/Potassium, obejście ASLR (VulnCheck), 41 mln usług wg Censys. [obserwacja]</summary>
+<content type="html">&lt;p&gt;Drugi przegląd: „php2shell” na X 32 333 wpisy 22.10 (szczyt) i 11 537 do 18:20 UTC 23.10; nowy numer CVE-2026-115560 — 1 385 wpisów w kilka godzin. Dominuje odruch alarmu po komunikacie PHP („KOLEJNA niezałatana luka”), wzmacniany przez konta newsowe i kryptowalutowe; odpowiedzi techniczne studzą: dotyczy rzadkiej konfiguracji. Mastodon wyraźnie słabnie. Prasa: Mirai/Potassium, obejście ASLR (VulnCheck), 41 mln usług wg Censys. [obserwacja]&lt;/p&gt;&lt;p&gt;Źródło: &lt;a href="https://x.com/search?q=CVE-2026-115560&amp;amp;src=typed_query&amp;amp;f=live"&gt;X API v2 — recent post counts (retrieved 23.10, 18:20 UTC)&lt;/a&gt; · doniesienie · minor&lt;/p&gt;</content>
+</entry>
+<entry>
+<title>Próby szerzenia botnetu z rodziny Mirai („Potassium”) przez PHP2Shell — zatrzymane</title>
+<id>tag:php2shell-live.surge.sh,2026:mirai-potassium-attempts</id>
+<link rel="alternate" type="text/html" href="https://akirapl.github.io/php2shell/?lang=pl#ev-mirai-potassium-attempts"/>
+<link rel="related" href="https://www.securityweek.com/mirai-botnet-operators-join-php2shell-attacks-as-aslr-bypass-exploits-emerge/"/>
+<published>2026-10-23T12:45:00Z</published>
+<updated>2026-10-23T12:45:00Z</updated>
+<category term="major"/>
+<summary type="text">Według SecurityWeek Sophos widział próbę instalacji Potassium (wariant Mirai, DDoS), która została zatrzymana; Sophos skorygował wcześniejszy komunikat o udanym ataku. Arctic Wolf łączy dwie binarki Potassium z serwerami z ładunkami PHP2Shell, ale nie widzi, by żądania je pobierały; Hunt.io przypisuje ruch botnetowi aktywnemu od maja 2026. The Record: Cobalt też widzi próby związane z Mirai. Potwierdzonego włamania brak.</summary>
+<content type="html">&lt;p&gt;Według SecurityWeek Sophos widział próbę instalacji Potassium (wariant Mirai, DDoS), która została zatrzymana; Sophos skorygował wcześniejszy komunikat o udanym ataku. Arctic Wolf łączy dwie binarki Potassium z serwerami z ładunkami PHP2Shell, ale nie widzi, by żądania je pobierały; Hunt.io przypisuje ruch botnetowi aktywnemu od maja 2026. The Record: Cobalt też widzi próby związane z Mirai. Potwierdzonego włamania brak.&lt;/p&gt;&lt;p&gt;Źródło: &lt;a href="https://www.securityweek.com/mirai-botnet-operators-join-php2shell-attacks-as-aslr-bypass-exploits-emerge/"&gt;SecurityWeek — Mirai Botnet Operators Join PHP2Shell Attacks as ASLR Bypass Exploits Emerge&lt;/a&gt; · doniesienie · major&lt;/p&gt;</content>
+</entry>
+<entry>
+<title>VulnCheck: komercyjny exploit omija ASLR w konfiguracji produkcyjnej (niepublikowany)</title>
+<id>tag:php2shell-live.surge.sh,2026:vulncheck-aslr-bypass</id>
+<link rel="alternate" type="text/html" href="https://akirapl.github.io/php2shell/?lang=pl#ev-vulncheck-aslr-bypass"/>
+<link rel="related" href="https://www.securityweek.com/mirai-botnet-operators-join-php2shell-attacks-as-aslr-bypass-exploits-emerge/"/>
+<published>2026-10-23T12:45:00Z</published>
+<updated>2026-10-23T12:45:00Z</updated>
+<category term="major"/>
+<summary type="text">VulnCheck podaje, że jego exploit na CVE-2026-109618 osiąga RCE na x86-64 z włączonym ASLR i wyłączonym wyświetlaniem błędów (zalecana konfiguracja produkcyjna), dzięki wyciekowi pamięci; dostępny tylko dla klientów. Firma nie zna innego publicznego ani komercyjnego exploita, który to potrafi, i ocenia, że setki repozytoriów „PoC” na GitHubie rzadko zawierają prawdziwe exploity. Twierdzenie dostawcy, niezweryfikowane niezależnie.</summary>
+<content type="html">&lt;p&gt;VulnCheck podaje, że jego exploit na CVE-2026-109618 osiąga RCE na x86-64 z włączonym ASLR i wyłączonym wyświetlaniem błędów (zalecana konfiguracja produkcyjna), dzięki wyciekowi pamięci; dostępny tylko dla klientów. Firma nie zna innego publicznego ani komercyjnego exploita, który to potrafi, i ocenia, że setki repozytoriów „PoC” na GitHubie rzadko zawierają prawdziwe exploity. Twierdzenie dostawcy, niezweryfikowane niezależnie.&lt;/p&gt;&lt;p&gt;Źródło: &lt;a href="https://www.securityweek.com/mirai-botnet-operators-join-php2shell-attacks-as-aslr-bypass-exploits-emerge/"&gt;SecurityWeek — Mirai Botnet Operators Join PHP2Shell Attacks as ASLR Bypass Exploits Emerge&lt;/a&gt; · doniesienie · major&lt;/p&gt;</content>
+</entry>
+<entry>
+<title>Censys: ponad 41 mln usług PHP z podatnymi numerami wersji, 33,5 mln po aktualizacjach; Niemcy na 2. miejscu</title>
+<id>tag:php2shell-live.surge.sh,2026:censys-dashboard-41m</id>
+<link rel="alternate" type="text/html" href="https://akirapl.github.io/php2shell/?lang=pl#ev-censys-dashboard-41m"/>
+<link rel="related" href="https://www.heise.de/news/php2shell-Millionen-PHP-Dienste-in-Deutschland-verwundbar-11498464.html"/>
+<published>2026-10-23T12:03:00Z</published>
+<updated>2026-10-23T12:03:00Z</updated>
+<category term="minor"/>
+<summary type="text">heise za dashboardem Censys: od środy ponad 41 mln usług PHP z podatnymi wersjami, prawie 8 mln zaktualizowano, zostaje 33,5 mln; w Niemczech ok. 11 mln usług, z czego ok. 4,2 mln z podatnymi wersjami. Zastrzeżenia Censys: liczone są usługi, nie serwery; ok. 54% ukrywa wersję; backporty dystrybucji zawyżają wynik; to szacunek, nie „źródło prawdy”.</summary>
+<content type="html">&lt;p&gt;heise za dashboardem Censys: od środy ponad 41 mln usług PHP z podatnymi wersjami, prawie 8 mln zaktualizowano, zostaje 33,5 mln; w Niemczech ok. 11 mln usług, z czego ok. 4,2 mln z podatnymi wersjami. Zastrzeżenia Censys: liczone są usługi, nie serwery; ok. 54% ukrywa wersję; backporty dystrybucji zawyżają wynik; to szacunek, nie „źródło prawdy”.&lt;/p&gt;&lt;p&gt;Źródło: &lt;a href="https://www.heise.de/news/php2shell-Millionen-PHP-Dienste-in-Deutschland-verwundbar-11498464.html"&gt;heise online — php2shell: Millionen PHP-Dienste in Deutschland verwundbar&lt;/a&gt; · szacunek · minor&lt;/p&gt;</content>
+</entry>
+<entry>
+<title>PHP: komunikat o nowej, niezałatanej luce CVE-2026-115560 (sesje, upload progress)</title>
+<id>tag:php2shell-live.surge.sh,2026:php-advisory-cve-2026-115560</id>
+<link rel="alternate" type="text/html" href="https://akirapl.github.io/php2shell/?lang=pl#ev-php-advisory-cve-2026-115560"/>
+<link rel="related" href="https://www.php.net/archive/2026.php"/>
+<published>2026-10-23T00:00:00Z</published>
+<updated>2026-10-23T00:00:00Z</updated>
+<category term="major"/>
+<summary type="text">Zespół PHP zaleca session.upload_progress.enabled=0 do następnego zwykłego wydania. Luka (możliwe RCE) wymaga nietypowego układu: aplikacja ustawia session.serialize_handler na php_binary lub php_serialize, a w czasie działania przełącza go na php przez ini_set() przed session_start(), przy włączonym upload progress. To samo ustawienie było już zalecane jako łagodzenie w GHSA-6wmf-4rv5-p3rp 21.10. Poprawki z 21.10 tego nie naprawiają; pełny biuletyn ma wyjść z następnym wydaniem.</summary>
+<content type="html">&lt;p&gt;Zespół PHP zaleca session.upload_progress.enabled=0 do następnego zwykłego wydania. Luka (możliwe RCE) wymaga nietypowego układu: aplikacja ustawia session.serialize_handler na php_binary lub php_serialize, a w czasie działania przełącza go na php przez ini_set() przed session_start(), przy włączonym upload progress. To samo ustawienie było już zalecane jako łagodzenie w GHSA-6wmf-4rv5-p3rp 21.10. Poprawki z 21.10 tego nie naprawiają; pełny biuletyn ma wyjść z następnym wydaniem.&lt;/p&gt;&lt;p&gt;Źródło: &lt;a href="https://www.php.net/archive/2026.php"&gt;php.net — Informational advisory: Session upload progress (23 Oct 2026)&lt;/a&gt; · potwierdzone · major&lt;/p&gt;</content>
+</entry>
 <entry>
 <title>Przegląd nastrojów i mediów (22.10 wieczór)</title>
 <id>tag:php2shell-live.surge.sh,2026:social-media-review-1022</id>
