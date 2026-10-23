@@ -10,7 +10,7 @@
    "en": "CVE-2026-109618 and CVE-2026-109619: critical RCE flaws in the PHP core",
    "de": "CVE-2026-109618 und CVE-2026-109619: kritische RCE-Lücken im PHP-Kern"
   },
-  "last_updated": "2026-10-23T21:09:03Z",
+  "last_updated": "2026-10-23T21:25:00Z",
   "maintainer_note": "Single source of truth. Every fact needs source_url, source_name, confidence; texts as {pl,en,de}. Run ./update_and_build.sh \"message\".",
   "timezone_note": {
    "pl": "Wszystkie czasy w UTC. Czasy z NOS (CEST) przeliczone na UTC (−2 h).",
@@ -71,9 +71,9 @@
    "de": "Stand 23.10., 18:20 UTC (20:20 MESZ): PHP2Shell-Patches sind verfügbar (8.5.12 / 8.4.27 / 8.3.36 / 8.2.35). PHP warnt vor einer neuen, ungepatchten Lücke CVE-2026-115560 in seltener Konfiguration — Mitigation: session.upload_progress.enabled=0. Angriffsversuche (auch Mirai-Botnetze) laufen; bestätigte Kompromittierungen gibt es nicht."
   },
   "exploitation_note": {
-   "pl": "Próby: AWS (MadPot) widział pierwszą już 17.10, w czasie embarga, kolejne od 21.10 02:00 UTC; Cloudflare — tysiące przed ogłoszeniem, „miliony teraz”. Skutki: brak potwierdzonych włamań (Recorded Future, heise 22.10); watchTowr i Defused: krążące exploity w większości nie działają. Brak w CISA KEV (sprawdzone 22.10, 10:27 UTC).",
-   "en": "Attempts: AWS (MadPot) saw the first on 17 Oct, during the embargo, more from 21 Oct 02:00 UTC; Cloudflare: thousands before the announcement, “millions now”. Outcomes: no confirmed compromises (Recorded Future, heise 22 Oct); watchTowr and Defused say circulating exploits mostly do not work. Not in CISA KEV (checked 22 Oct, 10:27 UTC).",
-   "de": "Versuche: AWS (MadPot) sah den ersten schon am 17.10. während des Embargos, weitere ab 21.10. 02:00 UTC; Cloudflare: Tausende vor der Bekanntgabe, „jetzt Millionen“. Folgen: keine bestätigten Kompromittierungen (Recorded Future, heise 22.10.); laut watchTowr und Defused funktionieren kursierende Exploits meist nicht. Nicht in CISA KEV (geprüft 22.10., 10:27 UTC)."
+   "pl": "Próby: AWS (MadPot) widział pierwszą już 17.10, w czasie embarga, kolejne od 21.10 02:00 UTC; Cloudflare: tysiące przed ogłoszeniem, „miliony teraz”; według SecurityWeek (23.10) także próby botnetu z rodziny Mirai (Potassium), zatrzymane. Skutki: nadal brak potwierdzonych włamań (SecurityWeek, The Record, 23.10); Sophos wycofał raport o udanym ataku; watchTowr i Defused: krążące exploity w większości nie działają. Brak w CISA KEV (sprawdzone 23.10, 21:04 UTC, katalog 2026.10.23).",
+   "en": "Attempts: AWS (MadPot) saw the first on 17 Oct, during the embargo, more from 21 Oct 02:00 UTC; Cloudflare: thousands before the announcement, “millions now”; per SecurityWeek (23 Oct) also Mirai-family botnet (Potassium) attempts, blocked. Outcomes: still no confirmed compromises (SecurityWeek, The Record, 23 Oct); Sophos retracted a report of success; watchTowr and Defused say circulating exploits mostly do not work. Not in CISA KEV (checked 23 Oct, 21:04 UTC, catalog 2026.10.23).",
+   "de": "Versuche: AWS (MadPot) sah den ersten schon am 17.10. während des Embargos, weitere ab 21.10. 02:00 UTC; Cloudflare: Tausende vor der Bekanntgabe, „jetzt Millionen“; laut SecurityWeek (23.10.) auch Versuche eines Mirai-Botnetzes (Potassium), abgewehrt. Folgen: weiterhin keine bestätigten Kompromittierungen (SecurityWeek, The Record, 23.10.); Sophos zog eine Erfolgsmeldung zurück; laut watchTowr und Defused funktionieren kursierende Exploits meist nicht. Nicht in CISA KEV (geprüft 23.10., 21:04 UTC, Katalog 2026.10.23)."
   },
   "sources": [
    {
@@ -136,12 +136,12 @@
   "exploitation_threshold": {
    "rule": "confirmed only if CISA KEV lists a CVE or a national CERT publishes credible in-the-wild evidence",
    "kev_listed": false,
-   "kev_checked_utc": "2026-10-23T18:18:00Z",
-   "kev_catalog_version": "2026.10.21",
+   "kev_checked_utc": "2026-10-23T21:04:00Z",
+   "kev_catalog_version": "2026.10.23",
    "kev_url": "https://www.cisa.gov/known-exploited-vulnerabilities-catalog",
    "national_cert_itw": []
   },
-  "kev_checked_utc": "2026-10-23T18:18:00Z"
+  "kev_checked_utc": "2026-10-23T21:04:00Z"
  },
  "key_numbers": [
   {
@@ -7056,7 +7056,20 @@
    "info_credibility": "2",
    "time_kind": "retrieved",
    "time_precision": "hour",
-   "as_of": "2026-10-23T18:20:00Z"
+   "as_of": "2026-10-23T18:20:00Z",
+   "corrections": [
+    {
+     "id": "corr-011",
+     "time": "2026-10-23T21:10:00Z",
+     "field": "counts.2026-10-21",
+     "previous": "2026-10-21: 27345",
+     "reason": {
+      "pl": "Ponowne pobranie liczników X API (23.10, 18:20 UTC) dało inną wartość dla zamkniętego dnia 21.10 niż pobranie z 22.10, 18:30 UTC. Liczniki API są przeliczane na bieżąco (np. usunięte wpisy wypadają); obowiązuje nowsza wartość.",
+      "en": "A fresh X API count (23 Oct, 18:20 UTC) returned a different value for the closed day 21 Oct than the 22 Oct, 18:30 UTC retrieval. API counts are recomputed over time (e.g. deleted posts drop out); the newer value applies.",
+      "de": "Ein erneuter Abruf der X-API-Zähler (23.10., 18:20 UTC) ergab für den abgeschlossenen Tag 21.10. einen anderen Wert als der Abruf vom 22.10., 18:30 UTC. API-Zähler werden laufend neu berechnet (z. B. fallen gelöschte Beiträge heraus); es gilt der neuere Wert."
+     }
+    }
+   ]
   },
   {
    "tag": "CVE-2026-109618 / CVE-2026-109619",
@@ -7131,7 +7144,20 @@
    "info_credibility": "2",
    "time_kind": "retrieved",
    "time_precision": "hour",
-   "as_of": "2026-10-23T18:20:00Z"
+   "as_of": "2026-10-23T18:20:00Z",
+   "corrections": [
+    {
+     "id": "corr-012",
+     "time": "2026-10-23T21:10:00Z",
+     "field": "counts.2026-10-21",
+     "previous": "2026-10-21: 2971",
+     "reason": {
+      "pl": "Ponowne pobranie liczników X API (23.10, 18:20 UTC) dało inną wartość dla zamkniętego dnia 21.10 niż pobranie z 22.10, 18:30 UTC. Liczniki API są przeliczane na bieżąco (np. usunięte wpisy wypadają); obowiązuje nowsza wartość.",
+      "en": "A fresh X API count (23 Oct, 18:20 UTC) returned a different value for the closed day 21 Oct than the 22 Oct, 18:30 UTC retrieval. API counts are recomputed over time (e.g. deleted posts drop out); the newer value applies.",
+      "de": "Ein erneuter Abruf der X-API-Zähler (23.10., 18:20 UTC) ergab für den abgeschlossenen Tag 21.10. einen anderen Wert als der Abruf vom 22.10., 18:30 UTC. API-Zähler werden laufend neu berechnet (z. B. fallen gelöschte Beiträge heraus); es gilt der neuere Wert."
+     }
+    }
+   ]
   },
   {
    "tag": "DE: php2shell / CVE / „PHP-Lücke“ (lang:de)",

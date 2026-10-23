@@ -534,7 +534,7 @@ Without recipes [A]: given a large public diff (here: hundreds of files around O
 - **Alarm reflex:** PHP’s advisory set off a wave of “BREAKING” posts (“PHP warns of another UNPATCHED … vulnerability”)[^s2thn], amplified by crypto accounts[^s2coin]; the headlines omit how rare the configuration is. Unverified claims of exploits for the new flaw also circulate — we do not link them.
 - **Technical cooling:** “Don't let the BREAKING get you on this one”[^s2breach]; “It only bites if your app switches session.serialize_handler to php at runtime”[^s2azmy].
 
-**Contradiction [A]:** exposure scale — about 1.57 million hosts (Censys, 22 Oct), 22.6 million instances (Unit 42) and 41 million services (Censys, 23 Oct) are different units of counting, not a contradiction of one another[^s2heise].
+**Contradiction [A]:** exposure scale — about 1.57 million hosts (Censys, 22 Oct)[^secweek22], 22.6 million instances (Unit 42)[^nextgov] and 41 million services (Censys, 23 Oct) are different units of counting, not a contradiction of one another[^s2heise].
 
 **Takeaway [A]:** day three moved the conversation from “does the PoC work” to “is the patch enough”. The defensive advice is unchanged: update, restart workers, set `session.upload_progress.enabled=0`, hunt back to 17 Oct.
 
@@ -877,7 +877,6 @@ Separate official CVSS 9.2 from “CVSS 10” rumors; CDN “early attacks” fr
 [^smonet]: https://wiadomosci.onet.pl/swiat/ai-odkryla-luke-ktora-moze-zagrozic-milionom-stron-eksperci-bija-na-alarm/6dsce33
 [^smtvn24]: https://tvn24.pl/biznes/z-kraju/strony-biuletynu-informacji-publicznej-wylaczone-krzysztof-gawkowski-wykryto-powazne-luki-st9299779
 
-
 ### Update 23 Oct 2026 evening (§7.6)
 
 [^s2php]: https://www.php.net/archive/2026.php (Informational advisory: Session upload progress, 23 Oct 2026)
@@ -891,6 +890,7 @@ Separate official CVSS 9.2 from “CVSS 10” rumors; CDN “early attacks” fr
 [^s2coin]: https://x.com/coinbureau/status/2113675779049722297
 [^s2breach]: https://x.com/BreachByteSec/status/2113679683359490462
 [^s2azmy]: https://x.com/AzmyBlog/status/2113672344472285208
+
 ---
 
 *End of version 1.4 (EN). Update as distro packages, IoCs and Calif/OpenAI write-ups appear.*

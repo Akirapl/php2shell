@@ -534,7 +534,7 @@ Ohne Rezepte [A]: Bei großem öffentlichem Diff (hier: Hunderte Dateien um OOM 
 - **Alarmreflex:** PHPs Hinweis löste eine Welle von „BREAKING“-Posts aus („PHP warns of another UNPATCHED … vulnerability“)[^s2thn], verstärkt von Krypto-Konten[^s2coin]; die Schlagzeilen verschweigen, wie selten die Konfiguration ist. Auch unbestätigte Behauptungen von Exploits für die neue Lücke kursieren — wir verlinken sie nicht.
 - **Technisches Abkühlen:** „Don't let the BREAKING get you on this one“[^s2breach]; „It only bites if your app switches session.serialize_handler to php at runtime“[^s2azmy].
 
-**Widerspruch [A]:** Ausmaß der Exposition — rund 1,57 Mio. Hosts (Censys, 22.10.), 22,6 Mio. Instanzen (Unit 42) und 41 Mio. Dienste (Censys, 23.10.) sind unterschiedliche Zähleinheiten, kein gegenseitiger Widerspruch[^s2heise].
+**Widerspruch [A]:** Ausmaß der Exposition — rund 1,57 Mio. Hosts (Censys, 22.10.)[^secweek22], 22,6 Mio. Instanzen (Unit 42)[^nextgov] und 41 Mio. Dienste (Censys, 23.10.) sind unterschiedliche Zähleinheiten, kein gegenseitiger Widerspruch[^s2heise].
 
 **Fazit [A]:** Tag drei verschob die Debatte von „funktioniert der PoC“ zu „reicht der Patch“. Der Verteidigungsrat bleibt: aktualisieren, Worker neu starten, `session.upload_progress.enabled=0` setzen, Hunting bis zum 17.10. zurück.
 
@@ -877,7 +877,6 @@ Offizielles CVSS 9.2 von „CVSS 10“-Gerüchten trennen; CDN-„early attacks�
 [^smonet]: https://wiadomosci.onet.pl/swiat/ai-odkryla-luke-ktora-moze-zagrozic-milionom-stron-eksperci-bija-na-alarm/6dsce33
 [^smtvn24]: https://tvn24.pl/biznes/z-kraju/strony-biuletynu-informacji-publicznej-wylaczone-krzysztof-gawkowski-wykryto-powazne-luki-st9299779
 
-
 ### Aktualisierung 23.10.2026 abends (§7.6)
 
 [^s2php]: https://www.php.net/archive/2026.php (Informational advisory: Session upload progress, 23 Oct 2026)
@@ -891,6 +890,7 @@ Offizielles CVSS 9.2 von „CVSS 10“-Gerüchten trennen; CDN-„early attacks�
 [^s2coin]: https://x.com/coinbureau/status/2113675779049722297
 [^s2breach]: https://x.com/BreachByteSec/status/2113679683359490462
 [^s2azmy]: https://x.com/AzmyBlog/status/2113672344472285208
+
 ---
 
 *Ende Version 1.4 (DE). Aktualisieren mit Distributionspaketen, IoCs und Calif-/OpenAI-Write-ups.*

@@ -534,7 +534,7 @@ Bez podawania przepisów [A]: przy dużym, publicznym diffie (tu: setki plików 
 - **Odruch alarmu:** komunikat PHP wywołał falę wpisów „BREAKING” („PHP warns of another UNPATCHED … vulnerability”)[^s2thn], wzmacnianą przez konta kryptowalutowe[^s2coin]; nagłówki pomijają rzadkość konfiguracji. Krążą też niezweryfikowane deklaracje exploitów na nową lukę — ich nie linkujemy.
 - **Techniczne studzenie:** „Don't let the BREAKING get you on this one”[^s2breach]; „It only bites if your app switches session.serialize_handler to php at runtime”[^s2azmy].
 
-**Sprzeczność [A]:** skala ekspozycji — ok. 1,57 mln hostów (Censys, 22.10), 22,6 mln instancji (Unit 42) i 41 mln usług (Censys, 23.10) to różne jednostki liczenia, a nie wzajemne zaprzeczenie[^s2heise].
+**Sprzeczność [A]:** skala ekspozycji — ok. 1,57 mln hostów (Censys, 22.10)[^secweek22], 22,6 mln instancji (Unit 42)[^nextgov] i 41 mln usług (Censys, 23.10) to różne jednostki liczenia, a nie wzajemne zaprzeczenie[^s2heise].
 
 **Wniosek [A]:** trzeci dzień przyniósł zmianę wektora rozmowy z „czy PoC działa” na „czy łatka wystarczy”. Rada obronna się nie zmienia: aktualizacja, restart workerów, `session.upload_progress.enabled=0`, polowanie wstecz do 17.10.
 
@@ -877,7 +877,6 @@ Rozróżniajcie: oficjalne CVSS 9.2 vs plotki o 10.0; „early attacks” od CDN
 [^smonet]: https://wiadomosci.onet.pl/swiat/ai-odkryla-luke-ktora-moze-zagrozic-milionom-stron-eksperci-bija-na-alarm/6dsce33
 [^smtvn24]: https://tvn24.pl/biznes/z-kraju/strony-biuletynu-informacji-publicznej-wylaczone-krzysztof-gawkowski-wykryto-powazne-luki-st9299779
 
-
 ### Aktualizacja 23.10.2026 wieczór (§7.6)
 
 [^s2php]: https://www.php.net/archive/2026.php (Informational advisory: Session upload progress, 23 Oct 2026)
@@ -891,6 +890,7 @@ Rozróżniajcie: oficjalne CVSS 9.2 vs plotki o 10.0; „early attacks” od CDN
 [^s2coin]: https://x.com/coinbureau/status/2113675779049722297
 [^s2breach]: https://x.com/BreachByteSec/status/2113679683359490462
 [^s2azmy]: https://x.com/AzmyBlog/status/2113672344472285208
+
 ---
 
 *Koniec wersji 1.4 (PL). Dokument do aktualizacji wraz z paczkami dystrybucyjnymi, IoC i write-upami Calif/OpenAI.*
