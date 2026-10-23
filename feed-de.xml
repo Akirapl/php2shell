@@ -3,7 +3,7 @@
 <title>PHP2Shell — Chronik (DE)</title>
 <subtitle>Live-Chronik zu PHP2Shell (CVE-2026-109618/109619), kritische RCE im PHP-Kern (CVSS 9.2). Behoben in 8.5.12, 8.4.27, 8.3.36, 8.2.35. Jede Angabe mit Quelle.</subtitle>
 <id>https://akirapl.github.io/php2shell/feed-de.xml</id>
-<updated>2026-10-23T18:21:32Z</updated>
+<updated>2026-10-23T21:09:03Z</updated>
 <link rel="self" type="application/atom+xml" href="https://akirapl.github.io/php2shell/feed-de.xml"/>
 <link rel="alternate" type="text/html" hreflang="de" href="https://akirapl.github.io/php2shell/?lang=de"/>
 <author><name>Dawid Kulik (@Akirapl)</name><uri>https://github.com/Akirapl</uri></author>
@@ -65,6 +65,28 @@
 <content type="html">&lt;p&gt;Das PHP-Team empfiehlt session.upload_progress.enabled=0 bis zum nächsten regulären Bugfix-Release. Die Lücke (mögliche RCE) setzt eine ungewöhnliche Konstellation voraus: Die Anwendung setzt session.serialize_handler auf php_binary oder php_serialize und schaltet ihn zur Laufzeit per ini_set() vor session_start() auf php um, während Upload-Progress aktiv ist. Dieselbe Einstellung stand am 21.10. bereits als Mitigation in GHSA-6wmf-4rv5-p3rp. Die Releases vom 21.10. beheben das nicht; ein vollständiges Advisory folgt mit dem nächsten Release.&lt;/p&gt;&lt;p&gt;Quelle: &lt;a href="https://www.php.net/archive/2026.php"&gt;php.net — Informational advisory: Session upload progress (23 Oct 2026)&lt;/a&gt; · bestätigt · major&lt;/p&gt;</content>
 </entry>
 <entry>
+<title>Barracuda bewertet Auswirkungen von PHP-Schwachstellen auf seine Produkte</title>
+<id>tag:php2shell-live.surge.sh,2026:barracuda-advisory</id>
+<link rel="alternate" type="text/html" href="https://akirapl.github.io/php2shell/?lang=de#ev-barracuda-advisory"/>
+<link rel="related" href="https://trust.barracuda.com/security/php-vulnerabilities"/>
+<published>2026-10-22T23:30:00Z</published>
+<updated>2026-10-22T23:30:00Z</updated>
+<category term="minor"/>
+<summary type="text">Der Sicherheitsanbieter Barracuda hat einen Sicherheitshinweis zu den PHP2Shell-Schwachstellen veröffentlicht. Das Unternehmen bestätigte, dass Backup Service und Email Gateway Defense bereits behoben wurden, während mehrere andere Produkte, darunter Backup Service Appliance und Cloud Control, noch untersucht werden. Die meisten Kernlösungen wie Firewall und WAF wurden als nicht betroffen markiert.</summary>
+<content type="html">&lt;p&gt;Der Sicherheitsanbieter Barracuda hat einen Sicherheitshinweis zu den PHP2Shell-Schwachstellen veröffentlicht. Das Unternehmen bestätigte, dass Backup Service und Email Gateway Defense bereits behoben wurden, während mehrere andere Produkte, darunter Backup Service Appliance und Cloud Control, noch untersucht werden. Die meisten Kernlösungen wie Firewall und WAF wurden als nicht betroffen markiert.&lt;/p&gt;&lt;p&gt;Quelle: &lt;a href="https://trust.barracuda.com/security/php-vulnerabilities"&gt;Barracuda Trust Center — PHP vulnerabilities CVE-2026-109618 and CVE-2026-109619&lt;/a&gt; · gemeldet · minor&lt;/p&gt;</content>
+</entry>
+<entry>
+<title>Anfragen zur Anfälligkeit von vSphere und ESXi</title>
+<id>tag:php2shell-live.surge.sh,2026:reddit-vmware-query</id>
+<link rel="alternate" type="text/html" href="https://akirapl.github.io/php2shell/?lang=de#ev-reddit-vmware-query"/>
+<link rel="related" href="https://www.reddit.com/r/sysadmin/comments/1xcttzp/php2shell_vsphere_8x/"/>
+<published>2026-10-22T20:27:00Z</published>
+<updated>2026-10-22T20:27:00Z</updated>
+<category term="minor"/>
+<summary type="text">Nutzer auf Reddit haben begonnen, Fragen zur Anfälligkeit der Web-Schnittstellen von VMware vSphere und ESXi gegenüber den PHP2Shell-Fehlern zu stellen. Die Systemadministrator-Community sucht nach einer offiziellen Stellungnahme von Broadcom zu diesem Thema. Derzeit gibt es keine offizielle Bestätigung der Anfälligkeit oder eine Erklärung des Herstellers.</summary>
+<content type="html">&lt;p&gt;Nutzer auf Reddit haben begonnen, Fragen zur Anfälligkeit der Web-Schnittstellen von VMware vSphere und ESXi gegenüber den PHP2Shell-Fehlern zu stellen. Die Systemadministrator-Community sucht nach einer offiziellen Stellungnahme von Broadcom zu diesem Thema. Derzeit gibt es keine offizielle Bestätigung der Anfälligkeit oder eine Erklärung des Herstellers.&lt;/p&gt;&lt;p&gt;Quelle: &lt;a href="https://www.reddit.com/r/sysadmin/comments/1xcttzp/php2shell_vsphere_8x/"&gt;Reddit — PHP2Shell &amp;amp; vSphere 8.x&lt;/a&gt; · gemeldet · minor&lt;/p&gt;</content>
+</entry>
+<entry>
 <title>Stimmungs- und Medienschau (22.10. abends)</title>
 <id>tag:php2shell-live.surge.sh,2026:social-media-review-1022</id>
 <link rel="alternate" type="text/html" href="https://akirapl.github.io/php2shell/?lang=de#ev-social-media-review-1022"/>
@@ -118,6 +140,28 @@
 <category term="major"/>
 <summary type="text">Cloudflare-CEO Matthew Prince schrieb, dass das Cloudflare-Netz in den 10 Stunden vor der öffentlichen Bekanntgabe Tausende Ausnutzungsversuche von PHP2Shell sah, in den 45 Minuten danach Zehntausende, binnen 2 Stunden Hunderttausende und „jetzt Millionen“. Damit sah ein zweites, von AWS unabhängiges Sensornetz Versuche vor dem Patch-Release (AWS MadPot: ab etwa 02:00 UTC am 21.10.), allerdings nach dem Leak vom 20.10. Die Zahlen betreffen Versuche, keine erfolgreichen Einbrüche; Cloudflare veröffentlichte keine Aufschlüsselung.</summary>
 <content type="html">&lt;p&gt;Cloudflare-CEO Matthew Prince schrieb, dass das Cloudflare-Netz in den 10 Stunden vor der öffentlichen Bekanntgabe Tausende Ausnutzungsversuche von PHP2Shell sah, in den 45 Minuten danach Zehntausende, binnen 2 Stunden Hunderttausende und „jetzt Millionen“. Damit sah ein zweites, von AWS unabhängiges Sensornetz Versuche vor dem Patch-Release (AWS MadPot: ab etwa 02:00 UTC am 21.10.), allerdings nach dem Leak vom 20.10. Die Zahlen betreffen Versuche, keine erfolgreichen Einbrüche; Cloudflare veröffentlichte keine Aufschlüsselung.&lt;/p&gt;&lt;p&gt;Quelle: &lt;a href="https://x.com/eastdakota/status/2113079352682570051"&gt;Matthew Prince (@eastdakota) on X&lt;/a&gt; · gemeldet · major&lt;/p&gt;</content>
+</entry>
+<entry>
+<title>UK: NCSC sendet 50.000 Warnungen, Dutzende Dienste offline</title>
+<id>tag:php2shell-live.surge.sh,2026:uk-ncsc-warnings-impact</id>
+<link rel="alternate" type="text/html" href="https://akirapl.github.io/php2shell/?lang=de#ev-uk-ncsc-warnings-impact"/>
+<link rel="related" href="https://hansard.parliament.uk/Lords/2026-10-22/debates/14CB4C6D-4E16-4377-8FCF-C2CF77BB5CC0/details"/>
+<published>2026-10-22T00:00:00Z</published>
+<updated>2026-10-22T00:00:00Z</updated>
+<category term="major"/>
+<summary type="text">Das britische National Cyber Security Centre (NCSC) hat rund 50.000 Warnungen an Unternehmen bezüglich der PHP2Shell-Schwachstelle herausgegeben. Die britische Regierung bestätigte, dass 36 digitale Dienste als Vorsichtsmaßnahme offline genommen oder teilweise eingeschränkt wurden. Diese Maßnahmen dienen dazu, eine potenzielle Ausnutzung während der Implementierung von Sicherheitsupdates zu verhindern.</summary>
+<content type="html">&lt;p&gt;Das britische National Cyber Security Centre (NCSC) hat rund 50.000 Warnungen an Unternehmen bezüglich der PHP2Shell-Schwachstelle herausgegeben. Die britische Regierung bestätigte, dass 36 digitale Dienste als Vorsichtsmaßnahme offline genommen oder teilweise eingeschränkt wurden. Diese Maßnahmen dienen dazu, eine potenzielle Ausnutzung während der Implementierung von Sicherheitsupdates zu verhindern.&lt;/p&gt;&lt;p&gt;Quelle: &lt;a href="https://hansard.parliament.uk/Lords/2026-10-22/debates/14CB4C6D-4E16-4377-8FCF-C2CF77BB5CC0/details"&gt;Hansard - UK Parliament&lt;/a&gt; · gemeldet · major&lt;/p&gt;</content>
+</entry>
+<entry>
+<title>AWS veröffentlicht Sicherheitsbulletin zu PHP2Shell</title>
+<id>tag:php2shell-live.surge.sh,2026:aws-advisory</id>
+<link rel="alternate" type="text/html" href="https://akirapl.github.io/php2shell/?lang=de#ev-aws-advisory"/>
+<link rel="related" href="https://aws.amazon.com/security/security-bulletins/2026-143-aws/"/>
+<published>2026-10-21T21:12:00Z</published>
+<updated>2026-10-21T21:12:00Z</updated>
+<category term="major"/>
+<summary type="text">Amazon Web Services hat ein offizielles Bulletin zu den Auswirkungen von CVE-2026-109618 und CVE-2026-109619 auf seine Dienste herausgegeben. Der Anbieter identifizierte eine Liste der betroffenen Produkte und stellte einen Zeitplan für die Bereitstellung von Patches in verwalteten PHP-Runtimes bereit. Benutzern wurde empfohlen, ihre eigenen EC2-Instanzen und Lambda-Funktionen auf die Version des verwendeten Interpreters zu überprüfen.</summary>
+<content type="html">&lt;p&gt;Amazon Web Services hat ein offizielles Bulletin zu den Auswirkungen von CVE-2026-109618 und CVE-2026-109619 auf seine Dienste herausgegeben. Der Anbieter identifizierte eine Liste der betroffenen Produkte und stellte einen Zeitplan für die Bereitstellung von Patches in verwalteten PHP-Runtimes bereit. Benutzern wurde empfohlen, ihre eigenen EC2-Instanzen und Lambda-Funktionen auf die Version des verwendeten Interpreters zu überprüfen.&lt;/p&gt;&lt;p&gt;Quelle: &lt;a href="https://aws.amazon.com/security/security-bulletins/2026-143-aws/"&gt;AWS — Security Bulletin 2026-143&lt;/a&gt; · bestätigt · major&lt;/p&gt;</content>
 </entry>
 <entry>
 <title>Cisco prüft mehr als 30 Produkte auf PHP2Shell</title>
@@ -756,6 +800,17 @@
 <category term="minor"/>
 <summary type="text">Die PHP Foundation rät Nutzern des ehrenamtlich gepflegten rpms.remirepo.net, auf Distributionspakete oder eigene Builds umzusteigen.</summary>
 <content type="html">&lt;p&gt;Die PHP Foundation rät Nutzern des ehrenamtlich gepflegten rpms.remirepo.net, auf Distributionspakete oder eigene Builds umzusteigen.&lt;/p&gt;&lt;p&gt;Quelle: &lt;a href="https://x.com/ThePHPF/status/2112828424486056183"&gt;@ThePHPF on X&lt;/a&gt; · bestätigt · minor&lt;/p&gt;</content>
+</entry>
+<entry>
+<title>Amazon: Anstieg der PHP2Shell-Angriffe 6 Stunden vor Veröffentlichung des Patches</title>
+<id>tag:php2shell-live.surge.sh,2026:aws-madpot-itw-timeline</id>
+<link rel="alternate" type="text/html" href="https://akirapl.github.io/php2shell/?lang=de#ev-aws-madpot-itw-timeline"/>
+<link rel="related" href="https://aws.amazon.com/blogs/security/amazon-threat-intelligence-identifies-php2shell-exploitation-prior-to-public-disclosure-in-madpot/"/>
+<published>2026-10-21T08:00:00Z</published>
+<updated>2026-10-21T08:00:00Z</updated>
+<category term="major"/>
+<summary type="text">Amazon Threat Intelligence berichtet von einem Anstieg der PHP2Shell-Ausnutzungsversuche in MadPot-Honeypots ab etwa 08:00 UTC, sechs Stunden vor der offiziellen Veröffentlichung des Patches durch die PHP Foundation. Es wurden mehrere verschiedene Payloads beobachtet, die von anonymisierter Infrastruktur stammten, was auf Aktivitäten verschiedener Bedrohungsakteure noch während des Embargos hindeutet. Es bleibt unbestätigt, ob diese frühen Versuche zu erfolgreichen Kompromittierungen realer Systeme führten.</summary>
+<content type="html">&lt;p&gt;Amazon Threat Intelligence berichtet von einem Anstieg der PHP2Shell-Ausnutzungsversuche in MadPot-Honeypots ab etwa 08:00 UTC, sechs Stunden vor der offiziellen Veröffentlichung des Patches durch die PHP Foundation. Es wurden mehrere verschiedene Payloads beobachtet, die von anonymisierter Infrastruktur stammten, was auf Aktivitäten verschiedener Bedrohungsakteure noch während des Embargos hindeutet. Es bleibt unbestätigt, ob diese frühen Versuche zu erfolgreichen Kompromittierungen realer Systeme führten.&lt;/p&gt;&lt;p&gt;Quelle: &lt;a href="https://aws.amazon.com/blogs/security/amazon-threat-intelligence-identifies-php2shell-exploitation-prior-to-public-disclosure-in-madpot/"&gt;AWS Security Blog&lt;/a&gt; · gemeldet · major&lt;/p&gt;</content>
 </entry>
 <entry>
 <title>Cloudflare: „Wir sehen erste Angriffe“</title>

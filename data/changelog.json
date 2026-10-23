@@ -1,5 +1,11 @@
 [
  {
+  "time_utc": "2026-10-23T21:09:03Z",
+  "message": "+5 events, sources 167→183 — reviewed proposals (20261023-1932, 20261023-1948)",
+  "events": 111,
+  "facts_last_updated": "2026-10-23T21:09:03Z"
+ },
+ {
   "time_utc": "2026-10-23T18:23:58Z",
   "message": "Mood & media review #2 (23 Oct 18:20 UTC): +5 events (PHP advisory CVE-2026-115560, Mirai/Potassium attempts, VulnCheck ASLR-bypass claim, Censys 41M services, review event), hashtags refreshed, +2 moods, +4 press, +1 contradiction; status headline; case study 1.4 §7.6",
   "events": 106,
