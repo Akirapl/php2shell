@@ -10,7 +10,7 @@
    "en": "CVE-2026-109618 and CVE-2026-109619: critical RCE flaws in the PHP core",
    "de": "CVE-2026-109618 und CVE-2026-109619: kritische RCE-Lücken im PHP-Kern"
   },
-  "last_updated": "2026-10-22T18:38:41Z",
+  "last_updated": "2026-10-23T18:21:32Z",
   "maintainer_note": "Single source of truth. Every fact needs source_url, source_name, confidence; texts as {pl,en,de}. Run ./update_and_build.sh \"message\".",
   "timezone_note": {
    "pl": "Wszystkie czasy w UTC. Czasy z NOS (CEST) przeliczone na UTC (−2 h).",
@@ -36,6 +36,21 @@
      "media_contradictions"
     ],
     "timeline_id": "social-media-review-1022"
+   },
+   {
+    "as_of": "2026-10-23T18:20:00Z",
+    "label": {
+     "pl": "Przegląd nastrojów i mediów #2 (23.10 wieczór)",
+     "en": "Mood & media review #2 (23 Oct evening)",
+     "de": "Stimmungs- und Medienschau Nr. 2 (23.10. abends)"
+    },
+    "sections": [
+     "social_mood",
+     "hashtags",
+     "press_review",
+     "media_contradictions"
+    ],
+    "timeline_id": "social-media-review-1023-pm"
    }
   ]
  },
@@ -51,9 +66,9 @@
   ],
   "exploitation": "reported",
   "headline": {
-   "pl": "Stan na 22.10, 12:30 (Warszawa) / 10:30 UTC: łatki są dostępne (PHP 8.5.12 / 8.4.27 / 8.3.36 / 8.2.35), większość dużych dystrybucji wydała paczki. Trwają masowe próby ataków; potwierdzonych włamań brak.",
-   "en": "As of 22 Oct, 10:30 UTC (12:30 CEST): patches are out (PHP 8.5.12 / 8.4.27 / 8.3.36 / 8.2.35) and most major distros have shipped packages. Mass exploitation attempts continue; no confirmed compromises.",
-   "de": "Stand 22.10., 10:30 UTC (12:30 MESZ): Patches sind verfügbar (PHP 8.5.12 / 8.4.27 / 8.3.36 / 8.2.35), die meisten großen Distributionen liefern Pakete. Massenhafte Angriffsversuche laufen; bestätigte Kompromittierungen gibt es nicht."
+   "pl": "Stan na 23.10, 20:20 (Warszawa) / 18:20 UTC: łatki na PHP2Shell są dostępne (8.5.12 / 8.4.27 / 8.3.36 / 8.2.35). PHP ostrzega przed nową, niezałataną luką CVE-2026-115560 w rzadkiej konfiguracji — łagodzenie: session.upload_progress.enabled=0. Próby ataków (także botnety Mirai) trwają; potwierdzonych włamań brak.",
+   "en": "As of 23 Oct, 18:20 UTC (20:20 CEST): PHP2Shell patches are out (8.5.12 / 8.4.27 / 8.3.36 / 8.2.35). PHP warns of a new, unpatched flaw CVE-2026-115560 in a rare configuration — mitigation: session.upload_progress.enabled=0. Attack attempts (including Mirai botnets) continue; no confirmed compromises.",
+   "de": "Stand 23.10., 18:20 UTC (20:20 MESZ): PHP2Shell-Patches sind verfügbar (8.5.12 / 8.4.27 / 8.3.36 / 8.2.35). PHP warnt vor einer neuen, ungepatchten Lücke CVE-2026-115560 in seltener Konfiguration — Mitigation: session.upload_progress.enabled=0. Angriffsversuche (auch Mirai-Botnetze) laufen; bestätigte Kompromittierungen gibt es nicht."
   },
   "exploitation_note": {
    "pl": "Próby: AWS (MadPot) widział pierwszą już 17.10, w czasie embarga, kolejne od 21.10 02:00 UTC; Cloudflare — tysiące przed ogłoszeniem, „miliony teraz”. Skutki: brak potwierdzonych włamań (Recorded Future, heise 22.10); watchTowr i Defused: krążące exploity w większości nie działają. Brak w CISA KEV (sprawdzone 22.10, 10:27 UTC).",
@@ -121,12 +136,12 @@
   "exploitation_threshold": {
    "rule": "confirmed only if CISA KEV lists a CVE or a national CERT publishes credible in-the-wild evidence",
    "kev_listed": false,
-   "kev_checked_utc": "2026-10-22T12:16:00Z",
+   "kev_checked_utc": "2026-10-23T18:18:00Z",
    "kev_catalog_version": "2026.10.21",
    "kev_url": "https://www.cisa.gov/known-exploited-vulnerabilities-catalog",
    "national_cert_itw": []
   },
-  "kev_checked_utc": "2026-10-22T10:27:00Z"
+  "kev_checked_utc": "2026-10-23T18:18:00Z"
  },
  "key_numbers": [
   {
@@ -3334,6 +3349,126 @@
     "en": "Data retrieval time (X API, HN, Mastodon).",
     "de": "Zeitpunkt des Datenabrufs (X API, HN, Mastodon)."
    }
+  },
+  {
+   "id": "php-advisory-cve-2026-115560",
+   "time_utc": "2026-10-23",
+   "importance": "major",
+   "title": {
+    "pl": "PHP: komunikat o nowej, niezałatanej luce CVE-2026-115560 (sesje, upload progress)",
+    "en": "PHP: informational advisory on a new, unpatched flaw CVE-2026-115560 (session upload progress)",
+    "de": "PHP: Hinweis auf neue, ungepatchte Lücke CVE-2026-115560 (Session-Upload-Progress)"
+   },
+   "description": {
+    "pl": "Zespół PHP zaleca session.upload_progress.enabled=0 do następnego zwykłego wydania. Luka (możliwe RCE) wymaga nietypowego układu: aplikacja ustawia session.serialize_handler na php_binary lub php_serialize, a w czasie działania przełącza go na php przez ini_set() przed session_start(), przy włączonym upload progress. To samo ustawienie było już zalecane jako łagodzenie w GHSA-6wmf-4rv5-p3rp 21.10. Poprawki z 21.10 tego nie naprawiają; pełny biuletyn ma wyjść z następnym wydaniem.",
+    "en": "The PHP team recommends session.upload_progress.enabled=0 until the next regular bugfix release. The flaw (possible RCE) needs an unusual setup: the application sets session.serialize_handler to php_binary or php_serialize and switches it to php at runtime with ini_set() before session_start(), with upload progress still enabled. The same setting was already listed as a mitigation in GHSA-6wmf-4rv5-p3rp on 21 Oct. The 21 Oct releases do not fix it; a full advisory will come with the next release.",
+    "de": "Das PHP-Team empfiehlt session.upload_progress.enabled=0 bis zum nächsten regulären Bugfix-Release. Die Lücke (mögliche RCE) setzt eine ungewöhnliche Konstellation voraus: Die Anwendung setzt session.serialize_handler auf php_binary oder php_serialize und schaltet ihn zur Laufzeit per ini_set() vor session_start() auf php um, während Upload-Progress aktiv ist. Dieselbe Einstellung stand am 21.10. bereits als Mitigation in GHSA-6wmf-4rv5-p3rp. Die Releases vom 21.10. beheben das nicht; ein vollständiges Advisory folgt mit dem nächsten Release."
+   },
+   "source_url": "https://www.php.net/archive/2026.php",
+   "source_name": "php.net — Informational advisory: Session upload progress (23 Oct 2026)",
+   "confidence": "confirmed",
+   "source_reliability": "A",
+   "info_credibility": 1,
+   "time_kind": "published",
+   "time_precision": "day",
+   "time_note": {
+    "pl": "Data dzienna z php.net; BleepingComputer (15:38 UTC) streszcza.",
+    "en": "Day date from php.net; summarised by BleepingComputer (15:38 UTC).",
+    "de": "Tagesdatum laut php.net; Zusammenfassung bei BleepingComputer (15:38 UTC)."
+   }
+  },
+  {
+   "id": "mirai-potassium-attempts",
+   "time_utc": "2026-10-23T12:45:00Z",
+   "importance": "major",
+   "title": {
+    "pl": "Próby szerzenia botnetu z rodziny Mirai („Potassium”) przez PHP2Shell — zatrzymane",
+    "en": "Attempts to spread a Mirai-family botnet (“Potassium”) via PHP2Shell — blocked",
+    "de": "Versuche, ein Mirai-Botnetz („Potassium“) über PHP2Shell zu verbreiten — abgewehrt"
+   },
+   "description": {
+    "pl": "Według SecurityWeek Sophos widział próbę instalacji Potassium (wariant Mirai, DDoS), która została zatrzymana; Sophos skorygował wcześniejszy komunikat o udanym ataku. Arctic Wolf łączy dwie binarki Potassium z serwerami z ładunkami PHP2Shell, ale nie widzi, by żądania je pobierały; Hunt.io przypisuje ruch botnetowi aktywnemu od maja 2026. The Record: Cobalt też widzi próby związane z Mirai. Potwierdzonego włamania brak.",
+    "en": "According to SecurityWeek, Sophos saw an attempt to install Potassium (a Mirai variant with DDoS capability) that was stopped; Sophos corrected an earlier update that reported a successful exploitation. Arctic Wolf links two Potassium binaries to servers hosting PHP2Shell payloads but does not see the requests fetching them; Hunt.io attributes the traffic to a botnet active since May 2026. The Record: Cobalt also sees Mirai-linked attempts. No confirmed compromise.",
+    "de": "Laut SecurityWeek sah Sophos einen Versuch, Potassium (Mirai-Variante mit DDoS-Funktion) zu installieren, der gestoppt wurde; Sophos korrigierte ein früheres Update, das eine erfolgreiche Ausnutzung gemeldet hatte. Arctic Wolf verknüpft zwei Potassium-Binärdateien mit Servern, die PHP2Shell-Payloads hosten, sieht aber nicht, dass die Anfragen sie abrufen; Hunt.io ordnet den Verkehr einem seit Mai 2026 aktiven Botnetz zu. The Record: Auch Cobalt sieht Mirai-bezogene Versuche. Keine bestätigte Kompromittierung."
+   },
+   "source_url": "https://www.securityweek.com/mirai-botnet-operators-join-php2shell-attacks-as-aslr-bypass-exploits-emerge/",
+   "source_name": "SecurityWeek — Mirai Botnet Operators Join PHP2Shell Attacks as ASLR Bypass Exploits Emerge",
+   "confidence": "reported",
+   "source_reliability": "B",
+   "info_credibility": "2",
+   "time_kind": "published",
+   "time_precision": "minute"
+  },
+  {
+   "id": "vulncheck-aslr-bypass",
+   "time_utc": "2026-10-23T12:45:00Z",
+   "importance": "major",
+   "title": {
+    "pl": "VulnCheck: komercyjny exploit omija ASLR w konfiguracji produkcyjnej (niepublikowany)",
+    "en": "VulnCheck: commercial exploit bypasses ASLR in a production configuration (not public)",
+    "de": "VulnCheck: kommerzieller Exploit umgeht ASLR in Produktionskonfiguration (nicht öffentlich)"
+   },
+   "description": {
+    "pl": "VulnCheck podaje, że jego exploit na CVE-2026-109618 osiąga RCE na x86-64 z włączonym ASLR i wyłączonym wyświetlaniem błędów (zalecana konfiguracja produkcyjna), dzięki wyciekowi pamięci; dostępny tylko dla klientów. Firma nie zna innego publicznego ani komercyjnego exploita, który to potrafi, i ocenia, że setki repozytoriów „PoC” na GitHubie rzadko zawierają prawdziwe exploity. Twierdzenie dostawcy, niezweryfikowane niezależnie.",
+    "en": "VulnCheck says its exploit for CVE-2026-109618 reaches RCE on x86-64 with ASLR enabled and error display off (the recommended production setup), using a memory leak; available to customers only. The company knows of no other public or commercial exploit that does this and says the hundreds of “PoC” repositories on GitHub rarely contain real exploits. Vendor claim, not independently verified.",
+    "de": "VulnCheck gibt an, sein Exploit für CVE-2026-109618 erreiche RCE auf x86-64 mit aktivem ASLR und abgeschalteter Fehleranzeige (empfohlenes Produktions-Setup) über ein Speicherleck; nur für Kunden. Das Unternehmen kennt keinen anderen öffentlichen oder kommerziellen Exploit, der das schafft, und sagt, die Hunderte „PoC“-Repositories auf GitHub enthielten selten echte Exploits. Herstelleraussage, nicht unabhängig geprüft."
+   },
+   "source_url": "https://www.securityweek.com/mirai-botnet-operators-join-php2shell-attacks-as-aslr-bypass-exploits-emerge/",
+   "source_name": "SecurityWeek — Mirai Botnet Operators Join PHP2Shell Attacks as ASLR Bypass Exploits Emerge",
+   "confidence": "reported",
+   "source_reliability": "B",
+   "info_credibility": "3",
+   "time_kind": "published",
+   "time_precision": "minute"
+  },
+  {
+   "id": "censys-dashboard-41m",
+   "time_utc": "2026-10-23T12:03:00Z",
+   "importance": "minor",
+   "title": {
+    "pl": "Censys: ponad 41 mln usług PHP z podatnymi numerami wersji, 33,5 mln po aktualizacjach; Niemcy na 2. miejscu",
+    "en": "Censys: over 41 million PHP services with vulnerable version numbers, 33.5 million after updates; Germany second",
+    "de": "Censys: über 41 Mio. PHP-Dienste mit verwundbarer Versionsnummer, 33,5 Mio. nach Updates; Deutschland auf Platz 2"
+   },
+   "description": {
+    "pl": "heise za dashboardem Censys: od środy ponad 41 mln usług PHP z podatnymi wersjami, prawie 8 mln zaktualizowano, zostaje 33,5 mln; w Niemczech ok. 11 mln usług, z czego ok. 4,2 mln z podatnymi wersjami. Zastrzeżenia Censys: liczone są usługi, nie serwery; ok. 54% ukrywa wersję; backporty dystrybucji zawyżają wynik; to szacunek, nie „źródło prawdy”.",
+    "en": "heise, citing the Censys dashboard: since Wednesday over 41 million PHP services with vulnerable versions, almost 8 million updated, 33.5 million left; in Germany about 11 million services, about 4.2 million with vulnerable versions. Censys caveats: it counts services, not servers; about 54% hide their version; distro backports inflate the result; an estimate, not a “source of truth”.",
+    "de": "heise unter Berufung auf das Censys-Dashboard: seit Mittwoch über 41 Mio. PHP-Dienste mit verwundbaren Versionen, knapp 8 Mio. aktualisiert, 33,5 Mio. übrig; in Deutschland rund 11 Mio. Dienste, davon rund 4,2 Mio. mit verwundbaren Versionen. Censys-Vorbehalte: gezählt werden Dienste, nicht Server; rund 54 % verbergen ihre Version; Distributions-Backports verzerren nach oben; eine Schätzung, keine „Quelle der Wahrheit“."
+   },
+   "source_url": "https://www.heise.de/news/php2shell-Millionen-PHP-Dienste-in-Deutschland-verwundbar-11498464.html",
+   "source_name": "heise online — php2shell: Millionen PHP-Dienste in Deutschland verwundbar",
+   "confidence": "estimate",
+   "source_reliability": "B",
+   "info_credibility": "2",
+   "time_kind": "published",
+   "time_precision": "minute"
+  },
+  {
+   "id": "social-media-review-1023-pm",
+   "time_utc": "2026-10-23T18:20:00Z",
+   "importance": "minor",
+   "title": {
+    "pl": "Przegląd nastrojów i mediów (23.10 wieczór)",
+    "en": "Social mood and media review (23 Oct evening)",
+    "de": "Stimmungs- und Medienschau (23.10. abends)"
+   },
+   "description": {
+    "pl": "Drugi przegląd: „php2shell” na X 32 333 wpisy 22.10 (szczyt) i 11 537 do 18:20 UTC 23.10; nowy numer CVE-2026-115560 — 1 385 wpisów w kilka godzin. Dominuje odruch alarmu po komunikacie PHP („KOLEJNA niezałatana luka”), wzmacniany przez konta newsowe i kryptowalutowe; odpowiedzi techniczne studzą: dotyczy rzadkiej konfiguracji. Mastodon wyraźnie słabnie. Prasa: Mirai/Potassium, obejście ASLR (VulnCheck), 41 mln usług wg Censys. [obserwacja]",
+    "en": "Second review: “php2shell” on X peaked at 32,333 posts on 22 Oct and reached 11,537 by 18:20 UTC on 23 Oct; the new ID CVE-2026-115560 drew 1,385 posts within hours. The dominant reaction is an alarm reflex after PHP’s advisory (“ANOTHER unpatched flaw”), amplified by news and crypto accounts; technical replies cool it: it needs a rare configuration. Mastodon is clearly fading. Press: Mirai/Potassium, ASLR bypass (VulnCheck), 41 million services per Censys. [observation]",
+    "de": "Zweite Schau: „php2shell“ auf X erreichte am 22.10. mit 32.333 Beiträgen den Höhepunkt, am 23.10. bis 18:20 UTC 11.537; die neue Kennung CVE-2026-115560 kam binnen Stunden auf 1.385 Beiträge. Vorherrschend ist ein Alarmreflex nach PHPs Hinweis („NOCH eine ungepatchte Lücke“), verstärkt von News- und Krypto-Konten; technische Antworten bremsen: Es braucht eine seltene Konfiguration. Mastodon flaut deutlich ab. Presse: Mirai/Potassium, ASLR-Umgehung (VulnCheck), 41 Mio. Dienste laut Censys. [Beobachtung]"
+   },
+   "source_url": "https://x.com/search?q=CVE-2026-115560&src=typed_query&f=live",
+   "source_name": "X API v2 — recent post counts (retrieved 23.10, 18:20 UTC)",
+   "confidence": "reported",
+   "source_reliability": "C",
+   "info_credibility": "3",
+   "time_kind": "retrieved",
+   "time_precision": "hour",
+   "time_note": {
+    "pl": "Czas pobrania danych (X API, Mastodon).",
+    "en": "Data retrieval time (X API, Mastodon).",
+    "de": "Zeitpunkt des Datenabrufs (X API, Mastodon)."
+   }
   }
  ],
  "actors": [
@@ -6053,6 +6188,36 @@
    "name": "TVN24 Biznes",
    "url": "https://tvn24.pl/biznes/z-kraju/strony-biuletynu-informacji-publicznej-wylaczone-krzysztof-gawkowski-wykryto-powazne-luki-st9299779",
    "type": "press"
+  },
+  {
+   "name": "SecurityWeek — Mirai Botnet Operators Join PHP2Shell Attacks as ASLR Bypass Exploits Emerge",
+   "url": "https://www.securityweek.com/mirai-botnet-operators-join-php2shell-attacks-as-aslr-bypass-exploits-emerge/",
+   "type": "press"
+  },
+  {
+   "name": "heise online — php2shell: Millionen PHP-Dienste in Deutschland verwundbar",
+   "url": "https://www.heise.de/news/php2shell-Millionen-PHP-Dienste-in-Deutschland-verwundbar-11498464.html",
+   "type": "press"
+  },
+  {
+   "name": "X API v2 — recent post counts (retrieved 23.10, 18:20 UTC)",
+   "url": "https://x.com/search?q=CVE-2026-115560&src=typed_query&f=live",
+   "type": "social"
+  },
+  {
+   "name": "X — @BreachByteSec",
+   "url": "https://x.com/BreachByteSec/status/2113679683359490462",
+   "type": "social"
+  },
+  {
+   "name": "The Record (Recorded Future News)",
+   "url": "https://therecord.media/php-php2shell-exploitation-attempts-pocs",
+   "type": "press"
+  },
+  {
+   "name": "BleepingComputer",
+   "url": "https://www.bleepingcomputer.com/news/security/php-shares-mitigation-for-new-and-unpatched-rce-vulnerability/",
+   "type": "press"
   }
  ],
  "social_mood": [
@@ -6063,9 +6228,117 @@
    "info_credibility": "3",
    "time_kind": "retrieved",
    "time_precision": "hour",
+   "as_of": "2026-10-23T18:20:00Z",
+   "id": "mood-second-cve-alarm",
+   "rank": 1,
+   "mood": "alarm",
+   "prominence": "high",
+   "platforms": [
+    "X"
+   ],
+   "label": {
+    "pl": "„KOLEJNA niezałatana luka” — odruch alarmu po 23.10",
+    "en": "“ANOTHER unpatched flaw” — the alarm reflex after 23 Oct",
+    "de": "„NOCH eine ungepatchte Lücke“ — der Alarmreflex nach dem 23.10."
+   },
+   "text": {
+    "pl": "Komunikat PHP o CVE-2026-115560 wywołał nową falę wpisów w stylu „BREAKING”, głównie od kont newsowych i kryptowalutowych; nagłówki pomijają, że chodzi o rzadką konfigurację. Pojawiają się też niezweryfikowane deklaracje działających exploitów na nową lukę — nie linkujemy ich. [obserwacja]",
+    "en": "PHP’s advisory on CVE-2026-115560 set off a new wave of “BREAKING” posts, mostly from news and crypto accounts; the headlines leave out that it needs a rare configuration. Unverified claims of working exploits for the new flaw also appear — we do not link them. [observation]",
+    "de": "PHPs Hinweis zu CVE-2026-115560 löste eine neue Welle von „BREAKING“-Posts aus, vor allem von News- und Krypto-Konten; die Schlagzeilen verschweigen, dass es eine seltene Konfiguration braucht. Auch unbestätigte Behauptungen funktionierender Exploits für die neue Lücke tauchen auf — wir verlinken sie nicht. [Beobachtung]"
+   },
+   "examples": [
+    {
+     "author": "@TheHackersNews",
+     "platform": "X",
+     "lang": "en",
+     "text": "‼️ BREAKING ‼️ PHP warns of another UNPATCHED REC vulnerability just 2 days after releasing emergency patches for critical PHP2Shell flaws.",
+     "url": "https://x.com/TheHackersNews/status/2113592819730546935",
+     "posted_utc": "2026-10-23T11:26:11Z",
+     "translations": {
+      "pl": "‼️ PILNE ‼️ PHP ostrzega przed kolejną NIEZAŁATANĄ luką [RCE] zaledwie 2 dni po awaryjnych łatkach na krytyczne luki PHP2Shell.",
+      "de": "‼️ EILMELDUNG ‼️ PHP warnt vor einer weiteren UNGEPATCHTEN [RCE-]Lücke, nur 2 Tage nach den Notfall-Patches für die kritischen PHP2Shell-Lücken."
+     }
+    },
+    {
+     "author": "@coinbureau",
+     "platform": "X",
+     "lang": "en",
+     "text": "🚨ALERT: PHP warns of ANOTHER UNPATCHED security flaw that could let hackers take control of vulnerable web servers, just TWO DAYS after releasing emergency fixes …",
+     "url": "https://x.com/coinbureau/status/2113675779049722297",
+     "posted_utc": "2026-10-23T16:55:50Z",
+     "translations": {
+      "pl": "🚨UWAGA: PHP ostrzega przed KOLEJNĄ NIEZAŁATANĄ luką, która może pozwolić hakerom przejąć podatne serwery WWW, zaledwie DWA DNI po awaryjnych poprawkach …",
+      "de": "🚨ACHTUNG: PHP warnt vor NOCH EINER UNGEPATCHTEN Lücke, über die Hacker verwundbare Webserver übernehmen könnten, nur ZWEI TAGE nach den Notfall-Fixes …"
+     }
+    }
+   ],
+   "source_url": "https://x.com/search?q=CVE-2026-115560&src=typed_query&f=live",
+   "source_name": "X — search “CVE-2026-115560”"
+  },
+  {
+   "confidence": "reported",
+   "observation": true,
+   "source_reliability": "C",
+   "info_credibility": "3",
+   "time_kind": "retrieved",
+   "time_precision": "hour",
+   "as_of": "2026-10-23T18:20:00Z",
+   "id": "mood-read-the-advisory",
+   "rank": 2,
+   "mood": "calm",
+   "prominence": "medium",
+   "platforms": [
+    "X"
+   ],
+   "label": {
+    "pl": "„Przeczytaj komunikat” — techniczne studzenie",
+    "en": "“Read the advisory” — technical cooling",
+    "de": "„Lies das Advisory“ — technisches Abkühlen"
+   },
+   "text": {
+    "pl": "W odpowiedziach na alarmy praktycy streszczają warunki nowej luki (przełączenie serializatora w czasie działania + upload progress) i przypominają, że kto 21.10 wyłączył upload progress, jest chroniony. [obserwacja]",
+    "en": "In replies to the alarms, practitioners summarise the new flaw’s conditions (runtime serializer switch + upload progress) and remind that anyone who disabled upload progress on 21 Oct is covered. [observation]",
+    "de": "In Antworten auf die Alarme fassen Praktiker die Bedingungen der neuen Lücke zusammen (Serializer-Wechsel zur Laufzeit + Upload-Progress) und erinnern daran, dass geschützt ist, wer Upload-Progress am 21.10. abgeschaltet hat. [Beobachtung]"
+   },
+   "examples": [
+    {
+     "author": "@BreachByteSec",
+     "platform": "X",
+     "lang": "en",
+     "text": "Don't let the BREAKING get you on this one. PHP's advisory calls CVE-2026-115560 an unlikely vector, since your app has to switch its session serializer at runtime.",
+     "url": "https://x.com/BreachByteSec/status/2113679683359490462",
+     "posted_utc": "2026-10-23T17:11:21Z",
+     "translations": {
+      "pl": "Nie dajcie się nabrać na „BREAKING”. Komunikat PHP nazywa CVE-2026-115560 mało prawdopodobnym wektorem, bo aplikacja musi przełączyć serializator sesji w czasie działania.",
+      "de": "Lasst euch hier vom „BREAKING“ nicht verrückt machen. PHPs Advisory nennt CVE-2026-115560 einen unwahrscheinlichen Vektor, weil die App ihren Session-Serializer zur Laufzeit umschalten muss."
+     }
+    },
+    {
+     "author": "@AzmyBlog",
+     "platform": "X",
+     "lang": "en",
+     "text": "It only bites if your app switches session.serialize_handler to php at runtime with ini_set(), and upload progress is on. Rare, but …",
+     "url": "https://x.com/AzmyBlog/status/2113672344472285208",
+     "posted_utc": "2026-10-23T16:42:11Z",
+     "translations": {
+      "pl": "Gryzie tylko wtedy, gdy aplikacja przełącza session.serialize_handler na php w czasie działania przez ini_set(), a upload progress jest włączony. Rzadkie, ale …",
+      "de": "Es trifft nur, wenn die App session.serialize_handler zur Laufzeit per ini_set() auf php umstellt und Upload-Progress aktiv ist. Selten, aber …"
+     }
+    }
+   ],
+   "source_url": "https://x.com/BreachByteSec/status/2113679683359490462",
+   "source_name": "X — @BreachByteSec"
+  },
+  {
+   "confidence": "reported",
+   "observation": true,
+   "source_reliability": "C",
+   "info_credibility": "3",
+   "time_kind": "retrieved",
+   "time_precision": "hour",
    "as_of": "2026-10-22T18:30:00Z",
    "id": "mood-poc-skepticism",
-   "rank": 1,
+   "rank": 3,
    "mood": "skepticism",
    "prominence": "high",
    "platforms": [
@@ -6133,7 +6406,7 @@
    "time_precision": "hour",
    "as_of": "2026-10-22T18:30:00Z",
    "id": "mood-patch-now",
-   "rank": 2,
+   "rank": 4,
    "mood": "urgency",
    "prominence": "high",
    "platforms": [
@@ -6187,7 +6460,7 @@
    "time_precision": "hour",
    "as_of": "2026-10-22T18:30:00Z",
    "id": "mood-humour",
-   "rank": 3,
+   "rank": 5,
    "mood": "humour",
    "prominence": "medium",
    "platforms": [
@@ -6243,7 +6516,7 @@
    "time_precision": "hour",
    "as_of": "2026-10-22T18:30:00Z",
    "id": "mood-embargo-process",
-   "rank": 4,
+   "rank": 6,
    "mood": "process_anger",
    "prominence": "medium",
    "platforms": [
@@ -6287,7 +6560,7 @@
    "time_precision": "hour",
    "as_of": "2026-10-22T18:30:00Z",
    "id": "mood-eol-fatigue",
-   "rank": 5,
+   "rank": 7,
    "mood": "eol_fatigue",
    "prominence": "medium",
    "platforms": [
@@ -6317,7 +6590,7 @@
    "time_precision": "hour",
    "as_of": "2026-10-22T18:30:00Z",
    "id": "mood-scams",
-   "rank": 6,
+   "rank": 8,
    "mood": "scams",
    "prominence": "medium",
    "platforms": [
@@ -6373,7 +6646,7 @@
    "time_precision": "hour",
    "as_of": "2026-10-22T18:30:00Z",
    "id": "mood-ai-hype",
-   "rank": 7,
+   "rank": 9,
    "mood": "ai_debate",
    "prominence": "medium",
    "platforms": [
@@ -6416,7 +6689,7 @@
    "time_precision": "hour",
    "as_of": "2026-10-22T18:30:00Z",
    "id": "mood-pl-politics",
-   "rank": 8,
+   "rank": 10,
    "mood": "politics",
    "prominence": "low",
    "platforms": [
@@ -6458,7 +6731,7 @@
    "time_precision": "hour",
    "as_of": "2026-10-22T18:30:00Z",
    "id": "mood-calm-ops",
-   "rank": 9,
+   "rank": 11,
    "mood": "calm_ops",
    "prominence": "low",
    "platforms": [
@@ -6513,7 +6786,7 @@
    "time_precision": "hour",
    "as_of": "2026-10-22T18:30:00Z",
    "id": "mood-recurring-questions",
-   "rank": 10,
+   "rank": 12,
    "mood": "questions",
    "prominence": "medium",
    "platforms": [
@@ -6543,24 +6816,25 @@
    "rank": 1,
    "counts": {
     "2026-10-20": 263,
-    "2026-10-21": 27345,
-    "2026-10-22": 27913
+    "2026-10-21": 27328,
+    "2026-10-22": 32333,
+    "2026-10-23": 11537
    },
-   "total": 55521,
+   "total": 71461,
    "note": {
-    "pl": "Słowo kluczowe (z hashtagiem i bez). Dzień 2 ≥ dzień 1. 22.10 = dzień niepełny (do ok. 18:30 UTC); liczby obejmują reposty.",
-    "en": "Keyword (with or without #). Day 2 ≥ day 1. 22.10 = partial day (to ~18:30 UTC); counts include reposts.",
-    "de": "Stichwort (mit oder ohne #). Tag 2 ≥ Tag 1. 22.10. = unvollständiger Tag (bis ca. 18:30 UTC); Zahlen enthalten Reposts."
+    "pl": "Słowo kluczowe (z # i bez). Szczyt 22.10 (32 333); 23.10 = dzień niepełny (do 18:20 UTC); liczby z repostami.",
+    "en": "Keyword (with or without #). Peak on 22 Oct (32,333); 23 Oct = partial day (to 18:20 UTC); counts include reposts.",
+    "de": "Stichwort (mit oder ohne #). Höhepunkt am 22.10. (32.333); 23.10. = unvollständiger Tag (bis 18:20 UTC); Zahlen inkl. Reposts."
    },
    "source_url": "https://x.com/search?q=php2shell&src=typed_query&f=live",
-   "source_name": "X API v2 — recent post counts (retrieved 22.10, 18:30 UTC)",
+   "source_name": "X API v2 — recent post counts (retrieved 23.10, 18:20 UTC)",
    "confidence": "estimate",
    "observation": true,
    "source_reliability": "B",
    "info_credibility": "2",
    "time_kind": "retrieved",
    "time_precision": "hour",
-   "as_of": "2026-10-22T18:30:00Z"
+   "as_of": "2026-10-23T18:20:00Z"
   },
   {
    "tag": "CVE-2026-109618 / CVE-2026-109619",
@@ -6617,24 +6891,25 @@
    "rank": 4,
    "counts": {
     "2026-10-20": 4,
-    "2026-10-21": 2971,
-    "2026-10-22": 6811
+    "2026-10-21": 2967,
+    "2026-10-22": 7773,
+    "2026-10-23": 1603
    },
-   "total": 9786,
+   "total": 12347,
    "note": {
-    "pl": "Hashtag ponad 2× częstszy w dniu 2 niż w dniu 1 — nazwa się utrwala.",
-    "en": "Hashtag more than doubled on day 2 — the name is sticking.",
-    "de": "Hashtag an Tag 2 mehr als verdoppelt — der Name setzt sich durch."
+    "pl": "Sam hashtag. Szczyt 22.10; 23.10 do 18:20 UTC wyraźnie mniej. Z repostami.",
+    "en": "Hashtag only. Peak on 22 Oct; 23 Oct to 18:20 UTC clearly lower. Reposts included.",
+    "de": "Nur Hashtag. Höhepunkt am 22.10.; 23.10. bis 18:20 UTC deutlich weniger. Inkl. Reposts."
    },
    "source_url": "https://x.com/search?q=%23PHP2Shell&src=typed_query&f=live",
-   "source_name": "X API v2 — recent post counts (retrieved 22.10, 18:30 UTC)",
+   "source_name": "X API v2 — recent post counts (retrieved 23.10, 18:20 UTC)",
    "confidence": "estimate",
    "observation": true,
    "source_reliability": "B",
    "info_credibility": "2",
    "time_kind": "retrieved",
    "time_precision": "hour",
-   "as_of": "2026-10-22T18:30:00Z"
+   "as_of": "2026-10-23T18:20:00Z"
   },
   {
    "tag": "DE: php2shell / CVE / „PHP-Lücke“ (lang:de)",
@@ -6658,9 +6933,32 @@
    "as_of": "2026-10-22T18:30:00Z"
   },
   {
-   "tag": "php2shell #PHP",
+   "tag": "CVE-2026-115560",
    "platform": "X",
    "rank": 6,
+   "counts": {
+    "2026-10-23": 1385
+   },
+   "total": 1385,
+   "note": {
+    "pl": "Nowy numer z komunikatu PHP z 23.10; 0 wpisów przed 23.10, 1 385 do 18:20 UTC. Z repostami.",
+    "en": "New ID from PHP’s 23 Oct advisory; 0 posts before 23 Oct, 1,385 by 18:20 UTC. Reposts included.",
+    "de": "Neue Kennung aus PHPs Hinweis vom 23.10.; 0 Beiträge vor dem 23.10., 1.385 bis 18:20 UTC. Inkl. Reposts."
+   },
+   "source_url": "https://x.com/search?q=CVE-2026-115560&src=typed_query&f=live",
+   "source_name": "X API v2 — recent post counts (retrieved 23.10, 18:20 UTC)",
+   "confidence": "estimate",
+   "observation": true,
+   "source_reliability": "B",
+   "info_credibility": "2",
+   "time_kind": "retrieved",
+   "time_precision": "hour",
+   "as_of": "2026-10-23T18:20:00Z"
+  },
+  {
+   "tag": "php2shell #PHP",
+   "platform": "X",
+   "rank": 7,
    "counts": {},
    "total": 1272,
    "note": {
@@ -6681,31 +6979,32 @@
   {
    "tag": "#php2shell (Mastodon)",
    "platform": "Mastodon",
-   "rank": 7,
+   "rank": 8,
    "counts": {
     "2026-10-21": 508,
-    "2026-10-22": 234
+    "2026-10-22": 276,
+    "2026-10-23": 119
    },
-   "total": 742,
+   "total": 903,
    "note": {
-    "pl": "Użycia hashtagu widziane z infosec.exchange (21.10: 508 użyć / 372 konta; 22.10 do ok. 18:30: 234 / 188).",
-    "en": "Hashtag uses as seen from infosec.exchange (21 Oct: 508 uses / 372 accounts; 22 Oct to ~18:30: 234 / 188).",
-    "de": "Hashtag-Nutzung aus Sicht von infosec.exchange (21.10.: 508 Nutzungen / 372 Konten; 22.10. bis ca. 18:30: 234 / 188)."
+    "pl": "Użycia z infosec.exchange: 21.10 508 / 372 konta; 22.10 276 / 224; 23.10 do 18:20 UTC 119 / 102.",
+    "en": "Uses seen from infosec.exchange: 21 Oct 508 / 372 accounts; 22 Oct 276 / 224; 23 Oct to 18:20 UTC 119 / 102.",
+    "de": "Nutzungen laut infosec.exchange: 21.10. 508 / 372 Konten; 22.10. 276 / 224; 23.10. bis 18:20 UTC 119 / 102."
    },
    "source_url": "https://infosec.exchange/tags/php2shell",
-   "source_name": "infosec.exchange — hashtag history (Mastodon API, retrieved 22.10, 18:30 UTC)",
+   "source_name": "infosec.exchange — hashtag history (Mastodon API, retrieved 23.10, 18:20 UTC)",
    "confidence": "estimate",
    "observation": true,
    "source_reliability": "B",
    "info_credibility": "2",
    "time_kind": "retrieved",
    "time_precision": "hour",
-   "as_of": "2026-10-22T18:30:00Z"
+   "as_of": "2026-10-23T18:20:00Z"
   },
   {
    "tag": "php2shell #cybersecurity / #infosec",
    "platform": "X",
-   "rank": 8,
+   "rank": 9,
    "counts": {},
    "total": 507,
    "note": {
@@ -6726,7 +7025,7 @@
   {
    "tag": "PL: php2shell / CVE / „luka w PHP” (lang:pl)",
    "platform": "X",
-   "rank": 9,
+   "rank": 10,
    "counts": {},
    "total": 352,
    "note": {
@@ -6747,7 +7046,7 @@
   {
    "tag": "#CVE2026109618 / #CVE2026109619",
    "platform": "X",
-   "rank": 10,
+   "rank": 11,
    "counts": {},
    "total": 212,
    "note": {
@@ -6768,7 +7067,7 @@
   {
    "tag": "php2shell + log4shell / log4j",
    "platform": "X",
-   "rank": 11,
+   "rank": 12,
    "counts": {},
    "total": 192,
    "note": {
@@ -6789,7 +7088,7 @@
   {
    "tag": "php2shell #WordPress",
    "platform": "X",
-   "rank": 12,
+   "rank": 13,
    "counts": {},
    "total": 134,
    "note": {
@@ -6810,7 +7109,7 @@
   {
    "tag": "PHPokalipsa / PHPocalypse",
    "platform": "X",
-   "rank": 13,
+   "rank": 14,
    "counts": {},
    "total": 49,
    "note": {
@@ -7167,6 +7466,122 @@
     "en": "Linked to the HN discussion, not the blog (the blog links PoC repositories).",
     "de": "Verlinkt ist die HN-Diskussion, nicht der Blog (der Blog verlinkt PoC-Repositories)."
    }
+  },
+  {
+   "id": "therecord-1023",
+   "outlet": "The Record (Recorded Future News)",
+   "lang": "en",
+   "region": "intl",
+   "published_utc": "2026-10-23T04:00:00Z",
+   "title": "Reports of PHP bug exploitation attempts grow as experts downplay viability of exploits",
+   "angle": {
+    "pl": "„Dziesiątki ekspertów”: próby rosną, żadna nie udana; ASLR hamuje masową eksploatację; Hutchins (Expel): dwie definicje „eksploatacji”.",
+    "en": "“Dozens of experts”: attempts grow, none successful; ASLR hinders mass exploitation; Hutchins (Expel): two meanings of “exploitation”.",
+    "de": "„Dutzende Experten“: Versuche nehmen zu, keiner erfolgreich; ASLR bremst Massenausnutzung; Hutchins (Expel): zwei Bedeutungen von „Ausnutzung“."
+   },
+   "source_url": "https://therecord.media/php-php2shell-exploitation-attempts-pocs",
+   "source_name": "The Record (Recorded Future News)",
+   "confidence": "confirmed",
+   "source_reliability": "B",
+   "info_credibility": "2",
+   "time_kind": "published",
+   "time_precision": "minute",
+   "link_check": {
+    "status": "ok",
+    "checked_utc": "2026-10-23T18:20:00Z"
+   },
+   "new_fact": {
+    "pl": "Google (Hultquist): brak potwierdzonej eksploatacji, ale możliwa w ograniczonej skali; Sophos wycofał raport o udanym ataku.",
+    "en": "Google (Hultquist): no validated exploitation, but it may have begun in a limited fashion; Sophos retracted a report of success.",
+    "de": "Google (Hultquist): keine validierte Ausnutzung, aber möglicherweise in begrenztem Umfang begonnen; Sophos zog eine Erfolgsmeldung zurück."
+   }
+  },
+  {
+   "id": "heise-censys-1023",
+   "outlet": "heise online",
+   "lang": "de",
+   "region": "de",
+   "published_utc": "2026-10-23T12:03:00Z",
+   "title": "php2shell: Millionen PHP-Dienste in Deutschland verwundbar",
+   "angle": {
+    "pl": "Skala ekspozycji wg Censys z naciskiem na Niemcy (2. miejsce po USA) i zastrzeżenia metody.",
+    "en": "Censys exposure figures with a German focus (second after the US) and method caveats.",
+    "de": "Censys-Expositionszahlen mit Deutschland-Fokus (Platz 2 nach den USA) und Methodenvorbehalten."
+   },
+   "source_url": "https://www.heise.de/news/php2shell-Millionen-PHP-Dienste-in-Deutschland-verwundbar-11498464.html",
+   "source_name": "heise online",
+   "confidence": "confirmed",
+   "source_reliability": "B",
+   "info_credibility": "2",
+   "time_kind": "published",
+   "time_precision": "minute",
+   "link_check": {
+    "status": "ok",
+    "checked_utc": "2026-10-23T18:20:00Z"
+   },
+   "new_fact": {
+    "pl": "Niemcy: ok. 4,2 mln usług z podatnymi wersjami.",
+    "en": "Germany: about 4.2 million services with vulnerable versions.",
+    "de": "Deutschland: rund 4,2 Mio. Dienste mit verwundbaren Versionen."
+   }
+  },
+  {
+   "id": "securityweek-mirai-1023",
+   "outlet": "SecurityWeek",
+   "lang": "en",
+   "region": "intl",
+   "published_utc": "2026-10-23T12:45:00Z",
+   "title": "Mirai Botnet Operators Join PHP2Shell Attacks as ASLR Bypass Exploits Emerge",
+   "angle": {
+    "pl": "Botnety (Potassium/Mirai), komercyjne obejście ASLR, nadal zero potwierdzonych włamań; Sansec wycofuje prognozę „15 minut”.",
+    "en": "Botnets (Potassium/Mirai), a commercial ASLR bypass, still zero confirmed breaches; Sansec walks back its “15 minutes” forecast.",
+    "de": "Botnetze (Potassium/Mirai), kommerzielle ASLR-Umgehung, weiterhin keine bestätigten Einbrüche; Sansec revidiert seine „15 Minuten“-Prognose."
+   },
+   "source_url": "https://www.securityweek.com/mirai-botnet-operators-join-php2shell-attacks-as-aslr-bypass-exploits-emerge/",
+   "source_name": "SecurityWeek",
+   "confidence": "confirmed",
+   "source_reliability": "B",
+   "info_credibility": "2",
+   "time_kind": "published",
+   "time_precision": "minute",
+   "link_check": {
+    "status": "ok",
+    "checked_utc": "2026-10-23T18:20:00Z"
+   },
+   "new_fact": {
+    "pl": "UK: 32 usługi rządowe niedostępne, 4 częściowo (21.10).",
+    "en": "UK: 32 government services unavailable, 4 partly (21 Oct).",
+    "de": "UK: 32 Regierungsdienste nicht verfügbar, 4 teilweise (21.10.)."
+   }
+  },
+  {
+   "id": "bleepingcomputer-115560-1023",
+   "outlet": "BleepingComputer",
+   "lang": "en",
+   "region": "intl",
+   "published_utc": "2026-10-23T15:38:00Z",
+   "title": "PHP shares mitigation for new RCE vulnerability with no patch",
+   "angle": {
+    "pl": "Nowa luka CVE-2026-115560 i łagodzenie; przypomina AWS, Dataminr: „tylko kwestia czasu”.",
+    "en": "The new CVE-2026-115560 and its mitigation; recaps AWS; Dataminr: “only a matter of time”.",
+    "de": "Die neue CVE-2026-115560 und die Mitigation; Rückblick auf AWS; Dataminr: „nur eine Frage der Zeit“."
+   },
+   "source_url": "https://www.bleepingcomputer.com/news/security/php-shares-mitigation-for-new-and-unpatched-rce-vulnerability/",
+   "source_name": "BleepingComputer",
+   "confidence": "confirmed",
+   "source_reliability": "B",
+   "info_credibility": "2",
+   "time_kind": "published",
+   "time_precision": "minute",
+   "link_check": {
+    "status": "ok",
+    "checked_utc": "2026-10-23T18:20:00Z"
+   },
+   "new_fact": {
+    "pl": "Dataminr TRACE: tylko skanowanie, fingerprinting i niedziałające exploity, brak znanych włamań.",
+    "en": "Dataminr TRACE: only scanning, fingerprinting and non-working exploits, no known compromises.",
+    "de": "Dataminr TRACE: nur Scans, Fingerprinting und nicht funktionierende Exploits, keine bekannten Kompromittierungen."
+   }
   }
  ],
  "media_contradictions": [
@@ -7279,9 +7694,9 @@
     "de": "„Die Attacken haben begonnen“ vs. keine bestätigte Kompromittierung"
    },
    "text": {
-    "pl": "Nagłówki (SPIEGEL) i Cloudflare mówią o milionach prób; jednocześnie watchTowr i Recorded Future nie potwierdzają udanych włamań, a CVE nie ma w CISA KEV. Próby ≠ skuteczne ataki. [?]",
-    "en": "Headlines (SPIEGEL) and Cloudflare speak of millions of attempts; at the same time watchTowr and Recorded Future confirm no successful compromise and the CVEs are not in CISA KEV. Attempts ≠ successful attacks. [?]",
-    "de": "Schlagzeilen (SPIEGEL) und Cloudflare sprechen von Millionen Versuchen; zugleich bestätigen watchTowr und Recorded Future keine erfolgreiche Kompromittierung, und die CVEs stehen nicht im CISA-KEV. Versuche ≠ erfolgreiche Angriffe. [?]"
+    "pl": "Nagłówki (SPIEGEL) i Cloudflare mówią o milionach prób; jednocześnie watchTowr i Recorded Future nie potwierdzają udanych włamań, a CVE nie ma w CISA KEV. Próby ≠ skuteczne ataki. Stan 23.10 18:20 UTC: nadal brak potwierdzonego włamania (SecurityWeek, The Record); Sophos wycofał raport o udanym ataku. [?]",
+    "en": "Headlines (SPIEGEL) and Cloudflare speak of millions of attempts; at the same time watchTowr and Recorded Future confirm no successful compromise and the CVEs are not in CISA KEV. Attempts ≠ successful attacks. As of 23 Oct 18:20 UTC: still no confirmed compromise (SecurityWeek, The Record); Sophos retracted a report of success. [?]",
+    "de": "Schlagzeilen (SPIEGEL) und Cloudflare sprechen von Millionen Versuchen; zugleich bestätigen watchTowr und Recorded Future keine erfolgreiche Kompromittierung, und die CVEs stehen nicht im CISA-KEV. Versuche ≠ erfolgreiche Angriffe. Stand 23.10. 18:20 UTC: weiterhin keine bestätigte Kompromittierung (SecurityWeek, The Record); Sophos zog eine Erfolgsmeldung zurück. [?]"
    },
    "sides": [
     {
@@ -7315,7 +7730,62 @@
    "info_credibility": "3",
    "time_kind": "retrieved",
    "time_precision": "hour",
-   "as_of": "2026-10-22T18:30:00Z"
+   "as_of": "2026-10-23T18:20:00Z"
+  },
+  {
+   "confidence": "reported",
+   "source_reliability": "B",
+   "info_credibility": "3",
+   "time_kind": "retrieved",
+   "time_precision": "hour",
+   "id": "contra-exposure-scale",
+   "as_of": "2026-10-23T18:20:00Z",
+   "status": {
+    "pl": "otwarte",
+    "en": "open",
+    "de": "offen"
+   },
+   "topic": {
+    "pl": "Ile systemów jest podatnych?",
+    "en": "How many systems are vulnerable?",
+    "de": "Wie viele Systeme sind verwundbar?"
+   },
+   "text": {
+    "pl": "Censys 21–22.10: ok. 1,57 mln niezałatanych hostów; dashboard Censys 23.10 (heise, The Record): ponad 41 mln usług z podatnymi wersjami; Unit 42: 22,6 mln instancji. Liczby nie są sprzeczne wprost: liczą hosty, usługi albo instancje, a ok. 54% usług ukrywa wersję. [A]",
+    "en": "Censys 21–22 Oct: about 1.57 million unpatched hosts; Censys dashboard 23 Oct (heise, The Record): over 41 million services with vulnerable versions; Unit 42: 22.6 million instances. Not a direct contradiction: they count hosts, services or instances, and about 54% of services hide their version. [A]",
+    "de": "Censys 21.–22.10.: rund 1,57 Mio. ungepatchte Hosts; Censys-Dashboard 23.10. (heise, The Record): über 41 Mio. Dienste mit verwundbaren Versionen; Unit 42: 22,6 Mio. Instanzen. Kein direkter Widerspruch: gezählt werden Hosts, Dienste oder Instanzen, und rund 54 % der Dienste verbergen ihre Version. [A]"
+   },
+   "sides": [
+    {
+     "label": {
+      "pl": "Hosty (SecurityWeek)",
+      "en": "Hosts (SecurityWeek)",
+      "de": "Hosts (SecurityWeek)"
+     },
+     "source_url": "https://www.securityweek.com/php2shell-exploitation-started-days-before-patches/",
+     "source_name": "SecurityWeek (Censys, 22.10)"
+    },
+    {
+     "label": {
+      "pl": "Usługi (heise)",
+      "en": "Services (heise)",
+      "de": "Dienste (heise)"
+     },
+     "source_url": "https://www.heise.de/news/php2shell-Millionen-PHP-Dienste-in-Deutschland-verwundbar-11498464.html",
+     "source_name": "heise online (Censys dashboard)"
+    },
+    {
+     "label": {
+      "pl": "Instancje (Unit 42)",
+      "en": "Instances (Unit 42)",
+      "de": "Instanzen (Unit 42)"
+     },
+     "source_url": "https://www.nextgov.com/cybersecurity/2026/10/us-agencies-urge-fixes-programming-language-flaws-putting-millions-web-systems-risk/416726/",
+     "source_name": "Nextgov/FCW (Unit 42)"
+    }
+   ],
+   "source_url": "https://www.heise.de/news/php2shell-Millionen-PHP-Dienste-in-Deutschland-verwundbar-11498464.html",
+   "source_name": "heise online — php2shell: Millionen PHP-Dienste in Deutschland verwundbar"
   }
  ]
 }
