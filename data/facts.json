@@ -10,7 +10,7 @@
    "en": "CVE-2026-109618 and CVE-2026-109619: critical RCE flaws in the PHP core",
    "de": "CVE-2026-109618 und CVE-2026-109619: kritische RCE-Lücken im PHP-Kern"
   },
-  "last_updated": "2026-10-23T23:18:08Z",
+  "last_updated": "2026-10-23T23:28:00Z",
   "maintainer_note": "Single source of truth. Every fact needs source_url, source_name, confidence; texts as {pl,en,de}. Run ./update_and_build.sh \"message\".",
   "timezone_note": {
    "pl": "Wszystkie czasy w UTC. Czasy z NOS (CEST) przeliczone na UTC (−2 h).",
@@ -6470,6 +6470,11 @@
   {
    "name": "Hacker News: CVE/vuln/exploit",
    "url": "https://news.ycombinator.com/item?id=50187708",
+   "type": "social"
+  },
+  {
+   "name": "Reddit r/sysadmin — So does anyone know of any actual breeches due to php2shell?",
+   "url": "https://www.reddit.com/r/sysadmin/comments/1xdicjj/so_does_anyone_know_of_any_actual_breeches_due_to/",
    "type": "social"
   }
  ],
