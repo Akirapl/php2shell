@@ -10,7 +10,7 @@
    "en": "CVE-2026-109618 and CVE-2026-109619: critical RCE flaws in the PHP core",
    "de": "CVE-2026-109618 und CVE-2026-109619: kritische RCE-Lücken im PHP-Kern"
   },
-  "last_updated": "2026-10-24T02:01:07Z",
+  "last_updated": "2026-10-24T23:02:37Z",
   "maintainer_note": "Single source of truth. Every fact needs source_url, source_name, confidence; texts as {pl,en,de}. Run ./update_and_build.sh \"message\".",
   "timezone_note": {
    "pl": "Wszystkie czasy w UTC. Czasy z NOS (CEST) przeliczone na UTC (−2 h).",
@@ -3642,6 +3642,28 @@
      "reported_by": "internal"
     }
    ]
+  },
+  {
+   "id": "php-backported-patch-eol",
+   "time_utc": "2026-10-24T22:27:00Z",
+   "importance": "minor",
+   "title": {
+    "pl": "Nieoficjalne poprawki dla wersji PHP wycofanych ze wsparcia (EOL)",
+    "en": "Unofficial backported patches for EOL PHP versions",
+    "de": "Inoffizielle Backport-Patches für PHP-Versionen am Ende des Lebenszyklus (EOL)"
+   },
+   "description": {
+    "pl": "Niezależny badacz Roman Kuligin opublikował nieoficjalne poprawki dla wersji PHP 5.4, 5.5 i 5.6, które mają mitygować błąd przepełnienia pamięci (OOM) w ramach luki PHP2Shell. Rozwiązanie jest skierowane do administratorów systemów legacy, które nie mogą zostać zaktualizowane do wspieranych wersji. Skuteczność i bezpieczeństwo tych poprawek nie zostały oficjalnie zweryfikowane przez zespół PHP.",
+    "en": "Independent researcher Roman Kuligin has published unofficial patches for PHP 5.4, 5.5, and 5.6 to mitigate the PHP2Shell Out-of-Memory (OOM) vulnerability. The solution is aimed at administrators of legacy systems that cannot be upgraded to supported versions. The effectiveness and security of these patches have not been officially verified by the PHP team.",
+    "de": "Der unabhängige Forscher Roman Kuligin hat inoffizielle Patches für PHP 5.4, 5.5 und 5.6 veröffentlicht, um die PHP2Shell Out-of-Memory (OOM) Schwachstelle zu entschärfen. Die Lösung richtet sich an Administratoren von Altsystemen, die nicht auf unterstützte Versionen aktualisiert werden können. Die Wirksamkeit und Sicherheit dieser Patches wurden vom PHP-Team nicht offiziell überprüft."
+   },
+   "confidence": "reported",
+   "source_name": "oss-security — PHP 5.4.23 (custom 5.4-5.6) backported patch for PHP2Shell OOM vulnerability",
+   "source_url": "https://seclists.org/oss-sec/2026/q4/376",
+   "source_reliability": "B",
+   "info_credibility": 2,
+   "time_kind": "published",
+   "time_precision": "minute"
   }
  ],
  "actors": [
@@ -6481,6 +6503,11 @@
    "name": "Reddit r/netsec — PHP2Shell (CVE-2026-109618/109619): first exploit requests arrived 5.5 hours before PHP shipped the fix",
    "url": "https://www.reddit.com/r/netsec/comments/1xbzwrn/php2shell_cve2026109618109619_first_exploit/",
    "type": "social"
+  },
+  {
+   "name": "oss-security (seclists) advisory",
+   "url": "https://seclists.org/oss-sec/2026/q4/376",
+   "type": "research"
   }
  ],
  "social_mood": [
