@@ -10,7 +10,7 @@
    "en": "CVE-2026-109618 and CVE-2026-109619: critical RCE flaws in the PHP core",
    "de": "CVE-2026-109618 und CVE-2026-109619: kritische RCE-Lücken im PHP-Kern"
   },
-  "last_updated": "2026-10-25T11:02:30Z",
+  "last_updated": "2026-10-25T13:02:57Z",
   "maintainer_note": "Single source of truth. Every fact needs source_url, source_name, confidence; texts as {pl,en,de}. Run ./update_and_build.sh \"message\".",
   "timezone_note": {
    "pl": "Wszystkie czasy w UTC. Czasy z NOS (CEST) przeliczone na UTC (−2 h).",
@@ -3672,6 +3672,36 @@
     "en": "The source text does not support the claims in the description. Needs a second source or a manual check.",
     "de": "Der Quellentext stützt die Aussagen der Beschreibung nicht. Zweite Quelle oder manuelle Prüfung nötig."
    }
+  },
+  {
+   "id": "hn-steal-my-bitcoin-challenge",
+   "time_utc": "2026-10-24T21:00:00Z",
+   "importance": "minor",
+   "title": {
+    "pl": "Wyzwanie „Steal My Bitcoin” sprawdza realność eksploatacji PHP2Shell",
+    "en": "“Steal My Bitcoin” challenge tests PHP2Shell exploitability in the wild",
+    "de": "„Steal My Bitcoin“-Herausforderung testet die Ausnutzbarkeit von PHP2Shell in der Praxis"
+   },
+   "description": {
+    "pl": "Użytkownik portalu Hacker News uruchomił publiczne wyzwanie z nagrodą w bitcoinach dla osoby, która zdoła przejąć serwer podatny na PHP2Shell. Mimo upływu kilkunastu godzin i tysięcy prób, nagroda pozostaje nieodebrana, co sugeruje trudność w stworzeniu uniwersalnego exploita. Uczestnicy dyskusji wskazują, że automatyczne narzędzia AI nie radzą sobie z tym zadaniem w rzeczywistym środowisku.",
+    "en": "A Hacker News user launched a public challenge with a Bitcoin prize for anyone who can successfully exploit a PHP2Shell-vulnerable server. Despite over 14 hours of attempts and thousands of hits, the prize remains unclaimed, suggesting that a universal exploit is difficult to craft. Discussion participants note that automated AI tools are currently failing to produce a working exploit in this real-world environment.",
+    "de": "Ein Hacker-News-Nutzer hat eine öffentliche Herausforderung mit einem Bitcoin-Preis für jeden gestartet, dem es gelingt, einen für PHP2Shell anfälligen Server auszunutzen. Obwohl mehr als 14 Stunden vergangen sind und Tausende von Versuchen unternommen wurden, bleibt der Preis unbeansprucht, was darauf hindeutet, dass ein universeller Exploit schwer zu erstellen ist. Diskussionsteilnehmer weisen darauf hin, dass automatisierte KI-Tools in dieser realen Umgebung derzeit keinen funktionierenden Exploit liefern."
+   },
+   "confidence": "reported",
+   "source_name": "Hacker News — Show HN: Steal My Bitcoin",
+   "source_url": "https://news.ycombinator.com/item?id=50225315",
+   "source_reliability": "C",
+   "info_credibility": 3,
+   "time_kind": "published",
+   "time_precision": "hour",
+   "flags": [
+    "needs_second_source"
+   ],
+   "flag_note": {
+    "pl": "Źródłem jest serwis społecznościowy, więc to najwyżej zgłoszenie, a nie potwierdzenie. Wymaga drugiego źródła.",
+    "en": "The source is a social platform, so this is at most a report, not a confirmation. Needs a second source.",
+    "de": "Die Quelle ist eine Social-Media-Plattform, daher ist dies höchstens eine Meldung, keine Bestätigung. Zweite Quelle nötig."
+   }
   }
  ],
  "actors": [
@@ -6516,6 +6546,21 @@
    "name": "heise Security",
    "url": "https://www.heise.de/news/Cyberagentur-Software-Schwachstellen-bleiben-laenger-ein-Problem-11499379.html",
    "type": "news"
+  },
+  {
+   "name": "Hacker News — Show HN: Steal My Bitcoin",
+   "url": "https://news.ycombinator.com/item?id=50225315",
+   "type": "press"
+  },
+  {
+   "name": "Reddit — r/sysadmin discussion",
+   "url": "https://www.reddit.com/r/sysadmin/comments/1xeywpa/hackermews_member_challenges_you_to_successfully/",
+   "type": "social"
+  },
+  {
+   "name": "Steal My Bitcoin Challenge Site",
+   "url": "https://stealmybitcoin.com/",
+   "type": "primary"
   }
  ],
  "social_mood": [
