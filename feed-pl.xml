@@ -3,12 +3,23 @@
 <title>PHP2Shell — oś czasu (PL)</title>
 <subtitle>Relacja na żywo: PHP2Shell (CVE-2026-109618/109619), krytyczne RCE w rdzeniu PHP (CVSS 9.2). Poprawki: 8.5.12, 8.4.27, 8.3.36, 8.2.35. Każdy fakt ze źródłem.</subtitle>
 <id>https://akirapl.github.io/php2shell/feed-pl.xml</id>
-<updated>2026-10-24T02:01:07Z</updated>
+<updated>2026-10-25T11:02:30Z</updated>
 <link rel="self" type="application/atom+xml" href="https://akirapl.github.io/php2shell/feed-pl.xml"/>
 <link rel="alternate" type="text/html" hreflang="pl" href="https://akirapl.github.io/php2shell/?lang=pl"/>
 <author><name>Dawid Kulik (@Akirapl)</name><uri>https://github.com/Akirapl</uri></author>
 <icon>https://akirapl.github.io/php2shell/assets/og-image.png</icon>
 <rights>CC BY 4.0</rights>
+<entry>
+<title>Niemiecka Cyberagentura ostrzega przed skróceniem czasu eksploatacji luk</title>
+<id>tag:php2shell-live.surge.sh,2026:cyberagentur-warning-ai-threat</id>
+<link rel="alternate" type="text/html" href="https://akirapl.github.io/php2shell/?lang=pl#ev-cyberagentur-warning-ai-threat"/>
+<link rel="related" href="https://www.heise.de/news/Cyberagentur-Software-Schwachstellen-bleiben-laenger-ein-Problem-11499379.html"/>
+<published>2026-10-25T10:28:00Z</published>
+<updated>2026-10-25T10:28:00Z</updated>
+<category term="minor"/>
+<summary type="text">Ekspert federalnej Cyberagentury wskazuje na PHP2Shell jako przykład trendu, w którym napastnicy analizują luki i tworzą exploity w ciągu minut, wyprzedzając dezentralne procesy naprawcze. Niemieckie Ministerstwo Cyfryzacji wciąż weryfikuje, czy w wyniku podatności doszło do wycieku danych z systemów rządowych. Obecnie brak potwierdzonych przypadków udanych ataków na administrację federalną.</summary>
+<content type="html">&lt;p&gt;Ekspert federalnej Cyberagentury wskazuje na PHP2Shell jako przykład trendu, w którym napastnicy analizują luki i tworzą exploity w ciągu minut, wyprzedzając dezentralne procesy naprawcze. Niemieckie Ministerstwo Cyfryzacji wciąż weryfikuje, czy w wyniku podatności doszło do wycieku danych z systemów rządowych. Obecnie brak potwierdzonych przypadków udanych ataków na administrację federalną.&lt;/p&gt;&lt;p&gt;Źródło: &lt;a href="https://www.heise.de/news/Cyberagentur-Software-Schwachstellen-bleiben-laenger-ein-Problem-11499379.html"&gt;heise Security — Cyberagentur: Software-Schwachstellen bleiben länger ein Problem&lt;/a&gt; · doniesienie · minor&lt;/p&gt;</content>
+</entry>
 <entry>
 <title>Przegląd nastrojów i mediów (23.10 wieczór)</title>
 <id>tag:php2shell-live.surge.sh,2026:social-media-review-1023-pm</id>
