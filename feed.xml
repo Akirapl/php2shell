@@ -3,7 +3,7 @@
 <title>PHP2Shell — timeline (EN)</title>
 <subtitle>Live timeline of PHP2Shell (CVE-2026-109618/109619), a critical PHP core RCE (CVSS 9.2). Fixed in 8.5.12, 8.4.27, 8.3.36, 8.2.35. Every fact sourced.</subtitle>
 <id>https://akirapl.github.io/php2shell/feed.xml</id>
-<updated>2026-10-25T13:02:57Z</updated>
+<updated>2026-10-26T09:49:43Z</updated>
 <link rel="self" type="application/atom+xml" href="https://akirapl.github.io/php2shell/feed.xml"/>
 <link rel="alternate" type="text/html" hreflang="en" href="https://akirapl.github.io/php2shell/?lang=en"/>
 <author><name>Dawid Kulik (@Akirapl)</name><uri>https://github.com/Akirapl</uri></author>
@@ -712,6 +712,17 @@
 <category term="major"/>
 <summary type="text">The airport refers travellers to its website.</summary>
 <content type="html">&lt;p&gt;The airport refers travellers to its website.&lt;/p&gt;&lt;p&gt;Source: &lt;a href="https://nos.nl/liveblog/2636066-websites-kwetsbaar-voor-softwarelek-digid-en-mijnoverheid-uit-de-lucht"&gt;NOS liveblog&lt;/a&gt; · confirmed · major&lt;/p&gt;</content>
+</entry>
+<entry>
+<title>Massive system shutdowns in Germany and sharp spike in website downtime</title>
+<id>tag:php2shell-live.surge.sh,2026:german-infrastructure-impact-uptimerobot</id>
+<link rel="alternate" type="text/html" href="https://akirapl.github.io/php2shell/?lang=en#ev-german-infrastructure-impact-uptimerobot"/>
+<link rel="related" href="https://www.heise.de/meinung/PHP2Shell-Die-Schonfrist-ist-vorbei-11499688.html"/>
+<published>2026-10-21T12:00:00Z</published>
+<updated>2026-10-21T12:00:00Z</updated>
+<category term="major"/>
+<summary type="text">On the day of the patch release, numerous German public institutions, universities, and hospitals preemptively took their systems offline. Data from UptimeRobot showed a 113% increase in unavailable .de domains and a twenty-fold spike in downtime alerts across Europe. Affected entities included state administrations, the BSI portal, and service providers such as easybill and D&amp;T Internet.</summary>
+<content type="html">&lt;p&gt;On the day of the patch release, numerous German public institutions, universities, and hospitals preemptively took their systems offline. Data from UptimeRobot showed a 113% increase in unavailable .de domains and a twenty-fold spike in downtime alerts across Europe. Affected entities included state administrations, the BSI portal, and service providers such as easybill and D&amp;amp;T Internet.&lt;/p&gt;&lt;p&gt;Source: &lt;a href="https://www.heise.de/meinung/PHP2Shell-Die-Schonfrist-ist-vorbei-11499688.html"&gt;heise Security — PHP2Shell: Die Schonfrist ist vorbei&lt;/a&gt; · reported · major&lt;/p&gt;</content>
 </entry>
 <entry>
 <title>NCSC-NL statement: prepare to patch</title>
