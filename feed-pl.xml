@@ -3,12 +3,23 @@
 <title>PHP2Shell — oś czasu (PL)</title>
 <subtitle>Relacja na żywo: PHP2Shell (CVE-2026-109618/109619), krytyczne RCE w rdzeniu PHP (CVSS 9.2). Poprawki: 8.5.12, 8.4.27, 8.3.36, 8.2.35. Każdy fakt ze źródłem.</subtitle>
 <id>https://akirapl.github.io/php2shell/feed-pl.xml</id>
-<updated>2026-10-26T15:02:04Z</updated>
+<updated>2026-10-26T20:02:32Z</updated>
 <link rel="self" type="application/atom+xml" href="https://akirapl.github.io/php2shell/feed-pl.xml"/>
 <link rel="alternate" type="text/html" hreflang="pl" href="https://akirapl.github.io/php2shell/?lang=pl"/>
 <author><name>Dawid Kulik (@Akirapl)</name><uri>https://github.com/Akirapl</uri></author>
 <icon>https://akirapl.github.io/php2shell/assets/og-image.png</icon>
 <rights>CC BY 4.0</rights>
+<entry>
+<title>PHP wydaje poprawione pakiety dla Windows w celu usunięcia luki w bibliotece Brotli</title>
+<id>tag:php2shell-live.surge.sh,2026:php-windows-brotli-rebuild</id>
+<link rel="alternate" type="text/html" href="https://akirapl.github.io/php2shell/?lang=pl#ev-php-windows-brotli-rebuild"/>
+<link rel="related" href="https://discourse.thephp.foundation/t/announce-updated-php-windows-builds-for-brotli-security-fix/6324"/>
+<published>2026-10-26T17:45:00Z</published>
+<updated>2026-10-26T17:45:00Z</updated>
+<category term="major"/>
+<summary type="text">Oficjalne pakiety PHP dla systemu Windows (wersje od 8.2 do 8.5) zostały ponownie skompilowane z poprawioną biblioteką Brotli 1.2.1 w celu usunięcia krytycznej luki CVE-2026-111497. Błąd ten umożliwia uszkodzenie pamięci i potencjalne wykonanie kodu podczas automatycznej dekompresji odpowiedzi HTTP przez rozszerzenie cURL, co jest domyślnym zachowaniem w popularnych bibliotekach takich jak Guzzle. Nowe wydania, oznaczone przyrostkiem -1 (np. 8.5.12-1), zachowują poprawki bezpieczeństwa dla PHP2Shell wprowadzone pięć dni wcześniej.</summary>
+<content type="html">&lt;p&gt;Oficjalne pakiety PHP dla systemu Windows (wersje od 8.2 do 8.5) zostały ponownie skompilowane z poprawioną biblioteką Brotli 1.2.1 w celu usunięcia krytycznej luki CVE-2026-111497. Błąd ten umożliwia uszkodzenie pamięci i potencjalne wykonanie kodu podczas automatycznej dekompresji odpowiedzi HTTP przez rozszerzenie cURL, co jest domyślnym zachowaniem w popularnych bibliotekach takich jak Guzzle. Nowe wydania, oznaczone przyrostkiem -1 (np. 8.5.12-1), zachowują poprawki bezpieczeństwa dla PHP2Shell wprowadzone pięć dni wcześniej.&lt;/p&gt;&lt;p&gt;Źródło: &lt;a href="https://discourse.thephp.foundation/t/announce-updated-php-windows-builds-for-brotli-security-fix/6324"&gt;PHP — Updated PHP Windows builds for Brotli security fix&lt;/a&gt; · doniesienie · major&lt;/p&gt;</content>
+</entry>
 <entry>
 <title>Dostawcy systemów przemysłowych potwierdzają podatność na PHP2Shell</title>
 <id>tag:php2shell-live.surge.sh,2026:industrial-vendors-advisories</id>
