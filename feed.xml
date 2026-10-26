@@ -3,12 +3,23 @@
 <title>PHP2Shell — timeline (EN)</title>
 <subtitle>Live timeline of PHP2Shell (CVE-2026-109618/109619), a critical PHP core RCE (CVSS 9.2). Fixed in 8.5.12, 8.4.27, 8.3.36, 8.2.35. Every fact sourced.</subtitle>
 <id>https://akirapl.github.io/php2shell/feed.xml</id>
-<updated>2026-10-26T11:03:03Z</updated>
+<updated>2026-10-26T15:02:04Z</updated>
 <link rel="self" type="application/atom+xml" href="https://akirapl.github.io/php2shell/feed.xml"/>
 <link rel="alternate" type="text/html" hreflang="en" href="https://akirapl.github.io/php2shell/?lang=en"/>
 <author><name>Dawid Kulik (@Akirapl)</name><uri>https://github.com/Akirapl</uri></author>
 <icon>https://akirapl.github.io/php2shell/assets/og-image.png</icon>
 <rights>CC BY 4.0</rights>
+<entry>
+<title>Industrial vendors confirm PHP2Shell vulnerability impact</title>
+<id>tag:php2shell-live.surge.sh,2026:industrial-vendors-advisories</id>
+<link rel="alternate" type="text/html" href="https://akirapl.github.io/php2shell/?lang=en#ev-industrial-vendors-advisories"/>
+<link rel="related" href="https://www.securityweek.com/industrial-vendors-check-products-for-php2shell-vulnerabilities/"/>
+<published>2026-10-26T14:52:00Z</published>
+<updated>2026-10-26T14:52:00Z</updated>
+<category term="major"/>
+<summary type="text">Major industrial automation vendors, including Siemens, Schneider Electric, and ABB, have published advisories regarding PHP2Shell vulnerabilities. Flaws were confirmed in certain MES systems, EcoStruxure products, and Ruggedcom devices. Most manufacturers have already released patches or recommended mitigation measures to reduce risk.</summary>
+<content type="html">&lt;p&gt;Major industrial automation vendors, including Siemens, Schneider Electric, and ABB, have published advisories regarding PHP2Shell vulnerabilities. Flaws were confirmed in certain MES systems, EcoStruxure products, and Ruggedcom devices. Most manufacturers have already released patches or recommended mitigation measures to reduce risk.&lt;/p&gt;&lt;p&gt;Source: &lt;a href="https://www.securityweek.com/industrial-vendors-check-products-for-php2shell-vulnerabilities/"&gt;SecurityWeek — Industrial Vendors Check Products for PHP2Shell Vulnerabilities&lt;/a&gt; · confirmed · major&lt;/p&gt;</content>
+</entry>
 <entry>
 <title>Full-chain PHP2Shell exploit PoC surfaces on Reddit</title>
 <id>tag:php2shell-live.surge.sh,2026:reddit-full-chain-poc-sysadmin</id>
