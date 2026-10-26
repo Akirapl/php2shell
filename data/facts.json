@@ -10,7 +10,7 @@
    "en": "CVE-2026-109618 and CVE-2026-109619: critical RCE flaws in the PHP core",
    "de": "CVE-2026-109618 und CVE-2026-109619: kritische RCE-Lücken im PHP-Kern"
   },
-  "last_updated": "2026-10-26T15:02:04Z",
+  "last_updated": "2026-10-26T18:04:06Z",
   "maintainer_note": "Single source of truth. Every fact needs source_url, source_name, confidence; texts as {pl,en,de}. Run ./update_and_build.sh \"message\".",
   "timezone_note": {
    "pl": "Wszystkie czasy w UTC. Czasy z NOS (CEST) przeliczone na UTC (−2 h).",
@@ -3784,6 +3784,36 @@
    "info_credibility": 2,
    "time_kind": "published",
    "time_precision": "minute"
+  },
+  {
+   "id": "cloudflare-ceo-future-outlook",
+   "time_utc": "2024-10-23T00:00:00Z",
+   "importance": "major",
+   "title": {
+    "pl": "Szef Cloudflare ostrzega przed falą krytycznych luk wykrywanych przez AI",
+    "en": "Cloudflare CEO warns of wave of critical vulnerabilities discovered by AI",
+    "de": "Cloudflare-Chef warnt vor einer Welle von KI-entdeckten kritischen Sicherheitslücken"
+   },
+   "description": {
+    "pl": "Matthew Prince ujawnił, że Cloudflare zna szereg kolejnych poważnych podatności w infrastrukturze internetowej, podobnych do PHP2Shell. Według szefa firmy, powszechne użycie modeli AI do audytu kodu drastycznie przyspiesza wykrywanie błędów, co w najbliższych latach przełoży się na cotygodniowe incydenty o dużej skali. Czas między odkryciem luki a jej wykorzystaniem przez napastników ulega znacznemu skróceniu. Twierdzenie dostawcy, niezweryfikowane niezależnie.",
+    "en": "Matthew Prince revealed that Cloudflare is aware of several other serious vulnerabilities in internet infrastructure, similar to PHP2Shell. According to the CEO, the widespread use of AI models for code auditing drastically accelerates bug discovery, which will result in weekly large-scale incidents over the coming years. The window between vulnerability discovery and exploitation is significantly narrowing. Vendor claim, not independently verified.",
+    "de": "Matthew Prince gab bekannt, dass Cloudflare eine Reihe weiterer schwerwiegender Schwachstellen in der Internet-Infrastruktur bekannt sind, die PHP2Shell ähneln. Laut dem CEO beschleunigt der weit verbreitete Einsatz von KI-Modellen zur Code-Prüfung die Entdeckung von Fehlern drastisch, was in den kommenden Jahren zu wöchentlichen Vorfällen großen Ausmaßes führen wird. Das Zeitfenster zwischen der Entdeckung einer Schwachstelle und ihrer Ausnutzung verkürzt sich erheblich. Behauptung des Anbieters, nicht unabhängig verifiziert."
+   },
+   "confidence": "reported",
+   "source_name": "Reuters — AI-discovered bugs may soon trigger fresh disruptions, cyber experts say",
+   "source_url": "https://www.reuters.com/technology/cybersecurity/ai-discovered-bugs-may-soon-trigger-fresh-disruptions-cyber-experts-say-2024-10-23/",
+   "source_reliability": "B",
+   "info_credibility": 2,
+   "time_kind": "published",
+   "time_precision": "day",
+   "flags": [
+    "needs_second_source"
+   ],
+   "flag_note": {
+    "pl": "Treści źródła nie udało się automatycznie zweryfikować (strona blokuje boty lub nie oddaje czytelnej treści). Wymaga drugiego źródła albo ręcznego sprawdzenia.",
+    "en": "The source content could not be verified automatically (the site blocks bots or serves no readable content). Needs a second source or a manual check.",
+    "de": "Der Inhalt der Quelle konnte nicht automatisch geprüft werden (die Seite blockiert Bots oder liefert keinen lesbaren Inhalt). Zweite Quelle oder manuelle Prüfung nötig."
+   }
   }
  ],
  "actors": [
@@ -6673,6 +6703,16 @@
    "name": "ABB Cyber Security Advisory",
    "url": "https://library.e.abb.com/public/a6d687e7d11440308a4198cc9666c585/4HZK000017_en_A_Cyber%20Security%20Advisory%20for%20MES%20Dokuwiki%20Installations.pdf",
    "type": "vendor"
+  },
+  {
+   "name": "Reuters — AI-discovered bugs may soon trigger fresh disruptions, cyber experts say",
+   "url": "https://www.reuters.com/technology/cybersecurity/ai-discovered-bugs-may-soon-trigger-fresh-disruptions-cyber-experts-say-2024-10-23/",
+   "type": "press"
+  },
+  {
+   "name": "heise Security — Cloudflare-Chef erwartet etliche weitere Lücken wie php2shell",
+   "url": "https://www.heise.de/news/Cloudflare-Chef-erwartet-etliche-weitere-Luecken-wie-php2shell-11500909.html",
+   "type": "news"
   }
  ],
  "social_mood": [
