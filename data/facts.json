@@ -10,7 +10,7 @@
    "en": "CVE-2026-109618 and CVE-2026-109619: critical RCE flaws in the PHP core",
    "de": "CVE-2026-109618 und CVE-2026-109619: kritische RCE-Lücken im PHP-Kern"
   },
-  "last_updated": "2026-10-26T20:02:32Z",
+  "last_updated": "2026-10-27T14:02:42Z",
   "maintainer_note": "Single source of truth. Every fact needs source_url, source_name, confidence; texts as {pl,en,de}. Run ./update_and_build.sh \"message\".",
   "timezone_note": {
    "pl": "Wszystkie czasy w UTC. Czasy z NOS (CEST) przeliczone na UTC (−2 h).",
@@ -3814,6 +3814,28 @@
     "en": "The source content could not be verified automatically (the site blocks bots or serves no readable content). Needs a second source or a manual check.",
     "de": "Der Inhalt der Quelle konnte nicht automatisch geprüft werden (die Seite blockiert Bots oder liefert keinen lesbaren Inhalt). Zweite Quelle oder manuelle Prüfung nötig."
    }
+  },
+  {
+   "id": "cisa-kev-added",
+   "time_utc": "2026-10-26T16:00:00Z",
+   "importance": "critical",
+   "title": {
+    "pl": "CISA dodaje PHP2Shell do katalogu KEV",
+    "en": "CISA adds PHP2Shell to KEV catalog",
+    "de": "CISA fügt PHP2Shell zum KEV-Katalog hinzu"
+   },
+   "description": {
+    "pl": "Amerykańska agencja CISA dodała podatności CVE-2026-109618 oraz CVE-2026-109619 do katalogu Known Exploited Vulnerabilities (KEV), potwierdzając próby ich wykorzystania w atakach. Agencje federalne otrzymały nakaz aktualizacji systemów do 29 października 2026 roku. Choć CISA nie sprecyzowała skali ani sukcesu ataków, uwzględnienie w KEV oznacza dowody na aktywną eksploatację w środowisku rzeczywistym.",
+    "en": "The U.S. CISA agency added CVE-2026-109618 and CVE-2026-109619 to the Known Exploited Vulnerabilities (KEV) catalog, confirming exploitation attempts. Federal agencies have been ordered to patch their systems by October 29, 2026. While CISA did not specify the scale or success of the attacks, inclusion in the KEV indicates evidence of active exploitation in the wild.",
+    "de": "Die US-Behörde CISA hat CVE-2026-109618 und CVE-2026-109619 in den Katalog der bekanntlich ausgenutzten Schwachstellen (KEV) aufgenommen und damit Ausnutzungsversuche bestätigt. Bundesbehörden wurden angewiesen, ihre Systeme bis zum 29. Oktober 2026 zu aktualisieren. Obwohl die CISA das Ausmaß oder den Erfolg der Angriffe nicht präzisierte, deutet die Aufnahme in den KEV auf Beweise für eine aktive Ausnutzung in freier Wildbahn hin."
+   },
+   "confidence": "confirmed",
+   "source_name": "CISA — Adds Two Known Exploited Vulnerabilities to Catalog",
+   "source_url": "https://www.cisa.gov/news-events/alerts/2026/10/26/cisa-adds-two-known-exploited-vulnerabilities-catalog",
+   "source_reliability": "A",
+   "info_credibility": 1,
+   "time_kind": "published",
+   "time_precision": "hour"
   }
  ],
  "actors": [
@@ -6713,6 +6735,21 @@
    "name": "The Hacker News: PHP Issues Second Windows Security Update",
    "url": "https://thehackernews.com/2026/10/php-issues-second-windows-security.html",
    "type": "news"
+  },
+  {
+   "name": "CISA — Adds Two Known Exploited Vulnerabilities to Catalog",
+   "url": "https://www.cisa.gov/news-events/alerts/2026/10/26/cisa-adds-two-known-exploited-vulnerabilities-catalog",
+   "type": "press"
+  },
+  {
+   "name": "The Record — CISA warns of PHP bug exploitation attempts",
+   "url": "https://therecord.media/php-vulnerabilities-cisa-kev",
+   "type": "press"
+  },
+  {
+   "name": "BleepingComputer — CISA confirms PHP2Shell vulnerabilities now exploited",
+   "url": "https://www.bleepingcomputer.com/news/security/cisa-confirms-php2shell-vulnerabilities-now-exploited-in-attacks",
+   "type": "press"
   }
  ],
  "social_mood": [
