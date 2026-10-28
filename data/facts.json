@@ -10,7 +10,7 @@
    "en": "CVE-2026-109618 and CVE-2026-109619: critical RCE flaws in the PHP core",
    "de": "CVE-2026-109618 und CVE-2026-109619: kritische RCE-Lücken im PHP-Kern"
   },
-  "last_updated": "2026-10-26T20:02:32Z",
+  "last_updated": "2026-10-28T13:03:42Z",
   "maintainer_note": "Single source of truth. Every fact needs source_url, source_name, confidence; texts as {pl,en,de}. Run ./update_and_build.sh \"message\".",
   "timezone_note": {
    "pl": "Wszystkie czasy w UTC. Czasy z NOS (CEST) przeliczone na UTC (−2 h).",
@@ -3814,6 +3814,50 @@
     "en": "The source content could not be verified automatically (the site blocks bots or serves no readable content). Needs a second source or a manual check.",
     "de": "Der Inhalt der Quelle konnte nicht automatisch geprüft werden (die Seite blockiert Bots oder liefert keinen lesbaren Inhalt). Zweite Quelle oder manuelle Prüfung nötig."
    }
+  },
+  {
+   "id": "dream-report-china-php2shell-chain",
+   "time_utc": "2026-10-26T00:00:00Z",
+   "importance": "critical",
+   "title": {
+    "pl": "Raport Dream: Chińscy hakerzy wykorzystują PHP2Shell do przejmowania firewalli",
+    "en": "Dream report: China-linked hackers exploit PHP2Shell to root firewalls",
+    "de": "Dream-Bericht: China-nahe Hacker nutzen PHP2Shell zur Übernahme von Firewalls aus"
+   },
+   "description": {
+    "pl": "Badacze z firmy Dream ujawnili kampanię przypisywaną grupom powiązanym z Chinami, w której wykorzystano łańcuch exploitów PHP2Shell oraz lukę Fragnesia w jądrze Linux do przejęcia 25 serwerów. Ataki wymierzone były w firewalle w USA, Japonii, na Tajwanie i w Korei Południowej, prowadząc m.in. do włamania do organizacji powiązanej z rządem USA. W infrastrukturze napastników znaleziono narzędzia sugerujące wykorzystanie AI do automatyzacji działań. Twierdzenie dostawcy usług bezpieczeństwa, niezweryfikowane niezależnie.",
+    "en": "Dream researchers uncovered a campaign attributed to China-linked actors exploiting a chain of PHP2Shell and Fragnesia Linux kernel vulnerabilities to root 25 servers. The attacks targeted firewalls in the US, Japan, Taiwan, and South Korea, leading to a compromise of a US government-affiliated organization. Artifacts found in the attackers' infrastructure suggest the use of AI tools for automation. Security vendor claim, not independently verified.",
+    "de": "Dream-Forscher deckten eine China-nahen Akteuren zugeschriebene Kampagne auf, die eine Kette aus PHP2Shell- und Fragnesia-Linux-Kernel-Schwachstellen nutzte, um 25 Server zu übernehmen. Die Angriffe zielły auf Firewalls in den USA, Japan, Taiwan und Südkorea ab und führten unter anderem zur Kompromittierung einer US-regierungsnahen Organisation. In der Infrastruktur der Angreifer gefundene Artefakte deuten auf den Einsatz von KI-Tools zur Automatisierung hin. Behauptung eines Sicherheitsanbieters, nicht unabhängig verifiziert."
+   },
+   "confidence": "reported",
+   "source_name": "Dream Research — Chained PHP2Shell Exploit Roots 25 Servers",
+   "source_url": "https://dreamgroup.com/blog/chained-php2shell-exploit-roots-25-servers",
+   "source_reliability": "B",
+   "info_credibility": 2,
+   "time_kind": "published",
+   "time_precision": "day"
+  },
+  {
+   "id": "cisa-kev-php2shell",
+   "time_utc": "2026-10-26T12:00:00Z",
+   "importance": "critical",
+   "title": {
+    "pl": "CISA dodaje PHP2Shell do katalogu KEV",
+    "en": "CISA adds PHP2Shell to KEV Catalog",
+    "de": "CISA fügt PHP2Shell zum KEV-Katalog hinzu"
+   },
+   "description": {
+    "pl": "Amerykańska agencja CISA dodała luki CVE-2026-109618 oraz CVE-2026-109619 do katalogu znanych eksploatowanych podatności (KEV), potwierdzając dowody na ich aktywne wykorzystanie w atakach. Decyzja ta wymusza na amerykańskich agencjach federalnych natychmiastowe wdrożenie łatek. Wcześniejsze doniesienia sugerowały miliony prób ataków blokowanych m.in. przez Cloudflare.",
+    "en": "The U.S. CISA agency has added CVE-2026-109618 and CVE-2026-109619 to its Known Exploited Vulnerabilities (KEV) Catalog, confirming evidence of active exploitation in the wild. This decision mandates immediate patching for U.S. federal agencies. Earlier reports suggested millions of attack attempts were blocked by services like Cloudflare.",
+    "de": "Die US-Behörde CISA hat CVE-2026-109618 und CVE-2026-109619 in ihren Katalog bekannter ausgenutzter Schwachstellen (KEV) aufgenommen und damit Belege für eine aktive Ausnutzung bestätigt. Diese Entscheidung verpflichtet US-Bundesbehörden zur sofortigen Installation von Patches. Frühere Berichte deuteten auf Millionen von Angriffsversuchen hin, die unter anderem von Cloudflare blockiert wurden."
+   },
+   "confidence": "confirmed",
+   "source_name": "CISA — Critical Vulnerabilities in PHP Require Immediate Patching",
+   "source_url": "https://www.cisa.gov/news-events/alerts/2026/10/21/critical-vulnerabilities-php-require-immediate-patching",
+   "source_reliability": "A",
+   "info_credibility": 1,
+   "time_kind": "published",
+   "time_precision": "day"
   }
  ],
  "actors": [
@@ -6712,6 +6756,21 @@
   {
    "name": "The Hacker News: PHP Issues Second Windows Security Update",
    "url": "https://thehackernews.com/2026/10/php-issues-second-windows-security.html",
+   "type": "news"
+  },
+  {
+   "name": "Dream Research — Chained PHP2Shell Exploit Roots 25 Servers",
+   "url": "https://dreamgroup.com/blog/chained-php2shell-exploit-roots-25-servers",
+   "type": "research"
+  },
+  {
+   "name": "SecurityWeek — China-Linked Hackers Exploit PHP2Shell to Root Firewalls",
+   "url": "https://www.securityweek.com/china-linked-hackers-exploit-php2shell-to-root-firewalls/",
+   "type": "news"
+  },
+  {
+   "name": "heise Security — „Passwort“ Folge 69: Die Hütte brennt",
+   "url": "https://www.heise.de/news/Passwort-Folge-69-Die-Huette-brennt-11483971.html",
    "type": "news"
   }
  ],

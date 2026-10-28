@@ -3,7 +3,7 @@
 <title>PHP2Shell — Chronik (DE)</title>
 <subtitle>Live-Chronik zu PHP2Shell (CVE-2026-109618/109619), kritische RCE im PHP-Kern (CVSS 9.2). Behoben in 8.5.12, 8.4.27, 8.3.36, 8.2.35. Jede Angabe mit Quelle.</subtitle>
 <id>https://akirapl.github.io/php2shell/feed-de.xml</id>
-<updated>2026-10-26T20:02:32Z</updated>
+<updated>2026-10-28T13:03:42Z</updated>
 <link rel="self" type="application/atom+xml" href="https://akirapl.github.io/php2shell/feed-de.xml"/>
 <link rel="alternate" type="text/html" hreflang="de" href="https://akirapl.github.io/php2shell/?lang=de"/>
 <author><name>Dawid Kulik (@Akirapl)</name><uri>https://github.com/Akirapl</uri></author>
@@ -32,6 +32,17 @@
 <content type="html">&lt;p&gt;Führende Anbieter von Industrieautomatisierung, darunter Siemens, Schneider Electric und ABB, haben Warnmeldungen zu PHP2Shell-Schwachstellen veröffentlicht. Fehler wurden in bestimmten MES-Systemen, Produkten der EcoStruxure-Serie und Ruggedcom-Geräten bestätigt. Die meisten Hersteller haben bereits Patches veröffentlicht oder Maßnahmen zur Risikominderung empfohlen.&lt;/p&gt;&lt;p&gt;Quelle: &lt;a href="https://www.securityweek.com/industrial-vendors-check-products-for-php2shell-vulnerabilities/"&gt;SecurityWeek — Industrial Vendors Check Products for PHP2Shell Vulnerabilities&lt;/a&gt; · bestätigt · major&lt;/p&gt;</content>
 </entry>
 <entry>
+<title>CISA fügt PHP2Shell zum KEV-Katalog hinzu</title>
+<id>tag:php2shell-live.surge.sh,2026:cisa-kev-php2shell</id>
+<link rel="alternate" type="text/html" href="https://akirapl.github.io/php2shell/?lang=de#ev-cisa-kev-php2shell"/>
+<link rel="related" href="https://www.cisa.gov/news-events/alerts/2026/10/21/critical-vulnerabilities-php-require-immediate-patching"/>
+<published>2026-10-26T12:00:00Z</published>
+<updated>2026-10-26T12:00:00Z</updated>
+<category term="critical"/>
+<summary type="text">Die US-Behörde CISA hat CVE-2026-109618 und CVE-2026-109619 in ihren Katalog bekannter ausgenutzter Schwachstellen (KEV) aufgenommen und damit Belege für eine aktive Ausnutzung bestätigt. Diese Entscheidung verpflichtet US-Bundesbehörden zur sofortigen Installation von Patches. Frühere Berichte deuteten auf Millionen von Angriffsversuchen hin, die unter anderem von Cloudflare blockiert wurden.</summary>
+<content type="html">&lt;p&gt;Die US-Behörde CISA hat CVE-2026-109618 und CVE-2026-109619 in ihren Katalog bekannter ausgenutzter Schwachstellen (KEV) aufgenommen und damit Belege für eine aktive Ausnutzung bestätigt. Diese Entscheidung verpflichtet US-Bundesbehörden zur sofortigen Installation von Patches. Frühere Berichte deuteten auf Millionen von Angriffsversuchen hin, die unter anderem von Cloudflare blockiert wurden.&lt;/p&gt;&lt;p&gt;Quelle: &lt;a href="https://www.cisa.gov/news-events/alerts/2026/10/21/critical-vulnerabilities-php-require-immediate-patching"&gt;CISA — Critical Vulnerabilities in PHP Require Immediate Patching&lt;/a&gt; · bestätigt · critical&lt;/p&gt;</content>
+</entry>
+<entry>
 <title>Vollständige PHP2Shell-Exploit-PoC auf Reddit aufgetaucht</title>
 <id>tag:php2shell-live.surge.sh,2026:reddit-full-chain-poc-sysadmin</id>
 <link rel="alternate" type="text/html" href="https://akirapl.github.io/php2shell/?lang=de#ev-reddit-full-chain-poc-sysadmin"/>
@@ -41,6 +52,17 @@
 <category term="major"/>
 <summary type="text">Ein vollständiger Proof-of-Concept (PoC) für die PHP2Shell-Schwachstelle, der die gesamte Angriffskette abdeckt, wurde im Subreddit r/sysadmin veröffentlicht. Der Autor gibt an, ihn erstellt zu haben, um die Wirksamkeit von Patches auf den eigenen Servern zu überprüfen, da es zuvor keine funktionierenden öffentlichen Exploits gab. Diese Veröffentlichung erleichtert die Replikation von Angriffen und erhöht die Bedrohung für Systeme, die noch nicht aktualisiert wurden. Behauptung eines Forenbenutzers, nicht unabhängig verifiziert.</summary>
 <content type="html">&lt;p&gt;Ein vollständiger Proof-of-Concept (PoC) für die PHP2Shell-Schwachstelle, der die gesamte Angriffskette abdeckt, wurde im Subreddit r/sysadmin veröffentlicht. Der Autor gibt an, ihn erstellt zu haben, um die Wirksamkeit von Patches auf den eigenen Servern zu überprüfen, da es zuvor keine funktionierenden öffentlichen Exploits gab. Diese Veröffentlichung erleichtert die Replikation von Angriffen und erhöht die Bedrohung für Systeme, die noch nicht aktualisiert wurden. Behauptung eines Forenbenutzers, nicht unabhängig verifiziert.&lt;/p&gt;&lt;p&gt;Quelle: &lt;a href="https://www.reddit.com/r/sysadmin/comments/1xfrows/ive_created_just_another_poc_for_php2shell_and/"&gt;Reddit — I&amp;#x27;ve created just another PoC for PHP2Shell, and it&amp;#x27;s a full-chain exploit from A to Z&lt;/a&gt; · gemeldet · major&lt;/p&gt;</content>
+</entry>
+<entry>
+<title>Dream-Bericht: China-nahe Hacker nutzen PHP2Shell zur Übernahme von Firewalls aus</title>
+<id>tag:php2shell-live.surge.sh,2026:dream-report-china-php2shell-chain</id>
+<link rel="alternate" type="text/html" href="https://akirapl.github.io/php2shell/?lang=de#ev-dream-report-china-php2shell-chain"/>
+<link rel="related" href="https://dreamgroup.com/blog/chained-php2shell-exploit-roots-25-servers"/>
+<published>2026-10-26T00:00:00Z</published>
+<updated>2026-10-26T00:00:00Z</updated>
+<category term="critical"/>
+<summary type="text">Dream-Forscher deckten eine China-nahen Akteuren zugeschriebene Kampagne auf, die eine Kette aus PHP2Shell- und Fragnesia-Linux-Kernel-Schwachstellen nutzte, um 25 Server zu übernehmen. Die Angriffe zielły auf Firewalls in den USA, Japan, Taiwan und Südkorea ab und führten unter anderem zur Kompromittierung einer US-regierungsnahen Organisation. In der Infrastruktur der Angreifer gefundene Artefakte deuten auf den Einsatz von KI-Tools zur Automatisierung hin. Behauptung eines Sicherheitsanbieters, nicht unabhängig verifiziert.</summary>
+<content type="html">&lt;p&gt;Dream-Forscher deckten eine China-nahen Akteuren zugeschriebene Kampagne auf, die eine Kette aus PHP2Shell- und Fragnesia-Linux-Kernel-Schwachstellen nutzte, um 25 Server zu übernehmen. Die Angriffe zielły auf Firewalls in den USA, Japan, Taiwan und Südkorea ab und führten unter anderem zur Kompromittierung einer US-regierungsnahen Organisation. In der Infrastruktur der Angreifer gefundene Artefakte deuten auf den Einsatz von KI-Tools zur Automatisierung hin. Behauptung eines Sicherheitsanbieters, nicht unabhängig verifiziert.&lt;/p&gt;&lt;p&gt;Quelle: &lt;a href="https://dreamgroup.com/blog/chained-php2shell-exploit-roots-25-servers"&gt;Dream Research — Chained PHP2Shell Exploit Roots 25 Servers&lt;/a&gt; · gemeldet · critical&lt;/p&gt;</content>
 </entry>
 <entry>
 <title>Cyberagentur warnt vor kürzeren Zeitfenstern bei Sicherheitslücken</title>
