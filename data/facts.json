@@ -10,7 +10,7 @@
    "en": "CVE-2026-109618 and CVE-2026-109619: critical RCE flaws in the PHP core",
    "de": "CVE-2026-109618 und CVE-2026-109619: kritische RCE-Lücken im PHP-Kern"
   },
-  "last_updated": "2026-10-28T17:04:11Z",
+  "last_updated": "2026-10-29T23:06:48Z",
   "maintainer_note": "Single source of truth. Every fact needs source_url, source_name, confidence; texts as {pl,en,de}. Run ./update_and_build.sh \"message\".",
   "timezone_note": {
    "pl": "Wszystkie czasy w UTC. Czasy z NOS (CEST) przeliczone na UTC (−2 h).",
@@ -3858,6 +3858,102 @@
    "info_credibility": 1,
    "time_kind": "published",
    "time_precision": "day"
+  },
+  {
+   "id": "previdian-honeypots-rce",
+   "time_utc": "2026-10-28T00:00:00Z",
+   "importance": "major",
+   "title": {
+    "pl": "Previdian: potwierdzono udane wykonanie kodu (RCE) na honeypotach",
+    "en": "Previdian: successful code execution (RCE) confirmed on honeypots",
+    "de": "Previdian: Erfolgreiche Codeausführung (RCE) auf Honeypots bestätigt"
+   },
+   "description": {
+    "pl": "Badacze z Previdian odnotowali udane wykonanie poleceń powłoki na czterech honeypotach z PHP/Apache. Wykorzystano podatności PHP2Shell w środowiskach celowo skonfigurowanych tak, aby ułatwić eksploatację (m.in. brak rotacji procesów Apache). Wykryty ładunek był prostym testem weryfikacyjnym typu „sleep 5”, co sugeruje etap rozpoznania przed właściwym atakiem.",
+    "en": "Previdian researchers recorded successful shell command execution on four PHP/Apache honeypots. PHP2Shell vulnerabilities were exploited in environments intentionally configured to favor exploitation (e.g., no Apache process recycling). The detected payload was a simple 'sleep 5' verification probe, suggesting a reconnaissance phase before actual attacks.",
+    "de": "Forscher von Previdian verzeichneten eine erfolgreiche Ausführung von Shell-Befehlen auf vier PHP/Apache-Honeypots. PHP2Shell-Schwachstellen wurden in Umgebungen ausgenutzt, die absichtlich so konfiguriert waren, dass sie die Exploitation begünstigten (z. B. keine Rotation der Apache-Prozesse). Die erkannte Payload war eine einfache 'sleep 5'-Verifizierungssonde, was auf eine Aufklärungsphase vor eigentlichen Angriffen hindeutet."
+   },
+   "confidence": "reported",
+   "source_name": "Previdian Research — PHP2Shell Activity Across Previdian Network",
+   "source_url": "https://blog.previdian.com/php2shell-activity-across-previdian-network/",
+   "source_reliability": "B",
+   "info_credibility": 2,
+   "time_kind": "event",
+   "time_precision": "day"
+  },
+  {
+   "id": "cisa-kev-php2shell-addition",
+   "time_utc": "2026-10-28T12:00:00Z",
+   "importance": "critical",
+   "title": {
+    "pl": "CISA dodaje podatności PHP2Shell do katalogu KEV",
+    "en": "CISA adds PHP2Shell vulnerabilities to KEV catalog",
+    "de": "CISA fügt PHP2Shell-Schwachstellen zum KEV-Katalog hinzu"
+   },
+   "description": {
+    "pl": "Amerykańska agencja CISA dodała CVE-2026-109618 i CVE-2026-109619 do katalogu znanych eksploatowanych podatności (KEV), potwierdzając aktywne ataki. Decyzja ta nakłada na agencje federalne obowiązek pilnego załatania systemów. Jednocześnie raporty wskazują na kampanię powiązaną z Chinami, wymierzoną w firewalle amerykańskich podmiotów rządowych.",
+    "en": "U.S. agency CISA added CVE-2026-109618 and CVE-2026-109619 to the Known Exploited Vulnerabilities (KEV) catalog, confirming active exploitation. This mandate requires federal agencies to patch systems urgently. Meanwhile, reports emerge of a China-linked campaign targeting firewalls of U.S. government-affiliated entities.",
+    "de": "Die US-Behörde CISA hat CVE-2026-109618 und CVE-2026-109619 in den KEV-Katalog (Known Exploited Vulnerabilities) aufgenommen und damit die aktive Ausnutzung bestätigt. Dieses Mandat verpflichtet Bundesbehörden zur dringenden Patch-Installation. Gleichzeitig gibt es Berichte über eine China-nahe Kampagne, die Firewalls von US-Regierungsorganisationen ins Visier nimmt."
+   },
+   "confidence": "confirmed",
+   "source_name": "CISA — Known Exploited Vulnerabilities Catalog",
+   "source_url": "https://www.cisa.gov/known-exploited-vulnerabilities-catalog",
+   "source_reliability": "A",
+   "info_credibility": 1,
+   "time_kind": "published",
+   "time_precision": "day"
+  },
+  {
+   "id": "cisa-kev-fragnesia-chaining",
+   "time_utc": "2026-10-28T12:00:00Z",
+   "importance": "critical",
+   "title": {
+    "pl": "CISA ostrzega przed łączeniem luki Fragnesia w jądru Linux z atakami PHP2Shell",
+    "en": "CISA warns of Linux kernel Fragnesia flaw chained in PHP2Shell attacks",
+    "de": "CISA warnt vor Verkettung der Linux-Kernel-Lücke Fragnesia mit PHP2Shell-Angriffen"
+   },
+   "description": {
+    "pl": "Amerykańska agencja CISA dodała lukę Fragnesia (CVE-2026-46300) w jądru Linux do katalogu znanych eksploatowanych podatności (KEV). Według ostrzeżenia, napastnicy aktywnie łączą ten błąd podniesienia uprawnień z lukami PHP2Shell, co pozwala na instalację powłok webowych i wykonywanie poleceń z uprawnieniami roota. Agencja nakazała urzędom federalnym załatanie systemów w trybie pilnym.",
+    "en": "The U.S. CISA added the Fragnesia vulnerability (CVE-2026-46300) in the Linux kernel to its Known Exploited Vulnerabilities (KEV) Catalog. According to the warning, attackers are actively chaining this privilege escalation flaw with PHP2Shell vulnerabilities to deploy webshells and run commands with root privileges. The agency ordered federal agencies to patch their systems immediately.",
+    "de": "Die US-Behörde CISA hat die Fragnesia-Schwachstelle (CVE-2026-46300) im Linux-Kernel in den Katalog bekannter ausgenutzter Schwachstellen (KEV) aufgenommen. Der Warnung zufolge verketten Angreifer diesen Fehler zur Ausweitung von Privilegien aktiv mit PHP2Shell-Lücken, um Webshells zu installieren und Befehle mit Root-Rechten auszuführen. Die Behörde wies Bundesbehörden an, ihre Systeme umgehend zu flicken."
+   },
+   "confidence": "confirmed",
+   "source_name": "CISA — CISA Adds Two Known Exploited Vulnerabilities to Catalog",
+   "source_url": "https://www.cisa.gov/news-events/alerts/2026/10/28/cisa-adds-two-known-exploited-vulnerabilities-catalog",
+   "source_reliability": "A",
+   "info_credibility": 1,
+   "time_kind": "published",
+   "time_precision": "hour"
+  },
+  {
+   "id": "cisa-kev-php2shell-linux-chain",
+   "time_utc": "2026-10-28T00:00:00Z",
+   "importance": "critical",
+   "title": {
+    "pl": "CISA dodaje PHP2Shell do katalogu KEV i ostrzega przed łańcuchem z luką w Linux",
+    "en": "CISA adds PHP2Shell to KEV catalog and warns of exploit chain with Linux kernel flaw",
+    "de": "CISA fügt PHP2Shell zum KEV-Katalog hinzu und warnt vor Exploit-Kette mit Linux-Kernel-Lücke"
+   },
+   "description": {
+    "pl": "Amerykańska agencja CISA dodała podatności PHP2Shell (CVE-2026-109618 i CVE-2026-109619) do wykazu aktywnie wykorzystywanych luk (KEV). Ostrzeżono, że są one łączone z nową podatnością jądra Linux (CVE-2026-46300, 'Fragnesia') w celu uzyskania uprawnień roota. Palo Alto Networks potwierdziło próby ataków na wystawione do sieci interfejsy zarządzania PAN-OS.",
+    "en": "The U.S. CISA added PHP2Shell vulnerabilities (CVE-2026-109618 and CVE-2026-109619) to its Known Exploited Vulnerabilities (KEV) catalog. The agency warned they are being chained with a Linux kernel flaw (CVE-2026-46300, 'Fragnesia') to achieve root privileges. Palo Alto Networks confirmed observed exploitation attempts targeting internet-exposed PAN-OS management interfaces.",
+    "de": "Die US-Behörde CISA hat die PHP2Shell-Schwachstellen (CVE-2026-109618 und CVE-2026-109619) in den KEV-Katalog (Known Exploited Vulnerabilities) aufgenommen. Es wurde davor gewarnt, dass diese mit einer Linux-Kernel-Lücke (CVE-2026-46300, 'Fragnesia') kombiniert werden, um Root-Rechte zu erlangen. Palo Alto Networks bestätigte beobachtete Angriffsversuche auf im Internet exponierte PAN-OS-Managementschnittstellen."
+   },
+   "confidence": "reported",
+   "source_name": "CISA — Known Exploited Vulnerabilities Catalog",
+   "source_url": "https://www.cisa.gov/known-exploited-vulnerabilities-catalog",
+   "source_reliability": "A",
+   "info_credibility": 1,
+   "time_kind": "published",
+   "time_precision": "day",
+   "flags": [
+    "needs_second_source"
+   ],
+   "flag_note": {
+    "pl": "Treści źródła nie udało się automatycznie zweryfikować (strona blokuje boty lub nie oddaje czytelnej treści). Wymaga drugiego źródła albo ręcznego sprawdzenia.",
+    "en": "The source content could not be verified automatically (the site blocks bots or serves no readable content). Needs a second source or a manual check.",
+    "de": "Der Inhalt der Quelle konnte nicht automatisch geprüft werden (die Seite blockiert Bots oder liefert keinen lesbaren Inhalt). Zweite Quelle oder manuelle Prüfung nötig."
+   }
   }
  ],
  "actors": [
@@ -6777,6 +6873,36 @@
    "name": "The Hacker News — PHP2Shell Attack Roots 25 Servers, Breaches U.S. Government-Affiliated Network",
    "url": "https://thehackernews.com/2026/10/php2shell-attack-roots-25-servers.html",
    "type": "news"
+  },
+  {
+   "name": "Previdian Research — PHP2Shell Activity Across Previdian Network",
+   "url": "https://blog.previdian.com/php2shell-activity-across-previdian-network/",
+   "type": "research"
+  },
+  {
+   "name": "Reddit r/netsec — PHP2Shell Activity Across Previdian Network",
+   "url": "https://www.reddit.com/r/netsec/comments/1xigwsr/php2shell_activity_across_previdian_network/",
+   "type": "social"
+  },
+  {
+   "name": "The Record — Limited reports of PHP bug exploitation emerge",
+   "url": "https://therecord.media/php2shell-successful-exploitation-reports-emerge",
+   "type": "press"
+  },
+  {
+   "name": "CISA Alert — CISA Adds Two Known Exploited Vulnerabilities to Catalog",
+   "url": "https://www.cisa.gov/news-events/alerts/2026/10/28/cisa-adds-two-known-exploited-vulnerabilities-catalog",
+   "type": "agency"
+  },
+  {
+   "name": "BleepingComputer — CISA warns of Fragnesia Linux flaw chained in PHP2Shell attacks",
+   "url": "https://www.bleepingcomputer.com/news/security/cisa-warns-of-fragnesia-linux-flaw-chained-in-php2shell-attacks/",
+   "type": "news"
+  },
+  {
+   "name": "The Hacker News",
+   "url": "https://thehackernews.com/2026/10/attackers-exploit-php2shell-flaws-in.html",
+   "type": "press"
   }
  ],
  "social_mood": [
