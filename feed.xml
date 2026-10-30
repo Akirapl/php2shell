@@ -3,12 +3,23 @@
 <title>PHP2Shell — timeline (EN)</title>
 <subtitle>Live timeline of PHP2Shell (CVE-2026-109618/109619), a critical PHP core RCE (CVSS 9.2). Fixed in 8.5.12, 8.4.27, 8.3.36, 8.2.35. Every fact sourced.</subtitle>
 <id>https://akirapl.github.io/php2shell/feed.xml</id>
-<updated>2026-10-28T17:04:11Z</updated>
+<updated>2026-10-30T04:07:54Z</updated>
 <link rel="self" type="application/atom+xml" href="https://akirapl.github.io/php2shell/feed.xml"/>
 <link rel="alternate" type="text/html" hreflang="en" href="https://akirapl.github.io/php2shell/?lang=en"/>
 <author><name>Dawid Kulik (@Akirapl)</name><uri>https://github.com/Akirapl</uri></author>
 <icon>https://akirapl.github.io/php2shell/assets/og-image.png</icon>
 <rights>CC BY 4.0</rights>
+<entry>
+<title>New CTF-style challenges test PHP2Shell exploitability in production configurations</title>
+<id>tag:php2shell-live.surge.sh,2026:php2bitcoin-brotli2coin-live-stream</id>
+<link rel="alternate" type="text/html" href="https://akirapl.github.io/php2shell/?lang=en#ev-php2bitcoin-brotli2coin-live-stream"/>
+<link rel="related" href="https://www.reddit.com/r/netsec/comments/1xj4co1/php2bitcoin_x_brotli2coin_live_hacking_stream/"/>
+<published>2026-10-30T03:06:00Z</published>
+<updated>2026-10-30T03:06:00Z</updated>
+<category term="minor"/>
+<summary type="text">New Capture The Flag (CTF) challenges named brotli2bitcoin and php2bitcoin have been launched to practically test PHP2Shell and HTTP2Shell vulnerabilities. Participants are tasked with achieving Remote Code Execution (RCE) in standard production configurations to claim a cryptocurrency prize. This initiative is part of a broader community trend investigating the real-world threat following previous successes of similar challenges.</summary>
+<content type="html">&lt;p&gt;New Capture The Flag (CTF) challenges named brotli2bitcoin and php2bitcoin have been launched to practically test PHP2Shell and HTTP2Shell vulnerabilities. Participants are tasked with achieving Remote Code Execution (RCE) in standard production configurations to claim a cryptocurrency prize. This initiative is part of a broader community trend investigating the real-world threat following previous successes of similar challenges.&lt;/p&gt;&lt;p&gt;Source: &lt;a href="https://www.reddit.com/r/netsec/comments/1xj4co1/php2bitcoin_x_brotli2coin_live_hacking_stream/"&gt;Reddit r/netsec&lt;/a&gt; · reported · minor&lt;/p&gt;</content>
+</entry>
 <entry>
 <title>PHP issues updated Windows builds to fix Brotli library vulnerability</title>
 <id>tag:php2shell-live.surge.sh,2026:php-windows-brotli-rebuild</id>
