@@ -10,7 +10,7 @@
    "en": "CVE-2026-109618 and CVE-2026-109619: critical RCE flaws in the PHP core",
    "de": "CVE-2026-109618 und CVE-2026-109619: kritische RCE-Lücken im PHP-Kern"
   },
-  "last_updated": "2026-10-30T15:40:09Z",
+  "last_updated": "2026-11-03T21:02:52Z",
   "maintainer_note": "Single source of truth. Every fact needs source_url, source_name, confidence; texts as {pl,en,de}. Run ./update_and_build.sh \"message\".",
   "timezone_note": {
    "pl": "Wszystkie czasy w UTC. Czasy z NOS (CEST) przeliczone na UTC (−2 h).",
@@ -3888,6 +3888,28 @@
     "en": "The source is a social platform, so this is at most a report, not a confirmation. Needs a second source.",
     "de": "Die Quelle ist eine Social-Media-Plattform, daher ist dies höchstens eine Meldung, keine Bestätigung. Zweite Quelle nötig."
    }
+  },
+  {
+   "id": "php-8-6-0-rc5-release",
+   "time_utc": "2026-11-03T20:13:24Z",
+   "importance": "minor",
+   "title": {
+    "pl": "Wydanie wersji PHP 8.6.0RC5",
+    "en": "PHP 8.6.0RC5 released",
+    "de": "PHP 8.6.0RC5 veröffentlicht"
+   },
+   "description": {
+    "pl": "Opublikowano piątą wersję kandydacką (Release Candidate) gałęzi PHP 8.6. Wydanie to zawiera poprawki błędów zidentyfikowanych w poprzednich wersjach testowych, przygotowując środowisko do stabilnego wydania nowej linii rozwojowej. Jest to element rutynowego cyklu wydawniczego PHP.",
+    "en": "The fifth release candidate for the PHP 8.6 branch has been published. This release includes bug fixes identified in previous test versions, preparing the environment for the stable release of the new development line. This is part of the routine PHP release cycle.",
+    "de": "Der fünfte Release Candidate für den PHP 8.6-Zweig wurde veröffentlicht. Diese Version enthält Fehlerbehebungen aus vorherigen Testversionen und bereitet die Umgebung auf den stabilen Release der neuen Entwicklungslinie vor. Dies ist Teil des routinemäßigen PHP-Veröffentlichungszyklus."
+   },
+   "confidence": "confirmed",
+   "source_name": "GitHub — php/php-src releases",
+   "source_url": "https://github.com/php/php-src/releases/tag/php-8.6.0RC5",
+   "source_reliability": "A",
+   "info_credibility": 1,
+   "time_kind": "published",
+   "time_precision": "second"
   }
  ],
  "actors": [
@@ -6827,6 +6849,11 @@
    "name": "Cato Networks — PHP2Shell Exploitation Attempts in the Wild",
    "url": "https://www.catonetworks.com/blog/cato-ctrl-threat-research-php2shell-exploitation-attempts-in-the-wild/",
    "type": "research"
+  },
+  {
+   "name": "PHP Source Code Repository",
+   "url": "https://github.com/php/php-src/releases/tag/php-8.6.0RC5",
+   "type": "official"
   }
  ],
  "social_mood": [
