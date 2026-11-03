@@ -10,7 +10,7 @@
    "en": "CVE-2026-109618 and CVE-2026-109619: critical RCE flaws in the PHP core",
    "de": "CVE-2026-109618 und CVE-2026-109619: kritische RCE-Lücken im PHP-Kern"
   },
-  "last_updated": "2026-11-03T21:02:52Z",
+  "last_updated": "2026-11-03T23:08:47Z",
   "maintainer_note": "Single source of truth. Every fact needs source_url, source_name, confidence; texts as {pl,en,de}. Run ./update_and_build.sh \"message\".",
   "timezone_note": {
    "pl": "Wszystkie czasy w UTC. Czasy z NOS (CEST) przeliczone na UTC (−2 h).",
@@ -3910,6 +3910,28 @@
    "info_credibility": 1,
    "time_kind": "published",
    "time_precision": "second"
+  },
+  {
+   "id": "php-8-5-13-rc1-tag",
+   "time_utc": "2026-11-03T22:49:46Z",
+   "importance": "minor",
+   "title": {
+    "pl": "Wydano znacznik PHP 8.5.13RC1",
+    "en": "PHP 8.5.13RC1 tag released",
+    "de": "PHP 8.5.13RC1 Tag veröffentlicht"
+   },
+   "description": {
+    "pl": "W repozytorium kodu źródłowego PHP pojawił się znacznik wersji 8.5.13RC1. Jest to pierwsza wersja kandydacka w cyklu wydawniczym 8.5.13, przygotowująca poprawki dla bieżącej gałęzi rozwojowej. Wydanie to następuje po niedawnych raportach o regresjach i nowych podatnościach w ekosystemie PHP 8.5.",
+    "en": "The PHP 8.5.13RC1 version tag has appeared in the source code repository. This is the first release candidate in the 8.5.13 release cycle, preparing fixes for the current development branch. This release follows recent reports of regressions and new vulnerabilities in the PHP 8.5 ecosystem.",
+    "de": "Das Versions-Tag PHP 8.5.13RC1 ist im Quellcode-Repository erschienen. Dies ist der erste Release-Kandidat im 8.5.13-Veröffentlichungszyklus, der Korrekturen für den aktuellen Entwicklungszweig vorbereitet. Diese Veröffentlichung folgt auf jüngste Berichte über Regressionen und neue Schwachstellen im PHP 8.5-Ökosystem."
+   },
+   "confidence": "confirmed",
+   "source_name": "php-src Releases (GitHub) — php-8.5.13RC1",
+   "source_url": "https://github.com/php/php-src/releases/tag/php-8.5.13RC1",
+   "source_reliability": "A",
+   "info_credibility": 1,
+   "time_kind": "published",
+   "time_precision": "second"
   }
  ],
  "actors": [
@@ -6853,6 +6875,11 @@
   {
    "name": "PHP Source Code Repository",
    "url": "https://github.com/php/php-src/releases/tag/php-8.6.0RC5",
+   "type": "official"
+  },
+  {
+   "name": "php-src GitHub Tag php-8.5.13RC1",
+   "url": "https://github.com/php/php-src/releases/tag/php-8.5.13RC1",
    "type": "official"
   }
  ],
