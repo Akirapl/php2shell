@@ -10,7 +10,7 @@
    "en": "CVE-2026-109618 and CVE-2026-109619: critical RCE flaws in the PHP core",
    "de": "CVE-2026-109618 und CVE-2026-109619: kritische RCE-Lücken im PHP-Kern"
   },
-  "last_updated": "2026-11-04T01:02:04Z",
+  "last_updated": "2026-11-06T18:01:45Z",
   "maintainer_note": "Single source of truth. Every fact needs source_url, source_name, confidence; texts as {pl,en,de}. Run ./update_and_build.sh \"message\".",
   "timezone_note": {
    "pl": "Wszystkie czasy w UTC. Czasy z NOS (CEST) przeliczone na UTC (−2 h).",
@@ -3962,6 +3962,28 @@
     "en": "Not all claims from the description were found in the source text. Needs a second source or a manual check.",
     "de": "Nicht alle Aussagen der Beschreibung wurden im Quellentext gefunden. Zweite Quelle oder manuelle Prüfung nötig."
    }
+  },
+  {
+   "id": "dream-pan-os-china-nexus-chain",
+   "time_utc": "2026-10-24T10:09:00Z",
+   "importance": "critical",
+   "title": {
+    "pl": "Chiny: Kampania PHP2Shell przeciwko firewallom PAN-OS i sieciom rządowym USA",
+    "en": "China-nexus campaign: PHP2Shell chained to root PAN-OS firewalls and US government networks",
+    "de": "China-nahe Kampagne: PHP2Shell-Exploit-Kette gegen PAN-OS-Firewalls und US-Regierungsnetze"
+   },
+   "description": {
+    "pl": "Badacze z firmy Dream oraz Unit 42 potwierdzili kampanię przypisywaną podmiotom powiązanym z Chinami, w której wykorzystano autorski exploit PHP2Shell (CVE-2026-109618/9) połączony z luką jądra Linux Fragnesia (CVE-2026-46300). Atakujący przejęli uprawnienia roota na 25 serwerach, w tym na firewallach Palo Alto Networks w środowiskach powiązanych z rządem USA, co umożliwiło im dostęp do wewnętrznych domen Active Directory. Operacja cechowała się wysokim stopniem automatyzacji i precyzyjnym profilowaniem celów w USA, Japonii, na Tajwanie i w Korei Południowej.",
+    "en": "Researchers from Dream and Unit 42 confirmed a campaign attributed to China-nexus actors using a custom PHP2Shell exploit (CVE-2026-109618/9) chained with the Linux kernel Fragnesia flaw (CVE-2026-46300). Attackers gained root access to 25 servers, including Palo Alto Networks firewalls in US government-affiliated environments, enabling lateral movement into internal Active Directory domains. The operation demonstrated high automation and precise targeting across the US, Japan, Taiwan, and South Korea.",
+    "de": "Forscher von Dream und Unit 42 bestatigten eine China-nahe Kampagne, bei der ein maßgeschneiderter PHP2Shell-Exploit (CVE-2026-109618/9) mit der Linux-Kernel-Lucke Fragnesia (CVE-2026-46300) kombiniert wurde. Angreifer erlangten Root-Zugriff auf 25 Server, darunter Palo Alto Networks Firewalls in US-regierungsnahen Umgebungen, was den Zugriff auf interne Active Directory-Domains ermöglichte. Die Operation zeichnete sich durch hohe Automatisierung und prazises Targeting in den USA, Japan, Taiwan und Südkorea aus."
+   },
+   "confidence": "confirmed",
+   "source_name": "Dream Group — Chained PHP2Shell Exploit Roots 25 Servers",
+   "source_url": "https://dreamgroup.com/blog/chained-php2shell-exploit-roots-25-servers",
+   "source_reliability": "A",
+   "info_credibility": 1,
+   "time_kind": "event",
+   "time_precision": "minute"
   }
  ],
  "actors": [
@@ -6916,6 +6938,16 @@
    "name": "php-src Releases (GitHub)",
    "url": "https://github.com/php/php-src/releases/tag/php-8.4.28RC1",
    "type": "official"
+  },
+  {
+   "name": "Unit 42 — CVE-2026-109618 and CVE-2026-109619 Analysis",
+   "url": "https://unit42.paloaltonetworks.com/cve-2026-109618-cve-2026-109619/",
+   "type": "vendor"
+  },
+  {
+   "name": "CERT.at — Tageszusammenfassung 06.11.2026",
+   "url": "https://www.cert.at/de/tagesberichte/2026/11/tagesberichte-06112026",
+   "type": "agency"
   }
  ],
  "social_mood": [
