@@ -10,7 +10,7 @@
    "en": "CVE-2026-109618 and CVE-2026-109619: critical RCE flaws in the PHP core",
    "de": "CVE-2026-109618 und CVE-2026-109619: kritische RCE-Lücken im PHP-Kern"
   },
-  "last_updated": "2026-11-10T12:02:08Z",
+  "last_updated": "2026-11-10T18:05:02Z",
   "maintainer_note": "Single source of truth. Every fact needs source_url, source_name, confidence; texts as {pl,en,de}. Run ./update_and_build.sh \"message\".",
   "timezone_note": {
    "pl": "Wszystkie czasy w UTC. Czasy z NOS (CEST) przeliczone na UTC (−2 h).",
@@ -3984,6 +3984,28 @@
    "info_credibility": 3,
    "time_kind": "published",
    "time_precision": "hour"
+  },
+  {
+   "id": "gvip-php2shell-retrospective",
+   "time_utc": "2026-11-10T00:00:00Z",
+   "importance": "minor",
+   "title": {
+    "pl": "GVIP publikuje retrospektywę obsługi PHP2Shell przez bazy podatności",
+    "en": "GVIP publishes retrospective on how vulnerability databases handled PHP2Shell",
+    "de": "GVIP veröffentlicht Retrospektive zur Bewältigung von PHP2Shell durch Schwachstellendatenbanken"
+   },
+   "description": {
+    "pl": "Projekt GVIP (współpraca OWASP, OpenSSF, Eclipse ORC i Open Forum Europe) opublikował retrospektywną analizę obsługi incydentu PHP2Shell przez ekosystem baz podatności. Główna teza: rekord podatności jest tak użyteczny, jak jego zdolność do dopasowania do faktycznie uruchomionego oprogramowania, a obecne bazy nie potrafią dopasować środowisk uruchomieniowych (runtime). Autorzy podają m.in., że oba CVE trafiły do CISA KEV 26 października (dziewięć dni po pierwszym ataku), a NCSC-NL naliczył 757 produktów z wbudowanym PHP, z czego 354 pozostawały nierozstrzygnięte 28 października. Podane liczby pochodzą z publicznych źródeł i nie zostały niezależnie zweryfikowane.",
+    "en": "The GVIP project (a cooperation of OWASP, OpenSSF, the Eclipse ORC Working Group and Open Forum Europe) published a retrospective analysis of how the vulnerability database ecosystem handled the PHP2Shell incident. Its core argument: a vulnerability record is only as useful as its ability to match the software actually running, and today's databases cannot match runtimes. The authors state, among other things, that both CVEs landed in CISA's KEV on 26 October (nine days after the first attack) and that NCSC-NL counted 757 products bundling PHP, 354 of which remained unresolved on 28 October. The figures come from public sources and have not been independently verified.",
+    "de": "Das GVIP-Projekt (eine Kooperation von OWASP, OpenSSF, der Eclipse ORC Working Group und Open Forum Europe) veröffentlichte eine retrospektive Analyse dazu, wie das Ökosystem der Schwachstellendatenbanken den Vorfall PHP2Shell bewältigt hat. Kernthese: Ein Schwachstellendatensatz ist nur so nützlich wie seine Fähigkeit, die tatsächlich laufende Software zuzuordnen, und heutige Datenbanken können Laufzeitumgebungen nicht zuordnen. Die Autoren geben unter anderem an, dass beide CVEs am 26. Oktober in die CISA-KEV aufgenommen wurden (neun Tage nach dem ersten Angriff) und dass NCSC-NL 757 Produkte mit integriertem PHP zählte, von denen 354 am 28. Oktober noch ungeklärt waren. Die Zahlen stammen aus öffentlichen Quellen und wurden nicht unabhängig überprüft."
+   },
+   "confidence": "reported",
+   "source_name": "GVIP — PHP2Shell: What It Tells Us About the Vulnerability Database Landscape",
+   "source_url": "https://www.gvip-project.org/blog/2026/php2shell/",
+   "source_reliability": "B",
+   "info_credibility": 2,
+   "time_kind": "published",
+   "time_precision": "day"
   }
  ],
  "actors": [
@@ -6948,6 +6970,16 @@
    "name": "Reddit r/netsec — I spent countless nights digging into PHP2Shell",
    "url": "https://www.reddit.com/r/netsec/comments/1xqlw37/i_spent_countless_nights_digging_into_php2shell/",
    "type": "social"
+  },
+  {
+   "name": "GVIP — PHP2Shell: What It Tells Us About the Vulnerability Database Landscape",
+   "url": "https://www.gvip-project.org/blog/2026/php2shell/",
+   "type": "research"
+  },
+  {
+   "name": "oss-security — OT - PHP2shell - how did we do five years after Log2j?",
+   "url": "https://seclists.org/oss-sec/2026/q4/632",
+   "type": "primary"
   }
  ],
  "social_mood": [
