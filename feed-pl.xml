@@ -3,12 +3,34 @@
 <title>PHP2Shell — oś czasu (PL)</title>
 <subtitle>Relacja na żywo: PHP2Shell (CVE-2026-109618/109619), krytyczne RCE w rdzeniu PHP (CVSS 9.2). Poprawki: 8.5.12, 8.4.27, 8.3.36, 8.2.35. Każdy fakt ze źródłem.</subtitle>
 <id>https://akirapl.github.io/php2shell/feed-pl.xml</id>
-<updated>2026-11-04T01:02:04Z</updated>
+<updated>2026-11-10T18:05:02Z</updated>
 <link rel="self" type="application/atom+xml" href="https://akirapl.github.io/php2shell/feed-pl.xml"/>
 <link rel="alternate" type="text/html" hreflang="pl" href="https://akirapl.github.io/php2shell/?lang=pl"/>
 <author><name>Dawid Kulik (@Akirapl)</name><uri>https://github.com/Akirapl</uri></author>
 <icon>https://akirapl.github.io/php2shell/assets/og-image.png</icon>
 <rights>CC BY 4.0</rights>
+<entry>
+<title>GVIP publikuje retrospektywę obsługi PHP2Shell przez bazy podatności</title>
+<id>tag:php2shell-live.surge.sh,2026:gvip-php2shell-retrospective</id>
+<link rel="alternate" type="text/html" href="https://akirapl.github.io/php2shell/?lang=pl#ev-gvip-php2shell-retrospective"/>
+<link rel="related" href="https://www.gvip-project.org/blog/2026/php2shell/"/>
+<published>2026-11-10T00:00:00Z</published>
+<updated>2026-11-10T00:00:00Z</updated>
+<category term="minor"/>
+<summary type="text">Projekt GVIP (współpraca OWASP, OpenSSF, Eclipse ORC i Open Forum Europe) opublikował retrospektywną analizę obsługi incydentu PHP2Shell przez ekosystem baz podatności. Główna teza: rekord podatności jest tak użyteczny, jak jego zdolność do dopasowania do faktycznie uruchomionego oprogramowania, a obecne bazy nie potrafią dopasować środowisk uruchomieniowych (runtime). Autorzy podają m.in., że oba CVE trafiły do CISA KEV 26 października (dziewięć dni po pierwszym ataku), a NCSC-NL naliczył 757 produktów z wbudowanym PHP, z czego 354 pozostawały nierozstrzygnięte 28 października. Podane liczby pochodzą z publicznych źródeł i nie zostały niezależnie zweryfikowane.</summary>
+<content type="html">&lt;p&gt;Projekt GVIP (współpraca OWASP, OpenSSF, Eclipse ORC i Open Forum Europe) opublikował retrospektywną analizę obsługi incydentu PHP2Shell przez ekosystem baz podatności. Główna teza: rekord podatności jest tak użyteczny, jak jego zdolność do dopasowania do faktycznie uruchomionego oprogramowania, a obecne bazy nie potrafią dopasować środowisk uruchomieniowych (runtime). Autorzy podają m.in., że oba CVE trafiły do CISA KEV 26 października (dziewięć dni po pierwszym ataku), a NCSC-NL naliczył 757 produktów z wbudowanym PHP, z czego 354 pozostawały nierozstrzygnięte 28 października. Podane liczby pochodzą z publicznych źródeł i nie zostały niezależnie zweryfikowane.&lt;/p&gt;&lt;p&gt;Źródło: &lt;a href="https://www.gvip-project.org/blog/2026/php2shell/"&gt;GVIP — PHP2Shell: What It Tells Us About the Vulnerability Database Landscape&lt;/a&gt; · doniesienie · minor&lt;/p&gt;</content>
+</entry>
+<entry>
+<title>Szczegółowa analiza techniczna mechanizmów PHP2Shell</title>
+<id>tag:php2shell-live.surge.sh,2026:researcher-deep-dive-php2shell-internals</id>
+<link rel="alternate" type="text/html" href="https://akirapl.github.io/php2shell/?lang=pl#ev-researcher-deep-dive-php2shell-internals"/>
+<link rel="related" href="https://djad04.github.io/php2shell-deep-dive"/>
+<published>2026-11-08T01:00:00Z</published>
+<updated>2026-11-08T01:00:00Z</updated>
+<category term="minor"/>
+<summary type="text">Niezależny badacz opublikował obszerną analizę techniczną podatności PHP2Shell, opisującą interakcję sesji PHP z silnikiem Zend. Dokument szczegółowo wyjaśnia mechanizm korupcji pamięci i sposób wykorzystania procesów workerów do obejmowania zabezpieczeń. Analiza opiera się na badaniu kodu źródłowego PHP i eksperymentach z wyzwaniem „Steal My Bitcoin”.</summary>
+<content type="html">&lt;p&gt;Niezależny badacz opublikował obszerną analizę techniczną podatności PHP2Shell, opisującą interakcję sesji PHP z silnikiem Zend. Dokument szczegółowo wyjaśnia mechanizm korupcji pamięci i sposób wykorzystania procesów workerów do obejmowania zabezpieczeń. Analiza opiera się na badaniu kodu źródłowego PHP i eksperymentach z wyzwaniem „Steal My Bitcoin”.&lt;/p&gt;&lt;p&gt;Źródło: &lt;a href="https://djad04.github.io/php2shell-deep-dive"&gt;djad04 — PHP2Shell Deep Dive&lt;/a&gt; · doniesienie · minor&lt;/p&gt;</content>
+</entry>
 <entry>
 <title>Wydano tag PHP 8.4.28RC1</title>
 <id>tag:php2shell-live.surge.sh,2026:php-8-4-28-rc1-tag</id>

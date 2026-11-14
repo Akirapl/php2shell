@@ -3,12 +3,34 @@
 <title>PHP2Shell — timeline (EN)</title>
 <subtitle>Live timeline of PHP2Shell (CVE-2026-109618/109619), a critical PHP core RCE (CVSS 9.2). Fixed in 8.5.12, 8.4.27, 8.3.36, 8.2.35. Every fact sourced.</subtitle>
 <id>https://akirapl.github.io/php2shell/feed.xml</id>
-<updated>2026-11-04T01:02:04Z</updated>
+<updated>2026-11-10T18:05:02Z</updated>
 <link rel="self" type="application/atom+xml" href="https://akirapl.github.io/php2shell/feed.xml"/>
 <link rel="alternate" type="text/html" hreflang="en" href="https://akirapl.github.io/php2shell/?lang=en"/>
 <author><name>Dawid Kulik (@Akirapl)</name><uri>https://github.com/Akirapl</uri></author>
 <icon>https://akirapl.github.io/php2shell/assets/og-image.png</icon>
 <rights>CC BY 4.0</rights>
+<entry>
+<title>GVIP publishes retrospective on how vulnerability databases handled PHP2Shell</title>
+<id>tag:php2shell-live.surge.sh,2026:gvip-php2shell-retrospective</id>
+<link rel="alternate" type="text/html" href="https://akirapl.github.io/php2shell/?lang=en#ev-gvip-php2shell-retrospective"/>
+<link rel="related" href="https://www.gvip-project.org/blog/2026/php2shell/"/>
+<published>2026-11-10T00:00:00Z</published>
+<updated>2026-11-10T00:00:00Z</updated>
+<category term="minor"/>
+<summary type="text">The GVIP project (a cooperation of OWASP, OpenSSF, the Eclipse ORC Working Group and Open Forum Europe) published a retrospective analysis of how the vulnerability database ecosystem handled the PHP2Shell incident. Its core argument: a vulnerability record is only as useful as its ability to match the software actually running, and today's databases cannot match runtimes. The authors state, among other things, that both CVEs landed in CISA's KEV on 26 October (nine days after the first attack) and that NCSC-NL counted 757 products bundling PHP, 354 of which remained unresolved on 28 October. The figures come from public sources and have not been independently verified.</summary>
+<content type="html">&lt;p&gt;The GVIP project (a cooperation of OWASP, OpenSSF, the Eclipse ORC Working Group and Open Forum Europe) published a retrospective analysis of how the vulnerability database ecosystem handled the PHP2Shell incident. Its core argument: a vulnerability record is only as useful as its ability to match the software actually running, and today&amp;#x27;s databases cannot match runtimes. The authors state, among other things, that both CVEs landed in CISA&amp;#x27;s KEV on 26 October (nine days after the first attack) and that NCSC-NL counted 757 products bundling PHP, 354 of which remained unresolved on 28 October. The figures come from public sources and have not been independently verified.&lt;/p&gt;&lt;p&gt;Source: &lt;a href="https://www.gvip-project.org/blog/2026/php2shell/"&gt;GVIP — PHP2Shell: What It Tells Us About the Vulnerability Database Landscape&lt;/a&gt; · reported · minor&lt;/p&gt;</content>
+</entry>
+<entry>
+<title>Detailed technical deep dive into PHP2Shell internals</title>
+<id>tag:php2shell-live.surge.sh,2026:researcher-deep-dive-php2shell-internals</id>
+<link rel="alternate" type="text/html" href="https://akirapl.github.io/php2shell/?lang=en#ev-researcher-deep-dive-php2shell-internals"/>
+<link rel="related" href="https://djad04.github.io/php2shell-deep-dive"/>
+<published>2026-11-08T01:00:00Z</published>
+<updated>2026-11-08T01:00:00Z</updated>
+<category term="minor"/>
+<summary type="text">An independent researcher published a comprehensive technical analysis of the PHP2Shell vulnerabilities, describing the interaction between PHP sessions and the Zend Engine. The document details the memory corruption mechanism and how worker process reuse is leveraged to bypass protections. The analysis is based on PHP source code auditing and experiments with the 'Steal My Bitcoin' challenge.</summary>
+<content type="html">&lt;p&gt;An independent researcher published a comprehensive technical analysis of the PHP2Shell vulnerabilities, describing the interaction between PHP sessions and the Zend Engine. The document details the memory corruption mechanism and how worker process reuse is leveraged to bypass protections. The analysis is based on PHP source code auditing and experiments with the &amp;#x27;Steal My Bitcoin&amp;#x27; challenge.&lt;/p&gt;&lt;p&gt;Source: &lt;a href="https://djad04.github.io/php2shell-deep-dive"&gt;djad04 — PHP2Shell Deep Dive&lt;/a&gt; · reported · minor&lt;/p&gt;</content>
+</entry>
 <entry>
 <title>PHP 8.4.28RC1 tag released</title>
 <id>tag:php2shell-live.surge.sh,2026:php-8-4-28-rc1-tag</id>
