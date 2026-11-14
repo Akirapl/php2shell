@@ -10,7 +10,7 @@
    "en": "CVE-2026-109618 and CVE-2026-109619: critical RCE flaws in the PHP core",
    "de": "CVE-2026-109618 und CVE-2026-109619: kritische RCE-Lücken im PHP-Kern"
   },
-  "last_updated": "2026-11-10T18:05:02Z",
+  "last_updated": "2026-11-14T01:14:09Z",
   "maintainer_note": "Single source of truth. Every fact needs source_url, source_name, confidence; texts as {pl,en,de}. Run ./update_and_build.sh \"message\".",
   "timezone_note": {
    "pl": "Wszystkie czasy w UTC. Czasy z NOS (CEST) przeliczone na UTC (−2 h).",
@@ -4006,6 +4006,58 @@
    "info_credibility": 2,
    "time_kind": "published",
    "time_precision": "day"
+  },
+  {
+   "id": "checkpoint-php2shell-tsga-wiper",
+   "time_utc": "2026-11-12T00:00:00Z",
+   "importance": "major",
+   "title": {
+    "pl": "Check Point: atak PHP2Shell na własne bramy — backdoor TSGA i wiper plików na ESXi",
+    "en": "Check Point: PHP2Shell attack on its own gateways — TSGA backdoor and ESXi file wiper",
+    "de": "Check Point: PHP2Shell-Angriff auf eigene Gateways — TSGA-Backdoor und ESXi-Datei-Wiper"
+   },
+   "description": {
+    "pl": "Check Point Research opisuje kampanię wymierzoną w niezałatane bramy Check Point: dostęp początkowy przez luki PHP2Shell (CVE-2026-109618/109619) w portalach Mobile Access, a następnie eskalacja uprawnień do roota przez CVE-2026-123039 w DynamicCLI. Atakujący wdrażali powłoki PHP, trwały backdoor TSGA z komponentem TSProxy (wariant frameworku PhiliKit) oraz przechodzili na hosty VMware ESXi, uruchamiając wiper destroy_v6 i zostawiając notatki DREAM_ANNEXATION.txt. Pierwsza fala (30 października) celowała w organizacje izraelskie, druga (2 listopada) objęła wiele krajów; atrybucji do grupy powiązanej z Chinami nie potwierdzono. Twierdzenie dostawcy, niezweryfikowane niezależnie.",
+    "en": "Check Point Research describes a campaign targeting unpatched Check Point gateways: initial access via the PHP2Shell flaws (CVE-2026-109618/109619) in Mobile Access portals, followed by privilege escalation to root via CVE-2026-123039 in DynamicCLI. The attackers deployed PHP web shells and a persistent TSGA backdoor with a TSProxy component (a variant of the PhiliKit framework), and moved laterally to VMware ESXi hosts to run the destroy_v6 wiper and leave DREAM_ANNEXATION.txt notes. The first wave (October 30) targeted Israeli organizations and the second (November 2) spanned many countries; attribution to a China-linked group was not confirmed. Vendor claim, not independently verified.",
+    "de": "Check Point Research beschreibt eine Kampagne gegen ungepatchte Check-Point-Gateways: Erstzugriff über die PHP2Shell-Lücken (CVE-2026-109618/109619) in Mobile-Access-Portalen, gefolgt von einer Rechteausweitung auf Root über CVE-2026-123039 in DynamicCLI. Die Angreifer setzten PHP-Webshells und eine persistente TSGA-Backdoor mit TSProxy-Komponente (eine Variante des PhiliKit-Frameworks) ein und bewegten sich lateral auf VMware-ESXi-Hosts, um den Wiper destroy_v6 auszuführen und DREAM_ANNEXATION.txt-Notizen zu hinterlassen. Die erste Welle (30. Oktober) zielte auf israelische Organisationen, die zweite (2. November) betraf viele Länder; eine Zuschreibung zu einer mit China verbundenen Gruppe wurde nicht bestätigt. Angabe des Anbieters, nicht unabhängig verifiziert."
+   },
+   "confidence": "reported",
+   "source_name": "Check Point Research — PHP2Shell Exploitation on Check Point Gateway",
+   "source_url": "https://research.checkpoint.com/2026/php2shell-exploitation-on-check-point-gateway/",
+   "source_reliability": "B",
+   "info_credibility": 2,
+   "time_kind": "published",
+   "time_precision": "day"
+  },
+  {
+   "id": "check-point-gateway-php2shell-wiper",
+   "time_utc": "2026-10-30T00:00:00Z",
+   "importance": "major",
+   "title": {
+    "pl": "Check Point: ataki PHP2Shell na bramy Security Gateway z łańcuchem eskalacji i wiperem",
+    "en": "Check Point: PHP2Shell Chain Exploited Against Security Gateways with Wiper Deployment",
+    "de": "Check Point: PHP2Shell-Angriffskette gegen Security Gateways mit Wiper-Einsatz"
+   },
+   "description": {
+    "pl": "Check Point potwierdził aktywną eksploatację PHP2Shell (CVE-2026-109618, CVE-2026-109619) przeciwko bramom Security Gateway z niezałatanym portalem Mobile Access. Atakujący uzyskiwali początkowy dostęp przez PHP2Shell, następnie eskalowali uprawnienia do roota przez CVE-2026-123039 (lokalna eskalacja w DynamicCLI), wdrażali webshelle PHP oraz backdoory TSGA i TSProxy z rodziny PhiliKit. Pierwsza fala (30 października) objęła organizacje izraelskie i miała charakter destrukcyjny — wdrożono wiper destroy_v6 i pozostawiono noty DREAM_ANNEXATION.txt; druga fala (2 listopada) dotknęła organizacje na całym świecie, bez aktywności destrukcyjnej. Check Point ocenia, że narzędzia wskazują na chińską grupę UNC5221, jednak destrukcyjny charakter i motywy polityczne nie pasują do znanych operacji chińskich — możliwa operacja false flag. Łącznie skompromitowano kilkadziesiąt niezałatanych systemów.",
+    "en": "Check Point confirmed active exploitation of PHP2Shell (CVE-2026-109618, CVE-2026-109619) against Security Gateways with unpatched Mobile Access portals. Attackers gained initial access via PHP2Shell, escalated to root through CVE-2026-123039 (local privilege escalation in DynamicCLI), and deployed PHP webshells alongside TSGA and TSProxy backdoors from the PhiliKit family. The first wave (October 30) targeted Israeli organizations destructively — the destroy_v6 wiper was deployed and DREAM_ANNEXATION.txt notes were left; the second wave (November 2) affected organizations worldwide without destructive activity. Check Point assesses that tooling points to China-nexus UNC5221, but the destructive nature and political motives do not align with known Chinese operations — a false flag cannot be ruled out. A few dozen unpatched systems were compromised in total.",
+    "de": "Check Point bestätigte die aktive Ausnutzung von PHP2Shell (CVE-2026-109618, CVE-2026-109619) gegen Security Gateways mit ungepatchten Mobile-Access-Portalen. Angreifer verschafften sich ersten Zugriff über PHP2Shell, eskalierten über CVE-2026-123039 (lokale Rechteausweitung in DynamicCLI) auf Root-Rechte und setzten PHP-Webshells sowie die Backdoors TSGA und TSProxy aus der PhiliKit-Familie ein. Die erste Welle (30. Oktober) zielte destruktiv auf israelische Organisationen — der Wiper destroy_v6 wurde eingesetzt und DREAM_ANNEXATION.txt-Notizen hinterlassen; die zweite Welle (2. November) betraf Organisationen weltweit ohne destruktive Aktivität. Check Point bewertet die Werkzeuge als Hinweis auf die China-nahe Gruppe UNC5221, jedoch passen der destruktive Charakter und die politischen Motive nicht zu bekannten chinesischen Operationen — eine False-Flag-Operation ist möglich. Insgesamt wurden einige Dutzend ungepatchte Systeme kompromittiert."
+   },
+   "confidence": "reported",
+   "source_name": "Check Point — Security Advisory: Active Exploitation of PHP2Shell and Local Privilege Escalation",
+   "source_url": "https://blog.checkpoint.com/security/security-advisory-active-exploitation-of-php2shell-and-local-privilege-escalation",
+   "source_reliability": "A",
+   "info_credibility": 1,
+   "time_kind": "event",
+   "time_precision": "day",
+   "flags": [
+    "needs_second_source"
+   ],
+   "flag_note": {
+    "pl": "Nie wszystkie twierdzenia z opisu znaleziono w treści źródła. Wymaga drugiego źródła albo ręcznego sprawdzenia.",
+    "en": "Not all claims from the description were found in the source text. Needs a second source or a manual check.",
+    "de": "Nicht alle Aussagen der Beschreibung wurden im Quellentext gefunden. Zweite Quelle oder manuelle Prüfung nötig."
+   }
   }
  ],
  "actors": [
@@ -6980,6 +7032,26 @@
    "name": "oss-security — OT - PHP2shell - how did we do five years after Log2j?",
    "url": "https://seclists.org/oss-sec/2026/q4/632",
    "type": "primary"
+  },
+  {
+   "name": "Check Point Research — PHP2Shell Exploitation on Check Point Gateway",
+   "url": "https://research.checkpoint.com/2026/php2shell-exploitation-on-check-point-gateway/",
+   "type": "vendor"
+  },
+  {
+   "name": "The Hacker News — Hackers Exploit PHP2Shell Flaws in Check Point Gateways to Deploy TSGA Backdoor and Wipe ESXi Files",
+   "url": "https://thehackernews.com/2026/11/hackers-exploit-php2shell-flaws-in.html",
+   "type": "news"
+  },
+  {
+   "name": "Check Point — Security Advisory: Active Exploitation of PHP2Shell and Local Privilege Escalation",
+   "url": "https://blog.checkpoint.com/security/security-advisory-active-exploitation-of-php2shell-and-local-privilege-escalation",
+   "type": "vendor"
+  },
+  {
+   "name": "SecurityWeek — PHP2Shell Exploited in Destructive Check Point Gateway Attacks",
+   "url": "https://www.securityweek.com/php2shell-exploited-in-destructive-check-point-gateway-attacks/",
+   "type": "press"
   }
  ],
  "social_mood": [
