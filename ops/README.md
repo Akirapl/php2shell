@@ -7,4 +7,5 @@ paths on purpose (see HANDOVER.md §10.10); `ops/checks.py` keeps all other file
 - `checks.py` — stdlib checks: `facts`, `ledger`, `parity`, `paths`, `secrets` (`--only a,b`). Exit 1 on any FAIL.
 - `env.example` — variable and credential **names** with scopes. Never put values in the repo.
 - `MISSING_FROM_REPO.md` — box-only files the build needs (size + sha256) and how the owner can provide them.
-- `routines/` — export of the server-side routine (verbatim prompt) and disabled cron / GitHub Actions templates.
+- `routines/` — export of the server-side routine (verbatim prompt), disabled cron / GitHub Actions templates, and the uninstalled annex A.2 user timer.
+- `casestudy_annex.py` — deterministic annex A.2 generator (`python3 ops/test_casestudy_annex.py`). It only opens or updates branch `auto/casestudy-annex-a2`.

@@ -34,3 +34,7 @@ CLI with web search, the box (or an equivalent machine with the files in `ops/MI
   repo-side checks, because the build pipeline is box-only; it is a starting point for after NEXT_TASK-style import.
 
 Neither is installed. Copying the Actions file into `.github/workflows/` needs a token with Workflows: write and owner approval.
+
+## Case-study annex A.2 (not installed)
+
+`php2shell-casestudy-annex.service` and `php2shell-casestudy-annex.timer` are files in this directory only. Nothing in the repository enables them. The timer is `OnCalendar=*-*-* 07:30:00 Europe/Berlin` with `Persistent=true`. The service runs `ops/casestudy_annex.py`, which rebuilds the marked annex in `case-study/{pl,en,de}.md` from `data/facts.json` and may open or update the pull request on `auto/casestudy-annex-a2`. It does not merge, does not push `main` or `gh-pages`, and does not publish the site. Installing the user units is a separate owner decision.

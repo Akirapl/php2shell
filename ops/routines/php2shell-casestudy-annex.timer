@@ -1,0 +1,10 @@
+[Unit]
+Description=Daily PHP2Shell case-study annex A.2 at 07:30 Europe/Berlin
+
+[Timer]
+OnCalendar=*-*-* 07:30:00 Europe/Berlin
+Persistent=true
+Unit=php2shell-casestudy-annex.service
+
+[Install]
+WantedBy=timers.target

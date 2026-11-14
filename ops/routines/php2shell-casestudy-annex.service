@@ -1,0 +1,11 @@
+[Unit]
+Description=Generate PHP2Shell case-study annex A.2 and open or update one pull request
+Documentation=https://github.com/Akirapl/php2shell/blob/main/ops/casestudy_annex.py
+
+[Service]
+Type=oneshot
+WorkingDirectory=%h/php2shell
+ExecStart=/usr/bin/python3 %h/php2shell/ops/casestudy_annex.py
+StandardOutput=append:%h/php2shell/logs/casestudy-annex.log
+StandardError=append:%h/php2shell/logs/casestudy-annex.log
+TimeoutStartSec=10min
