@@ -10,7 +10,7 @@
    "en": "CVE-2026-109618 and CVE-2026-109619: critical RCE flaws in the PHP core",
    "de": "CVE-2026-109618 und CVE-2026-109619: kritische RCE-Lücken im PHP-Kern"
   },
-  "last_updated": "2026-11-15T17:20:29Z",
+  "last_updated": "2026-11-19T17:10:26Z",
   "maintainer_note": "Single source of truth. Every fact needs source_url, source_name, confidence; texts as {pl,en,de}. Run ./update_and_build.sh \"message\".",
   "timezone_note": {
    "pl": "Wszystkie czasy w UTC. Czasy z NOS (CEST) przeliczone na UTC (−2 h).",
@@ -4028,6 +4028,58 @@
    "info_credibility": 1,
    "time_kind": "event",
    "time_precision": "day"
+  },
+  {
+   "id": "php-nov-2026-release",
+   "time_utc": "2026-11-19T14:00:00Z",
+   "importance": "major",
+   "title": {
+    "pl": "PHP wydaje aktualizacje bezpieczeństwa 8.2.36, 8.3.37, 8.4.28, 8.5.13 łatające krytyczne luki, w tym CVE-2026-115560",
+    "en": "PHP releases security updates 8.2.36, 8.3.37, 8.4.28, 8.5.13 fixing critical flaws including CVE-2026-115560",
+    "de": "PHP veröffentlicht Sicherheitsupdates 8.2.36, 8.3.37, 8.4.28, 8.5.13 zur Behebung kritischer Schwachstellen, darunter CVE-2026-115560"
+   },
+   "description": {
+    "pl": "PHP opublikował 19 listopada 2026 roku regularne aktualizacje bezpieczeństwa dla wszystkich wspieranych gałęzi: 8.2.36, 8.3.37, 8.4.28 i 8.5.13. Łatają one krytyczne luki, w tym CVE-2026-115560 — zdalne wykonanie kodu przez mechanizm session upload progress, wymagające niestandardowej kombinacji konfiguracji i kodu aplikacji. Według PHP luki krytyczne w tym wydaniu wymagają niestandardowej konfiguracji lub rzadkich ustawień. Tego samego dnia opublikowano również PHP 8.6.0 GA.",
+    "en": "PHP published regular security releases for all supported branches — 8.2.36, 8.3.37, 8.4.28, and 8.5.13 — on November 19, 2026. They address critical vulnerabilities including CVE-2026-115560, a remote code execution flaw in session upload progress that requires an unusual combination of configuration and application code. According to PHP, the critical issues in this release require non-default configuration or uncommon setups. PHP 8.6.0 GA was also released the same day.",
+    "de": "PHP veröffentlichte am 19. November 2026 reguläre Sicherheitsupdates für alle unterstützten Zweige: 8.2.36, 8.3.37, 8.4.28 und 8.5.13. Sie beheben kritische Schwachstellen, darunter CVE-2026-115560 — eine Remotecodeausführung über Session-Upload-Progress, die eine ungewöhnliche Kombination aus Konfiguration und Anwendungscode erfordert. Laut PHP setzen die kritischen Probleme in diesem Release eine nicht-standardmäßige Konfiguration oder ungewöhnliche Einrichtungen voraus. Am selben Tag wurde auch PHP 8.6.0 veröffentlicht."
+   },
+   "confidence": "confirmed",
+   "source_name": "PHP.net — PHP 8.2.36, 8.3.37, 8.4.28, 8.5.13 Released!",
+   "source_url": "https://www.php.net/archive/2026.php",
+   "source_reliability": "A",
+   "info_credibility": 1,
+   "time_kind": "event",
+   "time_precision": "hour"
+  },
+  {
+   "id": "php-nov19-security-release",
+   "time_utc": "2026-11-19T14:15:00Z",
+   "importance": "major",
+   "title": {
+    "pl": "PHP wydaje poprawki bezpieczeństwa: 7 krytycznych podatności RCE, w tym CVE-2026-115560",
+    "en": "PHP ships security updates: 7 critical RCE vulnerabilities, including CVE-2026-115560",
+    "de": "PHP veröffentlicht Sicherheitsupdates: 7 kritische RCE-Schwachstellen, darunter CVE-2026-115560"
+   },
+   "description": {
+    "pl": "PHP wydało 19 listopada 2026 zaplanowane wcześniej poprawki bezpieczeństwa dla wszystkich wspieranych wersji (8.2.36, 8.3.37, 8.4.28, 8.5.13 oraz nowe 8.6.0). Łącznie załatano 7 krytycznych podatności RCE (CVSS 9.2), w tym CVE-2026-115560 w mechanizmie session upload progress, publicznie znaną od 23 października. Pozostałe podatności — trzy use-after-free w silniku i rozszerzeniu Date, dwa dodatkowe błędy sesyjne oraz smuggling żądań PHP-FPM (CVE-2026-129289) — nie były wcześniej ujawnione. Żadna z siedmiu podatności nie figuruje w CISA KEV ani nie ma potwierdzenia eksploatacji w środowisku naturalnym na dzień wydania.",
+    "en": "On November 19, 2026, PHP released its previously-announced security updates for all supported versions (8.2.36, 8.3.37, 8.4.28, 8.5.13, and the new 8.6.0). A total of 7 critical RCE vulnerabilities (CVSS 9.2) were patched, including CVE-2026-115560 in session upload progress, publicly known since October 23. The remaining vulnerabilities — three engine and Date extension use-after-frees, two additional session bugs, and a PHP-FPM request smuggling flaw (CVE-2026-129289) — had not been previously disclosed. None of the seven vulnerabilities appear in CISA KEV nor have confirmed in-the-wild exploitation as of the release date.",
+    "de": "Am 19. November 2026 veröffentlichte PHP die zuvor angekündigten Sicherheitsupdates für alle unterstützten Versionen (8.2.36, 8.3.37, 8.4.28, 8.5.13 sowie das neue 8.6.0). Insgesamt wurden 7 kritische RCE-Schwachstellen (CVSS 9.2) behoben, darunter CVE-2026-115560 im Session-Upload-Progress-Mechanismus, die seit dem 23. Oktober öffentlich bekannt war. Die übrigen Schwachstellen — drei Use-after-Free-Fehler in der Engine und der Date-Erweiterung, zwei zusätzliche Session-Fehler sowie ein PHP-FPM-Request-Smuggling (CVE-2026-129289) — waren zuvor nicht öffentlich bekannt. Keine der sieben Schwachstellen steht auf der CISA KEV-Liste oder hat bestätigte Ausnutzung in freier Wildbahn zum Zeitpunkt der Veröffentlichung."
+   },
+   "confidence": "reported",
+   "source_name": "PHP.net — PHP 8.2.36, 8.3.37, 8.4.28, 8.5.13 Released",
+   "source_url": "https://www.php.net/archive/2026.php",
+   "source_reliability": "A",
+   "info_credibility": 1,
+   "time_kind": "published",
+   "time_precision": "minute",
+   "flags": [
+    "needs_second_source"
+   ],
+   "flag_note": {
+    "pl": "Nie wszystkie twierdzenia z opisu znaleziono w treści źródła. Wymaga drugiego źródła albo ręcznego sprawdzenia.",
+    "en": "Not all claims from the description were found in the source text. Needs a second source or a manual check.",
+    "de": "Nicht alle Aussagen der Beschreibung wurden im Quellentext gefunden. Zweite Quelle oder manuelle Prüfung nötig."
+   }
   }
  ],
  "actors": [
@@ -7022,6 +7074,26 @@
    "name": "heise Security — Angreifer verketteten PHP2Shell mit Root-Lücke auf Check-Point-Gateways",
    "url": "https://www.heise.de/news/Angreifer-verketteten-PHP2Shell-mit-Root-Luecke-auf-Check-Point-Gateways-11525531.html",
    "type": "press"
+  },
+  {
+   "name": "The Hacker News — PHP Warns of Critical Security Flaws Affecting All Supported Versions, Fixes Coming November 19",
+   "url": "https://thehackernews.com/2026/11/php-warns-of-critical-security-flaws.html",
+   "type": "press"
+  },
+  {
+   "name": "SecurityWeek — PHP Readies Critical Security Updates to Patch Another RCE Flaw",
+   "url": "https://www.securityweek.com/php-readies-critical-security-updates-to-patch-another-rce-flaw/",
+   "type": "press"
+  },
+  {
+   "name": "The Hacker News — PHP Fixes 7 Critical Flaws, Including Bugs That Could Allow Remote Code Execution",
+   "url": "https://thehackernews.com/2026/11/php-fixes-7-critical-flaws-including.html",
+   "type": "press"
+  },
+  {
+   "name": "Upwind — PHP Critical Vulnerabilities: Affected Versions and Mitigations",
+   "url": "https://upwind.io/blog/php-critical-vulnerabilities-affected-versions-and-mitigations",
+   "type": "vendor"
   }
  ],
  "social_mood": [
