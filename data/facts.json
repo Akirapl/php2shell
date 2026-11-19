@@ -10,7 +10,7 @@
    "en": "CVE-2026-109618 and CVE-2026-109619: critical RCE flaws in the PHP core",
    "de": "CVE-2026-109618 und CVE-2026-109619: kritische RCE-Lücken im PHP-Kern"
   },
-  "last_updated": "2026-11-15T17:20:29Z",
+  "last_updated": "2026-11-19T18:11:09Z",
   "maintainer_note": "Single source of truth. Every fact needs source_url, source_name, confidence; texts as {pl,en,de}. Run ./update_and_build.sh \"message\".",
   "timezone_note": {
    "pl": "Wszystkie czasy w UTC. Czasy z NOS (CEST) przeliczone na UTC (−2 h).",
@@ -4028,6 +4028,66 @@
    "info_credibility": 1,
    "time_kind": "event",
    "time_precision": "day"
+  },
+  {
+   "id": "php-aftershell-disclosure",
+   "time_utc": "2026-11-19T14:00:00Z",
+   "importance": "critical",
+   "title": {
+    "pl": "PHP łata krytyczną podatność phpAfterShell (CVE-2026-126714, CVSS 9.2) w plikowym magazynie sesji",
+    "en": "PHP patches critical phpAfterShell vulnerability (CVE-2026-126714, CVSS 9.2) in file-based session storage",
+    "de": "PHP behebt kritische phpAfterShell-Schwachstelle (CVE-2026-126714, CVSS 9.2) im dateibasierten Sitzungsspeicher"
+   },
+   "description": {
+    "pl": "PHP wydało aktualizacje zabezpieczeń 8.2.36, 8.3.37, 8.4.28, 8.5.13 i 8.6.0 łatjące podatność CVE-2026-126714 (CVSS 9.2) nazwaną phpAfterShell. Błąd w domyślnym plikowym magazynie sesji pozwala na pozostawienie częściowo nadpisanych plików sesji po przerwanym zapisie; przy kolejnym wywołaniu session_start() pliki te deserializują obiekty kontrolowane przez atakującego. Odkrycia dokonała firma Depthfirst — do wykonania kodu potrzebny jest łańcuch gadżetów, jednak badacze wykorzystali drugi błąd (uszkodzenie pamięci we wbudowanej klasie PHP) by uzyskać RCE bez polegania na kodzie aplikacji. Październikowe poprawki PHP2Shell blokowały jedynie deserializację w trakcie wywołania zwrotnego RFC1867, nie rozwązując problemu przerwanych zapisów. Nie odnotowano ataków w środowisku produkcyjnym.",
+    "en": "PHP released security updates 8.2.36, 8.3.37, 8.4.28, 8.5.13, and 8.6.0 patching CVE-2026-126714 (CVSS 9.2) dubbed phpAfterShell. A flaw in the default file-based session storage allows partially overwritten session files to persist after an interrupted write; on the next session_start() call, these files deserialize attacker-controlled objects. Discovered by Depthfirst — code execution requires a gadget chain, but the researchers leveraged a second bug (memory corruption in a built-in PHP class) to achieve RCE without relying on application code. The October PHP2Shell fixes only blocked deserialization during the RFC1867 callback, leaving interrupted writes unaddressed. No production attacks have been reported.",
+    "de": "PHP veröffentlichte Sicherheitsupdates 8.2.36, 8.3.37, 8.4.28, 8.5.13 und 8.6.0 zur Behebung von CVE-2026-126714 (CVSS 9.2), genannt phpAfterShell. Der Fehler im standardmäßigen dateibasierten Sitzungsspeicher ermöglicht es, teilweise überschriebene Sitzungsdateien nach einem unterbrochenen Schreibvorgang zu hinterlassen; beim nächsten session_start()-Aufruf deserialisieren diese Dateien vom Angreifer kontrollierte Objekte. Entdeckt von Depthfirst — zur Codeausführung ist eine Gadget-Kette erforderlich, die Forscher nutzten jedoch einen zweiten Fehler (Speicherbeschädigung in einer integrierten PHP-Klasse) für RCE ohne Abhängigkeit vom Anwendungscode. Die PHP2Shell-Korrekturen vom Oktober blockierten nur die Deserialisierung während des RFC1867-Rückrufs und ließen unterbrochene Schreibvorgänge ungelöst. Keine produktiven Angriffe gemeldet."
+   },
+   "confidence": "reported",
+   "source_name": "PHP Project — GHSA-fm2m-fjf5-v3cp",
+   "source_url": "https://github.com/php/php-src/security/advisories/GHSA-fm2m-fjf5-v3cp",
+   "source_reliability": "A",
+   "info_credibility": 1,
+   "time_kind": "published",
+   "time_precision": "hour",
+   "flags": [
+    "needs_second_source"
+   ],
+   "flag_note": {
+    "pl": "Treść źródła nie potwierdza twierdzeń z opisu. Wymaga drugiego źródła albo ręcznego sprawdzenia.",
+    "en": "The source text does not support the claims in the description. Needs a second source or a manual check.",
+    "de": "Der Quellentext stützt die Aussagen der Beschreibung nicht. Zweite Quelle oder manuelle Prüfung nötig."
+   }
+  },
+  {
+   "id": "php-november-2026-security-release",
+   "time_utc": "2026-11-19T14:00:00Z",
+   "importance": "major",
+   "title": {
+    "pl": "PHP wydaje poprawki bezpieczeństwa dla 18 podatności, w tym krytyczne błędy RCE",
+    "en": "PHP releases security patches for 18 vulnerabilities, including critical RCE bugs",
+    "de": "PHP veröffentlicht Sicherheitsupdates für 18 Schwachstellen, darunter kritische RCE-Fehler"
+   },
+   "description": {
+    "pl": "19 listopada 2026 zespół PHP wydał wersje 8.5.13, 8.4.28, 8.3.37 i 8.2.36, które łącznie usuwają 18 podatności (CVE) we wszystkich wspieranych gałęziach. Najpoważniejsza, CVE-2026-129289, to krytyczna podatność w PHP-FPM (CVSS 9.2) umożliwiająca nieuwierzytelnionym atakującym zdalne wykonanie kodu przy konfiguracjach serwera WWW ponownie wykorzystujących połączenia do PHP-FPM. Wśród załatanych błędów znajduje się CVE-2026-115560, uprzednio opisany w październikowym komunikacie informacyjnym PHP jako niezałatany, oraz kilka innych podatności use-after-free prowadzących do RCE. Wydanie poprzedziła zapowiedź z 18 listopada ostrzegająca przed krytycznymi podatnościami we wszystkich wspieranych gałęziach.",
+    "en": "On November 19, 2026, the PHP team released versions 8.5.13, 8.4.28, 8.3.37, and 8.2.36, collectively addressing 18 CVEs across all supported branches. The most severe, CVE-2026-129289, is a critical PHP-FPM request smuggling flaw (CVSS 9.2) allowing unauthenticated attackers to remotely execute code under web server configurations that reuse connections to PHP-FPM. The patched flaws include CVE-2026-115560, previously disclosed as unpatched in PHP's October informational advisory, and several other use-after-free vulnerabilities leading to RCE. The release was preceded by a November 18 pre-announcement warning of critical vulnerabilities across all supported branches.",
+    "de": "Am 19. November 2026 veröffentlichte das PHP-Team die Versionen 8.5.13, 8.4.28, 8.3.37 und 8.2.36, die insgesamt 18 CVEs in allen unterstützten Zweigen beheben. Die schwerwiegendste Schwachstelle, CVE-2026-129289, ist ein kritischer PHP-FPM-Request-Smuggling-Fehler (CVSS 9.2), der nicht authentifizierten Angreifern die Remotecodeausführung unter Webserver-Konfigurationen mit wiederverwendeten PHP-FPM-Verbindungen ermöglicht. Zu den behobenen Fehlern gehören CVE-2026-115560, die zuvor in der Oktober-Mitteilung von PHP als ungepatcht gemeldet wurde, sowie mehrere andere Use-after-Free-Schwachstellen, die zu RCE führen können. Der Veröffentlichung ging eine Vorankündigung vom 18. November voraus, die vor kritischen Schwachstellen in allen unterstützten Zweigen warnte."
+   },
+   "confidence": "reported",
+   "source_name": "PHP.net — PHP 8.5.13, 8.4.28, 8.3.37, 8.2.36 Released",
+   "source_url": "https://www.php.net/archive/2026.php",
+   "source_reliability": "A",
+   "info_credibility": 1,
+   "time_kind": "event",
+   "time_precision": "hour",
+   "flags": [
+    "needs_second_source"
+   ],
+   "flag_note": {
+    "pl": "Nie wszystkie twierdzenia z opisu znaleziono w treści źródła. Wymaga drugiego źródła albo ręcznego sprawdzenia.",
+    "en": "Not all claims from the description were found in the source text. Needs a second source or a manual check.",
+    "de": "Nicht alle Aussagen der Beschreibung wurden im Quellentext gefunden. Zweite Quelle oder manuelle Prüfung nötig."
+   }
   }
  ],
  "actors": [
@@ -7022,6 +7082,31 @@
    "name": "heise Security — Angreifer verketteten PHP2Shell mit Root-Lücke auf Check-Point-Gateways",
    "url": "https://www.heise.de/news/Angreifer-verketteten-PHP2Shell-mit-Root-Luecke-auf-Check-Point-Gateways-11525531.html",
    "type": "press"
+  },
+  {
+   "name": "PHP Project — GHSA-fm2m-fjf5-v3cp",
+   "url": "https://github.com/php/php-src/security/advisories/GHSA-fm2m-fjf5-v3cp",
+   "type": "official"
+  },
+  {
+   "name": "Depthfirst — phpAfterShell: From Interrupted Session Writes to Remote Code Execution",
+   "url": "https://depthfirst.com/research/phpaftershell",
+   "type": "research"
+  },
+  {
+   "name": "The Hacker News — phpAfterShell Explained: How Hackers Could Turn a PHP Session Flaw Into Code Execution",
+   "url": "https://thehackernews.com/2026/11/phpaftershell-explained-how-hackers.html",
+   "type": "press"
+  },
+  {
+   "name": "BleepingComputer — PHP security updates fix 18 flaws, including critical RCE bugs",
+   "url": "https://www.bleepingcomputer.com/news/security/php-security-updates-fix-18-flaws-including-critical-rce-bugs/",
+   "type": "press"
+  },
+  {
+   "name": "Aikido — PHP critical security release, 19 November (CVE-2026-129289)",
+   "url": "https://www.aikido.dev/blog/php-security-release-19-november-2026-cve-2026-115560",
+   "type": "vendor"
   }
  ],
  "social_mood": [
