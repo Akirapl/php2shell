@@ -3,12 +3,34 @@
 <title>PHP2Shell — oś czasu (PL)</title>
 <subtitle>Relacja na żywo: PHP2Shell (CVE-2026-109618/109619), krytyczne RCE w rdzeniu PHP (CVSS 9.2). Poprawki: 8.5.12, 8.4.27, 8.3.36, 8.2.35. Każdy fakt ze źródłem.</subtitle>
 <id>https://akirapl.github.io/php2shell/feed-pl.xml</id>
-<updated>2026-11-15T17:20:29Z</updated>
+<updated>2026-11-19T18:11:09Z</updated>
 <link rel="self" type="application/atom+xml" href="https://akirapl.github.io/php2shell/feed-pl.xml"/>
 <link rel="alternate" type="text/html" hreflang="pl" href="https://akirapl.github.io/php2shell/?lang=pl"/>
 <author><name>Dawid Kulik (@Akirapl)</name><uri>https://github.com/Akirapl</uri></author>
 <icon>https://akirapl.github.io/php2shell/assets/og-image.png</icon>
 <rights>CC BY 4.0</rights>
+<entry>
+<title>PHP łata krytyczną podatność phpAfterShell (CVE-2026-126714, CVSS 9.2) w plikowym magazynie sesji</title>
+<id>tag:php2shell-live.surge.sh,2026:php-aftershell-disclosure</id>
+<link rel="alternate" type="text/html" href="https://akirapl.github.io/php2shell/?lang=pl#ev-php-aftershell-disclosure"/>
+<link rel="related" href="https://github.com/php/php-src/security/advisories/GHSA-fm2m-fjf5-v3cp"/>
+<published>2026-11-19T14:00:00Z</published>
+<updated>2026-11-19T14:00:00Z</updated>
+<category term="critical"/>
+<summary type="text">PHP wydało aktualizacje zabezpieczeń 8.2.36, 8.3.37, 8.4.28, 8.5.13 i 8.6.0 łatjące podatność CVE-2026-126714 (CVSS 9.2) nazwaną phpAfterShell. Błąd w domyślnym plikowym magazynie sesji pozwala na pozostawienie częściowo nadpisanych plików sesji po przerwanym zapisie; przy kolejnym wywołaniu session_start() pliki te deserializują obiekty kontrolowane przez atakującego. Odkrycia dokonała firma Depthfirst — do wykonania kodu potrzebny jest łańcuch gadżetów, jednak badacze wykorzystali drugi błąd (uszkodzenie pamięci we wbudowanej klasie PHP) by uzyskać RCE bez polegania na kodzie aplikacji. Październikowe poprawki PHP2Shell blokowały jedynie deserializację w trakcie wywołania zwrotnego RFC1867, nie rozwązując problemu przerwanych zapisów. Nie odnotowano ataków w środowisku produkcyjnym.</summary>
+<content type="html">&lt;p&gt;PHP wydało aktualizacje zabezpieczeń 8.2.36, 8.3.37, 8.4.28, 8.5.13 i 8.6.0 łatjące podatność CVE-2026-126714 (CVSS 9.2) nazwaną phpAfterShell. Błąd w domyślnym plikowym magazynie sesji pozwala na pozostawienie częściowo nadpisanych plików sesji po przerwanym zapisie; przy kolejnym wywołaniu session_start() pliki te deserializują obiekty kontrolowane przez atakującego. Odkrycia dokonała firma Depthfirst — do wykonania kodu potrzebny jest łańcuch gadżetów, jednak badacze wykorzystali drugi błąd (uszkodzenie pamięci we wbudowanej klasie PHP) by uzyskać RCE bez polegania na kodzie aplikacji. Październikowe poprawki PHP2Shell blokowały jedynie deserializację w trakcie wywołania zwrotnego RFC1867, nie rozwązując problemu przerwanych zapisów. Nie odnotowano ataków w środowisku produkcyjnym.&lt;/p&gt;&lt;p&gt;Źródło: &lt;a href="https://github.com/php/php-src/security/advisories/GHSA-fm2m-fjf5-v3cp"&gt;PHP Project — GHSA-fm2m-fjf5-v3cp&lt;/a&gt; · doniesienie · critical&lt;/p&gt;</content>
+</entry>
+<entry>
+<title>PHP wydaje poprawki bezpieczeństwa dla 18 podatności, w tym krytyczne błędy RCE</title>
+<id>tag:php2shell-live.surge.sh,2026:php-november-2026-security-release</id>
+<link rel="alternate" type="text/html" href="https://akirapl.github.io/php2shell/?lang=pl#ev-php-november-2026-security-release"/>
+<link rel="related" href="https://www.php.net/archive/2026.php"/>
+<published>2026-11-19T14:00:00Z</published>
+<updated>2026-11-19T14:00:00Z</updated>
+<category term="major"/>
+<summary type="text">19 listopada 2026 zespół PHP wydał wersje 8.5.13, 8.4.28, 8.3.37 i 8.2.36, które łącznie usuwają 18 podatności (CVE) we wszystkich wspieranych gałęziach. Najpoważniejsza, CVE-2026-129289, to krytyczna podatność w PHP-FPM (CVSS 9.2) umożliwiająca nieuwierzytelnionym atakującym zdalne wykonanie kodu przy konfiguracjach serwera WWW ponownie wykorzystujących połączenia do PHP-FPM. Wśród załatanych błędów znajduje się CVE-2026-115560, uprzednio opisany w październikowym komunikacie informacyjnym PHP jako niezałatany, oraz kilka innych podatności use-after-free prowadzących do RCE. Wydanie poprzedziła zapowiedź z 18 listopada ostrzegająca przed krytycznymi podatnościami we wszystkich wspieranych gałęziach.</summary>
+<content type="html">&lt;p&gt;19 listopada 2026 zespół PHP wydał wersje 8.5.13, 8.4.28, 8.3.37 i 8.2.36, które łącznie usuwają 18 podatności (CVE) we wszystkich wspieranych gałęziach. Najpoważniejsza, CVE-2026-129289, to krytyczna podatność w PHP-FPM (CVSS 9.2) umożliwiająca nieuwierzytelnionym atakującym zdalne wykonanie kodu przy konfiguracjach serwera WWW ponownie wykorzystujących połączenia do PHP-FPM. Wśród załatanych błędów znajduje się CVE-2026-115560, uprzednio opisany w październikowym komunikacie informacyjnym PHP jako niezałatany, oraz kilka innych podatności use-after-free prowadzących do RCE. Wydanie poprzedziła zapowiedź z 18 listopada ostrzegająca przed krytycznymi podatnościami we wszystkich wspieranych gałęziach.&lt;/p&gt;&lt;p&gt;Źródło: &lt;a href="https://www.php.net/archive/2026.php"&gt;PHP.net — PHP 8.5.13, 8.4.28, 8.3.37, 8.2.36 Released&lt;/a&gt; · doniesienie · major&lt;/p&gt;</content>
+</entry>
 <entry>
 <title>GVIP publikuje retrospektywę obsługi PHP2Shell przez bazy podatności</title>
 <id>tag:php2shell-live.surge.sh,2026:gvip-php2shell-retrospective</id>
