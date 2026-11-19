@@ -10,7 +10,7 @@
    "en": "CVE-2026-109618 and CVE-2026-109619: critical RCE flaws in the PHP core",
    "de": "CVE-2026-109618 und CVE-2026-109619: kritische RCE-Lücken im PHP-Kern"
   },
-  "last_updated": "2026-11-15T17:20:29Z",
+  "last_updated": "2026-11-19T15:30:10Z",
   "maintainer_note": "Single source of truth. Every fact needs source_url, source_name, confidence; texts as {pl,en,de}. Run ./update_and_build.sh \"message\".",
   "timezone_note": {
    "pl": "Wszystkie czasy w UTC. Czasy z NOS (CEST) przeliczone na UTC (−2 h).",
@@ -4028,6 +4028,184 @@
    "info_credibility": 1,
    "time_kind": "event",
    "time_precision": "day"
+  },
+  {
+   "id": "cve-2026-129481-session-uaf",
+   "time_utc": "2026-11-19T14:06:00Z",
+   "importance": "critical",
+   "title": {
+    "pl": "PHP: krytyczny CVE-2026-129481 – use-after-free w ext-session po przerwaniu shutdownu (niepełna łatka PHP2Shell)",
+    "en": "PHP: Critical CVE-2026-129481 – use-after-free in ext-session after interrupted shutdown (incomplete PHP2Shell fix)",
+    "de": "PHP: Kritischer CVE-2026-129481 – Use-after-free in ext-session nach unterbrochenem Shutdown (unvollständiger PHP2Shell-Fix)"
+   },
+   "description": {
+    "pl": "PHP opublikowało krytyczną lukę CVE-2026-129481 (CVSS 9.2, CWE-416) – use-after-free w rozszerzeniu ext-session po przerwaniu shutdownu sesji. Gdy fatal error w callbacku użytkownika (np. stream_close()) przerwie zamykanie sesji, wskaźnik do nazwy pliku skryptu pozostaje po zwolnieniu pamięci żądania, a kolejne żądanie w tym samym workerze PHP-FPM może się do niego odwołać. Luka dotyczy PHP 8.3–8.5 i jest załatana w wersjach 8.3.37, 8.4.28, 8.5.13 oraz 8.6.0. Jest to niepełna łatka na CVE-2026-109619 (oryginalne PHP2Shell); wektor różni się od ścieżek early-error i upload-progress z oryginalnego advisory. Wykonanie kodu tą konkretną ścieżką nie zostało dotąd zademonstrowane. Opublikowana w ramach listopadowej paczki 7 krytycznych CVE dla PHP.",
+    "en": "PHP published critical vulnerability CVE-2026-129481 (CVSS 9.2, CWE-416) – a use-after-free in the ext-session extension after interrupted session shutdown. When a fatal error in a user callback (e.g. stream_close()) interrupts session cleanup, a pointer to the script filename persists after request memory is freed; a subsequent request in the same PHP-FPM worker can then reference the freed region. The flaw affects PHP 8.3–8.5 and is patched in 8.3.37, 8.4.28, 8.5.13, and 8.6.0. This is an incomplete fix for CVE-2026-109619 (original PHP2Shell); the vector differs from the early-error and upload-progress paths in the original advisory. Code execution through this specific path has not yet been demonstrated. Published as part of the November batch of 7 critical PHP CVEs.",
+    "de": "PHP veröffentlichte die kritische Schwachstelle CVE-2026-129481 (CVSS 9.2, CWE-416) – ein Use-after-free in der ext-session-Erweiterung nach unterbrochenem Session-Shutdown. Wenn ein fataler Fehler in einem Benutzer-Callback (z. B. stream_close()) die Sitzungsbereinigung unterbricht, bleibt ein Zeiger auf den Skriptdateinamen nach der Freigabe des Request-Speichers bestehen; eine nachfolgende Anfrage im selben PHP-FPM-Worker kann dann auf den freigegebenen Bereich zugreifen. Die Schwachstelle betrifft PHP 8.3–8.5 und ist in 8.3.37, 8.4.28, 8.5.13 und 8.6.0 behoben. Dies ist eine unvollständige Korrektur für CVE-2026-109619 (ursprüngliches PHP2Shell); der Vektor unterscheidet sich von den Early-Error- und Upload-Progress-Pfaden des ursprünglichen Advisorys. Eine Codeausführung über diesen spezifischen Pfad wurde bisher nicht demonstriert. Veröffentlicht als Teil des November-Pakets mit 7 kritischen PHP-CVEs."
+   },
+   "confidence": "confirmed",
+   "source_name": "PHP Project — GHSA-g3vh-838c-65v7",
+   "source_url": "https://github.com/php/php-src/security/advisories/GHSA-g3vh-838c-65v7",
+   "source_reliability": "A",
+   "info_credibility": 1,
+   "time_kind": "published",
+   "time_precision": "minute"
+  },
+  {
+   "id": "php-cve-2026-115560-fix-released",
+   "time_utc": "2026-11-19T14:08:00Z",
+   "importance": "major",
+   "title": {
+    "pl": "PHP publikuje łatki na CVE-2026-115560 – RCE przez niezgodność serializera sesji",
+    "en": "PHP publishes patches for CVE-2026-115560 – RCE via session serializer mismatch",
+    "de": "PHP veröffentlicht Patches für CVE-2026-115560 – RCE durch Session-Serialisierer-Inkonsistenz"
+   },
+   "description": {
+    "pl": "Zespół PHP opublikował pełny advisory GHSA-658j-r8rw-q6mx wraz z łatkami dla wszystkich wspieranych gałęzi (8.2.36, 8.3.37, 8.4.28, 8.5.13) w ramach regularnego cyklu wydawniczego. Podatność wynika z niezgodności formatów serializacji sesji – funkcja upload progress może zapisać dane w formacie php_binary lub php_serialize, a odczytać je w formacie php, co przy dostępnym łańcuchu gadżetów deserializacji umożliwia zdalne wykonanie kodu, modyfikację plików lub uszkodzenie sesji. Obejście: session.upload_progress jest teraz domyślnie wyłączone, a zmiana session.serialize_handler w czasie działania jest blokowana przy włączonym upload progress. GHSA ocenia podatność jako Critical (CWE-20, CWE-502).",
+    "en": "The PHP team published the full GHSA-658j-r8rw-q6mx advisory with patches for all supported branches (8.2.36, 8.3.37, 8.4.28, 8.5.13) as part of the regular release cycle. The vulnerability stems from a session serialization format mismatch – the upload progress feature can write data in php_binary or php_serialize format and read it back in php format, enabling remote code execution, file modification, or session corruption when a deserialization gadget chain is available. Mitigation: session.upload_progress is now disabled by default, and runtime changes to session.serialize_handler are blocked while upload progress is enabled. GHSA rates the vulnerability as Critical (CWE-20, CWE-502).",
+    "de": "Das PHP-Team veröffentlichte das vollständige Advisory GHSA-658j-r8rw-q6mx mit Patches für alle unterstützten Zweige (8.2.36, 8.3.37, 8.4.28, 8.5.13) im Rahmen des regulären Release-Zyklus. Die Schwachstelle entsteht durch einen Session-Serialisierungsformat-Konflikt – die Upload-Progress-Funktion kann Daten im php_binary- oder php_serialize-Format schreiben und im php-Format zurücklesen, was bei verfügbarer Deserialisierungs-Gadget-Kette zur Remotecodeausführung, Dateimanipulation oder Session-Korruption führt. Gegenmaßnahme: session.upload_progress ist jetzt standardmäßig deaktiviert, und Laufzeitänderungen an session.serialize_handler werden bei aktiviertem Upload-Progress blockiert. GHSA stuft die Schwachstelle als Critical ein (CWE-20, CWE-502)."
+   },
+   "confidence": "confirmed",
+   "source_name": "PHP php-src – GHSA-658j-r8rw-q6mx",
+   "source_url": "https://github.com/php/php-src/security/advisories/GHSA-658j-r8rw-q6mx",
+   "source_reliability": "A",
+   "info_credibility": 1,
+   "time_kind": "published",
+   "time_precision": "minute"
+  },
+  {
+   "id": "cve-2026-126714-phpaftershell",
+   "time_utc": "2026-11-19T14:06:00Z",
+   "importance": "critical",
+   "title": {
+    "pl": "PHP: krytyczna podatność CVE-2026-126714 (phpAfterShell) w sesjach plikowych",
+    "en": "PHP: critical CVE-2026-126714 (phpAfterShell) in file-based sessions",
+    "de": "PHP: kritische Schwachstelle CVE-2026-126714 (phpAfterShell) in dateibasierten Sessions"
+   },
+   "description": {
+    "pl": "PHP publikuje krytyczną podatność CVE-2026-126714 (CVSS 9.2) w domyślnym, plikowym handlerze sesji. Gdy zapis sesji zostanie przerwany, plik może zawierać prefiks nowych danych i sufiks starych — przy kolejnym odczycie PHP deserializuje kontrolowane przez atakującego obiekty, co z łańcuchem gadgetów w aplikacji prowadzi do zdalnego wykonania kodu. Odkrywca (Depthfirst) nadał podatności nazwę „phpAfterShell”; usterkę znaleziono podczas analizy poprawek do PHP2Shell. Poprawki w wersjach 8.2.36, 8.3.37, 8.4.28 i 8.5.13.",
+    "en": "PHP publishes critical vulnerability CVE-2026-126714 (CVSS 9.2) in the default file-based session handler. When a session write is interrupted, the file may contain a prefix of the new data and a suffix of the old — upon the next read, PHP deserializes attacker-controlled objects, which with a gadget chain in the application leads to remote code execution. The discoverer (Depthfirst) named the vulnerability \"phpAfterShell\"; the flaw was found while analyzing the PHP2Shell patches. Fixes in versions 8.2.36, 8.3.37, 8.4.28, and 8.5.13.",
+    "de": "PHP veröffentlicht die kritische Schwachstelle CVE-2026-126714 (CVSS 9.2) im dateibasierten Standard-Session-Handler. Wird ein Session-Schreibvorgang unterbrochen, kann die Datei einen Präfix der neuen und einen Suffix der alten Daten enthalten — beim nächsten Lesevorgang deserialisiert PHP angreiferkontrollierte Objekte, was mit einer Gadget-Kette in der Anwendung zur entfernten Codeausführung führt. Der Entdecker (Depthfirst) nannte die Schwachstelle „phpAfterShell“; der Fehler wurde bei der Analyse der PHP2Shell-Patches gefunden. Korrekturen in den Versionen 8.2.36, 8.3.37, 8.4.28 und 8.5.13."
+   },
+   "confidence": "reported",
+   "source_name": "php-src Security Advisory — GHSA-fm2m-fjf5-v3cp",
+   "source_url": "https://github.com/php/php-src/security/advisories/GHSA-fm2m-fjf5-v3cp",
+   "source_reliability": "A",
+   "info_credibility": 1,
+   "time_kind": "published",
+   "time_precision": "minute",
+   "flags": [
+    "needs_second_source"
+   ],
+   "flag_note": {
+    "pl": "Treść źródła nie potwierdza twierdzeń z opisu. Wymaga drugiego źródła albo ręcznego sprawdzenia.",
+    "en": "The source text does not support the claims in the description. Needs a second source or a manual check.",
+    "de": "Der Quellentext stützt die Aussagen der Beschreibung nicht. Zweite Quelle oder manuelle Prüfung nötig."
+   }
+  },
+  {
+   "id": "cve-2026-129182-backtrace-uaf",
+   "time_utc": "2026-11-19T14:06:00Z",
+   "importance": "critical",
+   "title": {
+    "pl": "PHP ujawnia CVE-2026-129182: use-after-free w odtwarzaniu backtrace'u błędów krytycznych po zamknięciu executora",
+    "en": "PHP discloses CVE-2026-129182: use-after-free in fatal error backtrace repopulation after executor shutdown",
+    "de": "PHP meldet CVE-2026-129182: Use-after-free bei Wiederherstellung des Backtrace für fatale Fehler nach Executor-Shutdown"
+   },
+   "description": {
+    "pl": "Po załataniu oryginalnego PHP2Shell (CVE-2026-109619) w wersji 8.5.12 odkryto kolejne scenariusze, w których globalny backtrace błędów krytycznych jest odtwarzany już po zwolnieniu pamięci żądania. Dzieje się tak podczas przywracania ustawień INI po zamknięciu executora — gdy przywrócenie max_memory_limit nie udaje się z powodu przekroczenia limitu pamięci lub gdy konfliktują ustawienia zlib.output_compression i output_handler. Luka dotyczy PHP-FPM i mod_php, umożliwia uszkodzenie pamięci i potencjalnie zdalne wykonanie kodu (CVSS 9.2). Poprawka w PHP 8.5.13; tymczasowe obejście: fatal_error_backtraces=0.",
+    "en": "After the original PHP2Shell fix (CVE-2026-109619) in version 8.5.12, additional scenarios were discovered in which the global fatal-error backtrace is repopulated after the request memory has already been freed. This occurs during INI setting restoration after executor shutdown — when max_memory_limit restoration fails due to memory exhaustion, or when zlib.output_compression and output_handler settings conflict. The vulnerability affects PHP-FPM and mod_php, enabling memory corruption and potentially remote code execution (CVSS 9.2). Fixed in PHP 8.5.13; temporary mitigation: fatal_error_backtraces=0.",
+    "de": "Nach dem ursprünglichen PHP2Shell-Fix (CVE-2026-109619) in Version 8.5.12 wurden weitere Szenarien entdeckt, bei denen das globale Backtrace für fatale Fehler wiederhergestellt wird, nachdem der Anforderungsspeicher bereits freigegeben wurde. Dies geschieht während der Wiederherstellung von INI-Einstellungen nach dem Executor-Shutdown — wenn die Wiederherstellung von max_memory_limit wegen Speichererschöpfung fehlschlägt oder wenn zlib.output_compression und output_handler in Konflikt stehen. Die Lücke betrifft PHP-FPM und mod_php, ermöglicht Speicherkorruption und potenziell Remotecodeausführung (CVSS 9.2). Behoben in PHP 8.5.13; vorübergehende Abhilfe: fatal_error_backtraces=0."
+   },
+   "confidence": "confirmed",
+   "source_name": "PHP Security Team — GHSA-2fjv-p558-g82m",
+   "source_url": "https://github.com/php/php-src/security/advisories/GHSA-2fjv-p558-g82m",
+   "source_reliability": "A",
+   "info_credibility": 1,
+   "time_kind": "published",
+   "time_precision": "second"
+  },
+  {
+   "id": "cve-2026-129474-uaf-magic-backtrace",
+   "time_utc": "2026-11-19T14:06:00Z",
+   "importance": "critical",
+   "title": {
+    "pl": "PHP łata krytyczny use-after-free w backtrace'ach metod magicznych (CVE-2026-129474)",
+    "en": "PHP patches critical use-after-free in magic method backtraces (CVE-2026-129474)",
+    "de": "PHP stopft kritischen Use-after-Free in Backtraces magischer Methoden (CVE-2026-129474)"
+   },
+   "description": {
+    "pl": "PHP opublikował poprawkę na CVE-2026-129474 (CVSS 4.0: 9.2, CWE-416) w silniku Zend — podatność use-after-free podczas zbierania argumentów metod __call()/__callStatic() dla backtrace'a. Na PHP 8.5+ niezautoryzowany atakujący może zdalnie wykonać kod, jeśli włączone są fatal_error_backtraces (domyślnie w PHP 8.5) i zend.exception_ignore_args=0 (php.ini-production ustawia 1, blokując wektor). Wykorzystanie wymaga kontroli nad danymi żądania, dostępnej ścieżki z metodą magiczną oraz błędu fatalnego po przekroczeniu memory_limit. Luka dotyczy gałęzi 8.5.0–8.5.12; poprawka w 8.5.13. PHP 8.2–8.4 zawierają ten sam błąd, ale brak zdalnego wyzwalacza. Zdalne wykonanie kodu potwierdzone w laboratorium przez zgłaszającego; brak dowodów na eksploatację w środowiskach produkcyjnych.",
+    "en": "PHP released a fix for CVE-2026-129474 (CVSS 4.0: 9.2, CWE-416) in the Zend engine — a use-after-free when collecting __call()/__callStatic() method arguments for a backtrace. On PHP 8.5+, an unauthenticated attacker may achieve remote code execution when fatal_error_backtraces are enabled (default in PHP 8.5) and zend.exception_ignore_args=0 (php.ini-production sets it to 1, blocking this vector). Exploitation requires control over request data, a reachable magic method path, and a fatal error after exceeding memory_limit. Affects branches 8.5.0–8.5.12; fixed in 8.5.13. PHP 8.2–8.4 contain the same underlying error but lack a remote trigger. Remote code execution confirmed in the lab by the reporter; no evidence of production exploitation.",
+    "de": "PHP hat einen Fix für CVE-2026-129474 (CVSS 4.0: 9.2, CWE-416) in der Zend-Engine veröffentlicht — ein Use-after-Free beim Sammeln von Argumenten der Methoden __call()/__callStatic() für einen Backtrace. Unter PHP 8.5+ kann ein nicht authentifizierter Angreifer Code remote ausführen, wenn fatal_error_backtraces aktiviert sind (Standard in PHP 8.5) und zend.exception_ignore_args=0 gilt (php.ini-production setzt den Wert auf 1 und blockiert diesen Vektor). Die Ausnutzung erfordert Kontrolle über Anfragedaten, einen erreichbaren magischen Methodenpfad und einen fatalen Fehler nach Überschreiten des memory_limit. Betrifft die Zweige 8.5.0–8.5.12; behoben in 8.5.13. PHP 8.2–8.4 enthalten denselben zugrunde liegenden Fehler, jedoch ohne entfernten Auslöser. Remote Code Execution im Labor durch den Melder bestätigt; keine Hinweise auf Ausnutzung in Produktionsumgebungen."
+   },
+   "confidence": "confirmed",
+   "source_name": "php-src Security Advisories — GHSA-8mjj-2r7p-4hg2",
+   "source_url": "https://github.com/php/php-src/security/advisories/GHSA-8mjj-2r7p-4hg2",
+   "source_reliability": "A",
+   "info_credibility": 1,
+   "time_kind": "published",
+   "time_precision": "minute"
+  },
+  {
+   "id": "php-nov-2026-security-release",
+   "time_utc": "2026-11-19T14:30:00Z",
+   "importance": "major",
+   "title": {
+    "pl": "PHP wydaje zaplanowane poprawki bezpieczeństwa 8.2.36/8.3.37/8.4.28/8.5.13 — 17 luk, 4 krytyczne RCE",
+    "en": "PHP releases scheduled security updates 8.2.36, 8.3.37, 8.4.28, 8.5.13 — 17 flaws, 4 critical RCE",
+    "de": "PHP veröffentlicht planmäßige Sicherheitsupdates 8.2.36, 8.3.37, 8.4.28, 8.5.13 — 17 Lüken, 4 kritische RCE"
+   },
+   "description": {
+    "pl": "PHP publikuje regularne wydanie bezpieczeństwa dla wszystkich wspieranych gałęzi: 8.2.36, 8.3.37, 8.4.28 i 8.5.13. Łata ono 17 luk, z czego cztery oceniono jako krytyczne (CVSS 9.2) — dotyczą one PHP-FPM request smuggling (CVE-2026-129289), session upload progress (CVE-2026-115560), timezone cache UAF (CVE-2026-129496) oraz magic method backtraces UAF (CVE-2026-129474). CVE-2026-129182 to use-after-free odkryty w trakcie dochodzenia po incydencie php2shell. Wszystkie krytyczne luki wymagają niestandardowej konfiguracji; PHP zaleca natychmiastową aktualizację.",
+    "en": "PHP publishes a scheduled security release for all supported branches: 8.2.36, 8.3.37, 8.4.28, and 8.5.13. It fixes 17 vulnerabilities, four rated critical (CVSS 9.2): PHP-FPM request smuggling (CVE-2026-129289), session upload progress deserialization (CVE-2026-115560), timezone cache use-after-free (CVE-2026-129496), and magic method backtraces use-after-free (CVE-2026-129474). CVE-2026-129182 is a use-after-free discovered during the php2shell post-mortem investigation. All critical flaws require non-default configuration; PHP advises immediate upgrade.",
+    "de": "PHP veröffentlicht ein planmäßiges Sicherheitsrelease für alle unterstützten Zweige: 8.2.36, 8.3.37, 8.4.28 und 8.5.13. Es schließt 17 Sicherheitslücken, davon vier kritisch (CVSS 9,2): PHP-FPM Request-Smuggling(CVE-2026-129289), Session-Upload-Progress-Deserialisierung(CVE-2026-115560), Use-after-free im Zeitzonencache(CVE-2026-129496) und Use-after-free in Magic-Method-Backtraces(CVE-2026-129474). CVE-2026-129182 wurde bei der php2shell-Untersuchung entdeckt. Alle kritischen Lüken erforern nicht-standardmäßige Konfiguration; PHP rät zur soforigen Aktualisierung."
+   },
+   "confidence": "reported",
+   "source_name": "PHP — PHP 8.5.13, 8.4.28, 8.3.37, 8.2.36 Security Release",
+   "source_url": "https://www.php.net/archive/2026.php",
+   "source_reliability": "A",
+   "info_credibility": 1,
+   "time_kind": "published",
+   "time_precision": "minute",
+   "flags": [
+    "needs_second_source"
+   ],
+   "flag_note": {
+    "pl": "Nie wszystkie twierdzenia z opisu znaleziono w treści źródła. Wymaga drugiego źródła albo ręcznego sprawdzenia.",
+    "en": "Not all claims from the description were found in the source text. Needs a second source or a manual check.",
+    "de": "Nicht alle Aussagen der Beschreibung wurden im Quellentext gefunden. Zweite Quelle oder manuelle Prüfung nötig."
+   }
+  },
+  {
+   "id": "cve-2026-129291-fpm-epoll-uaf",
+   "time_utc": "2026-11-19T14:05:00Z",
+   "importance": "minor",
+   "title": {
+    "pl": "CVE-2026-129291 – PHP-FPM: use-after-free w epoll może prowadzić do lokalnej eskalacji uprawnień",
+    "en": "CVE-2026-129291 – PHP-FPM epoll use-after-free can lead to local privilege escalation",
+    "de": "CVE-2026-129291 – PHP-FPM: epoll-Use-After-Free kann zu lokaler Rechteausweitung führen"
+   },
+   "description": {
+    "pl": "PHP opublikowało advisory GHSA-jm4m-qfqx-967m (CVE-2026-129291) dotyczący podatności w PHP-FPM. Gdy włączone jest catch_workers_output, master FPM może obsłużyć zdarzenie epoll wskazujące na zwolniony rekord workera — atakujący z możliwością wykonania kodu PHP w nieuprzywilejowanym workerze może wykorzystać ten use-after-free do eskalacji do uprawnień mastera, działającego często jako root. Podatność dotyczy PHP 8.2.7–8.2.35, 8.3.0–8.3.36, 8.4.0–8.4.27 oraz 8.5.0–8.5.12; załatana w wersjach 8.2.36, 8.3.37, 8.4.28, 8.5.13 wydanych 19 listopada 2026. Exploit odtworzono na niezmodyfikowanych obrazach Docker PHP 8.5.12 (Linux arm64, x86-64). Podatność nie jest bezpośrednio związana z incydentem PHP2Shell (CVE-2026-109618/109619), lecz ujawniono ją w tym samym pakiecie poprawek bezpieczeństwa.",
+    "en": "PHP published advisory GHSA-jm4m-qfqx-967m (CVE-2026-129291) regarding a vulnerability in PHP-FPM. When catch_workers_output is enabled, the FPM master can dispatch an epoll event referring to a freed worker record — an attacker able to execute PHP code in an unprivileged worker can exploit this use-after-free to escalate to master privileges, which commonly runs as root. The vulnerability affects PHP 8.2.7–8.2.35, 8.3.0–8.3.36, 8.4.0–8.4.27, and 8.5.0–8.5.12; patched in versions 8.2.36, 8.3.37, 8.4.28, 8.5.13 released 19 November 2026. The exploit was reproduced on unmodified PHP 8.5.12 Docker images (Linux arm64, x86-64). This flaw is not directly related to the PHP2Shell incident (CVE-2026-109618/109619) but was disclosed in the same security release batch.",
+    "de": "PHP hat die Sicherheitsmeldung GHSA-jm4m-qfqx-967m (CVE-2026-129291) zu einer Schwachstelle in PHP-FPM veröffentlicht. Wenn catch_workers_output aktiviert ist, kann der FPM-Master ein epoll-Ereignis auslösen, das auf einen freigegebenen Worker-Datensatz verweist — ein Angreifer, der PHP-Code in einem nicht privilegierten Worker ausführen kann, kann dieses Use-After-Free zur Rechteausweitung auf Master-Ebene (häufig root) nutzen. Die Schwachstelle betrifft PHP 8.2.7–8.2.35, 8.3.0–8.3.36, 8.4.0–8.4.27 und 8.5.0–8.5.12; behoben in den am 19. November 2026 veröffentlichten Versionen 8.2.36, 8.3.37, 8.4.28, 8.5.13. Der Exploit wurde auf unveränderten PHP 8.5.12 Docker-Images (Linux arm64, x86-64) reproduziert. Diese Schwachstelle steht nicht in direktem Zusammenhang mit dem PHP2Shell-Vorfall (CVE-2026-109618/109619), wurde jedoch im selben Sicherheitsupdate-Paket offengelegt."
+   },
+   "confidence": "reported",
+   "source_name": "PHP Security Advisories (GHSA) — PHP-FPM epoll use-after-free can lead to local privilege escalation",
+   "source_url": "https://github.com/php/php-src/security/advisories/GHSA-jm4m-qfqx-967m",
+   "source_reliability": "A",
+   "info_credibility": 1,
+   "time_kind": "published",
+   "time_precision": "minute",
+   "flags": [
+    "needs_second_source"
+   ],
+   "flag_note": {
+    "pl": "Nie wszystkie twierdzenia z opisu znaleziono w treści źródła. Wymaga drugiego źródła albo ręcznego sprawdzenia.",
+    "en": "Not all claims from the description were found in the source text. Needs a second source or a manual check.",
+    "de": "Nicht alle Aussagen der Beschreibung wurden im Quellentext gefunden. Zweite Quelle oder manuelle Prüfung nötig."
+   }
   }
  ],
  "actors": [
@@ -7021,6 +7199,66 @@
   {
    "name": "heise Security — Angreifer verketteten PHP2Shell mit Root-Lücke auf Check-Point-Gateways",
    "url": "https://www.heise.de/news/Angreifer-verketteten-PHP2Shell-mit-Root-Luecke-auf-Check-Point-Gateways-11525531.html",
+   "type": "press"
+  },
+  {
+   "name": "PHP Project — GHSA-g3vh-838c-65v7 (UAF after interrupted session shutdown)",
+   "url": "https://github.com/php/php-src/security/advisories/GHSA-g3vh-838c-65v7",
+   "type": "official"
+  },
+  {
+   "name": "The Hacker News — PHP Fixes 7 Critical Flaws, Including Bugs That Could Allow Remote Code Execution",
+   "url": "https://thehackernews.com/2026/11/php-fixes-7-critical-flaws-including.html",
+   "type": "press"
+  },
+  {
+   "name": "PHP php-src – GHSA-658j-r8rw-q6mx (Session serializer mismatch can lead to remote code execution)",
+   "url": "https://github.com/php/php-src/security/advisories/GHSA-658j-r8rw-q6mx",
+   "type": "official"
+  },
+  {
+   "name": "PHP ChangeLog – potwierdzenie wydania poprawek w wersjach 8.2.36, 8.3.37, 8.4.28, 8.5.13",
+   "url": "https://www.php.net/ChangeLog-8.php",
+   "type": "official"
+  },
+  {
+   "name": "php-src Security Advisory — GHSA-fm2m-fjf5-v3cp",
+   "url": "https://github.com/php/php-src/security/advisories/GHSA-fm2m-fjf5-v3cp",
+   "type": "official"
+  },
+  {
+   "name": "Depthfirst — phpAfterShell: From Interrupted Session Writes to Remote Code Execution",
+   "url": "https://depthfirst.com/research/phpaftershell",
+   "type": "research"
+  },
+  {
+   "name": "PHP Security Team — GHSA-2fjv-p558-g82m",
+   "url": "https://github.com/php/php-src/security/advisories/GHSA-2fjv-p558-g82m",
+   "type": "primary"
+  },
+  {
+   "name": "PHP.net — PHP 8.5.13 Release Announcement",
+   "url": "https://www.php.net/releases/8_5_13.php",
+   "type": "official"
+  },
+  {
+   "name": "Heise — PHP behebt 17 Sicherheitslücken, vier erlauben Ausführung von Schadcode",
+   "url": "https://heise.de/news/PHP-behebt-17-Sicherheitsluecken-vier-erlauben-Ausfuehrung-von-Schadcode-11531249.html",
+   "type": "press"
+  },
+  {
+   "name": "GHSA-8mjj-2r7p-4hg2 (php-src)",
+   "url": "https://github.com/php/php-src/security/advisories/GHSA-8mjj-2r7p-4hg2",
+   "type": "official"
+  },
+  {
+   "name": "PHP Security Advisories (GHSA) — PHP-FPM epoll use-after-free can lead to local privilege escalation",
+   "url": "https://github.com/php/php-src/security/advisories/GHSA-jm4m-qfqx-967m",
+   "type": "official"
+  },
+  {
+   "name": "digitalroyalty.co.uk — PHP 8.5.13, 8.4.28, 8.3.37, 8.2.36 Security Release (19 Nov 2026)",
+   "url": "https://digitalroyalty.co.uk/news/php-security-release-november-2026",
    "type": "press"
   }
  ],
