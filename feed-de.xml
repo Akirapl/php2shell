@@ -3,12 +3,23 @@
 <title>PHP2Shell — Chronik (DE)</title>
 <subtitle>Live-Chronik zu PHP2Shell (CVE-2026-109618/109619), kritische RCE im PHP-Kern (CVSS 9.2). Behoben in 8.5.12, 8.4.27, 8.3.36, 8.2.35. Jede Angabe mit Quelle.</subtitle>
 <id>https://akirapl.github.io/php2shell/feed-de.xml</id>
-<updated>2026-11-20T08:04:18Z</updated>
+<updated>2026-11-20T21:02:43Z</updated>
 <link rel="self" type="application/atom+xml" href="https://akirapl.github.io/php2shell/feed-de.xml"/>
 <link rel="alternate" type="text/html" hreflang="de" href="https://akirapl.github.io/php2shell/?lang=de"/>
 <author><name>Dawid Kulik (@Akirapl)</name><uri>https://github.com/Akirapl</uri></author>
 <icon>https://akirapl.github.io/php2shell/assets/og-image.png</icon>
 <rights>CC BY 4.0</rights>
+<entry>
+<title>Cloudflare erweitert WAF-Schutz auf phpAfterShell und weitere kritische PHP-Schwachstellen aus dem November-Patchpaket</title>
+<id>tag:php2shell-live.surge.sh,2026:cloudflare-waf-phpaftershell</id>
+<link rel="alternate" type="text/html" href="https://akirapl.github.io/php2shell/?lang=de#ev-cloudflare-waf-phpaftershell"/>
+<link rel="related" href="https://blog.cloudflare.com/phpaftershell-waf-protection/"/>
+<published>2026-11-20T20:00:00Z</published>
+<updated>2026-11-20T20:00:00Z</updated>
+<category term="major"/>
+<summary type="text">Am 20. November 2026 veröffentlichte Cloudflare eine ausführliche Darstellung des WAF-Schutzes gegen phpAfterShell (CVE-2026-126714, CVSS 9.2) — eine kritische Schwachstelle in PHPs standardmäßiger dateibasierter Sitzungsverwaltung, die am Vortag von depthfirst offengelegt wurde. Der Schutz basiert auf einer im Oktober für php2Shell bereitgestellten RCE-Regel; deren Logik wurde am 19. November aktualisiert, um phpAfterShell abzudecken, und die Regel blockiert Angriffe standardmäßig für alle Kunden, einschließlich des Free-Tarifs. Drei neue Regeln wurden für kostenpflichtige Tarife hinzugefügt: eine gegen Request Smuggling in PHP-FPM (CVE-2026-129289) und zwei für SOAP-Schwachstellen (CVE-2026-15353, CVE-2026-129506). Cloudflare hat bisher keine Ausnutzung beobachtet, und keine der 17 Schwachstellen ist im CISA-KEV-Katalog aufgeführt.</summary>
+<content type="html">&lt;p&gt;Am 20. November 2026 veröffentlichte Cloudflare eine ausführliche Darstellung des WAF-Schutzes gegen phpAfterShell (CVE-2026-126714, CVSS 9.2) — eine kritische Schwachstelle in PHPs standardmäßiger dateibasierter Sitzungsverwaltung, die am Vortag von depthfirst offengelegt wurde. Der Schutz basiert auf einer im Oktober für php2Shell bereitgestellten RCE-Regel; deren Logik wurde am 19. November aktualisiert, um phpAfterShell abzudecken, und die Regel blockiert Angriffe standardmäßig für alle Kunden, einschließlich des Free-Tarifs. Drei neue Regeln wurden für kostenpflichtige Tarife hinzugefügt: eine gegen Request Smuggling in PHP-FPM (CVE-2026-129289) und zwei für SOAP-Schwachstellen (CVE-2026-15353, CVE-2026-129506). Cloudflare hat bisher keine Ausnutzung beobachtet, und keine der 17 Schwachstellen ist im CISA-KEV-Katalog aufgeführt.&lt;/p&gt;&lt;p&gt;Quelle: &lt;a href="https://blog.cloudflare.com/phpaftershell-waf-protection/"&gt;Cloudflare Blog — How Cloudflare WAF helps protect against phpAfterShell and other critical PHP flaws&lt;/a&gt; · bestätigt · major&lt;/p&gt;</content>
+</entry>
 <entry>
 <title>PHP behebt kritische phpAfterShell-Schwachstelle (CVE-2026-126714, CVSS 9.2) im dateibasierten Sitzungsspeicher</title>
 <id>tag:php2shell-live.surge.sh,2026:php-aftershell-disclosure</id>
