@@ -10,7 +10,7 @@
    "en": "CVE-2026-109618 and CVE-2026-109619: critical RCE flaws in the PHP core",
    "de": "CVE-2026-109618 und CVE-2026-109619: kritische RCE-Lücken im PHP-Kern"
   },
-  "last_updated": "2026-11-20T02:04:00Z",
+  "last_updated": "2026-11-20T08:04:18Z",
   "maintainer_note": "Single source of truth. Every fact needs source_url, source_name, confidence; texts as {pl,en,de}. Run ./update_and_build.sh \"message\".",
   "timezone_note": {
    "pl": "Wszystkie czasy w UTC. Czasy z NOS (CEST) przeliczone na UTC (−2 h).",
@@ -7122,6 +7122,16 @@
    "name": "oss-security — Alan Coopersmith (Oracle): szczegółowe zestawienie CVE i GHSA z wydania 19.11.2026",
    "url": "https://seclists.org/oss-sec/2026/q4/793",
    "type": "news"
+  },
+  {
+   "name": "CERT-Bund WID — PHP: Schwachstelle ermöglicht Codeausführung",
+   "url": "https://wid.cert-bund.de/portal/wid/securityadvisory?name=WID-SEC-2026-4145",
+   "type": "agency"
+  },
+  {
+   "name": "Debian Security Advisory DSA-6641",
+   "url": "https://security-tracker.debian.org/tracker/DSA-6641-1",
+   "type": "vendor"
   }
  ],
  "social_mood": [
